@@ -1,0 +1,337 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Netzwerk</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+   var dummy='1';
+   var wan_test_status='<%ejGet(wan_test_status)%>';
+   var provtxt1 = new Array('<%ejGet(T_onLinePppPassword1)%>',
+						   '<%ejGet(T_BusinessDynUserName)%>',
+						   '<%ejGet(T_BusinessFesUserName)%>',
+						   '<%ejGet(pppUserName)%>');
+ 
+   var provpwd = new Array('<%ejGet(T_onLinePppPassword)%>',
+						  '<%ejGet(T_BusinessDynPassword)%>',
+						  '<%ejGet(T_BusinessFesPassword)%>',
+						  '<%ejGet(pppPassword)%>');
+ 
+function form_load(){
+	if (wan_test_status == '1') alert("Der Internetzugang wurde erfolgreich eingerichtet.\n\n");
+	loadcfg();
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#i_content10 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content19 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onselectstart="return false" onload=form_load()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk</DIV>
+<DIV id=c_titel>Netzwerkeinstellungen</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_wan.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Internetzugang</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+		var serviceId = parseInt('<%ejGet(serviceId)%>');
+		if (serviceId == 1 || serviceId == 0)
+                   document.write("T-Online");
+                else if (serviceId == 2)
+		   document.write("T-DSL Business mit dyn. IP");		
+		else if (serviceId == 3)
+		   document.write("T-DSL Business mit fester IP");
+		else if (serviceId == 4)
+                   document.write("Anderer Provider");
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_lan.htm" onmouseover=i_showElem(2) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>LAN</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--                    
+		document.write("IP-Adresse: "+'<%ejGet(ethIpAddress)%>');
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_dhcp.htm" onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>DHCP</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              if('<%ejGet(enblDhcpSrv)%>'=='0'){
+                document.write('Aus');
+              }
+              else{                  
+                document.write('Ein');
+              }
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_wireless.htm" onmouseover=i_showElem(4) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Wireless LAN (WLAN)</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+	      document.write(('<%ejGetWl(wlEnbl)%>'=='1')?"Ein":"Aus")
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <SCRIPT language="JavaScript">
+          <!--
+		if('<%ejGetWl(wlEnbl)%>'=='0'){
+              		document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(19) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Repeater</DIV></td>');
+                }
+            	else{                  
+              		document.write('<td width="200"><a href="wlwds.cmd?action=view" onmouseover=i_showElem(5) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Repeater</a></td>');
+              	if('<%ejGetWl(wlRepeaterEnbl)%>'=='0'){
+                	document.write('<td>Aus</td>');
+              	}
+              	else{                  
+                	document.write('<td>Ein</td>');
+              	}
+            }
+          //-->
+          </SCRIPT>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_ppp.htm" onmouseover=i_showElem(6) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>PPPoE Pass-Through</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              if('<%ejGet(enblPppThrough)%>' == '0'){
+                document.write('Aus');
+              }
+              else{                  
+                document.write('Ein');
+              }
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_n.htm" onmouseover=i_showElem(7) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>NAT &amp; Portregeln</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              if('<%ejGet(enblNat)%>'=='0'){
+                document.write('Aus');
+              }
+              else{                  
+                document.write('<%ejGet(natRuleNum)%> Regel(n)');
+              }
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_ddns.htm" onmouseover=i_showElem(8) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Dynamisches DNS</a></td>
+          <td><script language="javascript">document.write((<%ej_get_ddns(ddns_enabled)%>=='1')?"Ein":"Aus")</script></td>
+        </tr>
+      </table>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+if(top.frames[0].fsrvfkt==true){
+  document.write('<DIV id=c_link>');
+}
+else{
+  document.write('<DIV id=c_linklast>');
+}
+//-->
+</SCRIPT>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_upnp.htm" onmouseover=i_showElem(9) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>UPnP</a></td>
+          <td><script  language="javascript">document.write(('<%ejGet(enblUpnp)%>'=='1')?"Ein":"Aus")</script></td>
+        </tr>
+      </table>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+if(top.frames[0].fsrvfkt==true){
+  document.write(
+    '<DIV id=c_linklast>' +
+      '<table border="0" cellpadding="4" cellspacing="0">' +
+        '<tr>' +
+          '<td width="200"><a href="hcti_netzwerk_fsrv.htm" onmouseover=i_showElem(10) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>File-Server</a></td>');
+            if(top.frames[0].fsrv=="0"){
+              document.write('<td>Aus</td>');
+            }
+            else{
+              document.write('<td>Ein</td>');
+            }
+            document.write(
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+//-->
+</SCRIPT>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=startseite() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Netzwerkeinstellungen</h2>
+    <p>Ihr Router ermöglicht detaillierte Netzwerkeinstellungen zur individuellen Konfiguration
+    Ihres LAN (Local Area Network)-Systems.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>Internetzugang</b><br>
+    Hier können Sie Ihren Internetzugang einrichten, ändern oder löschen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>LAN (Local Area Network)</b><br>
+    Über die LAN-Konfiguration können Sie eine IP-Adresse für den Router festlegen und festlegen, 
+    ob der Router die IP-Adressen für die Rechner Ihres lokalen Netzwerkes automatisch vergeben soll oder nicht.
+   </p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>DHCP Funktion</b><br>
+    Mit dem DHCP (Dynamic Host Configuration Protocol) können die Computer im lokalen Netzwerk, 
+    beim Anmelden an das Netzwerk automatisch die TCP/IP-Einstellungen vom Router beziehen.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>Wireless LAN (WLAN)</b><br>
+    Damit die kabellos verbundenen Netzwerkkomponenten miteinander kommunizieren können, müssen Sie
+    einen gemeinsamen Funkkanal und die gleiche SSID (Service Set Identifier) verwenden.
+    Ihr WLAN Router wird mit der SSID: 'WLAN' ausgeliefert. Aus Sicherheitsgründen sollten Sie diese SSID
+    ändern und die Funktion: 'SSID Unsichtbar' aktivieren.</p>
+  </DIV>
+  
+  <DIV id=i_content5>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>Repeater</b><br>
+    Wenn Sie zur Vergrößerung der Reichweite Ihres WLAN Routers einen Repeater nutzen wollen, dann können
+    Sie dies über die Seite Repeater konfigurieren.</p>
+  </DIV>
+  
+  <DIV id=i_content6>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>PPPoE Pass-Through</b><br>
+    Die "PPPoE Pass-Through"-Funktion ermöglicht Geräten im lokalen Netzwerk, 
+    eigene Internet-Verbindungen über PPPoE (Point to Point Protocol over Ethernet) aufzubauen</p>
+   
+  </DIV>
+  
+  <DIV id=i_content7>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>NAT (Network Address Translation) &amp; Portregeln</b><br>
+    Ihr Router ist mit der NAT-Funktion ausgestattet. Die NAT-Funktion
+    bildet eine Firewall gegen unberechtigte Zugriffe aus dem Internet.</p>
+  </DIV>
+  
+  <DIV id=i_content8>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>Dynamisches DNS</b><br>
+    Die Zuordnung von Domänennamen und IP-Adressen wird über den Domain Name Service (DNS) realisiert.
+    Für dynamische IP-Adressen wird dieser Service jetzt durch das so genannte Dynamische DNS ergänzt. 
+    Es ermöglicht die Nutzung des Routers mit wechselnder IP-Adresse als Server im Internet.
+    Das Dynamische DNS stellt sicher, dass ein Dienst im Internet unabhängig von der aktuellen IP-Adresse immer unter dem
+    gleichen Domänennamen angesprochen werden kann.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>UPnP (Universal Plug and Play)</b><br>
+    UPnP-Technologie wurde zur spontanen Vernetzung von Heim- oder Büronetzwerken
+    konzipiert. Geräte, die UPnP unterstützen, führen automatisch ihre Netzwerkkonfiguration durch,
+    wenn Sie an ein Netzwerk angeschlossen werden. Sie stellen ebenfalls automatisch eigene Dienste zur Verfügung
+    oder erkennen und nutzen Dienste anderer Geräte im Netzwerk.</p>
+  </DIV>
+
+  <DIV id=i_content10>
+    <h2>Netzwerkeinstellungen</h2>
+    <p><b>File-Server</b><br>
+     Mit Hilfe des integrierten File-Servers können Sie einen USB-Datenträger, beispielsweise eine Festplatte mit USB-Anschluss, 
+     einfach und schnell allen Benutzer in Ihrem Netzwerk zur Verfügung stellen. </p>
+    </DIV>
+
+  <DIV id=i_content19>
+    <h2>Wireless Einstellung nicht verfügbar</h2>
+    <p>Um diese Einstellung verändern zu können, muss die Funktion 'Wireless' unter 'Netzwerk' eingeschaltet sein.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

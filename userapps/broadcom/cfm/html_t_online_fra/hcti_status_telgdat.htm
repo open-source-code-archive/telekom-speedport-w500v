@@ -1,0 +1,96 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>StatusGesprächsdaten</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var anz = 15; //Anzahl Einträge in der Anruferliste
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_status.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 379px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Status / Gesprächsdaten</DIV>
+<DIV id=c_titel>
+                Rufnummer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                AS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Zeitpunkt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                Dauer
+</DIV>
+
+<SCRIPT language="JavaScript">
+<!--
+  if (anz > 14) document.write('<DIV id=scroll>');
+
+  var divart;
+  for (i=0;i<anz;i++){
+    divart = "c_std";
+    if (i == anz-1) divart = "c_last";
+    document.write(
+      '<DIV id=' + divart + '>' +
+        '<table border="0" cellpadding="0" cellspacing="2">' +
+          '<tr>' +
+            '<td width="145">' + top.frames[0].msn[1] + '</td>' +
+            '<td width="30">2</td>' +
+            '<td width="130">18.02.2005 17:21:05</td>' +
+            '<td>00:44:36</td>' +
+          '</tr>' +
+        '</table>' +
+      '</DIV>');
+  }
+
+  if (anz <= 14) document.write('<DIV id=c_leer>');
+//-->
+</SCRIPT>
+
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but2 onclick="JavaScript:location.reload()" onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>Aktualisieren</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Gesprächsdaten</h2>
+    <p>Hier sehen Sie Ihre abgehenden Telefonate.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,125 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonAnschlussXCLIP</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+var enable_CLIP = '<%ejGetVoip(enable_CLIP)%>';
+function chk(){ 
+  switch(enable_CLIP){// frames[0] entspricht banner
+    case "0":
+      document.F1.R1[0].checked = true;
+      break;
+    case "1":
+      document.F1.R1[1].checked = true;
+      break;
+  }
+}
+
+function stOk(){
+
+   document.getElementById('t_but1').style.visibility='hidden';
+   document.getElementById('t_but3').style.visibility='hidden';
+   document.getElementById('t_but4').style.visibility='hidden';
+
+  document.getElementById("c_verzoeg1_as").style.visibility='visible';
+  document.getElementById("c_verzoeg2_as").style.visibility='visible';
+  
+  var loc = 'voipcfg.cmd?action=portset';
+  if(document.F1.R1[0].checked == true){
+   loc += '&enable_CLIP=0'; 
+  }
+  else{
+   loc += '&enable_CLIP=1';
+  }
+    var code = 'this.location.assign("' + loc + '")';
+    eval(code);
+
+
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_telefon_as.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<SCRIPT language="JavaScript">
+<!--                    
+  document.write('<DIV id=c_bild><img border="0" src="pic_c_analog' + (top.frames[0].as_akt+1) + '.jpg"></DIV>');
+
+  document.write('<DIV id=c_border_as' + (top.frames[0].as_akt+1) + '>');
+  document.write('<DIV id=c_pfad>Telefonie / Anschluss-Einstellungen' + ' / Anzeige der Rufnummer (CLIP)</DIV>');
+//-->
+</SCRIPT>
+
+<DIV id=c_titel>Anzeige der Rufnummer (CLIP)</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="20"><input type="radio" name="R1" value="V1"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2"></td>
+            <td>Ein</td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1_as></DIV>
+<DIV id=c_verzoeg2_as></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Anzeige der Rufnummer (CLIP)</h2>
+    <p>Wählen Sie die Option 'Aus', wenn die Rufnummer des Anrufenden nicht angezeigt werden soll.</p>
+
+     <p>Wählen Sie die Option 'Ein', wenn die Rufnummer des Anrufenden angezeigt werden soll.</p>
+
+<p><img border="0" src="pic_i_hinweis.gif"><br>    
+Damit die Rufnummer des Anrufenden angezeigt wird, muss Ihr Endgerät die CLIP-Funktion unterstützen.</p>
+
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Anzeige der Rufnummer (CLIP)</h2>
+    <p><b>Aus - Ein</b><br>
+    Hier können Sie CLIP ein- oder ausschalten</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

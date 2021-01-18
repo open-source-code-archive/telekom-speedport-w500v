@@ -1,0 +1,43 @@
+<html>
+
+<head>
+
+<title>Konfigurationsprogramm</title>
+
+<script language="JavaScript">
+<!--                    
+var sechinw = true;
+
+function frmLoad(){
+	top.frames[0].location.href = "b_banner.htm";
+	top.frames[1].location.href = "m_start_passwort.htm";
+	top.frames[2].location.href = "hcti_start_passwort.htm";
+}
+
+
+// Prüfung ob Fenster geschlossen werden kann
+
+function sicherheitseinstellung(){
+  if(sechinw == true && top.frames[0].wlanfkt == true && top.frames[0].wlan == "1"){ //Wenn Wireless eingeschaltet ist
+    if (top.frames[0].encrypt == 0){  //Wenn WEP ausgeschaltet ist
+        window.event.returnValue = 
+          "________________________________________________________________________________________" +
+          "\n|\t\t\t\t\t\t\t\t\t\t\t|" +
+          "\n|     Sie haben die Einstellung im Bereich:\t\t\t\t\t\t\t|" +
+          "\n|       > Sicherheit / Verschlüsselung\t\t\t\t\t\t\t\t|" +
+          "\n|     nicht aktiviert. Wir empfehlen Ihnen zu Ihrer eigenen Sicherheit, diese Funktionalität einzuschalten.\t|" +
+          "\n|\t\t\t\t\t\t\t\t\t\t\t|" +
+          "\n|     Möchten Sie die Konfiguration wirklich Beenden, ohne die Verschlüsselung einzuschalten?\t\t|" +
+          "\n|" +
+          "_______________________________________________________________________________________\t|\n"; 
+    }
+  }
+}
+
+//-->
+</script>
+
+</head>
+<body onLoad='frmLoad()'>
+</body>
+</html>

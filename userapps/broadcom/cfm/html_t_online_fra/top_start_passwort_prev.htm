@@ -1,0 +1,40 @@
+<html>
+
+<head>
+<title>HTML-Konfiguration</title>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function confstart(htmlsite){
+    var Breite = screen.width;
+    var Hoehe = screen.height;
+    var Oben = (Hoehe-540) /2;
+    var Links = (Breite-792) /2;
+    
+    var Optionen = "toolbar=no,location=no,Directory=no,Status=no,menubar=no,scrollbars=yes,resizable=no";
+    Optionen += ",width=792,height=552";
+    Optionen += ",top="+Oben;
+    Optionen += ",left="+Links;
+    window.open(htmlsite,"Konfiguration", Optionen);
+    thiswin = window.self;
+    thiswin.opener = window.self;
+    //thiswin.close();
+    //window.close() ;
+
+}
+
+
+function frmLoad()
+{
+    confstart("top_start_passwort.htm"); 
+}
+//-->
+</SCRIPT>
+
+</head>
+
+<body onLoad='frmLoad()'>
+</body>
+
+</html>

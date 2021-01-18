@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<title>HTML-Konfiguration</title>
+
+<SCRIPT language="JavaScript">
+<!--
+var verz = '<%ejGet(pwd_err_wait_time)%>';
+
+var isTimeout = true;
+function chk_pwd(){
+	if (isTimeout == false) return;
+
+	document.F1.submit();
+}
+
+function stEnter(){
+/*  if (window.event.keyCode==13){
+    chk_pwd();
+  }*/
+}
+
+function stBak(){
+  document.F1.P1.disabled = false;
+  document.F1.P1.style.backgroundColor="#FFFFFF";
+  document.F1.P1.value = "";
+  document.F1.P1.focus();
+  isTimeout = true;
+}
+
+function rahmen(but,high){
+  var col;
+
+  if (isTimeout == false) return;
+
+  if (high==1) col = '#E20074';
+  else col = '#666666';
+
+  document.getElementById(but).style.color = col;
+  document.getElementById(but).style.borderColor = col;
+}
+
+function confstart(htmlsite){
+var Breite = screen.width;
+var Hoehe = screen.height;
+var Oben = (Hoehe-540) /2;
+var Links = (Breite-792) /2;
+
+var Optionen = "toolbar=no,location=no,Directory=no,Status=no,menubar=no,scrollbars=yes,resizable=no";
+    Optionen += ",width=792,height=552";
+    Optionen += ",top="+Oben;
+    Optionen += ",left="+Links;
+
+    document.getElementById("c_txt").innerHTML='<table border="0" cellpadding="0" cellspacing="0">' +
+                                                 '<tr>' +
+                                                   '<td width="150"></td>' +
+                                                   '<td>' +
+                                                     '<p style="font-size: 18px;"><br>' +
+                                                     '<b>Sie können diese Seite nun schließen!</b></p>' +
+                                                   '</td>' +
+                                                 '</tr>' +
+                                               '</table>';
+
+    window.open(htmlsite,"Konfiguration", Optionen);
+
+    thiswin = window.self;
+    thiswin.opener = window.self;
+    thiswin.close();
+}
+
+function frmLoad()
+{
+      	alert("Falsches Passwort! Bitte versuchen Sie es erneut");
+    	document.F1.P1.style.backgroundColor="#D4D0C8";
+	document.F1.P1.disabled=true;
+	isTimeout = false;
+	//document.F1.P1.focus();
+	setTimeout("stBak()",verz);	
+}
+
+//-->
+</SCRIPT>
+
+<STYLE type="text/css">
+<!--
+
+input.stylepwd {font-family:Arial; font-size:18px;}
+
+td {
+  font-family: Arial, sans-serif; font-size: 12px; color: #666666;
+}
+
+#c_txt {
+  font-family: Arial, sans-serif; font-size: 18px; font-weight: bold;
+}
+
+#Start {
+  height: 21px; line-height: 21px; width: 100px; background-color:#EEEEEE; text-align: center; cursor: pointer; cursor: hand;
+  font-size:14px; font-weight: bold;
+  border-color: #666666; border-width: 2px; border-style: solid;
+}
+
+#Budget {
+  height: 21px; line-height: 21px; width: 100px; background-color:#EEEEEE; text-align: center; cursor: pointer; cursor: hand;
+  font-size:14px; font-weight: bold;
+  border-color: #666666; border-width: 2px; border-style: solid;
+}
+
+//-->
+</STYLE>
+
+</head>
+
+<body onLoad='frmLoad()'>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+  <tr>
+    <td valign="middle" align="center">
+      <table border="1" cellpadding="0" cellspacing="0" height="480" width="640" background="pic_welcome.jpg">
+        <tr>
+          <td valign="top">
+
+            <img border="0" src="pic_welcome_b.gif">
+            <DIV id=c_txt>
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <form name="F1" action="start.login" method="post">
+                  <td width="150"></td>
+                  <td>
+
+                    <p style="font-size: 18px;"><br>
+                    <b>Willkommen im Konfigurationsprogramm!</b></p>
+                    <p><b>Geben Sie das Passwort ein und best&auml;tigen Sie mit 'OK'.</b><br>
+                       Im Auslieferungszustand lautet das Passwort '0000'. Wir empfehlen<br>
+                       Ihnen, das Passwort im Konfigurationsprogramm zu &auml;ndern.</p>
+
+                    <table>
+                      <tr>
+                        <td width="160"><input type="password" name="P1" class="stylepwd" name="P1" size="12" maxlength="12" onkeypress=stEnter()></td>
+                        <td><DIV id=Start onclick=chk_pwd() onmouseover=rahmen("Start",1) onmouseout=rahmen("Start",0)>&gt;&gt;&nbsp;OK</DIV></td>
+                      </tr>
+                    </table>
+
+                    <p>Das Konfigurationsprogramm wurde für folgende Browser optimiert:<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Internet Explorer ab Version 5.5<br>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Netscape ab Version 7.1 / Firefox ab Version 0.9<br>
+                       Im Konfigurationsprogramm wird Javascript verwendet. Ihr Browser<br>
+                       muss deshalb so eingestellt sein, dass er Javascript ausf&uuml;hrt.<br><br><br><br>
+
+		</p>
+
+                    <table>
+                      <tr>
+                        <td width="160"></td>
+                        <td></td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </form>
+              </tr>
+            </table>
+            </DIV>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

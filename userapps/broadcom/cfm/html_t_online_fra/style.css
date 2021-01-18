@@ -1,0 +1,259 @@
+a:link {font-size:12px; font-family: Arial, sans-serif; text-decoration: none; color: #000000;}
+a:visited {font-size:12px; font-family: Arial, sans-serif;  text-decoration: none; color: #000000;}
+a:active {font-size:12px; font-family: Arial, sans-serif;  text-decoration: none; color: #000000;}
+a:hover {font-size:12px; font-family: Arial, sans-serif;  text-decoration: none; color: #E20074;}
+
+input {font-family:Courier New; font-size:12px;}
+input.stylepwd {font-family:Courier New; font-size:12px;}
+input.stylebut {font-family:Arial; font-size:12px; padding-left: 5px; text-align: left;}
+select {font-family:Arial, sans-serif; font-size:12px;}
+td {font-family:Arial, sans-serif; font-size:12px;}
+li {font-family:Arial, sans-serif; font-size:12px;}
+
+p {font-family:Arial, sans-serif; font-size:12px;}
+h2 {font-family:Arial, sans-serif; font-size:12px; color: #333333; background-color:#DDDDDD; padding:2px;}
+
+body {
+  font-family:Arial, sans-serif; font-size:12px;
+  background-color: #FFFFFF; margin-left: 0px; margin-top: 0px; margin-bottom: 0px;
+    scrollbar-base-color: #FFFFFF;  scrollbar-face-color: #D0D0D0; scrollbar-arrow-color: #000000;
+    scrollbar-highlight-color: #F0F0F0; scrollbar-shadow-color: #B0B0B0;
+    scrollbar-3d-light-color: #E20074; scrollbar-dark-shadow-color: #E20074;
+}
+
+#c_Frame {
+	POSITION: absolute; LEFT: 0px; WIDTH: 432px; TOP: 0px; HEIGHT: 483px; OVERFLOW: hidden; 
+}
+#t_Frame {
+	POSITION: absolute; LEFT: 0px; WIDTH: 432px; TOP: 483px; HEIGHT: 25px; OVERFLOW: hidden;
+	background-image:url(pic_t_back.jpg); font-weight: bold;
+}
+#i_frame {
+	POSITION: absolute; LEFT: 432px; WIDTH: 190px; TOP: 0px; HEIGHT: 508px; OVERFLOW: hidden;
+	background-image:url(pic_i_back.jpg); Z-INDEX: 1;
+}
+
+#c_bild {
+	POSITION: absolute; LEFT: 15px;
+}
+
+#c_verzoeg1 {
+	POSITION: absolute; margin-left: 15px; margin-top: 37px; width: 402px; height: 75;
+	border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+	background-color: #F0F0F0; background-image: url(pic_c_verzoeg.gif); VISIBILITY: hidden;
+}
+
+#c_verzoeg1_visible {
+POSITION: absolute; margin-left: 15px; margin-top: 37px; width: 402px; height: 75;
+border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+	background-color: #F0F0F0; background-image: url(pic_c_verzoeg.gif); VISIBILITY: visible;
+}
+
+#c_verzoeg2 {
+	POSITION: absolute; margin-left: 13px; margin-top: 112px; width: 406px; height: 371;
+	background-color: #FFFFFF; VISIBILITY: hidden;
+}
+#c_verzoeg2_visible {
+        POSITION: absolute; margin-left: 13px; margin-top: 112px; width: 406px; height: 371;
+        background-color: #FFFFFF; VISIBILITY: visible;
+}
+
+
+#c_verzoeg1_as {
+	POSITION: absolute; margin-left: 15px; margin-top: 109px; width: 402px; height: 75;
+	border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+	background-color: #F0F0F0; background-image: url(pic_c_verzoeg.gif); VISIBILITY: hidden;
+}
+
+#c_verzoeg2_as {
+	POSITION: absolute; margin-left: 13px; margin-top: 184px; width: 406px; height: 371;
+	background-color: #FFFFFF; VISIBILITY: hidden;
+}
+
+#c_border {
+	POSITION: absolute; margin-left: 15px; margin-top: 10px; width: 402px;
+	border-color: #E20074; border-width: 1px; border-style: solid; background-color: #F0F0F0;
+}
+#cBorder {
+	margin-left: 0px; margin-top: 19px; width: 402px; background-color: #F0F0F0;
+	border-color: #E20074; border-width: 1px; border-style: solid;
+}
+
+#c_border_as1 {
+	POSITION: absolute; margin-left: 15px; margin-top: 82px; width: 402px;
+	border-color: #E20074; border-width: 1px; border-style: solid; background-color: #FAD6E9;
+}
+
+#c_border_as2 {
+	POSITION: absolute; margin-left: 15px; margin-top: 82px; width: 402px;
+	border-color: #E20074; border-width: 1px; border-style: solid; background-color: #F1F398;
+}
+
+#c_border_as3 {
+	POSITION: absolute; margin-left: 15px; margin-top: 82px; width: 402px;
+	border-color: #E20074; border-width: 1px; border-style: solid; background-color: #D6FAE9;
+}
+
+#c_border_as4 {
+	POSITION: absolute; margin-left: 15px; margin-top: 82px; width: 402px;
+	border-color: #E20074; border-width: 1px; border-style: solid; background-color: #FFD089;
+}
+
+#c_pfad {
+	height: 25px; line-height: 25px; padding-left: 10px;
+	border-bottom-color: #D0D0D0; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_titel {
+	height: 25px; line-height: 25px; padding-left: 10px; font-weight: bold;
+}
+
+#c_link {
+	height: 25px; line-height: 25px; padding-left: 6px; background-image: url(pic_c_menu.gif);
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_linklast {
+	height: 25px; line-height: 25px; padding-left: 6px;
+	background-image: url(pic_c_menu.gif);
+}
+
+#c_dis {
+	color: #808080;
+}
+
+#c_stat {
+	height: 25px; line-height: 25px; padding-left: 6px; background-image: url(pic_c_stat.gif);
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_anz {
+	height: 40px; line-height: 35px; padding-left: 10px;
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+
+#c_anzlast {
+	height: 40px; line-height: 35px; padding-left: 10px;
+}
+
+#c_statlast {
+	height: 25px; line-height: 25px; padding-left: 6px; background-image: url(pic_c_stat.gif);
+}
+
+#c_std {
+	height: 25px; line-height: 25px; padding-left: 10px;
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_std_2line {
+	height: 43px; line-height: 25px; padding-left: 10px;
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_last {
+	height: 25px; line-height: 25px; padding-left: 10px;
+}
+
+#c_text {
+	line-height: 15px; padding-left: 10px;
+}
+
+#c_sel {
+	height: 40px; line-height: 40px; padding-left: 10px;
+  border-bottom-color: #D0D0D0; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_leer {
+	height: 25px; line-height: 25px; border-bottom-color: #D0D0D0; border-bottom-width: 1px; border-bottom-style: solid;
+}
+#c_halb {
+	height: 15px; line-height: 15px; font-size: 10px;
+	border-bottom-color: #D0D0D0; border-bottom-width: 1px; border-bottom-style: solid;
+}
+#c_foot {
+	height: 25px; line-height: 25px;
+}
+
+
+#t_but1 {
+	POSITION: absolute; top: 4px; left: 15px; width: 86px; text-align: center; cursor: pointer; cursor: hand;
+	border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_but1_hidden {
+        POSITION: absolute; top: 4px; left: 15px; width: 86px; text-align: center; cursor: pointer; cursor: hand;
+        border-color: #000000; border-width: 1px; border-style: solid; visibility: hidden;
+}
+
+#t_but2 {
+	POSITION: absolute; top: 4px; left: 120px; width: 86px; text-align: center; cursor: pointer; cursor: hand;
+	border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_but2_hidden {
+        POSITION: absolute; top: 4px; left: 120px; width: 86px; text-align: cent
+er; cursor: pointer; cursor: hand;
+        border-color: #000000; border-width: 1px; border-style: solid; visibility: hidden;
+}
+
+#t_but3 {
+	POSITION: absolute; top: 4px; left: 226px; width: 86px; text-align: center; cursor: pointer; cursor: hand;
+	border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_but4 {
+	POSITION: absolute; top: 4px; left: 331px; width: 86px; text-align: center; cursor: pointer; cursor: hand;
+	border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_but3_hidden {
+        POSITION: absolute; top: 4px; left: 226px; width: 86px; text-align: cent
+er; cursor: pointer; cursor: hand;
+        border-color: #000000; border-width: 1px; border-style: solid; visibility: hidden;
+}
+#t_but4_hidden {
+        POSITION: absolute; top: 4px; left: 331px; width: 86px; text-align: center; cursor: pointer; cursor: hand;
+        border-color: #000000; border-width: 1px; border-style: solid; visibility: hidden;
+}
+#t_butli {
+	POSITION: absolute; top: 4px; left: 15px; width: 191px;  text-align: center; cursor: pointer; cursor: hand;
+	border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_butre {
+	POSITION: absolute; top: 4px; left: 226px; width: 191px; text-align: center; cursor: pointer; cursor: hand;
+	border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_butli2 {
+	POSITION: absolute; top: 4px; left: 15px; width: 191px;  text-align: center;border-color: #000000; border-width: 1px; border-style: solid;
+}
+#t_butre2 {
+	POSITION: absolute; top: 4px; left: 226px; width: 191px; text-align: center;border-color: #000000; border-width: 1px; border-style: solid;
+}
+
+#i_content {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px;
+}
+#i_content1 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content2 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content3 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content4 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content5 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content6 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content7 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content8 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}
+#i_content9 {
+	Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden;
+}

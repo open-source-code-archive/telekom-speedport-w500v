@@ -1,0 +1,99 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>HilfsmittelReboot</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function doConfirm(){
+        if(confirm("Möchten Sie wirklich mit dem Speedport W 500V einen Reboot durchführen?")) {
+                alert("Es kann einige Zeit dauern, bis dieser Vorgang abgeschlossen ist und das System neu startet.\n Trennen Sie das Gateway nicht vom Strom, bevor der Vorgang beendet ist.");
+                return true;
+        }
+        return false;
+}
+
+function evaltF()
+{
+        return doConfirm();
+}
+
+
+function stVerz(){
+	document.getElementById("c_verzoeg1").style.visibility='hidden';
+  	document.getElementById("c_verzoeg2").style.visibility='hidden';
+  alert('Reboot wurde erfolgreich durchgeführt');
+  restart();
+}
+
+                                                                                
+function stOk()
+{
+        var evalRes = evaltF();
+        if(evalRes==true){
+		document.getElementById("c_verzoeg1").style.visibility='visible';
+  		document.getElementById("c_verzoeg2").style.visibility='visible';
+		document.getElementById("t_but1").style.visibility='hidden';
+		document.getElementById("t_but3").style.visibility='hidden';
+		document.getElementById("t_but4").style.visibility='hidden';
+                var loc = 'hcti_hilfsmittel_reboot_waiting.cgi';
+                var code = 'location.assign("' + loc +'")';
+                eval(code);
+        }
+}
+                                                                                
+function hilfsmittel(){
+  top.frames[2].location.href = "hcti_hilfsmittel.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Hilfsmittel / Reboot</DIV>
+<DIV id=c_titel>Reboot durchführen</DIV>
+<DIV id=c_last>Wenn Sie bei Ihrem Router einen Reboot durchführen möchten, dann bestätigen Sie jetzt mit 'OK'.</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=hilfsmittel() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Reboot durchführen</h2>
+    <p>Falls das System nicht mehr korrekt antwortet oder in irgendeiner Form aufhört zu arbeiten, können Sie
+    ein Reboot durchführen. Ihre Einstellungen werden dabei nicht verändert. Um den Reboot auszulösen, klicken
+    Sie auf den Button 'OK'.</p>
+    <p>Der Reboot ist beendet, wenn die Betriebsanzeige aufhört zu blinken.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

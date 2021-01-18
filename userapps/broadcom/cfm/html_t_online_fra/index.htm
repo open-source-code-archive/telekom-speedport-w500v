@@ -1,0 +1,123 @@
+<html>
+
+<head>
+<title>HTML-Konfiguration</title>
+
+<SCRIPT language="JavaScript">
+<!--
+
+
+function rahmen(but,high){
+  var col;
+  if (high==1) col = '#E20074';
+  else col = '#666666';
+
+  document.getElementById(but).style.color = col;
+  document.getElementById(but).style.borderColor = col;
+}
+
+function confstart(htmlsite){
+var Breite = screen.width;
+var Hoehe = screen.height;
+var Oben = (Hoehe-600) /2;
+var Links = (Breite-800) /2;
+
+var Optionen = "toolbar=no,location=no,Directory=no,Status=no,menubar=no,scrollbars=yes,resizable=no";
+    Optionen += ",width=792,height=552";
+    Optionen += ",top="+Oben;
+    Optionen += ",left="+Links;
+
+    document.getElementById("c_txt").innerHTML='<table border="0" cellpadding="0" cellspacing="0">' +
+                                                 '<tr>' +
+                                                   '<td width="150"></td>' +
+                                                   '<td>' +
+                                                     '<p style="font-size: 18px;"><br>' +
+                                                     '<b>Sie können diese Seite nun schließen!</b></p>' +
+                                                   '</td>' +
+                                                 '</tr>' +
+                                               '</table>';
+
+    window.open(htmlsite,"Konfiguration", Optionen);
+
+    thiswin = window.self;
+    thiswin.opener = window.self;
+    thiswin.close();
+}
+
+//-->
+</SCRIPT>
+
+<STYLE type="text/css">
+<!--
+
+td {font-family: Arial, sans-serif; font-size: 12px;}
+p {font-family:Arial, sans-serif; font-size:12px;}
+body {font-family:Arial, sans-serif; font-size:12px;}
+
+#c_txt {
+  font-size: 18px; font-weight: bold;
+}
+
+#Start {
+  height: 21px; line-height: 21px; width: 100px; background-color:#EEEEEE; text-align: center; cursor: pointer; cursor: hand;
+  font-size:14px; font-weight: bold; border-color: #666666; border-width: 2px; border-style: solid;
+}
+
+//-->
+</STYLE>
+
+</head>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+  <tr>
+    <td valign="middle" align="center">
+      <table border="1" cellpadding="0" cellspacing="0" height="480" width="640" background="pic_welcome.jpg">
+        <tr>
+          <td valign="top">
+
+            <img border="0" src="pic_welcome_b.gif">
+            <DIV id=c_txt>
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <form name="F1">
+                  <td width="150"></td>
+                  <td>
+
+                    <br>
+
+                    <p style="font-size: 18px;"><br>
+                    <b>Willkommen im Konfigurationsprogramm!</b><br>
+                    </p>
+
+                    <p>Das Konfigurationsprogramm wurde für folgende<br>
+                    Browser optimiert:<br>
+                    <br>
+                    <li>Internet Explorer ab Version 5.5 (für Windows ME Benutzer ab Version 6.0)</li>
+                    <li>Netscape ab Version 7.1 / Firefox ab Version 0.9</li><br>
+                    <br>
+                    Im Konfigurationsprogramm wird Javascript verwendet.<br>
+                    Ihr Browser muss deshalb so eingestellt sein, dass er<br>
+                    Javascript ausf&uuml;hrt.<br>
+                    <br>
+                    <br>
+                    
+                    <DIV id=Start onclick=confstart("top_start_passwort.htm") onmouseover=rahmen("Start",1) onmouseout=rahmen("Start",0)>&gt;&gt;&nbsp;OK</DIV></p>
+
+                  </td>
+                </form>
+              </tr>
+            </table>
+            </DIV>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

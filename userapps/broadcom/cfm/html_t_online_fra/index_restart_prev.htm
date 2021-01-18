@@ -1,0 +1,35 @@
+<html>
+
+<head>
+<title>HTML-Konfiguration</title>
+
+<SCRIPT language="JavaScript">
+<!--
+function winclose() {
+}
+
+function confstart(htmlsite){
+	var Breite = screen.width;
+	var Hoehe = screen.height;
+	//var Oben = (Hoehe-540) /2;
+	//var Links = (Breite-792) /2;
+
+	var Optionen = "toolbar=yes,location=yes,Directory=yes,Status=yes,menubar=yes,scrollbars=yes,resizable=yes";
+	    Optionen += ",width=" + Breite + ",height=" + Hoehe;
+	    Optionen += ",top=0";
+	    Optionen += ",left=0" ;
+    	top.window.open(htmlsite,"Configuration", Optionen);
+	top.window.close() ;
+    	//thiswin = top.window.self;
+    	//thiswin.opener = top.window.self;
+    	//thiswin.close();
+}
+
+//-->
+</SCRIPT>
+
+</head>
+
+<body onLoad=confstart("index.htm")>
+</body>
+</html>

@@ -1,0 +1,14 @@
+addall(){
+cvs add *
+for i in *
+do 
+  if[-d $i];then
+    if["$i" != "CVS"];then
+       cd $i
+       addall
+       cd ..
+    fi
+  fi
+done
+}
+addall    

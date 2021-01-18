@@ -1,0 +1,67 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>HilfsmittelReboot</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function form_load(){
+  	setTimeout("stVerz()",60000);
+	document.getElementById("c_verzoeg1").style.visibility='visible';
+	document.getElementById("c_verzoeg2").style.visibility='visible';
+}
+
+function stVerz(){
+	document.getElementById("c_verzoeg1").style.visibility='hidden';
+	document.getElementById("c_verzoeg2").style.visibility='hidden';
+  	alert('Reboot wurde erfolgreich durchgeführt');
+	restart() ;
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onLoad=form_load();>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Hilfsmittel / Reboot</DIV>
+
+</DIV>
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+<!--
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=hilfsmittel() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &lt;&lt;</DIV>
+!-->
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Reboot durchführen</h2>
+    <p>Falls das System nicht mehr korrekt antwortet oder in irgendeiner Form aufhört zu arbeiten, können Sie
+    ein Reboot durchführen. Ihre Einstellungen werden dabei nicht verändert. Um den Reboot auszulösen, klicken
+    Sie auf den Button 'OK'.</p>
+	<p>Der Reboot ist erst dann beendet, wenn Sie durch ein entsprechendes Fenster darauf hingewiesen werden.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

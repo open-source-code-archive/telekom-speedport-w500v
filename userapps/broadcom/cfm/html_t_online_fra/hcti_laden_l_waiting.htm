@@ -1,0 +1,110 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>LadenSichernLaden</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+ 
+function stVerz(){
+  alert("Die Konfiguration wurde erfolgreich geladen.\n\n" +
+        "Nach dem Klick auf 'OK' wird der Router neu gestartet.\n" +
+        "Anschließend können Sie mit Passwort wieder in das\n" +
+        "Konfigurationsprogramm einsteigen.");
+  top.frames[2].location.href = "hcti_laden.htm";
+}
+
+function frmLoad()
+{
+   setTimeout("stVerz()", 63000);
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css" >
+
+</HEAD>
+
+<BODY onload=frmLoad()>
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Laden &amp; Sichern / Laden</DIV>
+<DIV id=c_titel>Laden einer gesicherten Konfiguration</DIV>
+
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+	  <form>
+	  <input type="hidden" name="encryKey" value="nothing">
+	  <td width="70">Dateiname:</td>
+          <td ><input type="file" value="Durchsuchen" name="filename" size="30" maxlength="255"></td>
+	 </form>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+  <table border="0" cellpadding="0" cellspacing="2">
+    <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+      <form name="F2">
+        <td width="70">Passwort:</td>
+        <td><input type="password" class="stylepwd" name="Passwd" size="12" maxlength="12"></td>
+      </form>
+    </tr>
+  </table>
+</DIV>
+
+
+
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1_visible></DIV>
+<DIV id=c_verzoeg2_visible></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1_hidden onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3_hidden onclick=laden() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4_hidden onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Laden einer gesicherten Konfiguration</h2>
+    <p>Sie haben die Möglichkeit eine bereits gesicherte Konfiguration wieder zu laden. Mit Hilfe der Taste
+    'Durchsuchen' können Sie die gewünschte Datei auswählen. Wenn Sie anschließend mit 'OK' bestätigen,
+    werden die Daten übernommen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Laden einer gesicherten Konfiguration</h2>
+    <p><b>Dateiname</b><br>
+    Geben Sie hier den Speicherort und den Namen der Konfigurations-Datei ein.</p>
+  	<p>Alternativ können Sie Ihren PC nach der Datei durchsuchen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Laden einer gesicherten Konfiguration</h2>
+    <p><b>Passwort</b><br>
+    Zu Ihrem Schutz wurden die Konfigurationsdaten mit einem Passwort gespeichert.</p>
+    <p>Geben Sie hier das Passwort ein, das sie beim Sichern der Konfiguration angegeben haben.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

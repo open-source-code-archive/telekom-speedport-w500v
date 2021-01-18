@@ -1,0 +1,243 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkRepeater</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var anz = 3; //Anzahl der verfügbaren WLAN = Anzahl der Zeilen in der Anzeige, evtl. Scrollbereich
+
+function chk(){ 
+  switch(top.frames[0].rep){// frames[0] entspricht banner
+    case "0":
+      document.F1.R1[0].checked = true;
+      stDis(true);
+      break;
+    case "1":
+      document.F1.R1[1].checked = true;
+      stDis(false);
+      break;
+  }
+}
+
+function i_prfElem(nr){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+function stDis(state){
+    document.F1.C1.disabled = state;
+    document.F1.C2.disabled = state;
+    document.F1.C3.disabled = state;
+}
+
+function stOk(){
+  if(document.F1.R1[0].checked == true){
+    top.frames[0].rep = "0";
+  }
+  else{
+    top.frames[0].rep = "1";
+  }
+
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#c_anz {
+	height: 40px; line-height: 35px; padding-left: 10px; font-family: Arial, sans-serif; font-size: 12px;
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+}
+
+#c_anzlast {
+	height: 40px; line-height: 35px; padding-left: 10px; font-family: Arial, sans-serif; font-size: 12px;
+}
+
+#scroll{WIDTH: 400px; HEIGHT: 269px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / Repeater</DIV>
+<DIV id=c_titel>Repeater</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Verfügbare WLAN Stationen im Empfangsbereich</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+            <td width="25">Nr</td>
+            <td width="125">SSID</td>
+            <td width="115">BSSID</td>
+            <td width="40">Kanal</td>
+            <td width="35">Typ</td>
+            <td>Aktiv</td>
+        </tr>
+      </table>
+</DIV>
+
+<SCRIPT language="JavaScript">
+<!--
+  if (anz > 6) document.write('<DIV id=scroll>');
+//-->
+</SCRIPT>
+
+<DIV id=c_anz>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+            <td width="25">1</td>    
+            <td width="125">WLAN</td>
+            <td width="115">00-00-E8-11-22-66</td>
+            <td width="40" align="center">10</td>
+            <td width="35">11b</td>
+            <td><input type="checkbox" name="C1" checked></td>
+        </tr>
+      </table>
+      <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="110" bgcolor="lightgreen"></td>    
+            <td width="253" height="6"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_anz>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+            <td width="25">1</td>    
+            <td width="125">REPEATER_X23</td>
+            <td width="115">00-30-AA-65-32-FE</td>
+            <td width="40" align="center">10</td>
+            <td width="35">11b</td>
+            <td><input type="checkbox" name="C2" checked></td>
+        </tr>
+      </table>
+      <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="290" bgcolor="lightgreen"></td>    
+            <td width="73" height="6"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_anzlast>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+            <td width="25">2</td>    
+            <td width="125">STAT_A</td>
+            <td width="115">00-FA-62-55-D2-5B</td>
+            <td width="40" align="center">5</td>
+            <td width="35">11g</td>
+            <td><input type="checkbox" name="C3" checked></td>
+        </tr>
+      </table>
+      <table border="1" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="210" bgcolor="lightgreen"></td>    
+            <td width="153" height="6"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<SCRIPT language="JavaScript">
+<!--
+  if (anz <= 6) document.write('<DIV id=c_leer>');
+//-->
+</SCRIPT>
+
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but2 onclick="JavaScript:location.reload()" onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>Aktualisieren</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Repeater</h2>
+    <p>Mithilfe eines Repeater kann die Reichweite Ihres WLAN Routers vergrößert werden. Dazu muss der Repeater hier eingestellt werden.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    Um die Repeaterfunktion nutzen zu können, deaktivieren Sie unter 'Netzwerk / Wireless LAN':
+    'SSID unsichtbar'</p>
+    <p>Bitte verwenden Sie für alle Geräte den gleichen Funkkanal.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Repeater</h2>
+    <p><b>Aus - Ein</b><br>
+    Wenn Sie zur Vergrößerung der Reichweite Ihres WLAN Routers einen Repeater verwenden möchten, dann klicken Sie auf die Option: 'Ein'.</p>
+  </DIV>
+
+   <DIV id=i_content2>
+    <h2>Verfügbare Repeater</h2>
+    <p><b>Aktualisieren</b><br>
+    Auf der Seite wird eine Liste aller erreichbaren Stationen angezeigt. Um die Anzeige zu erneuern, klicken Sie auf 'Aktualisieren'.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Verfügbare WLAN Stationen im Empfangsbereich</h2>
+    <p> Sie sehen den Namen (SSID) und die Identifizierung (BSSID) der erreichbaren WLAN Station.</p>
+    <p><b>Aktiv</b><br>
+    Aktivieren Sie das Kontrollkästchen, falls Sie diese Station als Repeater nutzen wollen.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss die Funktion 'Repeater' eingeschaltet sein.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

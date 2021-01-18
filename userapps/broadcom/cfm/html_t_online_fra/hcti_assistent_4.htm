@@ -1,0 +1,274 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent4</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var pclanhinw = true;
+var authMode = '<%ejGetWl(wlAuthMode)%>';
+var wep =  '<%ejGetWl(wlWep)%>';
+var wlEnable = '<%ejGetWl(wlEnbl)%>';
+var wlHide = '<%ejGetWl(wlHide)%>';
+var wlSsid = '<%ejGetWl(wlSsid)%>';
+
+function chk(){ 
+  document.F1.T1.value = wlSsid;
+  if(wlHide == '1')
+	document.F1.C1.checked = true;
+  else
+  	document.F1.C1.checked = false;
+  if(wlEnable== "0"){
+    document.F1.R1[0].checked = true;
+  }
+  else{
+    document.F1.R1[1].checked = true;
+    document.F1.T1.focus();
+  }
+  stDis();
+}
+
+function txtHinw(feldname){
+  return "Im Feld '" + feldname + "' wurde keine Eingabe vorgenommen." + 
+         "\nDie Eingabe ist notwendig, um ihr Wireless LAN verwenden zu können.";
+}
+
+function stOk(){
+  var loc = '';
+  var curWlenable;
+  var curWlSsid;
+  var curWlHide;
+  var str =document.F1.T1.value; //ssid
+  if(document.F1.R1[1].checked == true) {
+  	if (document.F1.T1.value == "" || isValidSSID(str)==false){
+    		alert(txtHinw("SSID"));
+    		document.F1.T1.focus();
+    		return false;
+  	}
+  }
+  if(document.F1.R1[0].checked == true)
+  	{
+  		loc = 'hcti_assistent_4_disable.asscgi?';
+  		loc += 'wlEnbl=0';
+		curWlenable = '0';
+		top.frames[0].enblWl = '0';
+  	}
+  else if (document.F1.R1[1].checked == true)
+  	{
+  		loc = 'hcti_assistent_4_enable.asscgi?';
+  		loc += 'wlEnbl=1';
+		curWlenable = '1';
+		top.frames[0].enblWl = '1';
+  	}
+  if(document.F1.C1.checked==true)
+  	{
+  		loc += '&wlHide=1';
+		curWlHide = '1';
+  	}
+  else
+  	{
+	  	loc += '&wlHide=0';
+		curWlHide = '0';
+  	}
+  loc += '&wlSsid=' + encodeUrl(str);
+  curWlSsid = document.F1.T1.value;
+  //alert(loc);
+  if (wlEnable != curWlenable || wlHide != curWlHide || wlSsid != curWlSsid)
+	{
+  		document.getElementById("c_verzoeg1").style.visibility='visible';
+  		document.getElementById("c_verzoeg2").style.visibility='visible'; 
+		var code = 'location.assign("'+ loc + '")';
+		eval(code);
+		
+  	}
+  else if(wlEnable != '0')
+  	top.frames[2].location.href = "hcti_assistent_5.htm";
+  else if (wlEnable == '0')
+  	top.frames[2].location.href = "hcti_assistent_jump.htm";
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_assistent_3.htm";
+}
+
+
+function pclan(){
+  if(pclanhinw == true && wlEnable != '0'){ //Wenn WLAN eingeschaltet ist
+    alert("Hinweis: Bitte beachten Sie, dass nach Ausschalten des Drahtlos-Zugangs und\n" +
+          "Bestätigen mit 'OK & Weiter' die Verbindung zu Ihrem Router unterbrochen wird,\n" +
+          "falls Sie im Moment eine drahtlose (WLAN-) Verbindung zur Konfiguration verwenden.\n" +
+          "\n"+
+          "Um die Konfiguration fortzusetzen, muss fortan eine drahtgebundene (Ethernet-)\n" +
+          "Verbindung verwendet werden. Stellen Sie daher sicher, dass Sie über eine solche\n" +
+          "Möglichkeit verfügen.");
+    pclanhinw = false;
+  }
+  stDis();
+}
+
+function stDis(){
+    var col = "#FFFFFF";
+    var state = false;
+    if (document.F1.R1[0].checked == true){
+        col="#D4D0C8";
+        state = true;
+    }
+    document.F1.T1.style.backgroundColor = col;
+    document.F1.T1.disabled = state;
+    document.F1.C1.disabled = state;
+}
+
+function i_prfElem(nr){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 4 von
+      <SCRIPT language="JavaScript">
+      <!--
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Bitte wählen Sie, ob ein Drahtlos-Zugang (WLAN) möglich sein soll !</DIV>
+
+<DIV id=c_std>
+  <table border="0" cellpadding="0" cellspacing="2">
+    <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+      <form name="F1">
+        <td width="25"><input type="radio" name="R1" value="V1" onclick="pclan()"></td>
+        <td>Nein</td>
+    </tr>
+  </table>
+</DIV>
+<DIV id=c_last>
+  <table border="0" cellpadding="0" cellspacing="2">
+    <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+        <td width="25"><input type="radio" name="R1" value="V2" onclick="stDis()"></td>
+        <td>Ja</td>
+    </tr>
+  </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Bitte ändern Sie den Namen (SSID) Ihres Funknetzwerks !</DIV>
+
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="110">SSID:</td>
+            <td><input type="text" name="T1" size="32" maxlength="32"></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(4) onmouseout=i_showElem(0)>
+            <td width="106">SSID unsichtbar:</td>
+            <td><input type="checkbox" name="C1" value="ON"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Bitte ändern Sie den Namen (SSID) Ihres Funknetzwerks !</h2>
+    <p>Damit die drahtlos verbundenen Netzwerkkomponenten miteinander kommunizieren können, müssen Sie
+    einen gemeinsamen Funkkanal und die gleiche SSID (Service Set Identifier) verwenden.
+    Der Router wird mit der SSID 'WLAN' ausgeliefert.</p>
+    <p>Aus Sicherheitsgründen sollten Sie diese SSID ändern.</p>
+    <p>'SSID unsichtbar' sollte aus Sicherheitsgründen aktiviert bleiben.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Bitte wählen Sie, ob ein Drahtlos-Zugang (WLAN) möglich sein soll !</h2>
+    <p><b>Nein, Drahtlos-Einstellungen überspringen</b><br>
+    Wenn Sie die Option 'Nein' markieren, ist das Funkmodul ausgeschaltet. 
+    Der Router ist dann über einen drahtlosen Zugang nicht mehr zu erreichen.</p>
+    <p>Die Einstellungen im Assistenten, die den Drahtlos-Zugang betreffen,
+    werden übersprungen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Bitte wählen Sie, ob ein Drahtlos-Zugang (WLAN) möglich sein soll !</h2>
+    <p><b>Ja</b><br>
+    Wenn Sie die Option 'Ja' markieren, ist das Funkmodul eingeschaltet. 
+    Der Router ist dann auch über einen drahtlosen Zugang zu erreichen.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Bitte ändern Sie den Namen (SSID) Ihres Funknetzwerks !</h2>
+    <p><b>SSID</b><br>
+    Damit die drahtlos verbundenen Netzwerkkomponenten miteinander kommunizieren können, müssen sie
+    die gleiche SSID (Service Set Identifier) verwenden. Geben Sie eine Zeichenkette Ihrer Wahl ein.
+  	Die SSID kann bis zu 32 Zeichen aufnehmen und aus Ziffern, Zeichen und Sonderzeichen bestehen. 
+	Sie sollte möglichst nichts über die Identität des Wireless LAN aussagen, also keine Nach- oder Firmennamen in sich tragen.</p>
+  	<p>Die Verbindung zu drahtlosen Netzwerkadaptern, die keine gültige SSID verwenden,
+  	wird so lange unterbrochen, bis auch dort die SSID eingetragen ist.</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Bitte ändern Sie den Namen (SSID) Ihres Funknetzwerks !</h2>
+    <p><b>SSID unsichtbar</b><br>
+    Wenn die Einstellung 'SSID unsichtbar' aktiviert ist, wird die SSID Ihres Routers nicht ausgestrahlt.
+    Dies erhöht die Sicherheit gegen unbefugtes Eindringen in Ihr drahtloses Netzwerk. Merken Sie sich dann jedoch
+    die SSID und tragen sie bei allen beteiligten Netzwerkkomponenten ein.</p>
+    <p>Ist das Kontrollkästchen deaktiviert, sendet der WLAN Router die SSID bei allen Datenübertragungen mit und
+    sie wird an Rechnern, die über einen drahtlosen Netzwerk- adapter verfügen, angezeigt. Das Risiko unbefugten
+    Eindringens in Ihr drahtloses Netzwerk erhöht sich dadurch.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2>Einstellung nicht verfügbar</h2>
+    <p>Sie können diese Einstellungen zur SSID nur ändern, wenn Sie die obige Frage zur Aktivierung des WLAN Zugangs
+    mit 'Ja' beantwortet haben.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

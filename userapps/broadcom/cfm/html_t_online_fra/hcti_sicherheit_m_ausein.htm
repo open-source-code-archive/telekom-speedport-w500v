@@ -1,0 +1,115 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitMACFiltertabelle</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var enblMacFlt = '<%ejGetWl(wlFltMacMode)%>' ;
+
+function frmLoad(){ 
+  switch(enblMacFlt){ // frames[0] entspricht banner
+    case '0':
+      document.F1.R1[0].checked = true;
+      break;
+    case '1':
+      document.F1.R1[1].checked = true;
+      break;
+   }
+}
+
+function stDis(state) {
+	if (state == true)
+      		document.F1.R1[0].checked = true;
+	else
+      		document.F1.R1[1].checked = true;
+}
+
+function stOk(){
+	var loc = 'wlmacflt.cmd?' ;
+  	if(document.F1.R1[0].checked == true){
+    		loc += 'wlFltMacMode=0';
+  	}else{
+    		loc += 'wlFltMacMode=1';
+  	}
+
+  	document.getElementById("c_verzoeg1").style.visibility='visible';
+  	document.getElementById("c_verzoeg2").style.visibility='visible';
+	document.getElementById("t_but1").style.visibility='hidden';
+	document.getElementById("t_but3").style.visibility='hidden';
+	document.getElementById("t_but4").style.visibility='hidden';
+        var code = 'this.location.assign("' + loc + '")';
+        eval(code);
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "wlmacflt.cmd?action=view";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=frmLoad()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / MAC-Filterung</DIV>
+<DIV id=c_titel>MAC-Filterung</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>MAC-Filterung</h2>
+    <p>Mit eingeschalteter Funktion 'MAC-Filterung' erhöhen Sie die Sicherheit vor unberechtigtem Zugriff auf ihr Netzwerk.
+	WLAN Clients (PCs die drahtlos angeschaltet sind) haben nur noch Zugriff auf Ihr Netzwerk, wenn diese mit der MAC Adresse registriert sind.</p>
+
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>MAC-Filterung</h2>
+    <p><b>Aus - Ein</b><br>
+     Mit der Option 'Ein' werden die MAC-Adressen zugreifender WLAN Clients überprüft. Nur registrierte PCs wird der Zugriff gewährt.</p>
+    <p>Mit der Option 'Aus' werden die MAC-Adressen zugreifender WLAN Clients nicht überprüft.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

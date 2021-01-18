@@ -1,0 +1,98 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonAnschlussXABez</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){
+  document.F1.T1.value = top.frames[0].abez[top.frames[0].as_akt];
+}
+
+function stOk(){
+  if (document.F1.T1.value == ""){
+    alert("Bitte tragen Sie eine Anschlussbezeichnung ein");
+    document.F1.T1.focus();
+    return;
+  }
+  top.frames[0].abez[top.frames[0].as_akt] = document.F1.T1.value;
+
+  document.getElementById("c_verzoeg1_as").style.visibility='visible';
+  document.getElementById("c_verzoeg2_as").style.visibility='visible';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_telefon_as.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<SCRIPT language="JavaScript">
+<!--                    
+  document.write('<DIV id=c_bild><img border="0" src="pic_c_analog' + (top.frames[0].as_akt+1) + '.jpg"></DIV>');
+
+  document.write('<DIV id=c_border_as' + (top.frames[0].as_akt+1) + '>');
+  document.write('<DIV id=c_pfad>Telefonie / Anschluss ' + (top.frames[0].as_akt+1) + ' / Anschlussbezeichnung</DIV>');
+//-->
+</SCRIPT>
+
+<DIV id=c_titel>Anschlussbezeichnung</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+          <form name="F1">
+            <td><input type="text" name="T1" size="22"></td>   
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1_as></DIV>
+<DIV id=c_verzoeg2_as></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Anschlussbezeichnung</h2>
+    <p>Geben Sie dem Anschluss einen Namen, damit Sie sich bei den weiteren Einstellungen Ihres Endgerätes leichert zurecht finden.
+      Schreiben Sie die Anschlussbezeichnung in das Textfeld.</p>
+
+
+<p>Wählen Sie den Namen oder Vornamen der Person, die den Anschluss benutzt oder</p>
+<p>wählen Sie den Aufstellungsort, z.B. Büro, Gästezimmer oder</p>
+<p>wählen Sie die Anschaltung des Gerätes, z.B. Telefon oder Fax.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

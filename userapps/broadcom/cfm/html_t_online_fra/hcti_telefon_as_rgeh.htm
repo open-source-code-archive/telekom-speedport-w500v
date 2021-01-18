@@ -1,0 +1,299 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonAnschlussXRufnummergehend</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var voipprovname = new Array("T-Online","Anderer Anbieter");  
+var providerName = '<%ejGetVoip(providerName)%>';
+var tonlineNumber = '<%ejGetVoip(telenumber_TONLINE)%>';
+var anotherNumber = '<%ejGetVoip(telenumber_Another)%>';
+var enable_Analog = '<%ejGetVoip(enable_Analog)%>';
+var priLine = '<%ejGetVoip(primary_select)%>';
+var secLine = '<%ejGetVoip(secondary_select)%>';
+var enable_Fallback = '<%ejGetVoip(enable_Fallback)%>';
+var enbl_2line_dial = '<%ejGetVoip(enbl_2line_dial)%>';
+var Hide = '<%ejGetVoip(numberHide)%>';
+var voipNumber;
+var voipprov;
+
+	if (providerName == 'TONLINE' && tonlineNumber != '') {
+		voipNumber = tonlineNumber;
+		voipprov = voipprovname[0] + ':' + voipNumber;
+		}
+	else if (providerName == 'Another' && anotherNumber != '') {
+		voipNumber = anotherNumber;
+		voipprov = voipprovname[1] + ':' + voipNumber;
+	}
+	else
+		voipNumber = null;
+
+function chk(){
+	if (enable_Analog != '0' && voipNumber != null){
+		document.F1.D1.selectedIndex = parseInt(priLine);
+		if(priLine == '0')    //use analog line
+			document.getElementById("c_altrufnr").innerHTML = voipprov;
+		else
+			document.getElementById("c_altrufnr").innerHTML = "Festnetz analog";
+		if(enable_Fallback == '1')
+			document.F1.C1.checked = true;
+		else
+			document.F1.C1.checked = false;
+		if(enbl_2line_dial == '1')
+			document.F1.C2.checked = true;
+		else
+			document.F1.C2.checked = false;
+	}
+	else{
+		document.F1.D1.selectedIndex = 0;
+    		document.getElementById("c_altrufnr").innerHTML = "Keine";
+		document.F1.C1.checked = false;
+		document.F1.C2.checked = false;
+		document.F1.C1.disabled = true;
+		document.F1.C2.disabled = true;
+	}
+
+	if(Hide == '1')
+		document.F1.C3.checked = true;
+	else
+		document.F1.C3.checked = false;
+}
+
+function i_prfElem(nr){
+	if (top.frames[0].anrzlist.length == 1){
+		i_showElem(9);
+    }
+    else{
+		i_showElem(nr);
+    }
+}
+
+function stAkt(){
+	if (document.F1.D1.selectedIndex == 0){
+		document.getElementById("c_altrufnr").innerHTML = voipprov;
+	}
+	else{
+		document.getElementById("c_altrufnr").innerHTML = "Festnetz analog";
+	}
+}
+
+var loc;
+function stApply(){
+	var code = 'location.assign("' + loc + '")';
+	eval(code);
+}
+
+function stOk(){
+	document.getElementById("c_verzoeg1_as").style.visibility='visible';
+	document.getElementById("c_verzoeg2_as").style.visibility='visible';
+	document.F1.D1.style.visibility='hidden';
+	document.getElementById('t_but1').style.visibility='hidden';
+   	document.getElementById('t_but3').style.visibility='hidden';
+   	document.getElementById('t_but4').style.visibility='hidden';
+	
+	loc = 'voipcfg.cmd?action=portset';
+	if(enable_Analog != '0' && voipNumber != null){
+		loc += '&primary_select=' + document.F1.D1.selectedIndex;
+		if(document.F1.D1.selectedIndex == 0)
+			loc += '&secondary_select=1';
+		else
+			loc += '&secondary_select=0';
+		if(document.F1.C1.checked == true)
+			loc += '&enable_Fallback=1';
+		else
+			loc += '&enable_Fallback=0';
+		if(document.F1.C2.checked == true)
+			loc += '&enbl_2line_dial=1';
+		else
+			loc += '&enbl_2line_dial=0';
+	}else{   //only one line exist, if no line exist, this page could not be reached.
+		if(voipNumber != null)
+			loc += '&primary_select=1';
+		else
+			loc += '&primary_select=0';
+		loc += '&secondary_select=2'; //seconday line is null
+		loc += '&enable_Fallback=0';
+		loc += '&enbl_2line_dial=0';
+	}
+	
+	if(document.F1.C3.checked == true)
+		loc += '&numberHide=1';
+	else
+		loc += '&numberHide=0';
+
+	setTimeout("stApply()", 1000);
+	
+}
+  
+function stZrk(){
+	top.frames[2].location.href = "hcti_telefon_as.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#c_altrufnr {
+	height: 25px; line-height: 25px; padding-left: 10px;
+}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<SCRIPT language="JavaScript">
+<!--
+  var str_as;
+  if (top.frames[0].anz_as==1){
+    str_as = 'Anschluss-Einstellungen';
+  }
+  else{
+    str_as = 'Anschluss ' + (top.frames[0].as_akt+1);
+  }
+  document.write('<DIV id=c_bild><img border="0" src="pic_c_analog' + (top.frames[0].as_akt+1) + '.jpg"></DIV>');
+
+  document.write('<DIV id=c_border_as' + (top.frames[0].as_akt+1) + '>');
+  document.write('<DIV id=c_pfad>Telefonie / ' + str_as + ' / Telefonnummern gehend</DIV>');
+//-->
+</SCRIPT>
+
+<DIV id=c_titel>Telefonnummer gehend</DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="170">Prioritäts-Telefonnummer:</td>
+            <td>
+              <select name="D1" size="1" onChange="stAkt()">
+                <SCRIPT language="JavaScript">
+                <!--
+					if (enable_Analog != '0')
+			  			document.write('<option>Festnetz analog</option>');
+					if (voipNumber != null) 
+               	document.write('<option>' + voipprov + '</option>');
+                //-->
+                </SCRIPT>
+              </select>
+            </td>   
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Alternative Telefonnummer gehend</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+				<td width="162">Alternative Telefonnummer:</td>
+				<td><DIV id=c_altrufnr></DIV></td>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+				<td width="166">Automatisch verwenden:</td>
+				<td><input type="checkbox" name="C1"></td>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+				<td width="166">Manuell mit 2# verwenden:</td>
+				<td><input type="checkbox" name="C2" checked></td>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Telefonnummern unterdrücken</DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+				<td width="166">Telefonnummer unterdrücken:</td>
+				<td><input type="checkbox" name="C3"></td>
+            </form>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1_as></DIV>
+<DIV id=c_verzoeg2_as></DIV>
+
+</DIV>
+
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Telefonnummern gehend</h2>
+    <p>Hier können Sie festlegen mit welcher Telefonnummer eine gehende Verbindung erfolgen soll.</p>
+    <p>Sie haben die Möglichkeit eine alternative Telefonnummer zu verwenden. 
+    Diese kann automatisch und manuell benutzt werden.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Telefonnummer gehend</h2>
+    <p>Hier können Sie eine Prioritäts-Telefonnummer auswählen, die für gehende Verbindungen verwendet werden soll.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    Notrufe über die Nummern 110 und 112 werden aus Gründen der Sicherheit grundsätzlich über das Festnetz abgesetzt. 
+    Nur in Fällen, in denen das nicht mög- lich ist, wird eine andere Ver- bindungsmöglichkeit gesucht.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Alternative Telefonnummer gehend</h2>
+    <p>Die alternative Telefonnummer wird automatisch verwendet, falls die Prioritäts-Telefonnummer belegt oder nicht verfügbar ist.</p> 
+    <p>Aktivieren Sie hierzu das Kontrollkästchen.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Alternative Telefonnummer gehend</h2>
+    <p>Die alternative Telefonnummer kann durch Vorwahl von 2# gezielt für gehende Verbindungen
+    verwendet werden.<p>
+    <p>Aktivieren Sie hierzu das Kontrollkästchen.</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Telefonnummern unterdrücken</h2>
+    <p>Die Telefonnummer zum Angerufenen kann unterdrückt werden.</p>
+    <p>Aktivieren Sie hierzu das Kontrollkästchen.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2>Alternative Telefonnummer gehend nicht verfügbar</h2>
+    <p>Diese Einstellung kann erst vorgenommen werden, wenn sowohl eine Telefonnummer von einem Festnetzanschluss 
+    als auch eine Telefonnummer für die DSL Telefonie zur Verfügung steht.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,1062 @@
+/opt/bcm963xx/userapps/opensource/busybox/applets/applets.o: /opt/bcm963xx/userapps/opensource/busybox/applets/applets.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/usage.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/usage.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/applets.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/applets.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/applets.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/applets.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/suid.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/suid/config.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/grp_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/grp_.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/suid/config/quiet.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/file.h)
+/opt/bcm963xx/userapps/opensource/busybox/applets/busybox.o: /opt/bcm963xx/userapps/opensource/busybox/applets/busybox.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/installer.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/init.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/autowidth.h)
+/opt/bcm963xx/userapps/opensource/busybox/insmod.o: /opt/bcm963xx/userapps/opensource/busybox/insmod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/ledctrl.o: /opt/bcm963xx/userapps/opensource/busybox/ledctrl.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/login.o: /opt/bcm963xx/userapps/opensource/busybox/login.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/ping.o: /opt/bcm963xx/userapps/opensource/busybox/ping.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/archive_xread_all.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/archive_xread_all.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/archive_xread_all_eof.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/archive_xread_all_eof.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/check_header_gzip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/check_header_gzip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_align.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_align.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_extract_all.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_extract_all.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_extract_to_buffer.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_extract_to_buffer.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_extract_to_stdout.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_extract_to_stdout.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_skip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/data_skip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/decompress_bunzip2.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/decompress_bunzip2.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/decompress_uncompress.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/decompress_uncompress.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/config.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/config.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/decompress_unzip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/decompress_unzip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/config.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/config.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_all.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_all.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_list.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_list.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_list_reassign.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_list_reassign.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/deb/tar/gz.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/deb/tar/bz2.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_reject_list.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/filter_accept_reject_list.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/find_list_entry.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/find_list_entry.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_ar.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_ar.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ar/long/filenames.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_cpio.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_cpio.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_tar.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_tar.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/gnu/extensions.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/oldgnu/compatability.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_tar_bz2.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_tar_bz2.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_tar_gz.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/get_header_tar_gz.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/header_list.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/header_list.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/header_skip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/header_skip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/header_verbose_list.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/header_verbose_list.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/init_handle.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/init_handle.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/open_transformer.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/open_transformer.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/seek_by_char.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/seek_by_char.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/seek_by_jump.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/seek_by_jump.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/unarchive/tape.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/unpack_ar_archive.o: /opt/bcm963xx/userapps/opensource/busybox/archival/libunarchive/unpack_ar_archive.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/ar.o: /opt/bcm963xx/userapps/opensource/busybox/archival/ar.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/bunzip2.o: /opt/bcm963xx/userapps/opensource/busybox/archival/bunzip2.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/cpio.o: /opt/bcm963xx/userapps/opensource/busybox/archival/cpio.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/dpkg.o: /opt/bcm963xx/userapps/opensource/busybox/archival/dpkg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/deb/tar/gz.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/deb/tar/bz2.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/dpkg_deb.o: /opt/bcm963xx/userapps/opensource/busybox/archival/dpkg_deb.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/deb/tar/gz.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/deb/tar/bz2.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/gunzip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/gunzip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/gunzip/uncompress.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/gzip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/gzip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/gunzip.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/rpm.o: /opt/bcm963xx/userapps/opensource/busybox/archival/rpm.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/rpm2cpio.o: /opt/bcm963xx/userapps/opensource/busybox/archival/rpm2cpio.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/tar.o: /opt/bcm963xx/userapps/opensource/busybox/archival/tar.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/create.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/from.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/gzip.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/compress.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/bzip2.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tar/long/options.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/uncompress.o: /opt/bcm963xx/userapps/opensource/busybox/archival/uncompress.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h)
+/opt/bcm963xx/userapps/opensource/busybox/archival/unzip.o: /opt/bcm963xx/userapps/opensource/busybox/archival/unzip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/chvt.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/chvt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/clear.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/clear.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/deallocvt.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/deallocvt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/dumpkmap.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/dumpkmap.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/loadfont.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/loadfont.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/loadkmap.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/loadkmap.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/openvt.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/openvt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/reset.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/reset.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/console-tools/setkeycodes.o: /opt/bcm963xx/userapps/opensource/busybox/console-tools/setkeycodes.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/libcoreutils/cp_mv_stat.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/libcoreutils/cp_mv_stat.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/libcoreutils/getopt_mk_fifo_nod.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/libcoreutils/getopt_mk_fifo_nod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/libcoreutils/xgetoptfile_sort_uniq.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/libcoreutils/xgetoptfile_sort_uniq.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/basename.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/basename.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/cal.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/cal.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/cat.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/cat.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/chgrp.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/chgrp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/chmod.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/chmod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/chown.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/chown.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/chroot.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/chroot.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/cmp.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/cmp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/cp.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/cp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/cut.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/cut.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/date.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/date.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/date/isofmt.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/dd.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/dd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/df.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/df.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/human/readable.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/dirname.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/dirname.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/dos2unix.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/dos2unix.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/du.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/du.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/human/readable.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/du/defalt/blocksize/1k.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/echo.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/echo.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/echo.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/env.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/env.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/expr.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/expr.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/false.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/false.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/fold.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/fold.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/head.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/head.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/head.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/hostid.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/hostid.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/id.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/id.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/install.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/install.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/length.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/length.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/ln.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/ln.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/logname.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/logname.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/ls.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/ls.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/timestamps.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/sortfiles.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/followlinks.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/human/readable.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/filetypes.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/color.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/autowidth.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/recursive.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ls/username.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/md5_sha1_sum.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/md5_sha1_sum.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/md5/sha1/sum/check.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/md5sum.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/sha1sum.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/mkdir.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/mkdir.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/mkfifo.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/mkfifo.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/mknod.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/mknod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/mv.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/mv.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/od.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/od.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/dump.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/dump.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/printf.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/printf.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/pwd.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/pwd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/realpath.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/realpath.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/rm.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/rm.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/rmdir.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/rmdir.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/seq.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/seq.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/sleep.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/sleep.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/sleep.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/sort.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/sort.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/stty.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/stty.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/sync.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/sync.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/tail.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/tail.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/tail.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/tee.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/tee.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tee/use/block/io.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/test.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/test.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/test/64.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/touch.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/touch.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/tr.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/tr.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/true.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/true.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/tty.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/tty.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/uname.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/uname.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/uniq.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/uniq.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/usleep.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/usleep.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/uudecode.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/uudecode.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/uuencode.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/uuencode.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/watch.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/watch.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/wc.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/wc.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/who.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/who.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/whoami.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/whoami.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/coreutils/yes.o: /opt/bcm963xx/userapps/opensource/busybox/coreutils/yes.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/debianutils/mktemp.o: /opt/bcm963xx/userapps/opensource/busybox/debianutils/mktemp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/debianutils/pipe_progress.o: /opt/bcm963xx/userapps/opensource/busybox/debianutils/pipe_progress.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/debianutils/readlink.o: /opt/bcm963xx/userapps/opensource/busybox/debianutils/readlink.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/debianutils/run_parts.o: /opt/bcm963xx/userapps/opensource/busybox/debianutils/run_parts.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/debianutils/start_stop_daemon.o: /opt/bcm963xx/userapps/opensource/busybox/debianutils/start_stop_daemon.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h)
+/opt/bcm963xx/userapps/opensource/busybox/debianutils/which.o: /opt/bcm963xx/userapps/opensource/busybox/debianutils/which.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/editors/awk.o: /opt/bcm963xx/userapps/opensource/busybox/editors/awk.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/awk/math.h)
+/opt/bcm963xx/userapps/opensource/busybox/editors/patch.o: /opt/bcm963xx/userapps/opensource/busybox/editors/patch.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/editors/sed.o: /opt/bcm963xx/userapps/opensource/busybox/editors/sed.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/editors/vi.o: /opt/bcm963xx/userapps/opensource/busybox/editors/vi.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/optimize/cursor.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/use/signals.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/crashme.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/dot/cmd.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/yankmark.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/readonly.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/search.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/colon.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/win/resize.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/setopts.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/vi/set.h)
+/opt/bcm963xx/userapps/opensource/busybox/findutils/find.o: /opt/bcm963xx/userapps/opensource/busybox/findutils/find.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/find/type.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/find/perm.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/find/mtime.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/find/xdev.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/find/newer.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/find/inum.h)
+/opt/bcm963xx/userapps/opensource/busybox/findutils/grep.o: /opt/bcm963xx/userapps/opensource/busybox/findutils/grep.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/grep/context.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/grep/egrep/alias.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/findutils/xargs.o: /opt/bcm963xx/userapps/opensource/busybox/findutils/xargs.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/xargs/support/confirmation.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/xargs/support/quotes.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/xargs/support/termopt.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/xargs/support/zero/term.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/init/halt.o: /opt/bcm963xx/userapps/opensource/busybox/init/halt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/init.h)
+/opt/bcm963xx/userapps/opensource/busybox/init/init.o: /opt/bcm963xx/userapps/opensource/busybox/init/init.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/syslogd.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/init/coredumps.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/extra/quiet.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/use/inittab.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/initrd.h)
+/opt/bcm963xx/userapps/opensource/busybox/init/init_shared.o: /opt/bcm963xx/userapps/opensource/busybox/init/init_shared.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/initrd.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/init.h)
+/opt/bcm963xx/userapps/opensource/busybox/init/mesg.o: /opt/bcm963xx/userapps/opensource/busybox/init/mesg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/init/poweroff.o: /opt/bcm963xx/userapps/opensource/busybox/init/poweroff.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/init.h)
+/opt/bcm963xx/userapps/opensource/busybox/init/reboot.o: /opt/bcm963xx/userapps/opensource/busybox/init/reboot.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/init.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/ask_confirmation.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/ask_confirmation.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/bb_asprintf.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/bb_asprintf.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/change_identity.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/change_identity.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/chomp.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/chomp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/concat_path_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/concat_path_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/concat_subpath_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/concat_subpath_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/copy_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/copy_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/preserve/hardlinks.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/copyfd.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/copyfd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/correct_password.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/correct_password.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/create_icmp6_socket.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/create_icmp6_socket.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/create_icmp_socket.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/create_icmp_socket.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/default_error_retval.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/default_error_retval.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/device_open.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/device_open.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/dump.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/dump.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/dump.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/dump.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/error_msg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/error_msg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/error_msg_and_die.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/error_msg_and_die.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/fclose_nonstdin.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/fclose_nonstdin.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/fflush_stdout_and_exit.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/fflush_stdout_and_exit.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/fgets_str.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/fgets_str.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/find_mount_point.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/find_mount_point.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/find_pid_by_name.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/find_pid_by_name.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/find_root_device.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/find_root_device.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/devfs.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/full_read.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/full_read.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/full_write.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/full_write.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/get_console.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/get_console.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/get_line_from_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/get_line_from_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/get_terminal_width_height.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/get_terminal_width_height.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/autowidth.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/getopt_ulflags.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/getopt_ulflags.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/hash_fd.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/hash_fd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/sha1sum.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/md5sum.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/herror_msg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/herror_msg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/herror_msg_and_die.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/herror_msg_and_die.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/human_readable.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/human_readable.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/inet_common.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/inet_common.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/inode_hash.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/inode_hash.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/interface.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/interface.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/isdirectory.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/isdirectory.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/kernel_version.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/kernel_version.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/last_char_is.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/last_char_is.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/llist_add_to.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/llist_add_to.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/unarchive.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/login.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/login.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/loop.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/loop.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/make_directory.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/make_directory.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/messages.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/messages.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/module_syscalls.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/module_syscalls.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/mtab.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/mtab.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/mtab_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/mtab_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mtab/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mtab/filename.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/my_getgrgid.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/my_getgrgid.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/grp_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/grp_.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/my_getgrnam.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/my_getgrnam.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/grp_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/grp_.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/my_getpwnam.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/my_getpwnam.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/grp_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/grp_.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/my_getpwuid.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/my_getpwuid.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/my_getug.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/my_getug.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/obscure.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/obscure.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/parse_mode.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/parse_mode.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/parse_number.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/parse_number.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/perror_msg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/perror_msg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/perror_msg_and_die.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/perror_msg_and_die.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/perror_nomsg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/perror_nomsg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/perror_nomsg_and_die.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/perror_nomsg_and_die.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/print_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/print_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/printf.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/printf.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/process_escape_sequence.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/process_escape_sequence.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/procps.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/procps.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/pw_encrypt.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/pw_encrypt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sha1/passwords.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/pwd2spwd.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/pwd2spwd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/shadow_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/shadow_.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/qmodule.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/qmodule.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/read_package_field.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/read_package_field.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/recursive_action.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/recursive_action.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/remove_file.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/remove_file.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/restricted_shell.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/restricted_shell.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/run_parts.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/run_parts.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/run_shell.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/run_shell.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/safe_read.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/safe_read.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/safe_strncpy.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/safe_strncpy.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/safe_strtol.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/safe_strtol.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/safe_write.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/safe_write.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/setup_environment.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/setup_environment.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/simplify_path.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/simplify_path.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/skip_whitespace.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/skip_whitespace.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/speed_table.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/speed_table.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/syscalls.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/syscalls.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/trim.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/trim.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/vdprintf.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/vdprintf.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/verror_msg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/verror_msg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/vfork_daemon_rexec.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/vfork_daemon_rexec.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/vherror_msg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/vherror_msg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/vperror_msg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/vperror_msg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/warn_ignoring_args.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/warn_ignoring_args.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/wfopen.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/wfopen.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/wfopen_input.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/wfopen_input.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xconnect.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xconnect.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xfuncs.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xfuncs.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xgetcwd.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xgetcwd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xgethostbyname.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xgethostbyname.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xgethostbyname2.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xgethostbyname2.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xgetlarg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xgetlarg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xgetularg.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xgetularg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xreadlink.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xreadlink.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libbb/xregcomp.o: /opt/bcm963xx/userapps/opensource/busybox/libbb/xregcomp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/libpwdgrp/pwd_grp.o: /opt/bcm963xx/userapps/opensource/busybox/libpwdgrp/pwd_grp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/grp_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/grp_.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/shadow_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/shadow_.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/addgroup.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/addgroup.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/grp_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/grp_.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/adduser.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/adduser.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/adduser.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/addgroup.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/delgroup.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/delgroup.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/deluser.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/delline.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/delline.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/deluser.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/deluser.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/getty.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/getty.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/syslogd.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/u/w/tmp.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/login.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/login.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/u/w/tmp.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/securetty.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/wheel/group.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/passwd.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/passwd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/su.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/su.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/u/w/tmp.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/sulogin.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/sulogin.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h)
+/opt/bcm963xx/userapps/opensource/busybox/loginutils/vlock.o: /opt/bcm963xx/userapps/opensource/busybox/loginutils/vlock.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/shadowpasswds.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/adjtimex.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/adjtimex.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/crond.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/crond.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/crond/call/sendmail.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/crontab.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/crontab.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/dc.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/dc.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/devfsd.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/devfsd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/devfsd/modload.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/devfsd/verbose.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/debug.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/devfsd/fg/np.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/file.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/modules/devfs.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/hdparm.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/hdparm.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hdparm/get/identity.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hdparm/hdio/getset/dma.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hdparm/hdio/unregister/hwif.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hdparm/hdio/scan/hwif.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hdparm/hdio/tristate/hwif.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hdparm/hdio/drive/reset.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/last.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/last.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/makedevs.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/makedevs.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/mt.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/mt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/rx.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/rx.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/strings.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/strings.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/sysinfo.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/sysinfo.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/time.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/time.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/miscutils/watchdog.o: /opt/bcm963xx/userapps/opensource/busybox/miscutils/watchdog.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/modutils/insmod.o: /opt/bcm963xx/userapps/opensource/busybox/modutils/insmod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/2/4/modules.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/2/6/modules.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/insmod/loadinkmem.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/insmod/version/checking.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/use/list.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/list/archtype.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/use/single.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/use/plt/entries.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/use/got/entries.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/use/plt/list.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/got/entry/size.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/plt/entry/size.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/check/tainted/module.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/insmod/ksymoops/symbols.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/insmod/load/map.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/insmod/load/map/full.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/modutils/lsmod.o: /opt/bcm963xx/userapps/opensource/busybox/modutils/lsmod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/check/tainted/module.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/query/module/interface.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/modutils/modprobe.o: /opt/bcm963xx/userapps/opensource/busybox/modutils/modprobe.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/2/6/modules.h)
+/opt/bcm963xx/userapps/opensource/busybox/modutils/rmmod.o: /opt/bcm963xx/userapps/opensource/busybox/modutils/rmmod.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/2/6/modules.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/query/module/interface.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/ip_parse_common_args.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/ip_parse_common_args.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/ipaddress.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/ipaddress.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/iplink.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/iplink.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/iproute.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/iproute.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/iptunnel.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/iptunnel.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/libnetlink.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/libnetlink.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/ll_addr.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/ll_addr.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/utils.o: /opt/bcm963xx/userapps/opensource/busybox/networking/libiproute/utils.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/arping.o: /opt/bcm963xx/userapps/opensource/busybox/networking/arping.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ftpgetput.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ftpgetput.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ftpget.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ftpput.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/hostname.o: /opt/bcm963xx/userapps/opensource/busybox/networking/hostname.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/httpd.o: /opt/bcm963xx/userapps/opensource/busybox/networking/httpd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/lfs.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/usage/from/inetd/only.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/basic/auth.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/cgi.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/config/with/mime/types.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/encode/url/str.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/set/remote/port/to/env.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/auth/md5.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/reload/config/sighup.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/httpd/setuid.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ifconfig.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ifconfig.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifconfig/slip.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifconfig/broadcast/plus.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifconfig/hw.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifconfig/memstart/ioaddr/irq.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifconfig/status.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ifupdown.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ifupdown.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/libbb.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/libbb.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifupdown/mapping.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifupdown/ip.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifupdown/ipx.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifupdown/ipv6.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ifupdown/ipv4.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/inetd.o: /opt/bcm963xx/userapps/opensource/busybox/networking/inetd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/inetd/support/biltin/echo.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/inetd/support/biltin/discard.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/inetd/support/biltin/time.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/inetd/support/biltin/daytime.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/inetd/support/biltin/chargen.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ip.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ip.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ip/address.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ip/route.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ip/link.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ip/tunnel.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ipaddr.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ipaddr.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ipcalc.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ipcalc.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipcalc/fancy.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/iplink.o: /opt/bcm963xx/userapps/opensource/busybox/networking/iplink.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/iproute.o: /opt/bcm963xx/userapps/opensource/busybox/networking/iproute.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/iptunnel.o: /opt/bcm963xx/userapps/opensource/busybox/networking/iptunnel.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/nameif.o: /opt/bcm963xx/userapps/opensource/busybox/networking/nameif.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/nc.o: /opt/bcm963xx/userapps/opensource/busybox/networking/nc.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/netstat.o: /opt/bcm963xx/userapps/opensource/busybox/networking/netstat.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/route.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/nslookup.o: /opt/bcm963xx/userapps/opensource/busybox/networking/nslookup.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ping.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ping.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/ping.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/ping6.o: /opt/bcm963xx/userapps/opensource/busybox/networking/ping6.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/ping6.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fancy/ping.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/route.o: /opt/bcm963xx/userapps/opensource/busybox/networking/route.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipv6.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/sendarp.o: /opt/bcm963xx/userapps/opensource/busybox/networking/sendarp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/telnet.o: /opt/bcm963xx/userapps/opensource/busybox/networking/telnet.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/telnet/ttype.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/telnet/autologin.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/autowidth.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/telnetd.o: /opt/bcm963xx/userapps/opensource/busybox/networking/telnetd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/login.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/telnetd/inetd.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/devpts.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/tftp.o: /opt/bcm963xx/userapps/opensource/busybox/networking/tftp.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/../../ftpd/fwsyscall.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/../../ftpd/fwsyscall.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tftp/blocksize.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tftp/debug.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tftp/get.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tftp/put.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/tftpd.o: /opt/bcm963xx/userapps/opensource/busybox/networking/tftpd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/../../ftpd/fwsyscall.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/../../ftpd/fwsyscall.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tftpd/get.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/tftpd/put.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/traceroute.o: /opt/bcm963xx/userapps/opensource/busybox/networking/traceroute.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/inet_common.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/traceroute/verbose.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/traceroute.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/traceroute/so/debug.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/vconfig.o: /opt/bcm963xx/userapps/opensource/busybox/networking/vconfig.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/networking/wget.o: /opt/bcm963xx/userapps/opensource/busybox/networking/wget.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/wget/statusbar.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/wget/authentication.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/wget/ip6/literal.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/free.o: /opt/bcm963xx/userapps/opensource/busybox/procps/free.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/kill.o: /opt/bcm963xx/userapps/opensource/busybox/procps/kill.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/killall.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/pidof.o: /opt/bcm963xx/userapps/opensource/busybox/procps/pidof.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/ps.o: /opt/bcm963xx/userapps/opensource/busybox/procps/ps.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/renice.o: /opt/bcm963xx/userapps/opensource/busybox/procps/renice.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/sysctl.o: /opt/bcm963xx/userapps/opensource/busybox/procps/sysctl.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/top.o: /opt/bcm963xx/userapps/opensource/busybox/procps/top.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/use/termios.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/selinux.h)
+/opt/bcm963xx/userapps/opensource/busybox/procps/uptime.o: /opt/bcm963xx/userapps/opensource/busybox/procps/uptime.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/shell/ash.o: /opt/bcm963xx/userapps/opensource/busybox/shell/ash.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/job/control.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/alias.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/optimize/for/size.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/math/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/cmdcmd.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/getopts.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/extra/quiet.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/mail.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/math/support/64.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash/random/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/savehistory.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/editing.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/standalone/shell.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/tab/completion.h)
+/opt/bcm963xx/userapps/opensource/busybox/shell/cmdedit.o: /opt/bcm963xx/userapps/opensource/busybox/shell/cmdedit.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/../shell/cmdedit.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/../shell/cmdedit.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/tab/completion.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/editing.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/username/completion.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/getusername/and/homedir.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/pwd_.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/history.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/nonprintable/inverse/put.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/ash.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/savehistory.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/shell/hush.o: /opt/bcm963xx/userapps/opensource/busybox/shell/hush.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/editing.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/standalone/shell.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/extra/quiet.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/shell/lash.o: /opt/bcm963xx/userapps/opensource/busybox/shell/lash.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/locale/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/lash/pipe/n/redirects.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/lash/job/control.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/editing.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/standalone/shell.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/extra/quiet.h)
+/opt/bcm963xx/userapps/opensource/busybox/shell/msh.o: /opt/bcm963xx/userapps/opensource/busybox/shell/msh.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/command/editing.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/fancy/prompt.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/extra/quiet.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sh/standalone/shell.h)
+/opt/bcm963xx/userapps/opensource/busybox/sysklogd/klogd.o: /opt/bcm963xx/userapps/opensource/busybox/sysklogd/klogd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/sysklogd/logger.o: /opt/bcm963xx/userapps/opensource/busybox/sysklogd/logger.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/syslogd.h)
+/opt/bcm963xx/userapps/opensource/busybox/sysklogd/logread.o: /opt/bcm963xx/userapps/opensource/busybox/sysklogd/logread.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/sysklogd/syslogd.o: /opt/bcm963xx/userapps/opensource/busybox/sysklogd/syslogd.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/rotate/logfile.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/remote/log.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipc/syslog.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/ipc/syslog/buffer/size.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/dmesg.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/dmesg.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/fbset.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/fbset.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fbset/fancy.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fbset/readmode.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/fdflush.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/fdflush.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/fdformat.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/fdformat.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/fdisk.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/fdisk.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sun/label.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/sgi/label.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/aix/label.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/osf/label.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fdisk/writable.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fdisk/advanced.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/weird/partition/types.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/fdisk/blksize.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/freeramdisk.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/freeramdisk.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/fsck_minix.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/fsck_minix.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/minix2.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/getopt.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/getopt.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/hexdump.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/hexdump.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+ /opt/bcm963xx/userapps/opensource/busybox/include/dump.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/dump.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/hwclock.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/hwclock.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/hwclock/longoptions.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/losetup.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/losetup.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/mkfs_minix.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/mkfs_minix.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/minix2.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/mkswap.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/mkswap.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/more.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/more.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/use/termios.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/mount.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/mount.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/nfsmount.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mount/loop.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mtab/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/nfsmount.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/nfsmount.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/pivot_root.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/pivot_root.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/rdate.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/rdate.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/swaponoff.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/swaponoff.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h)
+/opt/bcm963xx/userapps/opensource/busybox/util-linux/umount.o: /opt/bcm963xx/userapps/opensource/busybox/util-linux/umount.c \
+ /opt/bcm963xx/userapps/opensource/busybox/include/busybox.h $(dep_/opt/bcm963xx/userapps/opensource/busybox/include/busybox.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mount/force.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mount/loop.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/mtab/support.h) \
+   $(wildcard /opt/bcm963xx/userapps/opensource/busybox/config/feature/clean/up.h)

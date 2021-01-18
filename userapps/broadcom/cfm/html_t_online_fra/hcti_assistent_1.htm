@@ -1,0 +1,248 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent1</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+  var provider = <%ejGet(serviceId)%>;
+  var provtxt1 = new Array('<%ejGet(T_onLinePppPassword1)%>',
+						   '<%ejGet(T_BusinessDynUserName)%>',
+						   '<%ejGet(T_BusinessFesUserName)%>',
+						   '<%ejGet(pppUserName)%>');
+						
+  var provtxt2 = new Array('<%ejGet(T_onLinePppNumber)%>',
+						   "",
+						   "",
+						   '<%ejGet(pppServerName)%>');
+  
+  var provtxt3 = new Array('<%ejGet(T_onLinePppSufix)%>',
+						   "",
+						   "",
+						   "");
+  
+  var provpwd = new Array('<%ejGet(T_onLinePppPassword)%>',
+						  '<%ejGet(T_BusinessDynPassword)%>',
+						  '<%ejGet(T_BusinessFesPassword)%>',
+						  '<%ejGet(pppPassword)%>');
+  var provpersist = new Array('<%ejGet(T_onLineIsIdleTimeOut)%>', '<%ejGet(T_BusinessDynIsIdleTimeOut)%>', '<%ejGet(T_BusFesIsIdleTimeOut)%>', '<%ejGet(pppIsIdleTimeOut)%>');
+  var provondemand = new Array('<%ejGet(T_onLineOnDemand)%>', '<%ejGet(T_BusinessDynOnDemand)%>', '<%ejGet(T_BusinessFesOnDemand)%>', '<%ejGet(enblOnDemand)%>');
+  var provtimeout = new Array('<%ejGet(T_onLinePppIdleTimeOut)%>', '<%ejGet(T_BusinessDynTimeOut)%>', '<%ejGet(T_BusinessFesTimeOut)%>', '<%ejGet(pppTimeOut)%>');
+  
+  var ssid = '<%ejGetWl(wlSsidRetrieve)%>';
+  var ssidhide = '<%ejGetWl(wlHide)%>';
+  var asswlEnable= '<%ejGetWl(wlEnbl)%>';
+// Verschlüsselungs-Betriebszustand
+// Aus = 0
+// WEP = 1
+// WPA2 mit PSK = 2
+// WPA / WPA2 mit PSK = 3
+// WPA2 mit RADIUS = 4
+// WPA / WPA2 mit RADIUS = 5
+  var wep = '<%ejGetWl(wlWep)%>';
+  var encrypt = '<%ejGetWl(wlAuthMode)%>';
+
+// WEP Schlüssellänge
+  var wepkeylength = '<%ejGetWl(wlKeyBit)%>'; //64Bit (0), 128Bit (1)
+
+// WEP Schlüsseltyp
+  var wepkeytyp = '<%ejGetWl(wlKeyMode)%>'; //ASCII (0), HEX (1)
+
+// WEP Schlüssel 1-4
+  var wepkey1 = '<%ejGetWl(wlKey0)%>';
+  var wepkey2 = '<%ejGetWl(wlKey1)%>';
+  var wepkey3 = '<%ejGetWl(wlKey2)%>';
+  var wepkey4 = '<%ejGetWl(wlKey3)%>';
+  var wepkeyindex = '<%ejGetWl(wlKeyIndex)%>';
+// WPA2-PSK
+  var wpapsk = '<%ejGetWl(wlWpaPsk)%>';
+  var mix_wpapsk = '<%ejGetWl(mix_wlWpaPsk)%>';
+  
+// Internettelefonie Rufnummer verwenden
+  var voipprov = '<%ejGetVoip(providerName)%>';
+  var voip_rnr = new Array('<%ejGetVoip(telenumber_TONLINE)%>',	'<%ejGetVoip(telenumber_Another)%>');
+  var voip_anm = new Array('<%ejGetVoip(email_TONLINE)%>',	'<%ejGetVoip(username_Another)%>');
+  var voip_reg = new Array("", 					'<%ejGetVoip(registrar_A)%>');
+  var voip_pwd = new Array('<%ejGetVoip(password_TONLINE_encoded)%>',	'<%ejGetVoip(password_Another_encoded)%>');
+  var voip_analog = '<%ejGetVoip(enable_Analog)%>'; 
+  var voippriLine = '<%ejGetVoip(primary_select)%>';
+  var voipsecLine = '<%ejGetVoip(secondary_select)%>';
+  
+  var voip_enable_areaCode = new Array('<%ejGetVoip(enable_areaCode_T)%>', '<%ejGetVoip(enable_areaCode_A)%>');
+  var voip_areaCode = new Array('<%ejGetVoip(area_Code_T)%>', '<%ejGetVoip(area_Code_A)%>');
+  
+function get_encrypt()
+{
+	var ret;
+	if(encrypt== '0' || encrypt=='1' || encrypt== '2' || encrypt== '3')
+		return encrypt;	
+	else if(encrypt == "open"){
+		if(wep == "disabled")
+			ret = 0;//open, no wep
+		else
+			ret = 1;//open, wep
+	}
+	else if(encrypt == "psk2")
+		ret = 2;
+	else
+		ret = 3;
+	return ret;
+}
+
+function chk(){ 
+  //document.F1.P1.value = top.frames[0].asspwd;
+  //document.F1.P2.value = top.frames[0].assnewpwd;
+  //document.F1.P3.value = top.frames[0].assnewpwd;
+  loadassistent();
+  top.frames[0].asswlselect = get_encrypt();
+  document.F1.P1.focus();
+}
+
+var loc = 'hcti_assistent_2.asscgi?';
+function apply(){
+	var code = 'location.assign("'+ loc + '")';
+	eval(code);
+}
+
+function stOk(){
+    if(document.F1.P1.value == "" && document.F1.P2.value == "" && document.F1.P3.value == ""){
+      top.frames[2].location.href = "hcti_assistent_2.htm";
+    }
+    else{
+        if (document.F1.P2.value=="" || document.F1.P3.value=="" || document.F1.P2.value!=document.F1.P3.value){
+          alert("Ungültiges neues Passwort! Bitte versuchen Sie es erneut.");
+          document.F1.P2.value = "";
+          document.F1.P3.value = "";
+          document.F1.P2.focus();
+        }
+	else{
+		if(isValidPwd(document.F1.P2.value) == false){
+			alert(alertpwd);
+			document.F1.P2.value = "";
+			document.F1.P3.value = "";
+			document.F1.P2.focus();
+			return false;
+		}
+          top.frames[0].asspwd = document.F1.P1.value;
+          top.frames[0].assnewpwd = document.F1.P2.value;
+
+		  loc += 'sysAuthPassword=' + document.F1.P1.value;
+		  loc += '&sysNewPassword=' + document.F1.P2.value;
+		  document.getElementById("t_but1").style.visibility='hidden';
+		  document.getElementById("t_but4").style.visibility='hidden';
+		  document.getElementById("c_verzoeg1").style.visibility='visible';
+		  document.getElementById("c_verzoeg2").style.visibility='visible';
+		  setTimeout("apply()", 1000);
+		}
+	} 
+}			
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 1 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Bitte ändern Sie das Passwort des Konfigurationsprogramms !</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="180">Altes Passwort:</td>
+            <td><input type="password" class="stylepwd" name="P1" size="12" maxlength="12"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="180">Neues Passwort:</td>
+            <td><input type="password" class="stylepwd" name="P2" size="12" maxlength="12"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="180">Neues Passwort wiederholen:</td>
+            <td><input type="password" class="stylepwd" name="P3" size="12" maxlength="12"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Bitte ändern Sie das Passwort des Konfigurations- programms !</h2>
+    <p>Damit die Router-Konfiguration vor unberechtigtem Zugriff ge- schützt ist,
+    muss das im Auslie- ferungszustand eingetragene Passwort '0000' geändert werden.</p>
+    <p>Bewahren Sie das neue Passwort an einer sicheren Stelle auf, um es vor dem Zugriff von Unbefugten zu schützen.</p>
+    <p>Ändern Sie das Passwort und klicken Sie auf &nbsp;<b>'OK &amp; Weiter'</b>.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>    
+    Zu Ihrer Sicherheit wird das Konfigurationsprogramm automatisch beendet,
+    nachdem es mehr als 10 Minuten nicht verwendet wurde.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Passwort Änderung</h2>
+    <p><b>Altes Passwort</b><br>
+    Tragen Sie hier Ihr bisheriges Passwort ein. Im Auslieferungs- zustand ist das Passwort <b>'0000'</b> eingetragen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Passwort Änderung</h2>
+    <p><b>Neues Passwort</b><br>
+    Tragen Sie hier Ihr neues Pass- wort ein und wiederholen Sie die Eingabe im Feld darunter.</p>
+    <p>Das Passwort kann aus<br>
+    4 bis 12 alphanumerischen Zeichen (A-Z, a-z, 0-9) bestehen, Groß-/Kleinschreibung wird berücksichtigt.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Passwort Änderung</h2>
+    <p><b>Neues Passwort wiederholen</b><br>
+    Wiederholen Sie die Eingabe des neuen Passwortes.</p>
+    <p>Das Passwort kann aus<br>
+    4 bis 12 alphanumerischen Zeichen (A-Z, a-z, 0-9) bestehen, Groß-/Kleinschreibung wird berücksichtigt.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

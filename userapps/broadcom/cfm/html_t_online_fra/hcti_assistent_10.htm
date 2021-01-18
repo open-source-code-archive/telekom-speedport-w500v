@@ -1,0 +1,288 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent10</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+var rebootconfirm="Um die Änderungen zu übernehmen, wird ein Neustart durchgeführt.Möchten Sie das wirklich?";
+function stBeenden(){ 
+  if (confirm("Wenn Sie den Assistenten beenden, werden alle vorgenommenen Änderungen" +
+			  "\nverworfen. Wenn Sie wirklich Beenden möchten, klicken Sie auf 'OK'." +
+              "\n\nUm die vorgenommenen Änderungen zu speichern, klicken Sie auf 'Abbrechen'" +
+              "\nund dann auf 'Speichern'.")==true){
+    start();
+  }
+}
+
+function IsPPPoEChanged(){
+    if(top.frames[0].ActiveServiceID == 0) //initial data in assistent
+	return false;
+  
+    if((top.frames[0].ActiveServiceID=='1') && (top.frames[0].tonline_password1==''))
+	return false;
+    if((top.frames[0].ActiveServiceID=='2') && (top.frames[0].tbusdyn_name==''))
+	return false;
+    if((top.frames[0].ActiveServiceID=='3') && (top.frames[0].tbusfes_name==''))
+	return false;
+    if((top.frames[0].ActiveServiceID=='4') && (top.frames[0].another_name==''))
+	return false;
+
+    var ispindex=top.frames[0].assprovider;
+    if(top.frames[0].assprovtxt1[ispindex-1]=='')
+	return false;
+	
+  if(top.frames[0].ActiveServiceID != top.frames[0].assprovider)
+  	return true;
+  if(top.frames[0].ActiveServiceID == '1'){
+	if(top.frames[0].tonline_password1 != top.frames[0].assprovtxt1[0])
+	  	return true;
+	if(top.frames[0].tonline_number != top.frames[0].assprovtxt2[0])
+		return true;
+	if(top.frames[0].tonline_suffix != top.frames[0].assprovtxt3[0])
+		return true;
+	if(top.frames[0].tonline_password != top.frames[0].assprovpwd[0])
+	    return true;
+        if(top.frames[0].tonline_persist != top.frames[0].asspersist[0])
+	    return true;
+	if(top.frames[0].tonline_ondemand != top.frames[0].assondemand[0])
+	    return true;
+        if(top.frames[0].tonline_timeout != top.frames[0].asstimeout[0])
+	    return true;
+  }
+  if(top.frames[0].ActiveServiceID == '2'){
+	if(top.frames[0].tbusdyn_name != top.frames[0].assprovtxt1[1])
+	    return true;
+	if(top.frames[0].tbusdyn_password != top.frames[0].assprovpwd[1])
+	    return true;
+        if(top.frames[0].tbusdyn_persist != top.frames[0].asspersist[1])
+	    return true;
+	if(top.frames[0].tbusdyn_ondemand != top.frames[0].assondemand[1])
+	    return true;
+	if(top.frames[0].tbusdyn_timeout != top.frames[0].asstimeout[1])
+	    return true;
+  }
+  if(top.frames[0].ActiveServiceID == '3'){
+	if(top.frames[0].tbusfes_name != top.frames[0].assprovtxt1[2])
+		return true;
+	if(top.frames[0].tbusfes_password != top.frames[0].assprovpwd[2])
+		return true;
+	if(top.frames[0].tbusfes_persist != top.frames[0].asspersist[2])
+		return true;
+	if(top.frames[0].tbusfes_ondemand != top.frames[0].assondemand[2])
+		return true;
+	if(top.frames[0].tbusfes_timeout != top.frames[0].asstimeout[2])
+		return true;
+  }
+  if(top.frames[0].ActiveServiceID == '4'){
+	  if(top.frames[0].another_name != top.frames[0].assprovtxt1[3])
+	  	return true;
+	if(top.frames[0].another_password != top.frames[0].assprovpwd[3])
+		return true;
+	if(top.frames[0].another_servicename != top.frames[0].assprovtxt2[3])
+		return true;
+	if(top.frames[0].another_persist != top.frames[0].asspersist[3])
+		return true;
+	if(top.frames[0].another_ondemand != top.frames[0].assondemand[3])
+		return true;
+	if(top.frames[0].another_timeout != top.frames[0].asstimeout[3])
+		return true;
+  }	
+	return false;
+}
+
+//send assistent finished cgi to server.
+function assSend()
+{
+var loc;
+if(IsPPPoEChanged() == true)
+    loc= 'hcti_assistent_reboot.cgi?';
+else
+    loc= 'hcti_assistent_finished.cgi?';
+   var authMode = 0;
+   //wan options
+   loc += 'serviceId='+ top.frames[0].assprovider;   
+   loc += '&provtxt1=' + top.frames[0].assprovtxt1[top.frames[0].assprovider-1];
+   loc += '&provtxt2=' + top.frames[0].assprovtxt2[top.frames[0].assprovider-1];
+   loc += '&provtxt3=' + top.frames[0].assprovtxt3[top.frames[0].assprovider-1];
+   loc += '&provpwd='  + top.frames[0].assprovpwd[top.frames[0].assprovider-1];
+   switch(top.frames[0].assprovider){
+    case 1:
+        loc += '&T_onLineIsIdleTimeOut=' + top.frames[0].asspersist[0];
+	loc += '&T_onLineOnDemand=' + top.frames[0].assondemand[0];
+	loc += '&T_onLinePppIdleTimeOut=' + top.frames[0].asstimeout[0];
+    break;
+    case 2:
+        loc += '&T_BusinessDynIsIdleTimeOut=' + top.frames[0].asspersist[1];
+	loc += '&T_BusinessDynOnDemand=' + top.frames[0].assondemand[1];
+	loc += '&T_BusinessDynTimeOut=' + top.frames[0].asstimeout[1];
+    break;
+    case 3:
+	loc += '&T_BusFesIsIdleTimeOut=' + top.frames[0].asspersist[2];
+	loc += '&T_BusinessFesOnDemand=' + top.frames[0].assondemand[2];
+	loc += '&T_BusinessFesTimeOut=' + top.frames[0].asstimeout[2];
+    break;
+    case 4:
+        loc += '&pppIsIdleTimeOut=' + top.frames[0].asspersist[3];
+	loc += '&enblOnDemand=' + top.frames[0].assondemand[3];
+	loc += '&pppTimeOut=' + top.frames[0].asstimeout[3];
+    break;
+    default:
+    break;
+   }
+   //wireless options
+   loc += '&wlSsid=' + top.frames[0].assssid;
+   loc += '&wlHide=' + top.frames[0].assssidhide;
+   loc += '&wlEnbl=' + top.frames[0].asswlEnable;
+   //wireless security options
+   if (top.frames[0].assencrypt == 0) {
+      	authMode = 0;
+   	loc += '&wlWep=disabled';
+   }else if (top.frames[0].assencrypt == 1) {
+   	loc += '&wlWep=enabled';
+       authMode = 1;
+	loc += '&wlKeyBit=' + top.frames[0].asswepkeylength;
+	loc += '&wlKeyMode=' + top.frames[0].asswepkeytyp;
+	loc += '&wlKeyIndex=' + top.frames[0].asswepkeyindex;
+   	loc += '&wlKey0='   + top.frames[0].asswepkey1;
+   	loc += '&wlKey1='   + top.frames[0].asswepkey2;
+   	loc += '&wlKey2='   + top.frames[0].asswepkey3;
+   	loc += '&wlKey3='   + top.frames[0].asswepkey4;
+    }else if (top.frames[0].assencrypt == 2) {
+       	authMode = 2;
+	loc += '&wlWpaPsk=' + top.frames[0].asswpapsk;
+   }else if (top.frames[0].assencrypt == 3) {
+       	authMode = 3;
+	loc += '&mix_wlWpaPsk=' + top.frames[0].mix_asswpapsk;
+   }
+   //loc += '&wlWep='+ haveWep;
+   loc += '&wlAuthMode=' + authMode;
+      
+   //voip iptions
+   loc += '&voipAnalog=' + top.frames[0].assvoip_analog;
+	loc += '&primary_select=' + top.frames[0].voippriLine;
+	loc += '&secondary_select=' + top.frames[0].voipsecLine;
+
+   if(top.frames[0].assvoipprov == -1)
+	loc += '&voipProvider=-1';//give glbWebVar a sign not to set voip in assistent
+   else if(top.frames[0].assvoipprov == 0){
+		   loc += '&voipProvider=0';
+		   loc += '&voipTonLineNumber=' + top.frames[0].assvoip_rnr[0];
+		   loc += '&voipTonLineEmail=' + top.frames[0].assvoip_anm[0];
+		   loc += '&voipTonLinePwd=' + top.frames[0].assvoip_pwd[0];
+   }else{
+	    	   loc += '&voipProvider=1';
+		   loc += '&voipAnotherNumber=' + top.frames[0].assvoip_rnr[1];
+		   loc += '&voipAnotherName=' + top.frames[0].assvoip_anm[1];
+		   loc += '&voipAnotherPwd=' + top.frames[0].assvoip_pwd[1];
+		   loc += '&voipAnotherReg=' + top.frames[0].assvoip_reg[1];
+	 } 
+
+   //password
+   if(top.frames[0].assnewpwd != "")
+       loc += '&sysNewPassword=' + top.frames[0].assnewpwd;
+   var code = 'location.assign("'+ loc + '")';
+   eval(code);
+}
+
+function stOk(){
+if(IsPPPoEChanged()==true){
+    if(confirm(rebootconfirm)==false)
+	return false;
+}
+  top.frames[0].voip_ov[0] = top.frames[0].assvoip_ov;
+  if (top.frames[0].voip.length == 1){
+    top.frames[0].voip[0] = "1";
+    top.frames[0].addNewVoIP();
+  }
+
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+
+  document.getElementById("t_but1").style.visibility='hidden';
+  document.getElementById("t_but3").style.visibility='hidden';
+  document.getElementById("t_but4").style.visibility='hidden';
+  
+  assSend();
+  setTimeout("stWeiter()", top.frames[0].verzoeg);
+}
+
+function stWeiter(){
+  if (top.frames[0].wlanfkt==true && top.frames[0].assencsave==true){
+    top.frames[2].location.href = "hcti_assistent_wlan.htm";
+  }
+  else{
+    start();
+  }
+}
+
+function stZrk(){
+	top.frames[2].location.href = "hcti_assistent_9.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 10 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Einstellungen des Assistenten fertigstellen</DIV>
+<DIV id=c_text>Klicken Sie auf 'Speichern', um Ihre eingegebenen Daten in den Router zu übertragen.<br><br><br>
+
+   <b>Internet-Telefonie einrichten</b><br>
+   Wenn alle Daten richtig eingegeben und gespeichert wurden, können Sie mit Ihrem Browser eine Verbindung ins Internet aufbauen.<br><br>
+   Für die Einrichtung der Internet-Telefonie gehen Sie bitte wie folgt vor:<br><br>
+   Besuchen Sie die Seite von T-Online (www.t-online.de). 
+   Dort finden Sie die Anmeldung zur Internet-Telefonie. 
+   Die Internet-Rufnummer erhalten Sie direkt nach der Anmeldung.<br><br>
+   Anschließend können Sie diesen Assistent zur Einstellung der <br>
+   Internet-Telefonie noch mal durchlaufen oder <br>
+   im Konfigurationsprogramm unter dem Menüpunkt:<br><br> 
+   'Telefonie / Internetrufnummer' die Zugangsdaten eingeben.<br><br>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=stBeenden() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Einstellungen des Assistenten fertigstellen</h2>
+    <p>Damit die von Ihnen vorgenom- menen Einstellungen wirksam werden, müssen diese an den Router übertragen werden.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

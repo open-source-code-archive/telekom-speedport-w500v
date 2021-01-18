@@ -1,0 +1,222 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent5</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var pclanhinw = true;
+var wlWep = '<%ejGetWl(wlWep)%>';
+var wlEncrypt = '<%ejGetWl(wlAuthMode)%>';
+var encryptname = new Array("Aus","WEP","WPA2 mit Pre-shared key","WPA / WPA2 mit Pre-shared key","WPA2 mit RADIUS Server","WPA / WPA2 mit RADIUS Server");
+
+function get_encrypt()
+{
+	var ret;
+	if(wlEncrypt== '0' || wlEncrypt=='1' || wlEncrypt== '2' || wlEncrypt== '3')
+		return wlEncrypt;	
+	else if(wlEncrypt == "open"){
+		if(wlWep == "disabled")
+			ret = 0;//open, no wep
+		else
+			ret = 1;//open, wep
+	}
+	else if(wlEncrypt == "psk2")
+		ret = 2;
+	else
+		ret = 3;
+	return ret;
+}
+	
+function chk(){
+    document.F1.R1[top.frames[0].asswlselect].checked = true;
+}
+
+
+function pclan(){
+  if(pclanhinw == true && get_encrypt() == 0){ //Wenn WEP ausgeschaltet ist
+    var pclanok; 
+   
+    pclanok=confirm("Achtung, bitte beachten Sie, dass nach Einschalten der Verschlüsselung und "+
+                    "\nDurchlaufen des Assistenten die Verbindung zu Ihrem Router unterbrochen wird."+
+                    "\n"+
+                    "\nEine drahtgebundene (Ethernet-) Verbindung wird automatisch wiederhergestellt"+
+                    "\n"+
+                    "\nUm eine drahtlose (WLAN-) Verbindung wiederherzustellen, muss der WLAN-Adapter in Ihrem"+
+                    "\nPC / Laptop mit der gleichen Verschlüsselung konfiguriert werden, die Sie jetzt in Ihrem "+
+                    "\nRouter eintragen.");
+                    
+    if(pclanok==false){
+      document.F1.R1[0].checked = true; //Wenn abbrechen geklickt wird, dann wird wieder 'Aus' eingestellt
+    }
+    else{
+      pclanhinw = false;
+    }
+  }
+}
+
+function stOk(){
+  if(document.F1.R1[0].checked == true){
+    top.frames[0].assencrypt = 0;
+  }
+  else if(document.F1.R1[1].checked == true){
+    top.frames[0].assencrypt = 1;
+  }
+  else if(document.F1.R1[2].checked == true){
+    top.frames[0].assencrypt = 2;
+  }
+  else
+    top.frames[0].assencrypt = 3;
+  top.frames[0].asswlselect = top.frames[0].assencrypt;
+  top.frames[2].location.href = "hcti_assistent_6.htm";
+
+}
+
+function stZrk(){ 
+  top.frames[2].location.href = "hcti_assistent_4.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 5 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</DIV>
+
+<SCRIPT language="JavaScript">
+<!--                    
+  for (i=0;i<4;i++){
+    var divart = "c_std";
+    var startf = '<form name="F1">';
+    var endf = "";
+    if (i>0) startf = "";
+    if (i==3 && wlEncrypt< 4){
+      divart = "c_last";
+      endf = "</form>";
+    }
+    document.write(
+      '<DIV id=' + divart + '>' +
+        '<table border="0" cellpadding="0" cellspacing="2">' +
+          '<tr onmouseover=i_showElem(' + (i+1) + ') onmouseout=i_showElem(0)>' +
+            startf +
+              '<td width="25"><input type="radio" name="R1" value="V' + i + '" onclick="pclan()"></td>' +
+              '<td>' +encryptname[i] + '</td>' +
+            endf +
+          '</tr>' +
+        '</table>' +
+      '</DIV>');
+  }
+  if (wlEncrypt > 3){
+    document.write(
+      '<DIV id=c_last>' +
+        '<table border="0" cellpadding="0" cellspacing="2">' +
+          '<tr onmouseover=i_showElem(top.frames[0].encrypt+1) onmouseout=i_showElem(0)>' +
+              '<td width="25"><input type="radio" name="R1" value="V3"></td>' +
+              '<td>' + encryptname[wlEncrypt] + '</td>' +
+            '</form>' +
+          '</tr>' +
+        '</table>' +
+      '</DIV>');
+  }
+
+//-->
+</SCRIPT>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p>Durch Verschlüsselung wird die Übertragung der Daten in Ihrem drahtlosen Netzwerk vor unbe- fugtem Abhören geschützt.</p>
+    <p>Ein Verschlüsselungsalgorith- mus chiffriert Ihre Daten und macht sie somit unleserlich. Bei Kenntnis des
+	dabei verwendeten Schlüssels können die Daten auf der Empfangsseite wieder dechiffriert werden.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+
+  <DIV id=i_content1>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p><b>Betriebsart Aus</b><br>
+    Zu Ihrer eigenen Sicherheit empfehlen wir Ihnen dringend, die Verschlüsselung <b>nicht</b> auszuschalten. 
+    Wählen Sie dagegen eine der unten aufge- führten Verschlüsselungsarten.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p><b>Betriebsart WEP</b><br>
+    WEP steht für Wired Equivalent Privacy. Im Modus WEP k&ouml;nnen Sie den ben&ouml;tigten Schl&uuml;ssel
+    in ASCII oder HEX Schreibweise eintragen. Es wird dann immer der gleiche Verschlüsselungs- algorithmus verwendet.
+	Dies stellt heute keinen absoluten Schutz mehr dar.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p><b>Betriebsart WPA2 mit Pre-shared key</b><br>
+    In diesem Modus können sich nur WLAN Clients anmelden, welche die Verschlüsselung WPA2 (AES) unterstützen. 
+    Hier wird der Verschlüsselungs- algorithmus fortlaufend verändert. Dadurch wird eine höhere Sicherheit erreicht. 
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    WPA2 funktioniert zur Zeit nur mit Windows® XP.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p><b>Betriebsart WPA / WPA2 mit Pre-shared key</b><br>
+    In diesem Modus können sich WLAN Clients anmelden, die entweder die Verschlüsselung WPA (TKIP) oder WPA2 (AES) unterstützen. 
+    Bei WPA / WPA2 wird der Verschlüsselungs- algorithmus fortlaufend verändert. Dadurch wird eine höhere Sicherheit erreicht. 
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    WPA / WPA2 funktioniert zur Zeit nur mit Windows® XP.</p>
+  </DIV>
+  
+  <DIV id=i_content5>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p><b>Betriebsart WPA2 mit RADIUS Server</b><br>
+    RADIUS ist eine Abkürzung für <b>R</b>emote <b>A</b>uthentication <b>D</b>ial-<b>i</b>n <b>U</b>ser <b>S</b>ervice.
+    Der Router leitet die Daten zur Authentifizierung und Autorisierung von Benutzern an einen externen Server weiter.</p>
+    <p>Diese Betriebsart wird hier nur aufgeführt, weil sie bereits konfiguriert ist. Die RADIUS-Konfiguration
+	kann im Assistent nicht verändert werden.</p>
+  </DIV>
+
+  <DIV id=i_content6>
+    <h2>Bitte konfigurieren Sie zu Ihrer Sicherheit die Verschlüsselung !</h2>
+    <p><b>Betriebsart WPA / WPA2 mit RADIUS Server</b><br>
+    RADIUS ist eine Abkürzung für <b>R</b>emote <b>A</b>uthentication <b>D</b>ial-<b>i</b>n <b>U</b>ser <b>S</b>ervice.
+    Der Router leitet die Daten zur Authentifizierung und Autorisierung von Benutzern an einen externen Server weiter.</p>
+    <p>Diese Betriebsart wird hier nur aufgeführt, weil sie bereits konfiguriert ist. Die RADIUS-Konfiguration
+	kann im Assistent nicht verändert werden.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

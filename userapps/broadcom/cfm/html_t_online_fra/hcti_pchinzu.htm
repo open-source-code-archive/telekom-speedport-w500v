@@ -1,0 +1,180 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>PChinzufügen</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){
+	for (i=0;i<top.frames[0].pc_bez.length-1;i++){
+		document.F1.elements[i*2].style.backgroundColor = "#D4D0C8";
+		document.F1.elements[i*2].disabled = true;
+	}
+}
+
+function stZrk(){
+        switch (top.frames[0].zs_akt){
+          case 0:
+            top.frames[2].location.href = "hcti_budget.htm";
+            break;
+          case 1:
+            top.frames[2].location.href = "hcti_netzwerk_n.htm";
+            break;
+          case 2:
+            top.frames[2].location.href = "hcti_sicherheit_f.htm";
+            break;
+          case 3:
+            top.frames[2].location.href = "hcti_sicherheit_m.htm";
+            break;
+        }
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 341px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>
+      <SCRIPT language="JavaScript">
+      <!--
+        switch (top.frames[0].zs_akt){
+          case 0:
+            document.write('Budget');
+            break;
+          case 1:
+            document.write('Netzwerk / NAT &amp; Portregeln');
+            break;
+          case 2:
+            document.write('Sicherheit / Filterfunktion');
+            break;
+          case 3:
+            document.write('Sicherheit / MAC-Filterung');
+            break;
+        }
+        document.write(' / PCs Übernehmen &amp; Freigeben');
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>PCs Übernehmen &amp; Freigeben</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+          <td width="120">MAC-Adresse</td>
+          <td width="100">IP-Adresse</td>
+          <td width="100">PC-Name</td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+</DIV>
+
+
+<SCRIPT language="JavaScript">
+<!--
+if (top.frames[0].pc_hostname.length > 13) document.write('<DIV id=scroll>');
+
+var divart = 'c_std';
+var startf = '<form name="F1">';
+var endf = "";
+for (i=0;i<top.frames[0].pc_hostname.length-1;i++){
+    if (i==top.frames[0].pc_hostname.length-2){
+		divart = 'c_last';
+		endf = '</form>';
+    }
+	document.write(
+	'<DIV id=' + divart + '>' +
+		'<table border="0" cellpadding="0" cellspacing="2">' +
+			'<tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>' +
+				startf +
+					'<td width="120">' + top.frames[0].pc_mac[i].substr(0,2) + '-' + top.frames[0].pc_mac[i].substr(2,2) + '-' + top.frames[0].pc_mac[i].substr(4,2) + '-' + top.frames[0].pc_mac[i].substr(6,2) + '-' + top.frames[0].pc_mac[i].substr(8,2) + '-' + top.frames[0].pc_mac[i].substr(10,2) + '</td>' +
+					'<td width="100">' + top.frames[0].ip_block1 + '.' + top.frames[0].ip_block2 + '.' + top.frames[0].ip_block3 + '.' + top.frames[0].pc_ip_block4[i] + '</td>');
+					if (i < top.frames[0].pc_bez.length-1){
+						document.write('<td width="100"><input type="text" name="T'+i+'" size="10" maxlength="20" value="' + top.frames[0].pc_hostname[i] + '"></td>');
+						document.write('<td><input type="button" name="B'+i+'" value="Frg"></td>');
+					}
+					else{
+						document.write('<td width="100"><input type="text" name="T'+i+'" size="10" maxlength="20" value="' + top.frames[0].pc_hostname[i] + '"></td>');
+						document.write('<td><input type="button" name="B'+i+'" value="Übn"></td>');
+					}
+				document.write(
+				endf +
+			'</tr>' +
+		'</table>' +
+	'</DIV>');
+}
+
+if (top.frames[0].pc_hostname.length <= 13) document.write('<DIV id=c_leer>');
+
+//-->
+</SCRIPT>
+
+</DIV>
+
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>PCs Übernehmen &amp; Freigeben</h2>
+    <p>Hier können Sie die PCs bestimmen, die Sie an ihrem Router betreiben möchten. 
+	Beachten Sie bitte dass der PC am Netzwerk angeschaltet und betriebsbereit ist.
+    Die Definition der PCs ist für folgende Funktionen notwendig:
+    <p><b>- Sicherheit / Filterfunktion</b><br>
+    <b>- Sicherheit / MAC Filter</b><br>
+	<b>- Netzwerk / NAT &amp; Portregeln</b><br>
+    <b>- Budget</b></p>
+    <p>Fügen Sie den gewünschten PC bitte auch hinzu, wenn Sie eine feste DHCP Zuordnung vornehmen möchten, wenn also ein
+    und demselben PC immer wieder die gleiche IP-Adresse aus dem Adressbereich des DHCP-Servers zugewiesen werden soll.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>PCs Übernehmen &amp; Freigeben</h2>
+    <p>Hier erscheinen sowohl die PC's, die momentan mit Ihrem Netzwerk verbunden sind, 
+	als auch die PC's die bereits fest im Netzwerk übernommen wurden.</p>
+  
+    <p><b>PC-Name</b><br>
+    Falls kein PC Name angezeigt wird können Sie diesen manuell eintragen. 
+	Vergeben Sie einen entsprechenden Namen, der den PC eindeutig beschreibt.</p>
+    <p><input type="button" name="infoubn" value="Übn"><br>
+    Mit der Schaltfläche 'Übn' wird der PC im Netzwerk übernommen. Die IP wird dann fest zugewiesen.</p>
+	<p><input type="button" name="infofrg" value="Frg"><br>
+	Mit der Schaltfläche 'Frg' wird der PC im Netzwerk freigeschaltet. Die feste IP wird wieder freigegeben.</p>
+  </DIV>
+  
+</DIV>
+</BODY>
+
+</HTML>

@@ -1,0 +1,264 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkLAN</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+var router = '<%ejGet(routerName)%>';
+var addr = '<%ejGet(ethIpAddress)%>';
+var mask = '<%ejGet(ethSubnetMask)%>';
+var dhcpStart = '<%ejGet(dhcpEthStart)%>' ;
+var dhcpEnd = '<%ejGet(dhcpEthEnd)%>' ;
+var dhcpEnbl = '<%ejGet(enblDhcpSrv)%>' ;
+
+var ethIpAddr;
+var ethSubMask;
+var dhcpStartAddr ;
+var dhcpEndAddr ;
+var reboot = 0 ;
+
+ethIpAddr = addr.split('.');
+ethSubMask = mask.split('.');
+dhcpStartAddr = dhcpStart.split('.') ;
+dhcpEndAddr = dhcpEnd.split('.') ;
+
+var ipmC ='Entweder haben Sie nicht alle Zahlen eingegeben, oder einige der Zahlen sind unzulässig.';
+var ipmLan=ipmC + ' Der Lan IP Eintrag sollte zwischen 0 - 255 liegen.';
+var ipmEnd=ipmC + ' Der End-IP Eintrag sollte zwischen 1 - 254 liegen.';
+var ipmSub=ipmC + ' Der Subnetzmaske Eintrag sollte zwischen 0 - 255 liegen.';
+var invalid=ipmC + 'Der Lan IP Eintrag sollte zwischen ' + dhcpStartAddr[3] + ' - ' + dhcpEndAddr[3] + ' liegen.' ;
+
+//if return true, then the input is invalid
+function checkNumber(input) {
+	var ret = false ;
+	var i = 0;
+	for (i=0; i < input.length; i++) {
+		if (input.charAt(i) < '0' || input.charAt(i) > '9') {
+			ret = true ;
+			break ;
+		}
+	}
+	return ret ;
+}
+
+function btnApply() {
+        var loc = '';
+	var tmprouterName = new String();
+	tmprouterName = document.IP.routerName.value;
+        var tmpethIpAddr = document.IP.ethIpAddress[0].value + '.' +document.IP.ethIpAddress[1].value + '.' +document.IP.ethIpAddress[2].value + '.' + document.IP.ethIpAddress[3].value;
+        var tmpethSubMask = '255.255.255.' + document.IP.msk_ip3.value;
+	var tmpDhcpSAddr = document.IP.ethIpAddress[0].value + '.' +document.IP.ethIpAddress[1].value + '.' +document.IP.ethIpAddress[2].value + '.' + dhcpStartAddr[3] ;
+	var tmpDhcpEAddr = document.IP.ethIpAddress[0].value + '.' +document.IP.ethIpAddress[1].value + '.' +document.IP.ethIpAddress[2].value + '.' + dhcpEndAddr[3] ;
+
+	if (tmprouterName.length > 31 ||
+		isInvalidStringIncludeSpace(tmprouterName) ||
+		isAllBlank(tmprouterName)) {
+		alert('Routername:') ;
+		return;
+	}
+
+	if (checkNumber(document.IP.ethIpAddress[0].value) == true ||
+	    checkNumber(document.IP.ethIpAddress[1].value) == true ||
+	    checkNumber(document.IP.ethIpAddress[2].value) == true ||
+	    checkNumber(document.IP.ethIpAddress[3].value) == true ){
+	    	alert(ipmLan) ;
+		return 0;
+	}
+
+	if (checkNumber(document.IP.msk_ip3.value) == true) {
+		alert(ipmSub) ;
+		return 0;
+	}
+
+        if ( parseInt(document.IP.ethIpAddress[3].value) == 0 || parseInt(document.IP.ethIpAddress[3].value) == 255) {
+                alert(ipmEnd);
+                return 0;
+        }
+        if ( isValidIpAddress(tmpethIpAddr) == false) {
+                alert(ipmLan);
+                return 0;
+        }
+        if ( isValidIpAddress(tmpethSubMask) == false ) {
+                alert(ipmSub);
+                return 0;
+        }
+
+	//if ( (dhcpEnbl == '1') &&
+	//     (parseInt(document.IP.ethIpAddress[3].value) >= parseInt(dhcpStartAddr[3])) &&
+	//     (parseInt(document.IP.ethIpAddress[3].value) <= parseInt(dhcpEndAddr[3]))) {
+	//	alert(invalid) ;
+	//	return 0;
+	//}
+
+
+
+        loc += '&routerName=' +  encodeUrl(tmprouterName);
+        loc += '&ethIpAddress=' + tmpethIpAddr;
+        loc += '&ethSubnetMask=' + tmpethSubMask;
+	loc += '&dhcpEthStart=' + tmpDhcpSAddr ;
+	loc += '&dhcpEthEnd=' + tmpDhcpEAddr ;
+
+	if(tmprouterName != router || tmpethIpAddr != addr || tmpethSubMask != mask) {
+		if( tmpethIpAddr != addr || tmpethSubMask != mask){
+			if (confirm('Die IP-Adresse und/oder die Netzmaske wurden geändert. Der Router wird einen Neustart durchführen.Möchten Sie das wirklich??') == true)
+		{
+				loc += '&rebootLan=1' ;
+		}
+			else
+		{
+				loc += '&rebootLan=0' ;
+				setTimeout("stVerz()", 3000);
+		}
+			loc = 'resetLan=1' + loc ;
+		} else {
+			loc += '&rebootLan=0' ;
+			loc = 'resetLan=0' + loc ;
+		}
+                loc = 'c_netzwerk_lan.cgi?' + loc;
+
+                //if (!confirm("Will you modify the ADSL IP and reboot it?")) {
+                //if (!confirm("Möchten Sie wirklich die LAN IP Adresse ändern?")) {
+                //        return false;
+                //}
+                alert("Bitte ändern Sie die Eingabe im Adress-Eingabefeld in der Statusleiste Ihres Browsers von Hand auf die neue LAN Adresse.");
+                document.getElementById('c_verzoeg1').style.visibility='visible';
+                document.getElementById('c_verzoeg2').style.visibility='visible';
+                document.getElementById('t_but1').style.visibility='hidden';
+                document.getElementById('t_but3').style.visibility='hidden';
+                document.getElementById('t_but4').style.visibility='hidden';
+
+                var code = 'this.location.assign("' + loc + '")';
+                eval(code);
+		
+        } else
+		stZrk() ;
+}
+
+function frmLoad() {
+	document.IP.routerName.value = router;
+
+        document.IP.ethIpAddress[0].value = ethIpAddr[0];
+        document.IP.ethIpAddress[1].value = ethIpAddr[1];
+        document.IP.ethIpAddress[2].value = ethIpAddr[2];
+        document.IP.ethIpAddress[3].value = ethIpAddr[3];
+
+        document.IP.msk_ip3.value = ethSubMask[3];
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+function stVerz(){
+        document.getElementById("c_verzoeg1").style.visibility='hidden';
+        document.getElementById("c_verzoeg2").style.visibility='hidden';
+        alert('Die IP-Adresse wurde ohne Reboot geändert');
+        restart() ;
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onLoad='frmLoad()'>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / LAN</DIV>
+<DIV id=c_titel>LAN</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="IP">
+            <td width="150">Routername:</td>
+            <td><input type="text" name="routerName" size="22" maxlength="31"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="150">IP-Adresse Gateway:</td>
+            <td width="38"><input type="text" name="ethIpAddress" size="3" maxlength="3"> .</td>
+            <td width="38"><input type="text" name="ethIpAddress" size="3" maxlength="3"> .</td>
+            <td width="38"><input type="text" name="ethIpAddress" size="3" maxlength="3"> .</td>
+            <td width="38"><input type="text" name="ethIpAddress" size="3" maxlength="3"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+            <td width="150">Subnetzmaske:</td>
+            <td width="38">&nbsp;255&nbsp;&nbsp;&nbsp;.</td>
+            <td width="38">&nbsp;255&nbsp;&nbsp;&nbsp;.</td>
+            <td width="38">&nbsp;255&nbsp;&nbsp;&nbsp;.</td>
+            <td><input type="text" name="msk_ip3" size="3" maxlength="3" value="0"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=btnApply() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>LAN</h2>
+    <p>Über die LAN-Konfiguration können Sie eine IP-Adresse für den Router festlegen. </p>
+    <p>Weiterhin können Sie festlegen, ob der Router die IP-Adressen für die Rechner Ihres lokalen Netzwerkes automatisch
+     vergeben soll oder nicht.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+
+  <DIV id=i_content1>
+    <h2>LAN</h2>
+    <p><b>Routername</b><br>
+     Zur Identifikation ist ein Routername erforderlich.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>LAN</h2>
+    <p><b>IP-Adresse Gateway</b><br>
+     Die IP-Adresse des Routers ist mit 192.168.2.1. voreingestellt. Es handelt sich hierbei um die private IP-Adresse
+     des Routers. Das ist die Adresse, über die der Router im lokalen Netzwerk erreichbar ist. Diese
+     Adresse kann aus dem Bereich der möglichen Adressen frei vergeben werden (192.168. ...).</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>LAN</h2>
+    <p><b>Subnetzmaske</b><br>
+    Die Subnetzmaske ist standardmäßig auf 255.255.255.0 eingestellt. Sie können nur die letzte Stelle
+    ändern. Wenn kein besonderer Grund vorliegt, sollten Sie die Subnetzmaske beibehalten.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

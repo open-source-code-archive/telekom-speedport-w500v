@@ -1,0 +1,1215 @@
+<HTML>
+
+<HEAD>
+
+    <TITLE>Assistent3</TITLE>
+
+    <SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript">
+    </SCRIPT>
+    <SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript">
+    </SCRIPT>
+
+    <SCRIPT language="JavaScript">
+	<!--
+	var wan_test_status ='<%ejGet(wan_test_status)%>';
+	
+	var redial_time_tonline='<%ejGet(redial_time_tonline)%>';
+	var redial_time_dyn='<%ejGet(redial_time_dyn)%>';
+	var redial_time_fes='<%ejGet(redial_time_fes)%>';
+	var redial_time_another='<%ejGet(redial_time_another)%>';
+	
+	function alert_wan_test_status() {
+		if (wan_test_status == '2') {  //WAN_TEST_STATUS_DATA_ERROR
+			if (confirm("Die Prüfung der Internetverbindung ist fehlgeschlagen. Die Anmeldung\n" +
+			    "beim Internetanbieter ist gescheitert.\n\n" +
+			    "Klicken Sie auf \"Abbrechen\", um die Zugangsdaten zu überprüfen und zu\n" +
+			    "korrigieren.\n" +
+			    "Wenn Sie ohne funktionsfähigen Internetzugang fortfahren möchten, dann\n" + 
+			    "klicken Sie auf \"OK\".\n\n") == true) {
+				top.frames[2].location.href = "hcti_assistent_4.htm";
+			}
+		} else if (wan_test_status == '3') {  //WAN_TEST_STATUS_BLOCK
+			if (confirm("Die Prüfung der Internetverbindung ist fehlgeschlagen. Die\n" +
+			    "Verbindung ins Internet ist gesperrt.\n\n" +
+			    "Klicken Sie auf \"Abbrechen\", und anschließend auf \"Beenden\",\n" +
+			    "um auf der Startseite den Internetzugang frei zu schalten.\n" +
+			    "Rufen Sie dann den Assistenten erneut auf.\n\n" +
+			    "Wenn Sie ohne funktionsfähigen Internetzugang fortfahren\n" +
+			    "möchten, dann klicken Sie auf \"OK\".\n\n" ) == true) {
+				top.frames[2].location.href = "hcti_assistent_4.htm";
+			}
+		} else if (wan_test_status == '4') {  //WAN_TEST_STATUS_NOT_CONNECT
+			if (confirm("Die Prüfung der Internetverbindung ist fehlgeschlagen. Bitte überprüfen,\n" +
+			    "ob die T-DSL LED an Ihrem Speedport grün leuchtet, falls nicht\n" +
+			    "überprüfen Sie bitte die Steckverbindungen an Ihrem Speedport.\n\n" +
+			    "Klicken Sie auf \"Abbrechen\", um die Zugangsdaten zu überprüfen und zu\n" +
+			    "korrigieren.\n" +
+			    "Wenn Sie ohne funktionsfähigen Internetzugang fortfahren möchten, dann\n" + 
+			    "klicken Sie auf \"OK\".\n\n") == true) {
+				top.frames[2].location.href = "hcti_assistent_4.htm";
+			}
+		} else if (wan_test_status == '1') {  //WAN_TEST_STATUS_SUCCESS
+			alert("Der Internetzugang wurde erfolgreich eingerichtet.\n\n" );
+			top.frames[2].location.href = "hcti_assistent_4.htm";
+		}
+	}
+	
+	function set_to_state(state,index){
+		
+		var col = "#FFFFFF";
+		if (state == true) col = "#D4D0C8";
+
+		switch (index) {
+		case 0:
+			document.ZDAT00.C1.disabled = state;
+			document.ZDAT00.D1.style.backgroundColor = col;
+			document.ZDAT00.D1.disabled = state;
+			break;
+		case 1:
+			document.ZDAT1.C11.disabled = state;
+			document.ZDAT1.D11.style.backgroundColor = col;
+			document.ZDAT1.D11.disabled = state;
+			break;
+		case 2:
+			document.ZDAT2.C21.disabled = state;
+			document.ZDAT2.D21.style.backgroundColor = col;
+			document.ZDAT2.D21.disabled = state;
+			break;
+		case 3:
+			document.ZDAT3.C31.disabled = state;
+			document.ZDAT3.D31.style.backgroundColor = col;
+			document.ZDAT3.D31.disabled = state;
+			break;
+		}
+		
+	}
+	function chk(){
+		
+		document.ZDAT.P1.value = top.frames[0].assprovtxt1[0];
+		document.ZDAT.T1.value = top.frames[0].assprovtxt2[0];
+		document.ZDAT.P2.value = top.frames[0].assprovpwd[0];
+		document.ZDAT.P3.value = top.frames[0].assprovpwd[0];
+		document.ZDAT.T2.value = top.frames[0].assprovtxt3[0];
+		if (top.frames[0].asspersist[0] == '0')
+			document.ZDAT.R1[0].checked = true;
+		else
+			document.ZDAT.R1[1].checked	= true;
+		if (top.frames[0].assondemand[0] == '0')
+			document.ZDAT00.C1.checked = false;
+		else
+			document.ZDAT00.C1.checked = true;
+		document.ZDAT00.D1.selectedIndex = top.frames[0].asstimeout[0];
+		document.ZDAT01.D2.selectedIndex = redial_time_tonline;
+		
+		document.ZDAT1.T11.value = top.frames[0].assprovtxt1[1];
+		document.ZDAT1.P11.value = top.frames[0].assprovpwd[1];
+		document.ZDAT1.P12.value = top.frames[0].assprovpwd[1];
+		if (top.frames[0].asspersist[1] == '0')
+			document.ZDAT1.R11[0].checked = true;
+		else
+			document.ZDAT1.R11[1].checked = true;
+		if (top.frames[0].assondemand[1] == '0')
+			document.ZDAT1.C11.checked = false;
+		else
+			document.ZDAT1.C11.checked = true;
+		document.ZDAT1.D11.selectedIndex = top.frames[0].asstimeout[1];
+		
+		document.ZDAT2.T22.value = top.frames[0].assprovtxt1[2];
+		document.ZDAT2.P21.value = top.frames[0].assprovpwd[2];
+		document.ZDAT2.P22.value = top.frames[0].assprovpwd[2];
+		if (top.frames[0].asspersist[2] == '0')
+			document.ZDAT2.R21[0].checked = true;
+		else
+			document.ZDAT2.R21[1].checked = true;
+		if (top.frames[0].assondemand[2] == '0')
+			document.ZDAT2.C21.checked = false;
+		else
+			document.ZDAT2.C21.checked = true;
+		document.ZDAT2.D21.selectedIndex = top.frames[0].asstimeout[2];
+		
+		document.ZDAT3.T31.value = top.frames[0].assprovtxt1[3];
+		document.ZDAT3.P31.value = top.frames[0].assprovpwd[3];
+		document.ZDAT3.P32.value = top.frames[0].assprovpwd[3];
+		document.ZDAT3.T32.value = top.frames[0].assprovtxt2[3];
+		if (top.frames[0].asspersist[3] == '0')
+			document.ZDAT3.R31[0].checked = true;
+		else
+			document.ZDAT3.R31[1].checked = true;
+		if (top.frames[0].assondemand[3] == '0')
+			document.ZDAT3.C31.checked = false;
+		else
+			document.ZDAT3.C31.checked = true;
+		document.ZDAT3.D31.selectedIndex = top.frames[0].asstimeout[3];
+	
+		stAkt();
+		
+		alert_wan_test_status();
+	}
+	
+	function stAkt(){
+                document.getElementById("c_um0").style.visibility='hidden';
+		document.getElementById("c_um00").style.visibility='hidden';
+		document.getElementById("c_um01").style.visibility='hidden';
+		document.getElementById("c_um1").style.visibility='hidden';
+		document.getElementById("c_um2").style.visibility='hidden';
+		document.getElementById("c_um3").style.visibility='hidden';
+                document.getElementById("c_um" + (top.frames[0].assprovider - 1)).style.visibility='visible';
+		
+  switch(top.frames[0].assprovider - 1){
+    case 0:
+      document.ZDAT.P1.focus();
+      stAkt2();
+      break;
+    case 1: document.ZDAT1.T11.focus(); break;
+    case 2: document.ZDAT2.T22.focus(); break;
+    case 3: document.ZDAT3.T31.focus(); break;
+  }
+		stDis();
+ }
+
+function stAkt2(){
+  document.getElementById("c_um00").style.visibility='hidden';
+  document.getElementById("c_um01").style.visibility='hidden';
+  if (document.ZDAT.R1[0].checked == true){
+    document.getElementById("c_um00").style.visibility='visible';
+  }
+  else{
+    document.getElementById("c_um01").style.visibility='visible';
+  }
+
+}	
+
+	function i_prfElem(nr){ 
+		switch (top.frames[0].assprovider) {
+		case 0:
+			break;
+		case 1:
+			if (document.ZDAT1.R11[0].checked == false) {
+        i_showElem(19);
+      }
+      else{
+				i_showElem(nr);
+			}
+			break;
+		case 2:
+			if (document.ZDAT2.R21[0].checked == false) {
+        i_showElem(19);
+      }
+      else{
+				i_showElem(nr);
+			}
+			break;
+		case 3:
+			if (document.ZDAT3.R31[0].checked == false) {
+        i_showElem(19);
+      }
+      else{
+				i_showElem(nr);
+			}
+			break;
+		}
+	}
+	
+function stDis(){ 
+		var state = false;
+		var col = "#FFFFFF";
+
+		switch (top.frames[0].assprovider - 1) {
+		case 0:
+      stAkt2();
+      break;
+		case 1:
+  	  if (document.ZDAT1.R11[0].checked == false){
+    		state = true;
+    		col = "#D4D0C8";
+  	  }
+      document.ZDAT1.C11.disabled = state;
+      document.ZDAT1.D11.style.backgroundColor = col;
+      document.ZDAT1.D11.disabled = state;
+			break;
+		case 2:
+  	  if (document.ZDAT2.R21[0].checked == false){
+    		state = true;
+    		col = "#D4D0C8";
+  	  }
+      document.ZDAT2.C21.disabled = state;
+      document.ZDAT2.D21.style.backgroundColor = col;
+      document.ZDAT2.D21.disabled = state;
+			break;
+		case 3:
+  	  if (document.ZDAT3.R31[0].checked == false){
+    		state = true;
+    		col = "#D4D0C8";
+  	  }
+      document.ZDAT3.C31.disabled = state;
+      document.ZDAT3.D31.style.backgroundColor = col;
+      document.ZDAT3.D31.disabled = state;
+			break;
+		}
+	}
+	
+	function txtHinw(feldname){
+		return "Im Feld '" + feldname + "' wurde eine falsche Eingabe bzw. keine Eingabe vorgenommen. " + 
+		"\nDie korrekte Eingabe ist notwendig, um eine Internetverbindung aufbauen zu können.";
+	}
+	
+	function txtProv(){
+		return "Achtung, bitte beachten Sie, dass keine Verbindung ins Internet möglich ist,"+
+		"\nwenn Sie diesen Provider auswählen, jedoch keine Internet Zugangsdaten eingeben."+
+		"\n"+
+		"\nKlicken Sie auf 'Abbrechen', um Ihre Internet Zugangsdaten jetzt einzugeben"+
+		"\noder klicken Sie auf 'OK', um ohne Eingabe der Zugangsdaten fortzufahren.";
+	}
+	
+function stBeenden(){ 
+  if (confirm(top.frames[0].assBeenden) == true) start();
+}
+
+	function stOk(){
+		
+		switch (top.frames[0].assprovider-1) {
+		case 0:
+			if (document.ZDAT.P1.value!="" || document.ZDAT.T1.value!="" || document.ZDAT.T2.value!="" || document.ZDAT.P2.value!="" || document.ZDAT.P3.value!="") {
+				if (document.ZDAT.P1.value=="" || isInvalidNumber(document.ZDAT.P1.value)) {
+					alert(txtHinw("Anschlusskennung"));
+					document.ZDAT.P1.value = "";
+					document.ZDAT.P1.focus();
+					return false;
+				}
+				if (document.ZDAT.T1.value=="" || isInvalidNumber(document.ZDAT.T1.value)) {
+					alert(txtHinw("T-Online-Nummer"));
+					document.ZDAT.T1.value = "";
+					document.ZDAT.T1.focus();
+					return false;
+				}
+				if (document.ZDAT.T2.value=="" || isInvalidNumber(document.ZDAT.T2.value)) {
+					alert(txtHinw("Mitbenutznummer"));
+					document.ZDAT.T2.value = "";
+					document.ZDAT.T2.focus();
+					return false;
+				}
+				if (document.ZDAT.P2.value=="" || document.ZDAT.P3.value=="" || isInvalidString(document.ZDAT.P2.value) || document.ZDAT.P2.value!=document.ZDAT.P3.value) {
+					alert(txtHinw("Persönliches Kennwort' oder 'Kennwort Wiederholung"));
+					document.ZDAT.P2.value = "";
+					document.ZDAT.P3.value = "";
+					document.ZDAT.P2.focus();
+					return false;
+				}
+			} else {
+				if (confirm(txtProv())==false)
+					return;
+			}
+			break;
+			
+		case 1:
+			if (document.ZDAT1.T11.value!="" || document.ZDAT1.P11.value!="" || document.ZDAT1.P12.value!="") {
+				if (document.ZDAT1.T11.value=="" || isInvalidString(document.ZDAT1.T11.value)) {
+					alert(txtHinw("Benutzername"));
+					document.ZDAT1.T11.focus();
+					return false;
+				}
+				if (document.ZDAT1.P11.value=="" || document.ZDAT1.P12.value=="" || isInvalidString(document.ZDAT1.P11.value) || document.ZDAT1.P11.value!=document.ZDAT1.P12.value) {
+					alert(txtHinw("Kennwort' oder 'Kennwort Wiederholung"));
+					document.ZDAT1.P11.value = "";
+					document.ZDAT1.P12.value = "";
+					document.ZDAT1.P11.focus();
+					return false;
+				}
+			} else {
+				if (confirm(txtProv())==false)
+					return;
+			}
+			break;
+			
+		case 2:
+			if (document.ZDAT2.T22.value!="" || document.ZDAT2.P21.value!="" || document.ZDAT2.P22.value!="") {
+				if (document.ZDAT2.T22.value=="" || isInvalidString(document.ZDAT2.T22.value)) {
+					alert(txtHinw("Benutzername"));
+					document.ZDAT2.T22.focus();
+					return false;
+				}
+				if (document.ZDAT2.P21.value=="" || document.ZDAT2.P22.value=="" || isInvalidString(document.ZDAT2.P21.value) || document.ZDAT2.P21.value!=document.ZDAT2.P22.value) {
+					alert(txtHinw("Kennwort' oder 'Kennwort Wiederholung"));
+					document.ZDAT2.P21.value = "";
+					document.ZDAT2.P22.value = "";
+					document.ZDAT2.P21.focus();
+					return false;
+				}
+			} else {
+				if (confirm(txtProv())==false)
+					return;
+			}
+			break;
+			
+		case 3:
+			if (document.ZDAT3.T31.value!="" || document.ZDAT3.P31.value!="" || document.ZDAT3.P32.value!="" || document.ZDAT3.T32.value!="") {
+				if (document.ZDAT3.T31.value=="" || isInvalidStringForAnotherProvider(document.ZDAT3.T31.value)) {
+					alert(txtHinw("Benutzername"));
+					document.ZDAT3.T31.focus();
+					return false;
+				}
+				if (document.ZDAT3.P31.value=="" || document.ZDAT3.P32.value=="" || isInvalidStringForAnotherProvider(document.ZDAT3.P31.value) || document.ZDAT3.P31.value!=document.ZDAT3.P32.value) {
+					alert(txtHinw("Kennwort' oder 'Kennwort Wiederholung"));
+					document.ZDAT3.P31.value = "";
+					document.ZDAT3.P32.value = "";
+					document.ZDAT3.P31.focus();
+					return false;
+				}
+				if (document.ZDAT3.T32.value!="" && isInvalidString(document.ZDAT3.T32.value)) {
+					alert(txtHinw("Name des Dienstes"));
+					document.ZDAT3.T32.focus();
+					return false;
+				}
+
+			} else {
+				if (confirm(txtProv())==false)
+					return;
+			}
+			break;
+			
+		}
+		stSave();
+	}
+	
+	/** check if user have change the wan opitons
+	 *  author: Martin
+	 */
+	function isOptionsChanged() {
+		var is_idle_timeout;
+		var is_ondemand;
+		var timeout; 
+        switch (top.frames[0].assprovider-1) {
+		case 0:
+			if (document.ZDAT.P1.value=="" && document.ZDAT.T1.value=="" &&
+						document.ZDAT.T2.value=="" && document.ZDAT.P2.value=="" &&
+						document.ZDAT.P3.value=="") {
+                return 0;
+				
+			}
+			break;
+		case 1:
+			if (document.ZDAT1.T11.value=="" && document.ZDAT1.P11.value=="" &&
+						document.ZDAT1.P12.value=="") {
+                return 0;
+			}
+            break;
+		case 2:
+			if (document.ZDAT2.T22.value=="" && document.ZDAT2.P21.value=="" &&
+					document.ZDAT2.P22.value=="") {
+				return 0;
+			}
+			break;
+		case 3:
+			if (document.ZDAT3.T31.value=="" && document.ZDAT3.P31.value=="" &&
+					document.ZDAT3.P32.value=="" && document.ZDAT3.T32.value=="") {
+				return 0;
+			}
+            break;
+
+		}
+		if (top.frames[0].assPppOptionsChanged == 1) return 1;
+		switch (top.frames[0].assprovider-1) {
+		case 0:
+			if (top.frames[0].assprovtxt1[0] != document.ZDAT.P1.value ||
+				top.frames[0].assprovtxt2[0] != document.ZDAT.T1.value ||
+				top.frames[0].assprovpwd[0]  != document.ZDAT.P2.value ||
+				top.frames[0].assprovtxt3[0] != document.ZDAT.T2.value )
+				return 1;
+
+			if (document.ZDAT.R1[1].checked == true)
+				is_idle_timeout = 1;
+			else
+				is_idle_timeout	= 0;
+			if (is_idle_timeout != top.frames[0].asspersist[0])	return 1;
+
+			if (is_idle_timeout == 0) {
+				is_ondemand = (document.ZDAT00.C1.checked == true)?'1':'0';
+				timeout = document.ZDAT00.D1.selectedIndex;
+				if ( is_ondemand != top.frames[0].assondemand[0] ||
+					 timeout != top.frames[0].asstimeout[0])
+					return 1;
+
+			}
+                        else
+                        {
+                               if (document.ZDAT01.D2.selectedIndex != redial_time_tonline)
+                                        return 1; 
+                        }
+			break;
+		case 1:
+			if (top.frames[0].assprovtxt1[1] != document.ZDAT1.T11.value ||
+				top.frames[0].assprovpwd[1] != document.ZDAT1.P11.value)
+				return 1;
+			if (document.ZDAT1.R11[1].checked == true)
+				is_idle_timeout= 1;
+			else
+				is_idle_timeout= 0;
+			if (is_idle_timeout != top.frames[0].asspersist[1])
+				return 1;
+			if (is_idle_timeout == 0) {
+				is_ondemand = (document.ZDAT1.C11.checked == true)?'1':'0';
+				timeout  = document.ZDAT1.D11.selectedIndex;
+				if (is_ondemand != top.frames[0].assondemand[1] ||
+					timeout != top.frames[0].asstimeout[1])
+					return 1;
+			}
+
+			break;
+		case 2:
+			if (top.frames[0].assprovtxt1[2] != document.ZDAT2.T22.value ||
+				top.frames[0].assprovpwd[2] != document.ZDAT2.P21.value)
+				return 1;
+			if (document.ZDAT2.R21[1].checked == true)
+				is_idle_timeout = 1;
+			else
+				is_idle_timeout	= 0;
+			if (is_idle_timeout != top.frames[0].asspersist[2])
+				return 1;
+			if (is_idle_timeout == 0) {
+				is_ondemand = (document.ZDAT2.C21.checked == true)?'1':'0';
+				timeout = document.ZDAT2.D21.selectedIndex;
+				if (is_ondemand != top.frames[0].assondemand[2] ||
+					timeout != top.frames[0].asstimeout[2])
+					return 1;
+			}
+			break;
+		case 3:
+			if (top.frames[0].assprovtxt1[3] != document.ZDAT3.T31.value ||
+				top.frames[0].assprovpwd[3] != document.ZDAT3.P31.value ||
+				top.frames[0].assprovtxt2[3] != document.ZDAT3.T32.value)
+				return 1;
+			if (document.ZDAT3.R31[1].checked == true)
+				is_idle_timeout = 1;
+			else
+				is_idle_timeout	= 0;
+			if (is_idle_timeout != top.frames[0].asspersist[3])
+				return 1;
+			if (is_idle_timeout == 0) {
+				is_ondemand = (document.ZDAT3.C31.checked == true)?'1':'0';
+				timeout = document.ZDAT3.D31.selectedIndex;
+				if ( is_ondemand != top.frames[0].assondemand[3] ||
+					 timeout != top.frames[0].asstimeout[3])
+					return 1;
+			}
+			break;
+		}
+		
+		return 0;
+	}
+	function stSave(){
+		
+		if (isOptionsChanged() == 0) {
+			top.frames[2].location.href = "hcti_assistent_4.htm";
+			return; 
+		}
+		var loc = 'hcti_assistent_3.asscgi?';
+		switch (top.frames[0].assprovider-1) {
+		case 0:
+			loc += 'serviceId=1';
+			loc += '&provtxt1=' + encodeUrl(document.ZDAT.P1.value);
+			loc += '&provtxt2=' + encodeUrl(document.ZDAT.T1.value);
+			loc += '&provtxt3=' + encodeUrl(document.ZDAT.T2.value);
+			loc += '&provpwd=' + encodeUrl(document.ZDAT.P2.value);
+			loc += ('&T_onLineIsIdleTimeOut=' + ((document.ZDAT.R1[1].checked == true)?"1":"0"));
+			if (document.ZDAT.R1[0].checked==true) {
+				loc += ('&T_onLineOnDemand=' + ((document.ZDAT00.C1.checked == true)?"1":"0"));
+				loc += '&T_onLinePppIdleTimeOut=' + document.ZDAT00.D1.selectedIndex;
+			}
+			loc += '&redial_time_tonline=' + document.ZDAT01.D2.selectedIndex;
+
+			top.frames[0].assprovtxt1[0] = document.ZDAT.P1.value;
+			top.frames[0].assprovtxt2[0] = document.ZDAT.T1.value;
+			top.frames[0].assprovpwd[0] = document.ZDAT.P2.value;
+			top.frames[0].assprovtxt3[0] = document.ZDAT.T2.value;
+			if (document.ZDAT.R1[1].checked == true){
+				top.frames[0].asspersist[0] = 1;
+				top.frames[0].assshowdv = false;
+			} else {
+				top.frames[0].asspersist[0] = 0;
+				top.frames[0].assondemand[0] = (document.ZDAT00.C1.checked == true)?'1':'0';
+				top.frames[0].asstimeout[0] = document.ZDAT00.D1.selectedIndex;
+                top.frames[0].assshowdv = true;
+			}
+
+			break;
+			
+		case 1:
+			loc += 'serviceId=2';
+			loc += '&provtxt1=' + encodeUrl(document.ZDAT1.T11.value);
+			loc += '&provpwd=' + encodeUrl(document.ZDAT1.P11.value);
+			loc += ('&T_BusinessDynIsIdleTimeOut=' + ((document.ZDAT1.R11[1].checked == true)?"1":"0"));
+			if (document.ZDAT1.R11[0].checked==true) {
+				loc += ('&T_BusinessDynOnDemand=' + ((document.ZDAT1.C11.checked == true)?"1":"0"));
+				loc += '&T_BusinessDynTimeOut=' + document.ZDAT1.D11.selectedIndex;
+			}
+
+			top.frames[0].assprovtxt1[1] = document.ZDAT1.T11.value;
+			top.frames[0].assprovpwd[1] = document.ZDAT1.P11.value;
+			if (document.ZDAT1.R11[1].checked == true){
+				top.frames[0].asspersist[1] = 1;
+				top.frames[0].assshowdv = false;
+			} else {
+				top.frames[0].asspersist[1] = 0;
+				top.frames[0].assondemand[1] = (document.ZDAT1.C11.checked == true)?'1':'0';
+				top.frames[0].asstimeout[1] = document.ZDAT1.D11.selectedIndex;
+				top.frames[0].assshowdv = true;
+			}
+			break;
+			
+		case 2:
+			loc += 'serviceId=3';
+			loc += '&provtxt1=' + encodeUrl(document.ZDAT2.T22.value);
+			loc += '&provpwd=' + encodeUrl(document.ZDAT2.P21.value);
+			loc += ('&T_BusFesIsIdleTimeOut=' + ((document.ZDAT2.R21[1].checked == true)?"1":"0"));
+			if (document.ZDAT2.R21[0].checked==true) {
+				loc += ('&T_BusinessFesOnDemand=' + ((document.ZDAT2.C21.checked == true)?"1":"0"));
+				loc += '&T_BusinessFesTimeOut=' + document.ZDAT2.D21.selectedIndex;
+			}
+
+			top.frames[0].assprovtxt1[2] = document.ZDAT2.T22.value;
+			top.frames[0].assprovpwd[2] = document.ZDAT2.P21.value;
+			if (document.ZDAT2.R21[1].checked == true) {
+				top.frames[0].asspersist[2] = 1;
+				top.frames[0].assshowdv = false;
+			}else {
+				top.frames[0].asspersist[2] = 0;
+				top.frames[0].assondemand[2] = (document.ZDAT2.C21.checked == true)?'1':'0';
+				top.frames[0].asstimeout[2] = document.ZDAT2.D21.selectedIndex;
+				top.frames[0].assshowdv = true;
+			}
+			break;
+		case 3:
+			loc += 'serviceId=4';
+			loc += '&provtxt1=' + encodeUrl(document.ZDAT3.T31.value);
+			loc += '&provpwd=' + encodeUrl(document.ZDAT3.P31.value);
+			loc += '&provtxt2=' + encodeUrl(document.ZDAT3.T32.value);
+			loc += ('&pppIsIdleTimeOut=' + ((document.ZDAT3.R31[1].checked == true)?"1":"0"));
+			if (document.ZDAT3.R31[0].checked==true) {
+				loc += ('&enblOnDemand=' + ((document.ZDAT3.C31.checked == true)?"1":"0"));
+				loc += '&pppTimeOut='+ document.ZDAT3.D31.selectedIndex;
+			}
+
+			top.frames[0].assprovtxt1[3] = document.ZDAT3.T31.value;
+			top.frames[0].assprovpwd[3] = document.ZDAT3.P31.value;
+			top.frames[0].assprovtxt2[3] = document.ZDAT3.T32.value;
+			if (document.ZDAT3.R31[1].checked == true){
+				top.frames[0].asspersist[3] = 1;
+				top.frames[0].assshowdv = false;
+			}else {
+				top.frames[0].asspersist[3] = 0;
+				top.frames[0].assondemand[3] = (document.ZDAT3.C31.checked == true)?'1':'0';
+				top.frames[0].asstimeout[3] = document.ZDAT3.D31.selectedIndex;
+				top.frames[0].assshowdv = true;
+			}
+			break;
+		}
+		document.getElementById("c_testen").style.visibility='visible';
+		
+		var code = 'location.assign("' + loc + '")';
+		eval(code);
+	}
+	
+	function stZrk(){
+		top.frames[2].location.href = "hcti_assistent_2.htm";
+	}
+	
+	//-->
+    </SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+    
+#c_um0 {
+  POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+    
+#c_um00 {
+  POSITION: absolute; left: 15px; top: 276px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+      border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+    }
+    
+#c_um01 {
+  POSITION: absolute; left: 15px; top: 276px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+      border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+    }
+    
+    #c_um1 {
+      POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+      border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+    }
+    
+#c_um2 {
+  POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+      border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+    }
+    
+#c_um3 {
+      POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+      border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+    }
+    
+#c-stdl {
+	height: 27px; line-height: 27px; padding-left: 10px;
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+    }
+#c-lastl {
+	height: 27px; line-height: 27px; padding-left: 10px;
+    }
+#c-doppel {
+	height: 42px; line-height: 42px; padding-left: 10px;
+	border-bottom-color: #FFFFFF; border-bottom-width: 1px; border-bottom-style: solid;
+    }
+    
+    #c_testen {
+        POSITION: absolute; margin-left: 15px; margin-top: 400px; width: 402px; height: 41;
+        border-color: #E20074; border-width: 1px; border-style: solid;
+        background-color: #F0F0F0; background-image: url(pic_c_testen.gif); VISIBILITY: hidden
+    }
+    
+    #i_content13 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+    #i_content14 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content19 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+    
+    #i_content32 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+    #i_content33 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+    #i_content34 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+    
+    //-->
+    </STYLE>
+
+</HEAD>
+
+    <BODY onload=chk()>
+
+    <DIV id=c_Frame>
+
+        <DIV id=c_border>
+            <DIV id=c_pfad>
+                Assistent / Schritt 3 von
+                <SCRIPT language="JavaScript">
+				<!--                    
+				document.write(top.frames[0].ass_steps);
+				//-->
+                </SCRIPT>
+            </DIV>
+        </DIV>
+
+        <DIV id=c_um0>
+<DIV id=c_titel>Internet Zugangsdaten für T-Online</DIV>
+<DIV id=c-stdl>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+                        <form name="ZDAT">
+            <td width="173">Anschlusskennung:</td>
+            <td><input type="password" class="stylepwd" name="P1" size="12" maxlength="12"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c-stdl>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="173">T-Online-Nummer:</td>
+            <td><input type="text" name="T1" size="12" maxlength="12"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c-stdl>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="173">Mitbenutzernummer / Suffix:</td>
+            <td><input type="text" name="T2" size="4" maxlength="4"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c-stdl>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+            <td width="173">Persönliches Kennwort:</td>
+            <td><input type="password" class="stylepwd" name="P2" size="12" maxlength="255"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+            <td width="173">Kennwort wiederholen:</td>
+            <td><input type="password" class="stylepwd" name="P3" size="12" maxlength="255"></td>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Router-Einstellungen</DIV>
+
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+                        <td width="169">Dauerverbindung:</td>
+                        <td width="20">
+                            <input type="radio" name="R1" value="V1" onclick="stDis()">
+                        </td>
+                        <td width="40">Aus</td>
+                        <td width="20">
+                            <input type="radio" name="R1" value="V2" onclick="stDis()">
+                        </td>
+                        <td>Ein</td>
+                       </form>
+                    </tr>
+                </table>
+            </DIV>
+</DIV>
+
+<DIV id=c_um00>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(7) onmouseout=i_showElem(0)>
+          <form name="ZDAT00">
+            <td width="169">Automatisch verbinden:</td>
+            <td><input type="checkbox" name="C1"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(8) onmouseout=i_showElem(0)>
+            <td width="173">Automatisch trennen nach:</td>
+            <td><select name="D1">
+                <option>45 Sekunden</option>
+                <option>&nbsp;&nbsp;1 Minute</option>
+                <option>&nbsp;&nbsp;2 Minuten</option>
+                <option>&nbsp;&nbsp;3 Minuten</option>
+                <option>&nbsp;&nbsp;4 Minuten</option>
+                <option>&nbsp;&nbsp;5 Minuten</option>
+                <option>10 Minuten</option>
+                <option>15 Minuten</option>
+                <option>30 Minuten</option>
+                <option>60 Minuten</option>
+                            </select>
+                        </td>
+          </form>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_halb></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_um01>
+            <DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(9) onmouseout=i_showElem(0)>
+          <form name="ZDAT01">
+            <td width="173">Zwangstrennung zwischen:</td>
+            <td><select name="D2">
+                <option>00-01 Uhr</option>
+                <option>01-02 Uhr</option>
+                <option>02-03 Uhr</option>
+                <option>03-04 Uhr</option>
+                <option>04-05 Uhr</option>
+                <option>05-06 Uhr</option>
+                <option>06-07 Uhr</option>
+                <option>07-08 Uhr</option>
+                <option>08-09 Uhr</option>
+                <option>09-10 Uhr</option>
+                <option>10-11 Uhr</option>
+                <option>11-12 Uhr</option>
+                <option>12-13 Uhr</option>
+                <option>13-14 Uhr</option>
+                <option>14-15 Uhr</option>
+                <option>15-16 Uhr</option>
+                <option>16-17 Uhr</option>
+                <option>17-18 Uhr</option>
+                <option>18-19 Uhr</option>
+                <option>19-20 Uhr</option>
+                <option>20-21 Uhr</option>
+                <option>21-22 Uhr</option>
+                <option>23-00 Uhr</option>
+                            </select>
+                        </td>
+                        </form>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_halb></DIV>
+<DIV id=c_foot></DIV>
+            </DIV>
+
+        <DIV id=c_um1>
+<DIV id=c_titel>Internet Zugangsdaten für T-DSL Business mit dyn. IP</DIV>
+<DIV id=c-doppel>
+                <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+                        <form name="ZDAT1">
+                            <td>Benutzername:</td>
+                    </tr>
+        	    <tr onmouseover=i_showElem(13) onmouseout=i_showElem(0)>
+                            <td><input type="text" name="T11" size="53" maxlength="64"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(14) onmouseout=i_showElem(0)>
+                        <td width="173">Kennwort:</td>
+            <td><input type="password" class="stylepwd" name="P11" size="28" maxlength="32"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(14) onmouseout=i_showElem(0)>
+            <td width="173">Kennwort wiederholen:</td>
+            <td><input type="password" class="stylepwd" name="P12" size="28" maxlength="32"></td>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Router-Einstellungen</DIV>
+
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+                        <td width="169">Dauerverbindung:</td>
+                        <td width="20">
+                            <input type="radio" name="R11" value="V1" onclick="stDis()">
+                        </td>
+                        <td width="40">Aus</td>
+                        <td width="20">
+                            <input type="radio" name="R11" value="V2" onclick="stDis()">
+                        </td>
+                        <td>Ein</td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_prfElem(7) onmouseout=i_showElem(0)>
+            <td width="169">Automatisch verbinden:</td>
+            <td><input type="checkbox" name="C11"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_prfElem(8) onmouseout=i_showElem(0)>
+            <td width="173">Automatisch trennen nach:</td>
+            <td><select name="D11">
+                <option>45 Sekunden</option>
+                <option>&nbsp;&nbsp;1 Minute</option>
+                <option>&nbsp;&nbsp;2 Minuten</option>
+                <option>&nbsp;&nbsp;3 Minuten</option>
+                <option>&nbsp;&nbsp;4 Minuten</option>
+                <option>&nbsp;&nbsp;5 Minuten</option>
+                <option>10 Minuten</option>
+                <option>15 Minuten</option>
+                <option>30 Minuten</option>
+                <option>60 Minuten</option>
+                            </select>
+                        </td>
+          </form>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+            </DIV>
+
+        <DIV id=c_um2>
+<DIV id=c_titel>Internet Zugangsdaten für T-DSL Business mit fester IP</DIV>
+<DIV id=c-doppel>
+                <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+                        <form name="ZDAT2">
+                            <td>Benutzername:</td>
+                    </tr>
+                    <tr onmouseover=i_showElem(13) onmouseout=i_showElem(0)>
+                            <td><input type="text" name="T22" size="53" maxlength="64"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(14) onmouseout=i_showElem(0)>
+                        <td width="173">Kennwort:</td>
+            <td><input type="password" class="stylepwd" name="P21" size="28" maxlength="32"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(14) onmouseout=i_showElem(0)>
+            <td width="173">Kennwort wiederholen:</td>
+            <td><input type="password" class="stylepwd" name="P22" size="28" maxlength="32"></td>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Router-Einstellungen</DIV>
+
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+                        <td width="169">Dauerverbindung:</td>
+                        <td width="20">
+                            <input type="radio" name="R21" value="V1" onclick="stDis()">
+                        </td>
+                        <td width="40">Aus</td>
+                        <td width="20">
+                            <input type="radio" name="R21" value="V2" onclick="stDis()">
+                        </td>
+                        <td>Ein</td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_prfElem(7) onmouseout=i_showElem(0)>
+            <td width="169">Automatisch verbinden:</td>
+            <td><input type="checkbox" name="C21"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_prfElem(8) onmouseout=i_showElem(0)>
+            <td width="173">Automatisch trennen nach:</td>
+            <td><select name="D21">
+                <option>45 Sekunden</option>
+                <option>&nbsp;&nbsp;1 Minute</option>
+                <option>&nbsp;&nbsp;2 Minuten</option>
+                <option>&nbsp;&nbsp;3 Minuten</option>
+                <option>&nbsp;&nbsp;4 Minuten</option>
+                <option>&nbsp;&nbsp;5 Minuten</option>
+                <option>10 Minuten</option>
+                <option>15 Minuten</option>
+                <option>30 Minuten</option>
+                <option>60 Minuten</option>
+                            </select>
+                        </td>
+          </form>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+            </DIV>
+
+        <DIV id=c_um3>
+<DIV id=c_titel>Internet Zugangsdaten für Anderen Provider</DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(32) onmouseout=i_showElem(0)>
+                        <form name="ZDAT3">
+            <td width="173">Benutzername:</td>
+            <td><input type="text" name="T31" size="28" maxlength="255"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(33) onmouseout=i_showElem(0)>
+            <td width="173">Kennwort:</td>
+            <td><input type="password" class="stylepwd" name="P31" size="28" maxlength="255"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(33) onmouseout=i_showElem(0)>
+            <td width="173">Kennwort wiederholen:</td>
+            <td><input type="password" class="stylepwd" name="P32" size="28" maxlength="255"></td>
+                    </tr>
+                </table>
+            </DIV>
+<DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(34) onmouseout=i_showElem(0)>
+            <td width="173">Name des Dienstes:</td>
+            <td><input type="text" name="T32" size="28" maxlength="255"></td>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Router-Einstellungen</DIV>
+
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+                        <td width="169">Dauerverbindung:</td>
+                        <td width="20">
+                            <input type="radio" name="R31" value="V1" onclick="stDis()">
+                        </td>
+                        <td width="40">Aus</td>
+                        <td width="20">
+                            <input type="radio" name="R31" value="V2" onclick="stDis()">
+                        </td>
+                        <td>Ein</td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_std>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_prfElem(7) onmouseout=i_showElem(0)>
+            <td width="169">Automatisch verbinden:</td>
+            <td><input type="checkbox" name="C31"></td>
+                    </tr>
+                </table>
+            </DIV>
+            <DIV id=c_last>
+                <table border="0" cellpadding="0" cellspacing="2">
+                    <tr onmouseover=i_prfElem(8) onmouseout=i_showElem(0)>
+            <td width="173">Automatisch trennen nach:</td>
+            <td><select name="D31">
+                <option>45 Sekunden</option>
+                <option>&nbsp;&nbsp;1 Minute</option>
+                <option>&nbsp;&nbsp;2 Minuten</option>
+                <option>&nbsp;&nbsp;3 Minuten</option>
+                <option>&nbsp;&nbsp;4 Minuten</option>
+                <option>&nbsp;&nbsp;5 Minuten</option>
+                <option>10 Minuten</option>
+                <option>15 Minuten</option>
+                <option>30 Minuten</option>
+                <option>60 Minuten</option>
+                            </select>
+                        </td>
+                        </form>
+                    </tr>
+                </table>
+            </DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+        </DIV>
+
+<DIV id=c_testen></DIV>
+
+    </DIV>
+
+    <DIV id=t_Frame>
+
+        <DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>
+            Beenden&nbsp;&lt;&lt;
+        </DIV>
+        <DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>
+            Zur&uuml;ck &lt;&lt;
+        </DIV>
+        <DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>
+            OK &amp; Weiter
+        </DIV>
+
+    </DIV>
+
+    <DIV id=i_Frame>
+
+        <DIV id=i_content>
+            <h2>Internet Zugangsdaten</h2>
+    <p>Tragen Sie hier die Zugangsdaten ein, die Sie von Ihrem Internet-Provider bei der Anmeldung erhalten haben.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+        </DIV>
+        <DIV id=i_content1>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Anschlusskennung</b><br>
+    Die Anschlusskennung entnehmen Sie Ihrer Auftragsbestätigung von <br>T-Online.</p>
+        </DIV>
+        <DIV id=i_content2>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>T-Online-Nummer</b><br>
+    Die T-Online-Nummer entnehmen Sie Ihrer Auftragsbestätigung von <br>T-Online.</p>
+        </DIV>
+        <DIV id=i_content3>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Mitbenutzernummer / Suffix</b><br>
+    Tragen Sie die Nummer des bei T-Online registrierten Mitbenutzers ein. Ist nur ein Mitbenutzer registriert,
+    tragen Sie die Ziffernfolge '0001' ein. Die Mitbenutzernummer muss vierstellig eingeben werden.</p>
+        </DIV>
+        <DIV id=i_content4>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Persönliches Kennwort</b><br>
+    Tragen Sie hier Ihr persönliches Kennwort ein und wiederholen Sie die Eingabe im Feld darunter. Das Kennwort
+    können Sie nur in der entsprechenden Anwendung von T-Online ändern.</p>
+        </DIV>
+        <DIV id=i_content6>
+    <h2>Router-Einstellungen</h2>
+    <p><b>Dauerverbindung</b><br>
+    Eine Dauerverbindung ist in folgenden Fällen erforderlich:</p>
+    <li>Um die ständige Erreichbarkeit über Ihre DSL Telefonnummer zu gewährleisten.</li> 
+    <p> </p>
+    <li>Um Verzögerungen beim abgehenden Telefonieren zu vermeiden.</li>
+    <p>Wenn Sie die Dauerverbindung einschalten möchten, klicken Sie auf die Option 'Ein'.</p>
+    <p>Mit eingeschalteter Dauerverbindung wird die Verbindung ins Internet immer aufrecht erhalten.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>    
+    Beachten Sie bitte, dass sich eine eingeschaltete Dauerverbindung bei einem zeitbasierenden Tarif auf die Kosten auswirkt.</p>    
+        </DIV>
+        <DIV id=i_content7>
+    <h2>Router-Einstellungen</h2>
+    <p><b>Automatisch verbinden</b><br>
+    Hier können Sie auswählen, ob bei Aufruf Ihres Standard Browsers immer automatisch eine Internetverbindung
+    herge- stellt wird. Möchten Sie dies nicht, so müssen Sie die Verbindung zum Internet jeweils manuell über die
+    Startseite des Konfigurationsprogramms herstellen.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    Mit der Zusatzsoftware 'Online- Control' wird der Status der Internetverbindung in der Taskleiste mit einem Icon angezeigt.</p>
+    <p>Per Mausklick auf das Icon kön- nen Sie unter anderem die Ver- bindung ins Internet aufbauen.</p>
+    <p>OnlineControl finden Sie auf Ihrer Installations-CD und im Internet auf den T-Com Seiten.</p>
+        </DIV>
+        <DIV id=i_content8>
+    <h2>Router-Einstellungen</h2>
+    <p><b>Automatisch trennen</b><br>
+    Findet während der angegebe- nen Zeit kein Datenverkehr mit dem Internet statt, wird die Ver- bindung zum Internet
+    automa- tisch getrennt.</p>
+        </DIV>
+        <DIV id=i_content9>
+    <h2>Router Einstellungen</h2>
+    <p><b>Zwangstrennung</b><br>
+    Die Dauerverbindung wird aus technischen Gründen einmal täglich getrennt. Hier können Sie die Zeitspanne einstellen,
+    in der die Trennung erfolgen kann. Die Verbindung wird anschließend automatisch wieder aufgebaut.</p>
+        </DIV>
+
+
+        <DIV id=i_content13>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Benutzername</b><br>
+    Den Benutzernamen entnehmen Sie Ihrer Auftragsbestätigung von T-DSL Business.</p>
+        </DIV>
+        <DIV id=i_content14>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Kennwort</b><br>
+    Tragen Sie hier Ihr persönliches Kennwort ein und wiederholen Sie die Eingabe im Feld darunter.</p>
+  </DIV>
+  <DIV id=i_content19>
+    <h2>Einstellung nicht änderbar</h2>
+    <p>Um diese Einstellung ändern zu können, muss die 'Dauerverbindung' ausgeschaltet sein.</p>
+        </DIV>
+
+
+        <DIV id=i_content32>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Benutzername</b><br>
+    Geben Sie den Benutzernamen ein, den Sie von Ihrem Provider erhalten haben.</p>
+        </DIV>
+        <DIV id=i_content33>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Kennwort</b><br>
+    Tragen Sie hier Ihr persönliches Kennwort ein und wiederholen Sie die Eingabe im Feld darunter.</p>
+        </DIV>
+        <DIV id=i_content34>
+            <h2>Internet Zugangsdaten</h2>
+    <p><b>Name des Dienstes</b><br>
+    Falls Ihnen von Ihrem Provider ein Name des Dienstes angegeben wurde, tragen Sie ihn bitte hier ein.</p>
+        </DIV>
+
+
+    </DIV>
+
+    </BODY>
+
+</HTML>

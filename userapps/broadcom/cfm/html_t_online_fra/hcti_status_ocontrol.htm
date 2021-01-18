@@ -1,0 +1,23 @@
+<html>
+<head>
+<title>HTML-Konfiguration</title>
+<SCRIPT language="JavaScript">
+<!--
+var bDSLAvail=<%ejGetOther(sysInfo,adsl_avail)%>;
+var bWanAvail=<%ejGet(is_wan_available)%>;
+var bWanConnected=<%ejGetOther(sysInfo, oControlSts)%>;
+ 
+var bBudgetAvail=<%ejGetBudget(enable)%>;
+
+//Connection-Details - Example
+var wan_ip="<%ejGet(wanIpAddress)%>";
+var wan_subnet_mask="255.255.255.255";
+var wan_gateway="<%ejGetOther(sysInfo, dfltGw)%>";
+var primary_dns="<%ejGetOther(sysInfo, dns)%>";
+var secondary_dns="<%ejGetOther(sysInfo, dns2)%>";
+//-->
+</SCRIPT>
+</head>
+<body>  <p>Diese Seite ist für das Zusatzprogramm OnlineControl notwendig!</p>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>HilfsmittelDatum</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var loc;
+
+function chk(){
+	document.F1.T1.value = '<%ej_get_date_time(dt_online_server)%>';
+	document.F1.T1.focus();
+	alert("Bitte überprüfen Sie die eingebene URL für den Zeitserver.");
+}
+
+
+function stOk(){
+	if (document.F1.T1.value=="" || isNSrv(document.F1.T1.value)){
+		alert("Bitte tragen Sie einen gültigen Zeitserver ein!");
+		document.F1.T1.focus();
+		return false;
+	}
+    
+	loc = 'c_hilfsmittel_datum_server.datetime?';
+    loc += "dt_isManual=0";
+    loc += "&dt_online_server=" + document.F1.T1.value;
+    
+    document.getElementById("t_but1").style.visibility='hidden';
+    document.getElementById("t_but3").style.visibility='hidden';
+    document.getElementById("t_but4").style.visibility='hidden';
+	document.getElementById("c_verzoeg1").style.visibility='visible';
+	document.getElementById("c_verzoeg2").style.visibility='visible';
+	setTimeout("stApply()", 1000);
+}
+  
+function stApply(){
+ var code = 'top.frames[2].location.assign("' + loc + '")';
+        eval(code);
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_hilfsmittel.htm";
+}
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Hilfsmittel / Datum &amp; Uhrzeit</DIV>
+<DIV id=c_titel>Datum &amp; Uhrzeit</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+			<form name="F1">
+				<td width="130">Datum und Zeit aktuell:</td>
+				<SCRIPT language="JavaScript">
+				<!--                    
+					document.write('<td>' + '<%ej_get_date_time(dt_display_time)%>' + '</td>');
+				//-->
+				</SCRIPT>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_last>
+	<table border="0" cellpadding="0" cellspacing="2">
+		<tr>
+				<td width="130">Zeitserver angeben:</td>
+				<td><input type="text" name="T1" size="30" maxlength="255"></td>
+			</form>
+		</tr>
+	</table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Datum &amp; Uhrzeit</h2>
+    <p>Geben Sie einen Zeitserver an, von dem das aktuelle Datum und die Uhrzeit übernommen werden kann.</p>
+    <p>In der Werkseinstellung ist der<br>
+	T-Online Zeitserver mit folgender Bezeichnung eingetragen:<br>
+	&nbsp;ntp1.sda.t-online.de</p>
+	<p>Ändern Sie dies nur, wenn Sie sicher sind, dass sie einen anderen funktionierenden Zeitserver
+	angeben können.</p>
+    <p>Datum und Uhrzeit werden automatisch von diesem Zeit- server im Internet bezogen.</p>
+	<p>Dies geschieht in folgenden Fällen:<br>
+	<li>Wenn der Router einge- schaltet wird.</li>
+	<li>Täglich einmal, aber nur wenn der Router Online ist.</li></p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

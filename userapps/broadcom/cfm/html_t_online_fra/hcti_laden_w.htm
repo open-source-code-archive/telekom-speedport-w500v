@@ -1,0 +1,75 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>LadenSichernWerkseinstellung</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function stOk(){
+  //setTimeout("stVerz()",60000);
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  document.getElementById("t_but1").style.visibility='hidden';
+  document.getElementById("t_but3").style.visibility='hidden';
+  document.getElementById("t_but4").style.visibility='hidden';
+  var loc = 'restoreinfo.cgi';
+  var code = 'location.assign("' + loc + '")';
+  eval(code);
+}
+
+function stVerz(){
+  alert('Werkseinstellung wurde erfolgreich wiederhergestellt');
+  restart();
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Laden &amp; Sichern / Werkseinstellung</DIV>
+<DIV id=c_titel>Werkseinstellung wiederherstellen</DIV>
+<DIV id=c_last>Wenn Sie die Werkseinstellung wiederherstellen möchten, dann bestätigen Sie jetzt mit 'OK'.</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=laden() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Werkseinstellung wiederherstellen</h2>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>    
+    Beachten Sie bitte, dass hierbei die bisherigen Einstellungen überschrieben werden.</p>
+    <p>Wenn Sie die bisherigen Einstellungen aufbewahren möchten, empfehlen wir Ihnen, die bisherigen
+    Einstellungen in eine externe Datei zu sichern.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

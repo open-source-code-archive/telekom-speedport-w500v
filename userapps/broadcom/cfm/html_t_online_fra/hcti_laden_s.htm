@@ -1,0 +1,105 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>LadenKonfigurationsichern</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+function chk(){
+  document.F1.P1.focus();
+}
+function keyEnter(iKeyCode) {
+if (iKeyCode == 13) {
+	stOk();
+	return false;
+}	
+else 
+	return true;
+}
+
+function stOk(){
+	var loc  = ""
+	var len = 0 ;
+  	if (document.F1.P1.value=="") {
+    		alert("Bitte geben Sie ein Passwort mit mindestend 6 Zeichen ein!");
+    		document.F1.P1.focus();
+    		return;
+  	}
+	
+	len = document.F1.P1.value.length ;
+	if (len < 6 || len > 12) {
+    		alert("Bitte geben Sie ein Passwort mit mindestend 6 Zeichen ein!");
+		document.F1.P1.focus() ;
+		return ;
+	}
+  
+  	loc = "config.bin?passwd=" + document.F1.P1.value ;
+  	top.frames[2].location.href = loc ;
+  
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_laden.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Laden &amp; Sichern / Konfiguration sichern</DIV>
+<DIV id=c_titel>Passwort zur Datensicherung</DIV>
+<DIV id=c_text>Bitte vergeben Sie zur Sicherung Ihrer Konfigurationsdaten ein Passwort.
+               Dieses Passwort benötigen Sie, wenn Sie die Konfigurationsdaten zu
+               einem späteren Zeitpunkt wieder laden möchten. 
+</DIV>
+<DIV id=c_last>
+</DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+            <form name="F1">
+                <td><input type="password" class="stylepwd" name="P1" size="12" maxlength="12" onkeypress="return (keyEnter(event.keyCode))"></td>
+            </form>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Passwort zur Datensicherung</h2>
+    <p>Zu Ihrem Schutz werden die Daten mit einem Passwort verschlüsselt gespeichert.</p>
+	<p>Verwenden Sie bitte ein Passwort mit einer Zeichenlänge von mindestens 6 und maximal 12 Zeichen."</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,400 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkDHCP</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+var dhcpStart = '<%ejGet(dhcpEthStart)%>';
+var dhcpEnd = '<%ejGet(dhcpEthEnd)%>';
+var dhcpLease = '<%ejGet(dhcpLeasedTime)%>';
+var dhcpEnbl = '<%ejGet(enblDhcpSrv)%>';
+var addr = '<%ejGet(ethIpAddress)%>';
+
+var ethIpAddr;
+ethIpAddr = addr.split('.');
+                                                                              
+var tmpstart,tmpend;
+tmpstart = dhcpStart.split('.');
+tmpend = dhcpEnd.split('.');
+                                                                                
+var ipmC ='Entweder haben Sie nicht alle Zahlen eingegeben, oder einige der Zahlen sind unzulässig.';
+var ipmEnd=ipmC + ' Der End-IP Eintrag sollte zwischen 1 - 254 liegen.';
+var endm='Die End-IP muss größer als die Start-IP sein.';
+var ipmMid='Die LAN IP Adresse darf nicht im IP Adressbereich liegen.';
+
+
+function hideDhcpInfo(hide) {
+   var status = 'visible';
+                                                                                
+   if ( hide == 1 )
+      status = 'hidden';
+   if (document.getElementById)  // DOM3 = IE5, NS6
+      document.getElementById('dhcpInfo').style.visibility = status;
+   else {
+      if (document.layers == false) // IE4
+         document.all.dhcpInfo.style.visibility = status;
+   }
+}
+
+function disableDhcpSrv() {
+        document.DHCP.dhcpSrvEnbl[1].checked = false;
+        document.DHCP.dhcpSrvEnbl[0].checked = true;
+                                                                                
+        document.DHCP.dhcpEthStart.disabled = 1;
+        document.DHCP.dhcpEthEnd.disabled = 1;
+                                                                                
+        document.DHCP.SELECT.disabled = 1 ;
+      	document.DHCP.dhcpEthStart.value = tmpstart[3];
+      	document.DHCP.dhcpEthEnd.value = tmpend[3];
+                                                                                
+        document.DHCP.dhcpEthStart.style.backgroundColor="#D4D0C8";
+        document.DHCP.dhcpEthEnd.style.backgroundColor="#D4D0C8";
+
+      	switch(dhcpLease) {
+       case '5' :
+                document.DHCP.SELECT.selectedIndex = 0; break;
+       case '10'  :
+                document.DHCP.SELECT.selectedIndex = 1; break;
+       case '20'  :
+                document.DHCP.SELECT.selectedIndex = 2; break;
+       case '60'  :
+                document.DHCP.SELECT.selectedIndex = 3; break;
+       case '240'  :
+                document.DHCP.SELECT.selectedIndex = 4; break;
+       case '480' :
+                document.DHCP.SELECT.selectedIndex = 5; break;
+       case '960' :
+                document.DHCP.SELECT.selectedIndex = 6; break;
+       case '1680' :
+                document.DHCP.SELECT.selectedIndex = 7; break;
+       case '3360' :
+               document.DHCP.SELECT.selectedIndex = 8; break;
+        }
+
+}
+
+function enableDhcpSrv() {
+                                                                                
+      document.DHCP.dhcpSrvEnbl[1].checked = true;
+      document.DHCP.dhcpSrvEnbl[0].checked = false;
+                                                                                
+      document.DHCP.dhcpEthStart.disabled = 0;
+      document.DHCP.dhcpEthStart.value = tmpstart[3];
+                                                                                
+      document.DHCP.dhcpEthEnd.disabled = 0;
+      document.DHCP.dhcpEthEnd.value = tmpend[3];
+
+      document.DHCP.SELECT.disabled = 0 ;
+                                                                                
+      switch(dhcpLease){
+                case '5' :
+                        document.DHCP.SELECT.selectedIndex = 0; break;
+                case '10'  :
+                        document.DHCP.SELECT.selectedIndex = 1; break;
+                case '20'  :
+                        document.DHCP.SELECT.selectedIndex = 2; break;
+                case '60'  :
+                        document.DHCP.SELECT.selectedIndex = 3; break;
+                case '240'  :
+                        document.DHCP.SELECT.selectedIndex = 4; break;
+                case '480' :
+                        document.DHCP.SELECT.selectedIndex = 5; break;
+                case '960' :
+                        document.DHCP.SELECT.selectedIndex = 6; break;
+                case '1680' :
+                        document.DHCP.SELECT.selectedIndex = 7; break;
+                case '3360' :
+                        document.DHCP.SELECT.selectedIndex = 8; break;
+        }
+                                                                                
+        document.DHCP.dhcpEthStart.style.backgroundColor="#FFFFFF";
+        document.DHCP.dhcpEthEnd.style.backgroundColor="#FFFFFF";
+}
+
+function typeClick1() {
+      	enableDhcpSrv();
+}
+                                                                                
+function typeClick0() {
+       disableDhcpSrv();
+}
+                                                                                
+//if return true, then the input is invalid
+function checkNumber(input) {
+	var ret = false ;
+	var i = 0;
+	for (i=0; i < input.length; i++) {
+		if (input.charAt(i) < '0' || input.charAt(i) > '9') {
+			ret = true ;
+			break ;
+		}
+	}
+	return ret ;
+}
+
+function btnApply() {
+       var loc = '';
+	var dhcpleasetime = 0;
+                                                                                
+       if ( document.DHCP.dhcpSrvEnbl[1].checked == true ) {
+		if (checkNumber(document.DHCP.dhcpEthStart.value) == true) {
+			alert(ipmEnd) ;
+			return ;
+		}
+		if (checkNumber(document.DHCP.dhcpEthEnd.value) == true) {
+			alert(ipmEnd) ;
+			return; 
+		}
+                DhcpStart = ethIpAddr[0] + '.' + ethIpAddr[1] + '.' + ethIpAddr[2] + '.' + document.DHCP.dhcpEthStart.value;
+                DhcpEnd = ethIpAddr[0] + '.' + ethIpAddr[1] + '.' + ethIpAddr[2] + '.' +document.DHCP.dhcpEthEnd.value;
+
+                if ( parseInt(document.DHCP.dhcpEthStart.value) == 0 || parseInt(document.DHCP.dhcpEthStart.value) ==255 ) {
+                        alert(ipmEnd);
+                        return 0;
+                }
+                var gwIpBlock3 = parseInt(ethIpAddr[3]);
+                var dhcpStartBlock3 = parseInt(document.DHCP.dhcpEthStart.value);
+                var dhcpEndBlock3 = parseInt(document.DHCP.dhcpEthEnd.value);
+                if ( (gwIpBlock3 <= dhcpEndBlock3) && (gwIpBlock3 >= dhcpStartBlock3)) {
+                        alert(ipmMid);
+                        return 0;
+                }
+
+                if ( parseInt(document.DHCP.dhcpEthEnd.value) == 0 || parseInt(document.DHCP.dhcpEthEnd.value) == 255) {
+                        alert(ipmEnd);
+                        return 0;
+                }
+                                                                                
+		if ( isValidIpAddress(DhcpStart) == false)  {
+                        alert(ipmEnd);
+                        return 0;
+                }
+                                                                                
+                if ( isValidIpAddress(DhcpEnd) == false)  {
+                        alert(ipmEnd);
+                        return 0;
+                }
+                                                                                
+                if ( parseInt(document.DHCP.dhcpEthStart.value) >= parseInt(document.DHCP.dhcpEthEnd.value)) {
+                        alert(endm);
+                        return 0;
+                }
+                                                                                
+                loc += 'dhcpEthStart=' + DhcpStart;
+                loc += '&dhcpEthEnd=' + DhcpEnd;
+                                                                              
+                var indexno=document.DHCP.SELECT.selectedIndex;
+                switch(indexno){
+                case 0 :
+                        dhcpleasetime = '5'; break;
+                case 1 :
+                        dhcpleasetime = '10'; break;
+                case 2 :
+                        dhcpleasetime = '20'; break;
+                case 3 :
+                        dhcpleasetime = '60'; break;
+                case 4 :
+                        dhcpleasetime = '240'; break;
+                case 5 :
+                        dhcpleasetime = '480'; break;
+                case 6 :
+                        dhcpleasetime = '960'; break;
+                case 7 :
+                        dhcpleasetime = '1680'; break;
+                case 8 :
+                        dhcpleasetime = '3360'; break;
+                }
+                loc += '&dhcpLeasedTime=' + dhcpleasetime;
+                loc += '&enblDhcpSrv=1';
+        } else {
+                loc += 'enblDhcpSrv=0';
+        }
+
+        loc = 'c_netzwerk_lan_restartdhcp.cgi?' + loc;
+        document.getElementById('c_verzoeg1').style.visibility='visible';
+        document.getElementById('c_verzoeg2').style.visibility='visible';
+        document.DHCP.SELECT.style.visibility='hidden';
+        document.getElementById('t_but1').style.visibility='hidden';
+        document.getElementById('t_but3').style.visibility='hidden';
+        document.getElementById('t_but4').style.visibility='hidden';
+
+        var code = 'this.location.assign("' + loc + '")';
+        eval(code);
+
+}
+
+function frmLoad() {
+        if(dhcpEnbl == '1'){
+                enableDhcpSrv();
+        } else{
+                disableDhcpSrv();
+        }
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onLoad='frmLoad()'>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / DHCP</DIV>
+<DIV id=c_titel>DHCP-Server</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="DHCP">
+            <td width="147">Betriebszustand:</td>
+            <td width="20"><input type="radio" name="dhcpSrvEnbl" value="V1" onclick='typeClick0()'></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="dhcpSrvEnbl" value="V2" onclick='typeClick1()'></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>DHCP Einstellungen</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="150">Lease Time:</td>
+            <td><select name="SELECT">
+                <option>30 Minuten</option>
+                <option>1 Stunde</option>
+                <option>2 Stunden</option>
+                <option>6 Stunden</option>
+                <option>1 Tag</option>
+                <option>2 Tage</option>
+                <option selected>4 Tage</option>
+                <option>1 Woche</option>
+                <option>2 Wochen</option>
+              </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="150">Start-IP:</td>
+              <script language="JavaScript">
+              <!--                    
+                document.write ('<td width="60">' + ethIpAddr[0] + '.' + ethIpAddr[1] + '.' + ethIpAddr[2] + '.</td>');
+              //-->
+              </script>
+            <td><input type="text" name="dhcpEthStart" size="3" maxlength="3" value="100"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+            <td width="150">End-IP:</td>
+              <script language="JavaScript">
+              <!--                    
+                document.write ('<td width="60">' + ethIpAddr[0] + '.' + ethIpAddr[1] + '.' + ethIpAddr[2] + '.</td>');
+              //-->
+              </script>
+            <td><input type="text" name="dhcpEthEnd" size="3" maxlength="3" value="199"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick="btnApply()" onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>DHCP-Server</h2>
+    <p>Der DHCP (Dynamic Host Configuration Protocol) - Server ist bei der Auslieferung aktiviert. 
+     Die IP-Adressen der PCs werden bei eingeschaltetem DHCP automatisch durch den Router vergeben.
+    <p>Ist der DHCP-Server des Routers eingeschaltet, konfigurieren Sie die Netzwerkeinstellung der
+     PCs so, dass die Option 'IP-Adresse automatisch beziehen' eingestellt ist.</p>
+    <p>Um IP-Adressen vom DHCP-Server zeitlich unbegrenzt zuzuweisen, nehmen Sie diese PCs im
+     Menüpunkt 'Sicherheit / Filterfunktion', 'Netzwerk / NAT' oder 'Budget' in die Liste
+     'PCs verwalten & hinzufügen' auf.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>DHCP-Server</h2>
+    <p><b>Betriebszustand</b><br>
+     Falls Sie den DHCP-Server des Routers ausschalten, müssen Sie den PCs über
+     die Netzwerkeinstellung eine feste IP-Adresse zuweisen.</p>
+    <p>Mischbetrieb ist möglich, d.h. ist der DHCP-Server eingeschaltet, kann der Router sowohl PCs
+     mit fester IP-Adresse verwalten als auch PCs über DHCP anschließen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>DHCP Einstellungen</h2>
+    <p><b>Lease Time</b><br>
+     Wenn der DHCP-Server aktiviert ist, dann gibt die Lease Time den Zeitraum an, in dem die Rechner
+     die ihnen zugewiesenen IP-Adressen behalten und nicht wechseln. Um IP-Adressen vom DHCP-Server
+     zeitlich unbegrenzt zuzuweisen, nehmen Sie diese PCs im Menüpunkt 'Sicherheit / Filterfunktion',
+     'Netzwerk / NAT' oder 'Budget' in die Liste 'PCs verwalten & hinzufügen' auf.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>DHCP Einstellungen</h2>
+    <p><b>Start-IP</b><br>
+     Start-IP und End-IP definieren den Bereich von IP-Adressen, die der Router für die automatische
+     Vergabe der IP-Adressen an die Rechner verwenden soll.</p>
+    <p>Die ersten drei Felder der Start- und End-IP-Adresse sind immer identisch mit den
+     ersten drei Feldern der IP-Adresse des Routers, da die Subnetzmaske in jedem Fall
+     255.255.255.x ist. Dies bedeutet, dass die ersten drei Adressteile für alle Netzkomponenten
+     identisch sein müssen.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+    <h2>DHCP Einstellungen</h2>
+    <p><b>End-IP</b><br>
+     Start-IP und End-IP definieren den Bereich von IP-Adressen, die der Router für die automatische
+     Vergabe der IP-Adressen an die Rechner verwenden soll.</p>
+    <p>Die ersten drei Felder der Start- und End-IP-Adresse sind immer identisch mit den
+     ersten drei Feldern der IP-Adresse des Routers, da die Subnetzmaske in jedem Fall
+     255.255.255.x ist. Dies bedeutet, dass die ersten drei Adressteile für alle Netzkomponenten
+     identisch sein müssen.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss der 'DHCP-Server Betriebszustand' eingeschaltet sein.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

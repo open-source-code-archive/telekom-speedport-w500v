@@ -1,0 +1,877 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent8</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+  var DTMF_SWITCH = false ;
+  var loc='voipcfg.cmd?action=assaccountset';
+  var testResult = '<%ejGetvoipTest(testResult)%>';
+  var voip_regport = new Array("", '<%ejGetVoip(regport_A)%>') ;
+  var voip_enblUserN = '<%ejGetVoip(enable_userN_A)%>' ;
+  var voip_dtmfStatus = '<%ejGetVoip(dtmf_status_A)%>' ;
+
+function i_prfElem2(){ 
+  if(document.F1.C2_1.checked == false){
+    i_showElem(19);
+  }
+  else{
+    i_showElem(13);
+  }
+}
+
+function stDis2(){
+    var col = "#FFFFFF";
+    var state = false;
+    if (document.F1.C2_1.checked == false){
+        col="#D4D0C8";
+        state = true;
+    }
+    document.F1.T2.style.backgroundColor = col;
+    document.F1.T2.disabled = state;
+}
+
+function isChanged() {
+	var index = top.frames[0].assvoipprov;
+
+	if (document.F1.T1.value == '' && top.frames[0].assvoip_rnr[index] == '')
+		return 0;
+	
+	if (top.frames[0].assvoipprov_changed == 1) {
+		top.frames[0].assvoipprov_changed = 0; 
+		return 1;
+ 	}
+
+	if (document.F1.T1.value != top.frames[0].assvoip_rnr[index]) {
+		return 1;
+	}
+	if (document.F1.T2.value != top.frames[0].assvoip_anm[index]) {
+		return 1;
+	}
+	if (document.F1.P1.value != top.frames[0].assvoip_pwd[index]){
+		return 1;
+	}
+	if (document.F1.P2.value != top.frames[0].assvoip_pwd[index]) {
+		return 1;
+	}
+
+	if (index == 1) {
+		if (document.F1.T3.value != top.frames[0].assvoip_reg[1]) {
+			return 1;
+		}
+		if (document.F1.T3_1.value != voip_regport[1]) {
+			return 1;
+		}
+		if ((document.F1.C2_1.checked == true && voip_enblUserN == '0')
+	       || (document.F1.C2_1.checked == false && voip_enblUserN != '0'))
+		{
+			return 1;
+		}
+	}
+
+	return 0;
+}
+
+function stKC(nr){
+var Breite = screen.width;
+var Hoehe = screen.height;
+var Oben = 0;
+var Links = 0;
+
+var Optionen = "toolbar=yes,location=yes,Directory=yes,Status=yes,menubar=yes,scrollbars=yes,resizable=yes";
+     Optionen += ",width="+Breite+",height="+Hoehe;
+     Optionen += ",top="+Oben;
+     Optionen += ",left="+Links;
+	
+	switch(nr){
+		case 0:
+			window.open("http://www.t-online.de/service/redir/ata_csc_anmeldung.htm", "KCTOI", Optionen);
+			break;
+		case 1:
+			window.open("http://www.t-online.de/service/redir/ata_csc_callsettings.htm", "KCTOI", Optionen);
+			break;
+		case 2:
+			window.open("http://www.t-online.de/service/redir/ata_emailadresse.htm", "KCTOI", Optionen);
+			break;
+		case 3:
+			window.open("http://www.t-online.de/service/redir/ata_passwort.htm", "KCTOI", Optionen);
+			break;
+	}
+}
+
+function needSave() {
+	var index = top.frames[0].assvoipprov;
+
+	if (document.F1.T1.value == '' && top.frames[0].assvoip_rnr[index] == '')
+		return 0;
+		
+	if (top.frames[0].assvoipprov_changed == 1) {
+		return 1;
+	}
+
+	if (document.F1.T1.value != top.frames[0].assvoip_rnr[index]) {
+		return 1;
+	}
+	if (document.F1.T2.value != top.frames[0].assvoip_anm[index]) {
+		return 1;
+	}
+	if (document.F1.P1.value != top.frames[0].assvoip_pwd[index]){
+		return 1;
+	}
+	if (document.F1.P2.value != top.frames[0].assvoip_pwd[index]) {
+		return 1;
+	}
+
+	if (index == 1) {
+		if (document.F1.T3.value != top.frames[0].assvoip_reg[1]) {
+			return 1;
+		}
+		if (DTMF_SWITCH == true) {
+			if (document.F1.R1[0].checked == true && voip_dtmfStatus == '1' ||
+			    document.F1.R1[1].checked == true && voip_dtmfStatus == '0') {
+				return 1;
+			} 
+		}
+	}
+	
+	if (((document.F1.C1.checked == false) && (top.frames[0].assvoip_enable_areaCode[index] != "0"))
+	    || ((document.F1.C1.checked == true) && (top.frames[0].assvoip_enable_areaCode[index] == "0"))){
+		return 1;
+	}
+	
+	if (document.F1.T4.value != top.frames[0].assvoip_areaCode[index]){
+		return 1;
+	}
+	
+	if (top.frames[0].assshowdv == true){
+	        if (document.DV.RX[0].checked == false){
+		     return 1;
+	        }
+	}        
+	
+	
+	return 0;
+}
+
+function show_test_result() {
+  if (testResult == '1') {
+	alert("Die DSL Telefonie wurde erfolgreich eingerichtet.\n\n");
+  	top.frames[2].location.href = "hcti_assistent_9.htm";
+
+  } else if (testResult == '2') {
+	if (confirm("Die Prüfung der DSL Telefonie ist fehlgeschlagen. Bitte überprüfen,\n" +
+                    "ob die T-DSL LED an Ihrem Speedport grün leuchtet, falls nicht\n" +
+                    "überprüfen Sie bitte die Steckverbindungen an Ihrem Speedport.\n\n" +
+                    "Klicken Sie auf \"Abbrechen\", um die Zugangsdaten zu überprüfen\n" +
+                    "und zu korrigieren.\n\n" +
+                    "Wenn Sie ohne funktionsfähige DSL Telefonie fortfahren möchten,\n" +
+                    "dann klicken Sie auf \"OK\".\n\n")==true) {
+	  	top.frames[2].location.href = "hcti_assistent_9.htm";
+	}
+  } else if (testResult == '3') {
+	if (confirm("Die Prüfung der DSL Telefonie ist fehlgeschlagen. Die Anmeldung beim\n" +
+                    "DSL Telefonie Anbieter ist gescheitert.\n\n" +
+                    "Klicken Sie auf \"Abbrechen\", um die Zugangsdaten zu überprüfen\n" +
+                    "und zu korrigieren.\n\n" +
+                    "Wenn Sie ohne funktionsfähige DSL Telefonie fortfahren möchten,\n" +
+                    "dann klicken Sie auf \"OK\".\n\n" )==true) {
+	  	top.frames[2].location.href = "hcti_assistent_9.htm";
+	}
+  }
+}
+
+function chk(){
+    var index = top.frames[0].assvoipprov; //already in this page, index must be 0 or 1
+    
+    document.F1.T1.value = top.frames[0].assvoip_rnr[index];
+    document.F1.T2.value = top.frames[0].assvoip_anm[index];
+    document.F1.P1.value = top.frames[0].assvoip_pwd[index];
+    document.F1.P2.value = top.frames[0].assvoip_pwd[index];
+
+    if(index == 1) //another provider
+    {
+    document.F1.T3.value = top.frames[0].assvoip_reg[1];
+	document.F1.T3_1.value = voip_regport[1];
+
+	if (voip_enblUserN != "0")
+		document.F1.C2_1.checked = true ;
+	else
+		document.F1.C2_1.checked = false ;
+	stDis2() ;
+
+	if (DTMF_SWITCH == true)
+	{
+		if (voip_dtmfStatus != "0")
+		{
+			document.F1.R1[1].checked = true ;
+			document.F1.R1[0].checked = false ;
+		}
+		else
+		{
+			document.F1.R1[0].checked = true ;
+			document.F1.R1[1].checked = false ;
+		}
+	}
+    }
+    
+    if (top.frames[0].assvoip_enable_areaCode[index] != "0")
+    {
+      document.F1.C1.checked = true;
+    }
+    else
+    {
+      document.F1.C1.checked = false;
+    }
+    
+    document.F1.T4.value = top.frames[0].assvoip_areaCode[index];
+    
+	if (top.frames[0].assshowdv == true) {
+		document.DV.RX[0].checked = true;
+	}
+
+    stDis();
+    show_test_result();
+}
+  
+function i_selElem(nr){
+  i_showElem((10 * top.frames[0].assvoipprov) + nr);
+}
+
+function txtHinw(feldname){
+  return "Im Feld '" + feldname + "' wurde eine falsche Eingabe bzw. keine Eingabe vorgenommen." + 
+         "\nDie korrekte Eingabe ist notwendig, um die Telefonie über das Internet verwenden zu können.";
+}
+
+function txtProv(){
+  return "Achtung, bitte beachten Sie, dass keine Internettelefonie möglich ist,"+
+         "\nwenn Sie diesen Anbieter auswählen, jedoch keine Anbieterdaten eingeben."+
+         "\n"+
+         "\nKlicken Sie auf 'Abbrechen', um Ihre Anbieterdaten jetzt einzugeben"+
+         "\noder klicken Sie auf 'OK', um ohne Eingabe der Anbieterdaten fortzufahren.";
+}
+function txtDau(){
+  return "Hinweis: Die Dauerverbindung ins Internet ist ausgeschaltet.\n"+
+		 "Beachten Sie bitte, dass die Dauerverbindung für folgende Punkte eingeschaltet sein muss:\n\n"+		 
+		 "1. Um die ständige Erreichbarkeit über Ihre DSL Telefonnummer zu gewährleisten. \n"+
+ 		 "2. Um Verzögerungen beim abgehenden Telefonieren zu vermeiden.\n"+
+         "\n"+
+         "\nKlicken Sie auf 'Abbrechen', um die Dauerverbindung jetzt einzuschalten,"+
+         "\noder klicken Sie auf 'OK', um mit ausgeschalteter Dauerverbindung fortzufahren.";
+}
+
+
+
+
+function stOk(){
+  if (document.F1.T1.value!="" || document.F1.P1.value!="" || document.F1.P2.value!="" ||
+     (top.frames[0].voipprovtxt2[top.frames[0].assvoipprov].length > 0 && document.F1.T2.value!="") ||
+	 (top.frames[0].voipprovtxt4[top.frames[0].assvoipprov].length > 0 && document.F1.T3.value!="") ||
+	     (document.F1.C1.checked==true)){
+
+  if (document.F1.T1.value=="" || !(isNumorChar(document.F1.T1.value))){
+    alert(txtHinw(top.frames[0].voipprovtxt1[top.frames[0].assvoipprov]));
+    document.F1.T1.value = "";
+    document.F1.T1.focus();
+    return false;
+  }
+  if (top.frames[0].voipprovtxt2[top.frames[0].assvoipprov].length > 0){
+    var prf = true;
+    
+      if(isInvalidString(document.F1.T2.value))
+	prf = false;
+      if (top.frames[0].assvoipprov == 0){
+        var tst_at = document.F1.T2.value.indexOf("@");
+	var tst_pt = document.F1.T2.value.lastIndexOf(".");
+	if (tst_at < 1 || tst_at > document.F1.T2.value.length-4){
+          prf = false;
+        }
+        else if (tst_pt < 3 || tst_pt > document.F1.T2.value.length-2){
+          prf = false;
+        }
+        else if (tst_at > tst_pt-2){
+          prf = false;
+        }
+      }
+      
+    if (prf == false){
+      alert(txtHinw(top.frames[0].voipprovtxt2[top.frames[0].assvoipprov]));
+      document.F1.T2.focus();
+      return false;
+    }
+  }
+  if (document.F1.P1.value=="" || document.F1.P2.value=="" || isInvalidString(document.F1.P1.value) || document.F1.P1.value!=document.F1.P2.value){
+    alert(txtHinw(top.frames[0].voipprovtxt3[top.frames[0].assvoipprov] + "' oder 'Passwortbestätigung"));
+    document.F1.P1.value = "";
+    document.F1.P2.value = "";
+    document.F1.P1.focus();
+    return false;
+  }
+  if (top.frames[0].assvoipprov == 1){
+    if (document.F1.T3.value=="" || isInvalidString(document.F1.T3.value)){
+      alert(txtHinw(top.frames[0].voipprovtxt4[top.frames[0].assvoipprov]));
+      document.F1.T3.focus();
+      return false;
+    }
+  }
+  if (document.F1.C1.checked==true && (document.F1.T4.value=="" || isNaN(document.F1.T4.value))){
+      alert(txtHinw("Ortsvorwahl"));
+      document.F1.T4.value = "";
+      document.F1.T4.focus();
+      return false;
+  }
+  
+
+  }
+else {
+	provok=confirm(txtProv());
+	if(provok==false) return false;
+}
+
+  var changed = isChanged();
+  if ((needSave() == 0) && (changed == 0))
+  {
+  	top.frames[2].location.href = "hcti_assistent_9.htm";
+  }
+  else     //need save or need test
+  {
+  	if (changed == 1) {
+		loc += '&need_test=1';
+  	} else {
+		loc += '&need_test=0';
+  	}
+  
+	if (top.frames[0].assshowdv == true) {
+		if(document.DV.RX[1].checked == true) {
+			loc += '&pppoe_persist=1';
+            top.frames[0].asspersist[top.frames[0].assprovider-1] = '1';
+            top.frames[0].assshowdv = false;
+		} else {
+            if (confirm(txtDau()) == false) {
+                return;
+			}
+		}
+	}
+	
+  	var index = top.frames[0].assvoipprov;
+  	
+  	top.frames[0].assvoip_rnr[index] = document.F1.T1.value; //phone number
+  	top.frames[0].assvoip_anm[index] = document.F1.T2.value; //username or email
+  	top.frames[0].assvoip_pwd[index] = document.F1.P1.value; //password
+  	if(index == 1)
+  		top.frames[0].assvoip_reg[1] = document.F1.T3.value; //specify registrar when use another provider
+  	
+  	if (document.F1.C1.checked == true)
+  	{	
+  	   top.frames[0].assvoip_enable_areaCode[index] = '1'; 
+  	}
+  	else
+  	{
+  	   top.frames[0].assvoip_enable_areaCode[index] = '0'; 
+  	}
+  	top.frames[0].assvoip_areaCode[index] = document.F1.T4.value;
+  	
+  	if (index == 0)
+		loc += '&providerName=TONLINE';
+  	else
+		loc += '&providerName=Another';
+  	if (index == 0){
+  	    loc += '&telenumber_TONLINE=' + document.F1.T1.value;
+  	    if (document.F1.T2.value != "")
+  	    {
+  	    	loc += '&email_TONLINE=' + document.F1.T2.value.toLowerCase();
+  	    }
+  	    else
+  	    {
+  	    	loc += '&email_TONLINE=' + document.F1.T2.value;
+  	    }
+  	    loc += '&password_TONLINE=' + document.F1.P1.value;        
+  	
+  	    if(document.F1.C1.checked == true){
+  	           loc += '&enable_areaCode_T=1';
+  	    }
+  	    else{
+  	           loc += '&enable_areaCode_T=0';
+  	    }
+  	        loc += '&area_Code_T=' + document.F1.T4.value;
+  	}
+  	else{
+  	    loc += '&telenumber_Another=' + document.F1.T1.value;
+  	    loc += '&username_Another=' + document.F1.T2.value;
+  	    loc += '&password_Another=' + document.F1.P1.value;
+  	    loc += '&registrar_A=' + encodeUrl(document.F1.T3.value);
+		loc += '&regport_A=' + document.F1.T3_1.value ;
+	   if (document.F1.C2_1.checked == true)
+	   	loc += '&enable_userN_A=1' ;
+	   else
+	   	loc += '&enable_userN_A=0' ;
+
+	   if (DTMF_SWITCH == true) {
+		   if (document.F1.R1[0].checked == true)
+		   	loc +='&dtmf_status=0' ;
+		   else
+		   	loc += '&dtmf_status=1' ;
+	   }
+  	        
+	   if(document.F1.C1.checked == true){
+  	              loc += '&enable_areaCode_A=1';
+  	   }
+  	   else
+	   {
+  	              loc += '&enable_areaCode_A=0';
+  	   }
+  	   loc += '&area_Code_A=' + document.F1.T4.value;
+  	}
+  	
+  	// if delete current voip account
+  	if (document.F1.T1.value == "")
+  	{ 
+  	    if (top.frames[0].assvoip_rnr[1-index] =="") 
+  	    {
+  	  	if (top.frames[0].assvoip_analog == "1")
+  	  	{ 
+			// if analog is enabled, del voip account will set primary line to pstn
+			// if voip set as second line, then set second line to null.
+			if (top.frames[0].voipsecLine == '1')
+			{
+				top.frames[0].voipsecLine = '2';
+				loc += '&secondary_select=2';
+			}
+			// set pstn line as primary line
+			top.frames[0].voippriLine = '0';
+			loc += '&primary_select=0';
+  	  	}
+  	  	else
+  	  	{ 
+			top.frames[0].voipsecLine = '2';
+			top.frames[0].voippriLine = '2';
+			loc += '&primary_select=2&secondary_select=2';
+  	  	}
+  	    }
+  	    loc += '&accountDel=true';
+  	}
+  	
+  	// if add or modify voip account
+  	if (document.F1.T1.value != "")
+  	{
+ 		if (top.frames[0].assvoip_analog == "0")
+ 		{
+			top.frames[0].voippriLine = '1';
+			loc += '&primary_select=1';
+		}
+  	}
+  	if (changed == 0 ) {
+  	  document.getElementById("c_verzoeg1").style.visibility='visible';
+  	  document.getElementById("c_verzoeg2").style.visibility='visible';
+	}
+	else {
+  	  document.getElementById("c_testen").style.visibility='visible';
+	}
+  	  setTimeout("apply()", 600);  
+  }
+    
+}
+
+function apply(){
+	var code = 'location.assign("' + loc + '")';
+	eval(code);
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_assistent_7.htm";
+}
+
+function i_prfElem() {
+  if (document.F1.C1.checked == false)
+  {
+    i_showElem(17);
+  }
+  else
+  {
+    i_showElem(16);
+  }
+}
+
+function stDis() {
+  if(document.F1.C1.checked == true)
+  {
+    document.F1.T4.style.backgroundColor="#FFFFFF";
+    document.F1.T4.disabled = false;
+  }
+  else
+  {
+    document.F1.T4.disabled = true;
+    document.F1.T4.style.backgroundColor="#D4D0C8";
+  }
+}
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+#c_testen {
+	POSITION: absolute; margin-left: 15px; margin-top: 430px; width: 402px; height: 41;
+	border-color: #E20074; border-width: 1px; border-style: solid;
+	background-color: #F0F0F0; background-image: url(pic_c_testen.gif); VISIBILITY: hidden
+}
+
+#i_content12 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content13 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content14 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content15 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content16 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content17 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content18 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content19 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content20 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 8 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+  document.write('<DIV id=c_titel>DSL Telefonie Zugangsdaten für ' + top.frames[0].voipprovname[top.frames[0].assvoipprov] + '</DIV>');
+//-->
+</SCRIPT>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_selElem(2) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <SCRIPT language="JavaScript">
+            <!--
+              document.write('<td width="160">' + top.frames[0].voipprovtxt1[top.frames[0].assvoipprov] + ':</td>');
+            //-->
+            </SCRIPT>
+	    <td><input type="text" name="T1" size="24" maxlength="24"></td>
+        </tr>
+      </table>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+if (top.frames[0].voipprovtxt2[top.frames[0].assvoipprov].length > 0){
+  document.write(
+    '<DIV id=c_std>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' ) ;
+        if (top.frames[0].nameCheckBox[top.frames[0].assvoipprov] == true)
+        {
+	    document.write(
+          	'<tr onmouseover=i_prfElem2() onmouseout=i_showElem(0)>' +
+              '<td width="156">' + top.frames[0].voipprovtxt2[top.frames[0].assvoipprov] + ':</td>' +
+              '<td width="23"><input type="checkbox" name="C2_1" onclick="stDis2()"></td>' +
+              '<td><input type="text" name="T2" size="21" maxlength="64"></td>');
+        }
+	else
+	{
+           document.write(
+        '<tr onmouseover=i_selElem(3) onmouseout=i_showElem(0)>' +
+            '<td width="160">' + top.frames[0].voipprovtxt2[top.frames[0].assvoipprov] + ':</td>' +
+            '<td><input type="text" name="T2" size="24" maxlength="64"></td>') ;
+	}
+	document.write(
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+//-->
+</SCRIPT>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_selElem(4) onmouseout=i_showElem(0)>
+            <SCRIPT language="JavaScript">
+            <!--
+              document.write('<td width="160">' + top.frames[0].voipprovtxt3[top.frames[0].assvoipprov] + ':</td>');
+            //-->
+            </SCRIPT>
+			<td><input type="password" class="stylepwd" name="P1" size="12" maxlength="255"></td>
+        </tr>
+      </table>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+
+  document.write(
+    '<DIV id=c_std>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_selElem(4) onmouseout=i_showElem(0)>' +
+            '<td width="160">Passwortbestätigung:</td>' +
+			'<td><input type="password" class="stylepwd" name="P2" size="12" maxlength="255"></td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+
+if (top.frames[0].voipprovtxt4[top.frames[0].assvoipprov].length > 0){
+  document.write(
+    '<DIV id=c_std>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_selElem(5) onmouseout=i_showElem(0)>' +
+            '<td width="160">' + top.frames[0].voipprovtxt4[top.frames[0].assvoipprov] + ':</td>' +
+            '<td><input type="text" name="T3" size="24" maxlength="30"></td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+
+if (top.frames[0].voipprovtxt4[top.frames[0].assvoipprov].length > 0){
+  document.write(
+    '<DIV id=c_std>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_selElem(8) onmouseout=i_showElem(0)>' +
+            '<td width="160">' + top.frames[0].voipprovtxt5[top.frames[0].assvoipprov] + ':</td>' +
+            '<td><input type="text" name="T3_1" size="5" maxlength="5"></td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+
+//-->
+</SCRIPT>
+
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="156">Ortsvorwahl:</td>
+            <td width="25"><input type="checkbox" name="C1" onclick="stDis()"></td>
+            <td width="99">verwenden von:</td>
+            <td><input type="text" name="T4" size="6" maxlength="6"></td>
+        </tr>
+      </table>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+
+if (DTMF_SWITCH == true)
+{
+	document.write (
+    '<DIV id=c_std>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_showElem(20) onmouseout=i_showElem(0)>' +
+            '<td width="156">DTMF:</td>' +
+            '<td width="20"><input type="radio" name="R1" value="V1" ></td>' +
+            '<td width="73">inband</td>' +
+            '<td width="20"><input type="radio" name="R1" value="V2" checked></td>' +
+            '<td>outband</td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+//-->
+</SCRIPT>
+</form>
+<SCRIPT language="JavaScript">
+<!--
+if (top.frames[0].assshowdv == true)
+	{
+  document.write(
+    '<DIV id=c_halb></DIV>' +
+    '<DIV id=c_titel>Router-Einstellungen</DIV>' +
+    '<DIV id=c_last>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_showElem(5) onmouseout=i_showElem(0)>' +
+          '<form name="DV">' +
+            '<td width="156">Dauerverbindung:</td>' +
+            '<td width="20"><input type="radio" name="RX" value="V1"></td>' +
+            '<td width="40">Aus</td>' +
+            '<td width="20"><input type="radio" name="RX" value="V2"></td>' +
+            '<td>Ein</td>' +
+          '</form>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+if (top.frames[0].assvoipprov == 0){
+document.write(
+'<DIV id=c_halb></DIV>' +
+'<DIV id=c_titel>Kundencenter T-Online</DIV>' +
+'<DIV id=c_std>' +
+    '<table border="0" cellpadding="0" cellspacing="2">' +
+      '<tr onmouseover=i_showElem(7) onmouseout=i_showElem(0)>' +
+        '<form name="TOI">' +
+          '<td width="160">DSL Telefonnummer:</td>' +
+          '<td width="92"><input type="button" name="B1" class="stylebut" style="width:80px" onclick="stKC(0)" value="Anmelden"></td>' +
+          '<td><input type="button" name="B2" class="stylebut" style="width:80px" onclick="stKC(1)" value="Nachsehen"></td>' +		  
+      '</tr>' +
+    '</table>' +
+'</DIV>' +
+'<DIV id=c_std>' +
+    '<table border="0" cellpadding="0" cellspacing="2">' +
+      '<tr onmouseover=i_showElem(8) onmouseout=i_showElem(0)>' +
+          '<td width="160">E-Mail-Adresse:</td>' +
+          '<td><input type="button" name="B3" class="stylebut" style="width:80px" onclick="stKC(2)" value="Einrichten"></td>' +	
+      '</tr>' +
+    '</table>' +
+'</DIV>' +
+'<DIV id=c_last>' +
+    '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_showElem(9) onmouseout=i_showElem(0)>' +
+          '<td width="160">Neues Passwort:</td>' +
+          '<td><input type="button" name="B4" class="stylebut" style="width:80px" onclick="stKC(3)" value="Einrichten"></td>' +
+        '</form>' +
+      '</tr>' +
+    '</table>' +
+'</DIV>');
+}
+
+//-->
+</SCRIPT>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+<DIV id=c_testen></DIV>
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p>Tragen Sie hier die Daten ein, die Sie von Ihrem Internet-Telefonieanbieter (z.B. aus dem Internet
+    von der T-Online Seite) erhalten haben.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+   <p><b>DSL Telefonnummer</b><br>
+    Tragen Sie hier die DSL Telefonnummer ein, die Ihnen bei der Anmeldung zugeteilt wurde.</p>
+  </DIV>  
+  
+  <DIV id=i_content3>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>Email-Adresse</b><br>
+    Tragen Sie hier die zur Internet-Telefonnummer gehörende Email-Adresse ein.</p>
+  </DIV>  
+  
+  <DIV id=i_content4>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>Passwort (Webkennwort)</b><br>
+    Geben Sie das Passwort ein und wiederholen Sie die Eingabe im Feld darunter.</p>
+  </DIV>
+
+  <DIV id=i_content5>
+    <h2>Router-Einstellungen</h2>
+    <p><b>Dauerverbindung</b><br>
+    Eine Dauerverbindung ist in folgenden Fällen erforderlich:</p>
+    <li>Um die ständige Erreichbarkeit über Ihre DSL Telefonnummer zu gewährleisten.</li> 
+    <p> </p>
+    <li>Um Verzögerungen beim abgehenden Telefonieren zu vermeiden.</li>
+    <p>Wenn Sie die Dauerverbindung einschalten möchten, klicken Sie auf die Option 'Ein'.</p>
+  	<p>Mit eingeschalteter Dauerverbindung wird die Verbindung ins Internet immer aufrecht erhalten.</p>
+  	<p><img border="0" src="pic_i_hinweis.gif"><br>    
+  	Beachten Sie bitte, dass sich eine eingeschaltete Dauerverbindung bei einem zeitbasierenden Tarif auf die Kosten auswirkt.</p>    
+  </DIV>    
+
+  <DIV id=i_content7>
+    <h2>Kundencenter T-Online</h2>
+    <p><b>DSL Telefonnummer Anmelden / Nachsehen</b><br>
+  	Falls Sie sich für die DSL Telefonie bereits angemeldet haben und Ihre
+  	DSL Telefonnummer nachsehen möchten, dann klicken Sie auf 'Nachsehen'.</p>
+  	<p>Sie können sich für die DSL Telefonie kostenlos anmelden, wenn Sie bereits
+  	eine E-Mail-Adresse und ein Passwort von T-Online haben. Wenn Sie sich jetzt für die
+  	DSL Telefonie anmelden möchten, dann klicken Sie auf 'Anmelden'.</p>
+  </DIV>
+
+  <DIV id=i_content8>
+    <h2>Kundencenter T-Online</h2>
+    <p><b>E-Mail-Adresse einrichten</b><br>
+  	Für die Benutzung der DSL Telefonie benötigen Sie eine E-Mail-Adresse von T-Online.
+  	Wenn Sie noch keine E-Mail-Adresse von T-Online haben, dann klicken Sie hier.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2>Kundencenter T-Online</h2>
+    <p><b>Neues Passwort einrichten</b><br>
+  	Falls Sie Ihr Passwort (Webkennwort) vergessen haben, dann klicken Sie hier.</p>
+  </DIV>
+
+  <DIV id=i_content12>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+   <p><b>Internet-Rufnummer</b><br>
+    Tragen Sie hier die Ihnen zugeteilte Internet-Rufnummer ein.</p>
+  </DIV>  
+
+  <DIV id=i_content13>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>Benutzername</b><br>
+    Tragen Sie den zur Internet-Rufnummer gehörenden Benutzernamen ein.</p>
+  </DIV>  
+  
+  <DIV id=i_content14>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>Passwort</b><br>
+    Geben Sie das Passwort ein und wiederholen Sie die Eingabe im Feld darunter.</p>
+  </DIV>
+  
+  <DIV id=i_content15>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>Registrar</b><br>
+    Geben Sie das Registrar Ihres Internet-Telefonanbieters ein.</p>
+  </DIV>
+  
+  <DIV id=i_content16>
+    <h2>Ortsvorwahl</h2>
+    <p><b>Ortsvorwahl</b><br>
+    Wenn Sie hier Ihre Ortsvorwahl eintragen und die Option 'Verwenden' aktivieren, 
+    dann wird diese Vorwahl automatisch ergänzt, wenn die eingegebene Telefonnummer nicht mit einer '0' beginnt.
+    Sie sparen sich dadurch das Eingeben der Ortsvorwahl bei Ortsgesprächen über die DSL Telefonie.</p>
+  </DIV>
+  
+  <DIV id=i_content17>
+    <h2><b>Ortsvorwahl nicht änderbar</b></h2>
+    <p>Um die Ortsvorwahl eintragen oder ändern zu können, muss 'Verwenden' eingeschaltet sein.</p>
+  </DIV>
+  
+  <DIV id=i_content18>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>Port Registrar/Proxy</b><br>
+    Tragen Sie hier den Port ein, der Ihnen von Ihrem Anbieter genannt wurde.</p>
+  	<p><img border="0" src="pic_i_hinweis.gif"><br>    
+    Der Eintrag gilt für beide vorgenannten Ports.</p>
+  </DIV>
+
+  <DIV id=i_content19>
+    <h2>Benutzername nicht änderbar</h2>
+    <p>Um den Benutzernamen eintragen oder ändern zu können, muss das Häkchen vor dem Eingabefeld gesetzt sein.</p>
+  </DIV>
+  
+  <DIV id=i_content20>
+    <h2>DSL Telefonie Zugangsdaten</h2>
+    <p><b>DTMF</b><br>
+    Bitte wählen Sie aus, ob die Signalisierung inband oder outband erfolgen soll.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

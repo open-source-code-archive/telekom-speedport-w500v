@@ -1,0 +1,83 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Startseite</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.js" type="text/JavaScript"></SCRIPT>
+
+<script language="javascript">
+<!--
+var enblWl = '<%ejGetWl(wlEnbl)%>';
+var wlMode = '<%ejGetWl(wlAuthMode)%>';
+var wep = '<%ejGetWl(wlWep)%>' ;
+
+	function frmload(){
+		if (enblWl == '1' && wlMode == 'open' && wep == 'disabled')
+		{
+		        if (confirm("Sie haben die Einstellung im Bereich:" +
+  	                  "\n" +
+            	        "\n  > Sicherheit / Verschlüsselung" +
+	                    "\n" +
+            	        "\nnicht aktiviert. Wir empfehlen Ihnen zu Ihrer" +
+	                    "\neigenen Sicherheit, diese Funktionalität ein-" +
+            	        "\nzuschalten." +
+	                    "\n" +
+	                    "\n" +
+            	        "\nMöchten Sie wirklich Beenden, ohne die Ver-" +
+	                    "\nschlüsselung einzuschalten?" +
+            	        "\n" +
+	                    "\n")==true){
+			top.frames[0].needAlert = '0';
+			top.window.close();
+		    }
+		    else {
+			goback();
+	            }
+		}
+		else{
+			top.window.close();
+		}
+	}
+	
+	function goback() {
+		top.frames[0].location.href="b_banner.htm";
+		top.frames[1].location.href="m_start_passwort.htm";
+		top.frames[2].location.href="hcti_start_passwort.htm";
+	}
+-->
+</script>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload='frmload()'>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Beenden</DIV>
+<DIV id=c_titel>Beenden</DIV>
+<DIV id=c_last>Das Konfigurationsprogramm beenden.</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=goback() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+
+
+</DIV>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,7 @@
+tftpd -c -l /var &
+
+client:
+cd /tmp
+tftp 192.168.1.1
+>get /var/passwd
+>put /var/aaa  ; aaa is a local file under /tmp and will be put to modem's /var/aaa

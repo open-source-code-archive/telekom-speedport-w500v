@@ -1,0 +1,309 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkNATPCx</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){
+  if (top.frames[0].nat_pc[top.frames[0].pc_akt-1] == "0"){
+    document.F1.R1[0].checked = true;
+    stDis(true);
+  }
+  else{
+    document.F1.R1[1].checked = true;
+    stDis(false);
+  }
+}
+
+function i_prfElem(nr){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+function stDis(state){
+  for(i=2;i<document.F1.elements.length;i++){
+    document.F1.elements[i].disabled = state;
+  }
+}
+
+function stOk(){
+  if(document.F1.R1[0].checked == false){
+    var prf = false;
+    for(i=2;i<document.F1.elements.length;i++){
+      if(document.F1.elements[i].checked == true){
+        prf = true;
+        break;
+      }
+    }
+    if (prf == false){
+      alert("Bitte wählen Sie mindestens eine Anwendungsregel für diesen PC");
+      return;
+    }
+  }
+
+  if(document.F1.R1[0].checked == true){
+    top.frames[0].nat_pc[top.frames[0].pc_akt-1] = "0";
+  }
+  else{
+    top.frames[0].nat_pc[top.frames[0].pc_akt-1] = "1";
+  }
+
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  document.getElementById("t_but1").style.visibility='hidden';
+  document.getElementById("t_but3").style.visibility='hidden';
+  document.getElementById("t_but4").style.visibility='hidden';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk_n.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 105px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>
+      Netzwerk / NAT /
+      <SCRIPT language="JavaScript">
+      <!--
+        document.write(' PC ' + top.frames[0].pc_akt);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>
+      <SCRIPT language="JavaScript">
+      <!--
+        document.write('PC ' + top.frames[0].pc_akt + ': ' + top.frames[0].pc_bez[top.frames[0].pc_akt-1]);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="185">Anwendungsregeln:</td>
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+            <td width="55">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Vordefinierte Anwendungsregeln</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr>
+          <td width="40">Aktiv</td>
+          <td width="145">Beschreibung</td>
+          <td width="40">Aktiv</td>
+          <td>Beschreibung</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellspacing="2" cellpadding="0">
+      <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+          <td width="40"><input type="checkbox" name="C1"></td>
+          <td width="145">Web-Server</td>
+          <td width="40"><input type="checkbox" name="C2"></td>
+          <td>PC To Phone</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+          <td width="40"><input type="checkbox" name="C3"></td>
+          <td width="145">FTP-Server</td>
+          <td width="40"><input type="checkbox" name="C4"></td>
+          <td>Dialpad</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellspacing="2" cellpadding="0">
+      <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+          <td width="40"><input type="checkbox" name="C5"></td>
+          <td width="145">Netmeeting</td>
+          <td width="40"><input type="checkbox" name="C6"></td>
+          <td>ICU II</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+          <td width="40"><input type="checkbox" name="C7"></td>
+          <td width="145">Email-Server</td>
+          <td width="40"><input type="checkbox" name="C8"></td>
+          <td>Quicktime 4</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_last>
+    <table border="0" cellspacing="2" cellpadding="0">
+      <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+          <td width="40"><input type="checkbox" name="C9"></td>
+          <td width="145">Telnet-Server</td>
+          <td width="40"><input type="checkbox" name="C10"></td>
+          <td>EDonkey 2000</td>
+      </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Benutzerdefinierte Anwendungsregeln</DIV>
+
+<SCRIPT language="JavaScript">
+<!--
+var atemp = new Array(10);
+var ix = 0;
+var endi;
+
+for(i=0;i<top.frames[0].aregel.length;i++){
+  if (top.frames[0].aregel[i].length > 0){
+    atemp[ix] = top.frames[0].aregel[i];
+    ix++;
+  }
+}
+
+if (ix==0){
+  document.write(
+    '<DIV id=c_statlast>' +
+      '<table border="0" cellpadding="4" cellspacing="0">' +
+        '<tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>' +
+          '<td width="200">Keine Regeln definiert!</td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>' +
+    '<DIV id=c_leer>');
+}
+else{
+
+endi = ix;
+if (endi % 2 > 0) endi++;
+
+if (endi / 2 > 3) document.write('<DIV id=scroll>');
+
+for(i=0;i<(endi/2);i++){
+    var divart = "c_std";
+    var endf = "";
+    if (i==(endi/2)-1){
+      divart = "c_last";
+      endf = "</form>";
+    }
+    document.write(
+      '<DIV id=' + divart + '>' +
+        '<table border="0" cellspacing="2" cellpadding="0">' +
+          '<tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>' +
+              '<td width="40"><input type="checkbox" name="C'+i+'_1"></td>' +
+              '<td width="145">' + atemp[i*2] + '</td>');
+    if (i*2 < ix-1) document.write(
+              '<td width="40"><input type="checkbox" name="C'+i+'_2"></td>' +
+              '<td>' + atemp[(i*2)+1] + '</td>');
+    document.write(
+            endf +
+          '</tr>' +
+        '</table>' +
+      '</DIV>');
+}
+
+if (endi / 2 <= 3) document.write('<DIV id=c_leer>');
+
+}
+
+//-->
+</SCRIPT>
+
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>PC ...</h2>
+     <p>Sie können diesem PC Anwendungsregeln zuordnen.
+      Wenn Sie Dateien oder Web-Dienste, die sich auf diesem PC Ihres lokalen Netzwerkes befinden, anderen
+      Internet-Benutzern anbieten wollen, richten Sie diesen PC als Server ein.
+      Die NAT-Funktion des Routers lässt  nicht zu, dass von „außen“ auf Rechner
+      des lokalen Netzwerks zugegriffen wird. Um Dienste von lokalen Rechnern im Internet zur Verfügung
+      zu stellen, müssen Sie Anwendungsregeln einrichten.
+      Dadurch übernimmt der Router nach außen die Rolle des Servers. Er empfängt die Anforderungen ferner Benutzer
+      unter seiner öffentlichen IP-Adresse und leitet diese automatisch auf lokale PCs um. Die privaten
+      IP-Adressen der Server im lokalen Netzwerk bleiben geschützt.</p>
+     <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>PC ...</h2>
+    <p><b>Anwendungsregeln</b><br>
+    Hier können Sie die Anwendungsregeln <br>'Ein' oder 'Aus' schalten.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Vordefinierte Anwendungsregeln</h2>
+    <p>Einige oft benötigte Anwendungsregeln sind hier aufgelistet. 
+     Klicken Sie auf die jeweiligen Kontrollkästchen um die gewünschten Anwendungsregeln zu aktivieren.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Benutzerdefinierte Anwendungsregeln</h2>
+    <p>Sie haben die Möglichkeit unter Netzwerk / NAT eigene Anwendungsregeln zu erstellen.
+     Diese Regeln können Sie für diesen PC aktivieren. </p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss NAT eingeschaltet sein.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

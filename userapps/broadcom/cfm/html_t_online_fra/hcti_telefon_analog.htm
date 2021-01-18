@@ -1,0 +1,148 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonAnalogtelefonanschluss</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+// get voipNumber
+var voipprovname = new Array("T-Online","Anderer Anbieter");  
+var providerName = '<%ejGetVoip(providerName)%>';
+var tonlineNumber = '<%ejGetVoip(telenumber_TONLINE)%>';
+var anotherNumber = '<%ejGetVoip(telenumber_Another)%>';
+var enable_Analog = '<%ejGetVoip(enable_Analog)%>';
+var secLine = '<%ejGetVoip(secondary_select)%>';
+var voipNumber;
+var voipprov;
+
+if (providerName == 'TONLINE' && tonlineNumber != '') {
+		voipNumber = tonlineNumber;
+		voipprov = voipprovname[0] + ':' + voipNumber;
+		}
+	else if (providerName == 'Another' && anotherNumber != '') {
+		voipNumber = anotherNumber;
+		voipprov = voipprovname[1] + ':' + voipNumber;
+	}
+	else
+		voipNumber = null;
+	
+function chk(){
+  switch(enable_Analog){// frames[0] entspricht banner
+    case "0":
+      document.F1.R1[0].checked = true;
+      break;
+    case "1":
+      document.F1.R1[1].checked = true;
+      break;
+  }
+}
+
+function stOk(){
+
+	var loc = 'voipcfg.cmd?action=portset';
+  	if(document.F1.R1[0].checked == true) {
+		if (confirm("Wenn Sie an der Anlage keinen T-Net Anschluss betreiben,\n" +
+                	  "können Sie keine Notrufe über '110' und '112' absetzen.\n" +
+	                  "\n" +
+	                  "Klicken Sie auf 'Abbrechen', um Ihre Auswahl zu ändern, oder\n" +
+	                  "klicken Sie auf 'OK', um ohne die Möglichkeit von Notrufen fortzufahren.")==false)
+		{
+			return;
+		}
+		if (voipNumber != null)	{// set voip line as primary line if it does exist, set secondary line null
+   			if (secLine == '0')
+				loc += '&enable_Analog=0&primary_select=1&secondary_select=2';
+			else
+				loc += '&enable_Analog=0&primary_select=1&secondary_select=2';
+		}
+		else	// both line is disabled, so no secondary line select, do not set primary line
+			loc += '&enable_Analog=0&primary_select=2&secondary_select=2';
+  	}
+  	else 
+	{
+		if (voipNumber != null) // voip line exists
+   			loc += '&enable_Analog=1&primary_select=1&secondary_select=0';	
+		else
+			loc += '&enable_Analog=1&primary_select=0&secondary_select=2';// 
+  	}
+   	document.getElementById('t_but1').style.visibility='hidden';
+   	document.getElementById('t_but3').style.visibility='hidden';
+   	document.getElementById('t_but4').style.visibility='hidden';
+   	document.getElementById("c_verzoeg1").style.visibility='visible';
+   	document.getElementById("c_verzoeg2").style.visibility='visible';
+
+   	var code = 'this.location.assign("' + loc + '")';
+   	eval(code);
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_telefon.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Telefon / T-Net Anschluss</DIV>
+<DIV id=c_titel>T-Net Anschluss</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+          <form name="F1">
+            <td width="20"><input type="radio" name="R1" value="V1"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2"></td>
+            <td>Ein</td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>T-Net Anschluss</h2>
+    <p><b>Aus</b><br>
+    Wenn Sie diese Option wählen, wird der T-Net Anschluss für gehende Telefonate nicht ver- wendet.
+    Das Absetzen von Not- rufen über 110 und 112 ist dann nicht gewährleistet.</p>
+    <p><b>Ein</b><br>
+    Wenn Sie diese Option wählen, kann der T-Net Anschluss für abgehende Telefonate und Not- rufe verwendet werden.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+	<p>Achtung! Wählen Sie diese Op- tion nur aus, wenn Sie tatsäch- lich einen T-Net Anschluss angeschaltet haben. Nur so
+    ist gewährleistet, dass abgehende Telefonate (unter Umständen Notrufe!) über diesen Anschluss geführt werden können.</p> 
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

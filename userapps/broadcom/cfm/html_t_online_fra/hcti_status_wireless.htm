@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<TITLE>StatusWLAN</TITLE>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<LINK rel="stylesheet" href="style.css" type="text/css">
+</HEAD>
+<BODY>
+<DIV id=c_Frame>
+<DIV id=c_border>
+<DIV id=c_pfad>Status / Wireless</DIV>
+<DIV id=c_titel>Wireless</DIV>
+<DIV id=c_stat>      
+	<table border="0" cellpadding="4" cellspacing="0">
+	<tr><td width="200">Wireless:</td>          
+		<td><SCRIPT language="JavaScript">
+		<!--	
+		var IsEnabled = '<%ejGetWl(wlEnbl)%>';
+		if (IsEnabled == 1)
+			document.write("Ein");
+		else
+			document.write("Aus");
+		//-->
+        </SCRIPT></td>
+	</tr>
+	</table>
+</DIV>
+<DIV id=c_stat>
+    <table border="0" cellpadding="4" cellspacing="0">
+		<tr><td width="200">SSID:</td>
+			<td><%ejGetWl(wlSsid)%></td></tr>
+	</table>
+</DIV>
+<DIV id=c_stat>
+	<table border="0" cellpadding="4" cellspacing="0">
+		<tr><td width="200">SSID unsichtbar:</td>
+		<td><SCRIPT language="JavaScript">
+		<!--
+			var IsSendOut = '<%ejGetWl(wlHide)%>';
+			if (IsSendOut == 1)
+				document.write("Ja");
+			else
+				document.write("Nein");
+			//-->
+		</SCRIPT>
+		</td></tr>
+	 </table>
+</DIV>
+<DIV id=c_statlast>
+       <table border="0" cellpadding="4" cellspacing="0">
+			<tr><td width="200">MAC Adresse WLAN:</td>
+			<td><%ejGet(wlHwAddr)%></td>
+			</tr>      
+		</table>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+</DIV>
+<DIV id=t_Frame>
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=status() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+</DIV>
+
+<DIV id=i_Frame>
+<DIV id=i_content>
+    <h2>Wireless</h2>
+    <p>Hier sehen Sie Informationen zum Wireless LAN Ihres WLAN Routers.</p>
+</DIV>
+</DIV>
+</BODY>
+</HTML>

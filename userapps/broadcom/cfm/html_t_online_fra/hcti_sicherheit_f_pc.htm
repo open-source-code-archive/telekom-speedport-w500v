@@ -1,0 +1,435 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitFilterfunktionPCx</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){
+  if (top.frames[0].fwf_pc[top.frames[0].pc_akt-1] == "0"){
+    document.F1.R1[0].checked = true;
+    stDis(true);
+  }
+  else{
+    document.F1.R1[1].checked = true;
+    stDis(false);
+  }
+}
+
+function i_prfElem(nr){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+function stDis(state){
+  for(i=3;i<document.F1.elements.length - 2;i++){
+    document.F1.elements[i].disabled = state;
+  }
+  document.F1.D1.disabled = state;
+  document.F1.T1.disabled = state;
+  document.F1.T2.disabled = state;
+  if (state==true){
+    document.F1.D1.style.backgroundColor="#D4D0C8";
+    document.F1.T1.style.backgroundColor="#D4D0C8";
+    document.F1.T2.style.backgroundColor="#D4D0C8";
+  }
+  else{
+    document.F1.D1.style.backgroundColor="#FFFFFF";
+    document.F1.T1.style.backgroundColor="#FFFFFF";
+    document.F1.T2.style.backgroundColor="#FFFFFF";
+    stDisTCP();
+    stDisUDP();
+  }
+}
+
+function stDisTCP(){
+  var um = false;
+  if (document.F1.C1.checked == true) um = true;
+  document.F1.C3.disabled = um;
+  document.F1.C4.disabled = um;
+  document.F1.C5.disabled = um;
+  document.F1.C6.disabled = um;
+  document.F1.C7.disabled = um;
+  document.F1.C8.disabled = um;
+  document.F1.C9.disabled = um;
+  document.F1.C10.disabled = um;
+  document.F1.C11.disabled = um;
+  document.F1.C14.disabled = um;
+}
+
+function stDisUDP(){
+  var um = false;
+  if (document.F1.C2.checked == true) um = true;
+  document.F1.C12.disabled = um;
+  document.F1.C13.disabled = um;
+  document.F1.C15.disabled = um;
+}
+
+function stOk(){
+  if(document.F1.R1[0].checked == true){
+    top.frames[0].fwf_pc[top.frames[0].pc_akt-1] = "0";
+  }
+  else{
+    var prf = false;
+    for(i=3;i<document.F1.elements.length - 2;i++){
+      if(document.F1.elements[i].checked == true){
+        prf = true;
+        break;
+      }
+    }
+    if (prf == false && document.F1.T1.value.length == 0 && document.F1.T1.value.length == 0){
+      alert("Bitte wählen Sie mindestens eine Sperre für diesen PC");
+      return;
+    }
+    top.frames[0].fwf_pc[top.frames[0].pc_akt-1] = "1";
+    top.frames[0].fwf_tr[top.frames[0].pc_akt-1] = document.F1.D1.selectedIndex;
+  }
+
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  document.getElementById("t_but1").style.visibility='hidden';
+  document.getElementById("t_but3").style.visibility='hidden';
+  document.getElementById("t_but4").style.visibility='hidden';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+
+  //Select-Options müssen extra ausgeblendet werden!
+  document.F1.D1.style.visibility='hidden';
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_sicherheit_f.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 235px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>
+      Sicherheit / Filterfunktion /
+      <SCRIPT language="JavaScript">
+      <!--
+        document.write(' PC ' + top.frames[0].pc_akt);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>
+      <SCRIPT language="JavaScript">
+      <!--
+        document.write('PC ' + top.frames[0].pc_akt + ': ' + top.frames[0].pc_bez[top.frames[0].pc_akt-1]);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="115">Filterfunktion:</td>
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Sperren zeitlich einschränken</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+            <td width="118">Terminregel:</td>
+            <td><select size="1" name="D1">
+                <option>Immer sperren</option>
+                <SCRIPT language="JavaScript">
+                <!--
+                    for (i=1;i<top.frames[0].tregel.length;i++){
+                      var tr_tmp = top.frames[0].tregel[i];
+                      if (tr_tmp.length > 0){
+                        var fwf_tmp = "";
+                        if (top.frames[0].fwf_tr[top.frames[0].pc_akt-1] > 0) fwf_tmp = top.frames[0].tregel[top.frames[0].fwf_tr[top.frames[0].pc_akt-1]];
+                        if (tr_tmp == fwf_tmp){
+                          document.write('<option selected>' + tr_tmp + '</option>');
+                        }
+                        else{
+                          document.write('<option>' + tr_tmp + '</option>');
+                        }
+                      }
+                    }
+                //-->
+                </SCRIPT>
+              </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Vordefinierte Sperren</DIV>
+
+<DIV id=scroll>
+<DIV id=c_std>
+    <table border="0" cellspacing="2" cellpadding="0">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">TCP</td>
+        <td width="20"><input type="checkbox" name="C1" onclick="stDisTCP()"></td>
+        <td>Alle TCP Ports</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">UDP</td>
+        <td width="20"><input type="checkbox" name="C2" onclick="stDisUDP()"></td>
+        <td>Alle UDP Ports</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">URL Sperre</td>
+        <td width="20"><input type="checkbox" name="C3" checked></td>
+        <td>HTTP (siehe Seite 'URL Sperre')</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellspacing="2" cellpadding="0">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">WWW</td>
+        <td width="20"><input type="checkbox" name="C4"></td>
+        <td>HTTP, TCP Port 80,3128,8000,8001,8080</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">Sicheres HTTP</td>
+        <td width="20"><input type="checkbox" name="C5"></td>
+        <td>HTTPS, TCP Port 443</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">Email senden</td>
+        <td width="20"><input type="checkbox" name="C6"></td>
+        <td>SMP, TCP Port 25</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">Email empfangen</td>
+        <td width="20"><input type="checkbox" name="C7"></td>
+        <td>POP 3, TCP Port 110</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">News Foren</td>
+        <td width="20"><input type="checkbox" name="C8" checked></td>
+        <td>NNTP, TCP Port 119</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">File Transfer</td>
+        <td width="20"><input type="checkbox" name="C9"></td>
+        <td>FTP, TCP Port 21</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">Telnet Dienst</td>
+        <td width="20"><input type="checkbox" name="C10" checked></td>
+        <td>TCP Port 23</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">AOL Instant<br>Messenger</td>
+        <td width="20"><input type="checkbox" name="C11"></td>
+        <td>TCP Port 5190</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">DNS</td>
+        <td width="20"><input type="checkbox" name="C12"></td>
+        <td>UDP Port 53</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">SNMP</td>
+        <td width="20"><input type="checkbox" name="C13" checked></td>
+        <td>UDP Port 161, 162</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">VPN-PPTP</td>
+        <td width="20"><input type="checkbox" name="C14" checked></td>
+        <td>TCP Port 1723</td>
+      </tr>
+    </table>
+</DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="115">VPN-L2TP</td>
+        <td width="20"><input type="checkbox" name="C15" checked></td>
+        <td>UDP Port 1701</td>
+      </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Benutzerdefinierte Sperre</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(5) onmouseout=i_showElem(0)>
+            <td width="118">TCP Portbereich(e):</td>
+            <td><input type="text" name="T1" size="30"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(6) onmouseout=i_showElem(0)>
+            <td width="118">UDP Portbereich(e):</td>
+            <td><input type="text" name="T2" size="30"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>PC ...</h2>
+    <p>Hier können Sie für diesen PC die Parameter für die Filterfunktion festlegen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>PC ...</h2>
+    <p><b>Filterfunktion</b><br>
+    Hier können Sie die Filterfunktion Ein oder Ausschalten. 
+    Sobald die Filterfunktion eingeschaltet ist können Sie die Filterfunktionen definieren.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Sperren zeitlich einschränken</h2>
+    <p><b>Terminregel</b><br>
+    Wählen Sie die Terminregel aus, die für diesen PC verwendet werden soll.</p>
+    <p>Neue Terminregeln können Sie unter folgendem Menüpunkt anlegen:<br>
+    'Sicherheit / Filterfunktion / Terminregeln'</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Vordefinierte Sperren</h2>
+    <p>Aktivieren Sie die gewünschten Sperren. Klicken Sie auf das entsprechende Kontrollkästchen.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+    <h2>Benutzerdefinierte Sperre</h2>
+    <p><b>Protokoll</b><br>
+    Wählen Sie das gewünschte Protokoll.</p>
+  </DIV>
+  
+  <DIV id=i_content5>
+    <h2>Benutzerdefinierte Sperre</h2>
+    <p><b>TCP Portbereich(e)</b><br>
+    Wählen Sie einen oder mehrere Ports oder einen oder mehrere Portbereiche. <br>
+    Die Auflistung von Ports wird durch Komma getrennt. <br>
+    Portbereiche werden durch ein Minuszeichen gekennzeichnet.</p>
+    <p><b>Beispiele</b><br>
+    <p>51, 55, 58</p>
+    <p>60 - 70</p>
+    <p>70-80, 95-100, 105-110</p>
+  </DIV>
+  
+  <DIV id=i_content6>
+    <h2>Benutzerdefinierte Sperre</h2>
+    <p><b>UDP Portbereich(e)</b><br>
+    Wählen Sie einen oder mehrere Ports oder einen oder mehrere Portbereiche. <br>
+    Die Auflistung von Ports wird durch Komma getrennt. <br>
+    Portbereiche werden durch ein Minuszeichen gekennzeichnet.</p>
+    <p><b>Beispiele</b><br>
+    <p>51, 55, 58</p>
+    <p>60 - 70</p>
+    <p>70-80, 95-100, 105-110</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss die Filterfunktion eingeschaltet sein.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,109 @@
+<html>
+
+<head>
+<title>Freischalten</title>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function stOk()
+{
+	document.F1.submit();
+}
+
+function stEnter(){
+/*  if (window.event.keyCode==13){
+    stOk();
+  }*/
+}
+
+function stBak(){
+  document.F1.P1.disabled = false;
+  document.F1.P1.style.backgroundColor="#FFFFFF";
+  document.F1.P1.value = "";
+  document.F1.P1.focus();
+}
+
+function rahmen(but,high){
+  var col;
+  if (high==1) col = '#E20074';
+  else col = '#666666';
+
+  document.getElementById(but).style.color = col;
+  document.getElementById(but).style.borderColor = col;
+}
+
+//-->
+</SCRIPT>
+
+<STYLE type="text/css">
+<!--
+
+input.stylepwd {font-family:Arial; font-size:18px;}
+
+td {
+  font-family: Arial, sans-serif; font-size: 12px; color: #666666;
+}
+
+#c_txt {
+  font-family: Arial, sans-serif; font-size: 18px; font-weight: bold;
+}
+
+#Start {
+  height: 21px; line-height: 21px; width: 70px; background-color:#EEEEEE; text-align: center; cursor: hand;
+  font-size:14px; font-weight: bold;
+  border-color: #666666; border-width: 2px; border-style: solid;
+}
+
+//-->
+</STYLE>
+
+</head>
+
+<body onLoad="document.F1.P1.focus()">
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+  <tr>
+    <td valign="middle" align="center">
+      <table border="1" cellpadding="0" cellspacing="0" height="480" width="640" background="pic_welcome.jpg">
+        <tr>
+          <td valign="top">
+
+            <img border="0" src="pic_welcome_b.gif">
+            <DIV id=c_txt>
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <form name="F1" action="freischalten.exe" method="post">
+                  <td width="150"></td>
+                  <td>
+                    <p style="font-size: 18px;"><br>
+                    <b>Internet freischalten!</b></p>
+                    <p><b>Geben Sie das Passwort ein und best&auml;tigen Sie mit 'OK'.</b></p>
+
+                    <table>
+                      <tr>
+                        <td width="160"><input type="password" name="P1" class="stylepwd" name="P1" size="12" maxlength="12" onkeypress=stEnter()></td>
+                        <td><DIV id=Start onclick=stOk() onmouseover=rahmen("Start",1) onmouseout=rahmen("Start",0)>&gt;&gt;&nbsp;OK</DIV></td>
+                      </tr>
+                    </table>
+
+                    <p><br>
+                       Wenn Sie das Internet freischalten, erhalten die am Netzwerk<br>
+                       angeschalteten PCs die Möglichkeit für den Zugang ins Internet.</p>
+
+                  </td>
+                </form>
+              </tr>
+            </table>
+            </DIV>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

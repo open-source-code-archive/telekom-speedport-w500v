@@ -1,0 +1,209 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Telefonie</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+	var enable_Analog = '<%ejGetVoip(enable_Analog)%>';
+	var voipprovname = new Array("T-Online","Anderer Anbieter");  
+	var providerName = '<%ejGetVoip(providerName)%>';
+	
+	if (providerName == 'TONLINE')
+		providerName = voipprovname[0];
+	else
+		providerName = voipprovname[1];
+		
+	var numOfPartial = '<%ejGetVoip(numOfPartial)%>';
+	var numOfEmg = '<%ejGetVoip(numOfEmg)%>';
+	var numOfOutblock = '<%ejGetVoip(numOfOutblock)%>';
+	var numOfInblock = '<%ejGetVoip(numOfInblock)%>';
+	var numOfShortdial = '<%ejGetVoip(numOfShortdial)%>';
+	
+function chk(){
+}
+
+function as(nr){
+  top.frames[0].as_akt = nr;
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk() onselectstart="return false">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Telefonie</DIV>
+<DIV id=c_titel>Telefonnummern</DIV>
+<DIV id=c_link>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+			<td width="200"><a href="hcti_telefon_voip.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>DSL Telefonie</a></td>
+			<td>
+				<SCRIPT language="JavaScript">
+				<!--
+				document.write(providerName);
+				//-->
+				</SCRIPT>
+			</td>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_linklast>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+            <td width="200"><a href="hcti_telefon_analog.htm" onmouseover=i_showElem(2) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>T-Net Anschluss</a></td>
+			<SCRIPT language="JavaScript">
+			<!--
+			if (enable_Analog == "0"){
+				document.write('<td>Aus</td>');
+			}
+			else{
+				document.write('<td>Ein</td>');
+			}
+			//-->
+			</SCRIPT>
+        </tr>
+    </table>
+</DIV>
+  
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Interner Anschluss</DIV>
+<DIV id=c_linklast>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+            <td width="200"><a href="hcti_telefon_as.htm" onclick=as(0) onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Anschluss-Einstellungen</a></td>
+            <td></td>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Leistungsmerkmale</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="voipcfg.cmd?action=wregview" onmouseover=i_showElem(4) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Wahlregeln</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              document.write(numOfPartial + " Einträge");
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_telefon_notr.htm" onmouseover=i_showElem(5) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Notrufnummern</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              document.write(numOfEmg + " Einträge");
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="voipcfg.cmd?action=viewquick" onmouseover=i_showElem(8) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Kurzwahlliste</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              document.write(numOfShortdial + " Einträge");
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=startseite() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Telefonie</h2>
+    <p>Hier können Sie alle Einstellungen für den Bereich Telefonie vornehmen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Telefonnummern</h2>
+    <p><b>DSL Telefonie</b><br>
+    Hier erreichen Sie die Eingabemaske zur Eingabe der Daten für die DSL Telefonie.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Telefonnummern</h2>
+    <p><b>T-Net Anschluss</b><br>
+    Hier können Sie festlegen, ob Sie einen T-Net Anschluss (Festnetzanschluss) am Router betreiben möchten.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Interner Anschluss</h2>
+    <p><b>Anschluss-Einstellungen</b><br>
+    Hier können Sie für den <br>internen Anschluss die Leistungsmerkmale einstellen.</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Leistungsmerkmale</h2>
+    <p><b>Wahlregeln</b><br>
+    Hier können Sie festlegen, welche Rufnummern über welche Anschlüssen angerufen werden.</p>
+  </DIV>
+  
+  <DIV id=i_content5>
+    <h2>Leistungsmerkmale</h2>
+    <p><b>Notrufnummern</b><br>
+    Hier können Sie Notrufnummern eintragen. Die Notrufnummern durchbrechen jede eventuell eingestellte Sperre.</p>
+  </DIV>
+  
+  <DIV id=i_content6>
+    <h2>Leistungsmerkmale</h2>
+    <p><b>Sperrliste gehend</b><br>
+    Hier können Sie Rufnummern eintragen, die gehend gesperrt werden sollen.</p>
+  </DIV>
+  
+  <DIV id=i_content7>
+    <h2>Leistungsmerkmale</h2>
+    <p><b>Sperrliste kommend</b><br>
+    Hier können Sie Rufnummern eintragen, die kommend gesperrt werden sollen. Anrufer erhalten dann immer besetzt.</p>
+  </DIV>
+  
+  <DIV id=i_content8>
+    <h2>Leistungsmerkmale</h2>
+    <p><b>Kurzwahlliste</b><br>
+    Hier können Sie Rufnummern eintragen, die über eine Kurzwahl angewählt werden können.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

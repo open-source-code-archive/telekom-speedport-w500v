@@ -1,0 +1,151 @@
+<HTML>
+<HEAD>
+	<TITLE>StatusSicherheit</TITLE>
+	<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript">
+	</SCRIPT>
+	<LINK rel="stylesheet" href="style.css" type="text/css">
+	<script language="javascript">
+	<!-- hide
+	var enblWireless = '<%ejGetWl(wlEnbl)%>';
+	var isEnableMac  = '<%ejGetWl(wlFltMacMode)%>';
+	var mode      = '<%ejGetWl(wlAuthMode)%>';
+	var enblInternal= '<%ejGetWl(wlEnblInternal)%>';
+	var enblRadius= '<%ejGetWl(wlEnblRadius)%>';
+	// done hiding -->
+	var wep='<%ejGetWl(wlWep)%>';
+	function getSicherheit()
+	{
+        if (mode == 'open') {
+			if (wep == 'disabled') 
+				msg = "Aus" ;
+			else
+				msg = "WEP" ;
+		} else if (mode == 'psk2')
+			msg = "WPA2 mit Pre-shared key" ;
+		else if (mode == 'psk2mix')
+			msg = "WPA / WPA2 mit Pre-shared key" ;
+		else if (mode == 'wpa2')
+			msg = "WPA2 mit RADIUS Server" ;
+		else if (mode == 'wpa2mix')
+			msg = "WPA / WPA2 mit RADIUS Server" ;
+		else
+			msg = "" ;
+		return msg;
+	}
+	</script>
+</HEAD>
+	<BODY>
+	<DIV id=c_Frame>
+		<DIV id=c_border>
+			<DIV id=c_pfad>
+				Status / Sicherheit
+			</DIV>
+			<DIV id=c_titel>
+				Schutz gegen Angriffe
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Firewall:</td>
+						<td>
+							<SCRIPT language="JavaScript">
+							<!--                    
+								document.write((<%ejGet(enblFirewall)%>=='1')?"Ein":"Aus")
+							//-->
+							</SCRIPT>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Filterfunktion:</td>
+						<td>
+							<%ejGetFirewall(filterStatus)%>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Terminregeln:</td>
+						<td>
+							<%ej_get_fwschedulenum(FWSCHEDULE_RULENUM)%>
+							Regeln</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_statlast>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">URL Sperren:</td>
+						<td>
+							<%ej_get_urlfilter(URLNUM)%>
+							Sperren</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_leer>
+			</DIV>
+			<DIV id=c_titel>
+				Wireless LAN Einstellungen
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Verschlüsselung:</td>
+						<td>
+							<SCRIPT language="JavaScript">
+									document.write(''+getSicherheit()+'');
+							</SCRIPT>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_statlast>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">MAC Filtertabelle:</td>
+						<td>
+							<SCRIPT language="JavaScript">
+								var macNum='<%ej_get_wl_mac_filter(wl_mac_num)%>';
+								var showMessage;
+								if ((enblWireless=='1') && (isEnableMac == '1'))
+									showMessage = "Ein, " + macNum + " Einträge ";
+								else
+									showMessage	= "Aus, " + macNum + " Einträge ";
+								document.write(showMessage);
+							</SCRIPT>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_leer>
+			</DIV>
+			<DIV id=c_foot>
+			</DIV>
+		</DIV>
+	</DIV>
+
+	<DIV id=t_Frame>
+		<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>
+			&lt;&lt;&nbsp;&nbsp;&lt;&lt;
+		</DIV>
+		<DIV id=t_but3 onclick=status() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>
+			Zur&uuml;ck &lt;&lt;
+		</DIV>
+	</DIV>
+
+	<DIV id=i_Frame>
+		<DIV id=i_content>
+			<h2>Sicherheit</h2>
+			<p>
+			Hier sehen Sie Informationen zur Sicherheit Ihres Routers.
+			</p>
+		</DIV>
+	</DIV>
+	</BODY>
+</HTML>
+

@@ -1,0 +1,491 @@
+<html>
+
+<head>
+
+<title>Banner</title>
+
+<script language="JavaScript">
+<!--
+
+
+//********** Gerätespezifischer Teil **********
+//Gesamtzahl Schritte im Assistent
+var ass_steps = "10";
+
+// File-Server Funktionalität vorhanden
+  var fsrvfkt = false;
+
+// Telefon Anzahl ISDN-Rufnummern
+  var anz_msn = 0;
+
+// Telefon Anzahl Anschlüsse
+  var anz_as = 1;
+
+// Telefon Endgerätetypen
+  var etypname = new Array("Telefon","Kombigerät (Telefax + Telefon)");
+
+// Budget Betriebszustand
+  var budget = "1"; //Aus (0), Ein (1)
+
+//WLAN Funktionalität vorhanden
+  var wlanfkt = true;
+//*********************************************
+
+
+// PC MAC-Adresse
+var pc_mac = new Array("005034BB1211","0050DFDA5156","005063ACAF83","00FA45AC8647","00FA7643CB33","00AB7723FC01","00AB7723FC02","00AB7723FC03","00AB7723FC04","00AB7723FC05","00AB7723FC06");
+
+// PC Name
+var pc_bez = new Array("Andreas","Notebook","Heintz","Webserver","Mailserver","XSR_1278","Laptop","TestPC","Test4","Test5","Test6");
+
+// Filterfunktion PCs an / aus
+  var fwf_pc = new Array("0","1","0","0","0","0","0","0","0","0","0","0"); //Aus (0), Ein (1)
+
+// Feld für Filterfunktion PC - Terminregel
+  var fwf_tr = new Array(2,1,0,0,0,0,0,0,0,0,0,0); //Immer sperren (0), Terminregel (1-9)
+
+// PC MAC-Adresse
+var pc_ip_block1 = new Array("192","192","192","212","164","192","192","192","192","192","192");
+var pc_ip_block2 = new Array("168","168","168","65","207","168","168","168","168","168","168");
+var pc_ip_block3 = new Array("2","2","2","148","199","2","2","2","2","2","2");
+var pc_ip_block4 = new Array("32","37","33","89","11","35","60","55","56","57","58");
+
+// NAT PCs an / aus
+  var nat_pc = new Array("1","1","1","0","0","0","0","0","0","0","0","0"); //Aus (0), Ein (1)
+
+// Budget PCs an / aus
+  var bud_pc = new Array("1","1","1","0","0","0","0","0","0","0","0","0"); //Aus (0), Ein (1)
+
+// Einträge für Budget PCs
+  var bud_pc_mb = new Array("1000","500","1500","","","","","","","","","");
+
+
+// Systempasswort
+  var pwd = "0000";
+
+// Firewall Betriebszustand
+  var firewall = "1"; //Aus (0), Ein (1)
+
+// Filterfunktion Betriebszustand
+  var fwfilter = "0"; //Aus (0), Ein (1)
+
+// Feld für Terminregelnamen
+  var tregel = new Array("Immer sperren","Marketingabteilung","Vertrieb","");
+
+// Feld für Anwendungsregelnamen
+  var aregel = new Array("battle.net","MSN Gaming Zone","");
+
+// Feld für URL Sperren
+  var urlsperre = new Array("","","","","","","","","","","","","","","","","","","","","","","","","","","","","","");
+
+//Internetverbindung
+  var inet = "0"; //Aus (0), Ein (1)
+  
+// Vordefiniert: Assistent beenden
+  var assBeenden = "Wenn Sie den Assistenten beenden, werden alle vorgenommenen Änderungen" +
+					"\nverworfen. Wenn Sie wirklich Beenden möchten, klicken Sie auf 'OK'." +
+					"\n\nUm die vorgenommenen Änderungen zu speichern, ist es notwendig, alle" + 
+					"\nSchritte des Assistenten zu durchlaufen. Wenn Sie nicht Beenden möchten," +
+					"\nklicken Sie auf 'Abbrechen'.";
+
+
+// Zugangsart bei anderer Provider
+// PPPoE = 0 (Default)
+// Dynamisch = 1
+// Statisch = 2
+  var prov2_art = "0";
+  
+// Providerdaten
+  var provname = new Array("T-Online","T-DSL Business mit dyn. IP","T-DSL Business mit fester IP","Anderer Provider");
+  
+  var provmtu = new Array("1492","1492","1456","1454");
+  var provav = new Array("1","1","1","1");
+  var provat = new Array("5","2","0","0");
+
+
+// Any IP Betriebszustand
+  var anyip = "1"; //Aus (0), Ein (1)
+
+// PPPoE Pass-Through Betriebszustand
+  var pppoe = "1"; //Aus (0), Ein (1)
+
+// File-Server Betriebszustand
+  var fsrv = "1"; //Aus (0), Ein (1)
+
+// File-Server Verbundener Datenträger
+  var usbpart = 7; //Anzahl der Partitionen auf dem aktuell verbundenen Datenträger
+  var part_poss = new Array(-1,3,1,-1,-1,-1,-1) //Menüeinstiegspunkte frei (> -1), gesperrt (== -1)
+
+// Feld für Freigabenamen mit der Größe Anzahl Partitionen * Anzahl Freigaben, z.B. 7 * 4
+  var freigabename = new Array("","","","","Files","Sheets","Drivers","","Tests","","","","","","","","","","","","","","","","","","","");
+
+// Feld für Freigabepfade mit der Größe Anzahl Partitionen * Anzahl Freigaben, z.B. 7 * 4
+  var freigabe = new Array("","","","","\\Daten\\Files\\","\\Daten\\Sheets\\","\\Drivers\\","","\\Sonstige\\Tests\\","","","","","","","","","","","","","","","","","","","");
+
+// Verschlüsselungsarten
+  var encryptname = new Array("Aus","WEP","WPA2 mit Pre-shared key","WPA / WPA2 mit Pre-shared key","WPA2 mit RADIUS Server","WPA / WPA2 mit RADIUS Server");
+
+// MAC Betriebszustand
+  var mac = "0"; //Aus (0), Ein (1)
+  
+// Repeater Betriebszustand
+  var rep = "1"; //Aus (0), Ein (1)
+
+// VoIP Providerdaten
+  var voipprovname = new Array("T-Online","Anderer Anbieter");
+  var voipprovtxt1 = new Array("DSL Telefonnummer","Internet-Rufnummer");
+  var voipprovtxt2 = new Array("Email-Adresse","Benutzername");
+  var nameCheckBox = new Array("0", "1") ;
+  var voipprovtxt3 = new Array("Passwort (Webkennwort)","Passwort");
+  var voipprovtxt4 = new Array("","Registrar/Proxy");
+  var voipprovtxt5 = new Array("", "Port Registrar/Proxy") ;
+  var voipprovdtmf = new Array("0", "1") ;
+
+// Internettelefonie Rufnummer verwenden
+  var voip = new Array("1","0","0");
+
+// Internettelefonie Einstellungen Sprechpausenerkennung
+  var voip_paus = "0"; //Aus (0), Ein (1)
+
+// Internettelefonie Einstellungen Sprachkompression
+  var voip_kompr = "1"; //Aus (0), Ein (1)
+
+// Internettelefonie Rufnummer
+  var voip_ov  = new Array("0","1","0");
+  var voip_ovnr = new Array("","05321","");
+
+// Telefon Msns
+  var msn = new Array("887761","887762","887763","","","","","","","");
+
+// Telefon Anschlussx Farbe
+  var col_as = new Array("FAD6E9","F1F398","D6FAE9","FFD089");
+
+// Telefon Anschlussx Anschlussbezeichnung
+  var abez = new Array("Anschluss 1","Telefax","Anschluss 3","Anschluss 4");
+
+// Telefon Anschlussx CLIP
+  var clip = new Array("1","1","1","1");
+
+// Telefon Anschlussx Amtsbelegung
+  var abel = new Array("1","1","1","1");
+
+// Telefon Anschlussx Endgerätetyp
+  var etyp = new Array(0,1,0,0);
+
+// Telefon Anschlussx Anklopfen
+  var ankl = new Array("1","0","1","1");
+
+// Telefon AWS Arten
+  var awsname = new Array("Deaktiviert","Sofort","Bei Besetzt","Bei Nichtmelden","Bei Nichtmelden oder Besetzt","Sofort mit Klingeln");
+
+// Telefon AWS verwenden
+  var aws_art = new Array(0,0,1,0);
+
+// Telefon AWS Zielrufnummer
+  var aws_ziel = new Array("","","098123456","");
+
+// Telefon Notrufnummern
+  var notr = new Array("110","112","19222");
+
+// Telefon Wahlregeln
+  var wreg = new Array("0137","0180","0190","0800","0900","");
+
+// Telefon Wahlregeln
+  var wreg_art = new Array(0,0,0,0,0,0,0,0,0);
+
+// Telefon Wahlregeln Anbietervorwahl
+  var wreg_av = "0"
+  var wreg_avnr = "";
+
+// Telefon Sperrliste gehend
+  var sperrgeh = new Array("","","","","","","","","","","","","","","","","","","","");
+
+// Telefon Sperrliste kommend
+  var sperrkom = new Array("","","","","","","","","","","","","","","","","","","","");
+
+// Telefon Weitere Rufe abweisen
+  var rabb = "0";
+
+// Einträge für Gesamtbudget
+  var budget_std = "300";
+  var budget_mb = "4000";
+
+// Budget alle anderen PCs
+  var bud_all = "1"; //Aus (0), Ein (1)
+
+// Einträge für alle anderen PCs
+  var bud_all_mb = "40";
+
+// Datums- / Zeit-Einstellung
+  var zeitsrv = 1; //Manuell (0), Zeitserver (1)
+
+
+// Verzögerung bei Datenübernahme in Millisekunden
+  var verzoeg = 1000;
+  
+// Aktueller Menüeintrag
+  var m_akt = 1;
+
+// Aktuelle Rücksprungseite
+  var zs_akt;
+
+// Aktueller PC aus PC-Liste
+  var pc_akt = 1;
+
+// Aktuelle Partition und Freigabe von USBDisk
+  var part_akt;
+  var share_akt;
+  
+// Aktuelle Rufnummer für Internettelefonie
+  var voip_akt = 0;
+
+// Anrufzuordnung: Rufnummernliste
+  var anrzlist = new Array("");
+
+// Aktueller Anschluss für Telefonie
+  var as_akt = 0;
+
+// Anrufzuordnung: Rufnummernliste
+  var wreglist = new Array("Sperren","Festnetz","");
+
+// Aktuelle Wahlregel für Telefonie
+  var wreg_akt = 0;
+//for DSL accounts of Network Config Page
+  var cfgprovtxt1 = new Array("");
+  var cfgprovpwd = new Array("");
+
+
+//Assistent: temp. Variablen
+  var assPppOptionsChanged = 0;
+  var asspwd;
+  var assnewpwd;
+
+  var assprovider;
+  var assprovtxt1 = new Array("");
+  var assprovtxt2 = new Array("");
+  var assprovtxt3 = new Array("");
+  var assprovpwd = new Array("");
+  var asspersist = new Array("");
+  var assondemand = new Array("");
+  var asstimeout = new Array("");
+
+
+  var assshowdv;
+  var assssid;
+  var assssidhide;
+  var asswep;
+  var assencrypt;
+  var asswepkeylength;
+  var asswepkeytyp;
+  var asswepkey1;
+  var asswepkey2;
+  var asswepkey3;
+  var asswepkey4;
+  var asswepkeyindex;
+  var asswpapsk;
+  var mix_asswpapsk;
+  var asswlEnable;	// 2006-02-10 Eric add for switch off/on wireless in assistant
+  var assencsave;
+  var tmpasswep;
+  var tmpasswepkeylength;
+  var tmpasswepkeytyp;
+  var tmpasswepkey1;
+  var tmpasswepkey2;
+  var tmpasswepkey3;
+  var tmpasswepkey4;
+  var tmpasswepkeyindex;
+  var tmpasswpapsk;
+  var tmpmix_asswpapsk;
+  var asswlselect;
+  
+  var assvoipprov;
+  var assvoipprov_changed;
+  var assvoip_rnr = new Array("");
+  var assvoip_anm = new Array("");
+  var assvoip_reg = new Array("");
+  var assvoip_regport = new Array("") ;
+  var assvoip_pwd = new Array("");
+  var assvoip_analog;//0,disable--1,enable
+  var assvoip_enblUserN ;
+  var assvoip_dtmfStatus ;
+  var assvoip_ov;
+  var assvoip_ovnr;
+  var voippriLine;
+  var voipsecLine;
+  var asstelas;//pstn status
+  
+  var assvoip_enable_areaCode = new Array("");
+  var assvoip_areaCode = new Array("");
+  
+  var assmsn = msn;
+  
+  //variables to monitor whether pppoe settings changed
+  var PPPoEChanged;
+  var ActiveServiceID;
+  var tonline_password1;
+  var tonline_number;
+  var tonline_suffix;
+  var tonline_password;
+  var tonline_mtu;
+  var tonline_persist;
+  var tonline_ondemand;
+  var tonline_timeout;
+
+  var tbusdyn_name;
+  var tbusdyn_password;
+  var tbusdyn_mtu;
+  var tbusdyn_persist;
+  var tbusdyn_ondemand;
+  var tbusdyn_timeout;
+
+  var tbusfes_name;
+  var tbusfes_password;
+  var tbusfes_mtu;
+  var tbusfes_persist;
+  var tbusfes_ondemand;
+  var tbusfes_timeout;
+
+  var another_name;
+  var another_password;
+  var another_servicename;
+  var another_fixip;
+  var another_dns;
+  var another_dns2;
+  var another_mtu;
+  var another_persist;
+  var another_ondemand;
+  var another_timeout;
+
+
+var fromAhead = false ;
+
+var enblWl = '<%ejGetWl(wlEnbl)%>';
+var encrypt = '1';
+
+var needAlert = '1';
+
+function loadParms(){
+
+  var wlMode = '<%ejGetWl(wlAuthMode)%>';
+  var wep = '<%ejGetWl(wlWep)%>';
+  if (wep == 'disabled' && wlMode == 'open')
+    encrypt = '0';
+  else
+    encrypt = '1';
+}
+  
+function addNewTR(){
+  tregel.push("");
+}
+
+function delTR(nr){
+  tregel[nr] = "";
+
+  if ((nr == tregel.length - 2) && (tregel[tregel.length - 1].length == 0) && (tregel.length > 1)){
+    tregel.pop();
+  }
+  
+}
+
+function addNewVoIP(){
+  voip.push("0");
+  voipprov.push(0);
+  voip_rnr.push("");
+  voip_anm.push("");
+  voip_reg.push("");
+  voip_pwd.push("");
+  voip_ov.push("0");
+  voip_ovnr.push("");
+}
+
+function delVoIP(nr){
+  var a1;
+  var a2;
+
+  a1 = voip.slice(0,nr);
+  a2 = voip.slice(nr+1,voip.length);
+  voip = a1.concat(a2);
+
+  a1 = voipprov.slice(0,nr);
+  a2 = voipprov.slice(nr+1,voipprov.length);
+  voipprov = a1.concat(a2);
+
+  a1 = voip_rnr.slice(0,nr);
+  a2 = voip_rnr.slice(nr+1,voip_rnr.length);
+  voip_rnr = a1.concat(a2);
+  a1 = voip_anm.slice(0,nr);
+  a2 = voip_anm.slice(nr+1,voip_anm.length);
+  voip_anm = a1.concat(a2);
+  a1 = voip_reg.slice(0,nr);
+  a2 = voip_reg.slice(nr+1,voip_reg.length);
+  voip_reg = a1.concat(a2);
+  a1 = voip_pwd.slice(0,nr);
+  a2 = voip_pwd.slice(nr+1,voip_pwd.length);
+  voip_pwd = a1.concat(a2);
+  a1 = voip_ov.slice(0,nr);
+  a2 = voip_ov.slice(nr+1,voip_ov.length);
+  voip_ov = a1.concat(a2);
+  a1 = voip_ovnr.slice(0,nr);
+  a2 = voip_ovnr.slice(nr+1,voip_ovnr.length);
+  voip_ovnr = a1.concat(a2);
+
+}
+
+function genAnrzList(){
+  anrzlist = new Array("");
+  for (i=0;i<top.frames[0].voip.length-1;i++){
+    if (top.frames[0].voip[i] != "0"){
+      anrzlist[anrzlist.length-1] = top.frames[0].voipprovname[top.frames[0].voipprov[i]] + ": " + top.frames[0].voip_rnr[i];
+      anrzlist.push("");
+    }
+  }
+  for (i=0;i<10;i++){
+    if (top.frames[0].msn[i].length > 0){
+      anrzlist[anrzlist.length-1] = "MSN " + (i+1) + ": " + top.frames[0].msn[i];
+      anrzlist.push("");
+    }
+  }
+  anrzlist.pop();
+}
+
+function genWRegList(){
+  wreglist = new Array("Festnetz");
+  for (i=0;i<top.frames[0].voip.length-1;i++){
+    if (top.frames[0].voip[i] != "0"){
+      wreglist.push("");
+      wreglist[wreglist.length-1] = top.frames[0].voipprovname[top.frames[0].voipprov[i]] + ": " + top.frames[0].voip_rnr[i];
+    }
+  }
+}
+
+function addNewWR(){
+  wreg.push("");
+  wreg_art.push(0);
+}
+
+function delWR(nr){
+  var a1;
+  var a2;
+
+  a1 = wreg.slice(0,nr);
+  a2 = wreg.slice(nr+1,wreg.length);
+  wreg = a1.concat(a2);
+
+  a1 = wreg_art.slice(0,nr);
+  a2 = wreg_art.slice(nr+1,wreg_art.length);
+  wreg_art = a1.concat(a2);
+}
+//-->
+</script>
+
+
+</head>
+
+
+<body onLoad="loadParms()" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0">
+
+<p><img border="0" src="pic_b.gif" width="792" height="44"></p>
+
+</body>
+
+</html>

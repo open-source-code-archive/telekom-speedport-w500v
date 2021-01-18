@@ -1,0 +1,97 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Hilfsmittel</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+<SCRIPT language="JavaScript">
+<!--
+function chk(){
+    alert("Bitte überprüfen Sie die eingebene URL für den Zeitserver.");
+}
+//-->
+</SCRIPT>
+</HEAD>
+
+<BODY id="test" onload="chk()">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Hilfsmittel</DIV>
+<DIV id=c_titel>Hilfsmittel</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_hilfsmittel_datum.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Datum &amp; Uhrzeit</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+              <!--                    
+                  document.write('<%ej_get_date_time(dt_display_time)%>')
+              //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_hilfsmittel_reboot.htm" onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Reboot</a></td>
+          <td>
+		<script language="Javascript">
+                        var rebootTime = '<%ej_get_date_time(last_reboot_time)%>';
+                        document.write('Letzter ' + rebootTime);
+                </script>
+	 </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=startseite() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Hilfsmittel</h2>
+    <p>Hier können Sie allgemeine Einstellungen vornehmen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Hilfsmittel</h2>
+    <p><b>Datum &amp; Uhrzeit</b><br>
+    Sie können Datum &amp; Uhrzeit in Ihrem Router manuell oder durch einen Zeitserver gesteuert einstellen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Hilfsmittel</h2>
+    <p><b>Fernverwaltung</b><br>
+    Mit Hilfe der Fernverwaltung können Sie die Konfiguration Ihres Routers von qualifizierten Fachkräften vornehmen lassen.</p> 
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Hilfsmittel</h2>
+    <p><b>Reboot</b><br>
+    Falls das System nicht mehr korrekt antwortet, oder in irgend einer Form aufhört zu arbeiten, können Sie
+    ein Reboot durchführen. Ihre Einstellungen werden dabei nicht verändert.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

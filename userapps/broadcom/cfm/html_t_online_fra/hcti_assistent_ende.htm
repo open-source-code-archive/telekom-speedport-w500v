@@ -1,0 +1,87 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>AssistentEnde</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_assistent_" + (top.frames[0].ass_steps-1) + ".htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt
+      <SCRIPT language="JavaScript">
+      <!--
+        document.write(top.frames[0].ass_steps + ' von ' + top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Die Einstellungen des Assistenten sind fertiggestellt</DIV>
+<DIV id=c_text>
+<SCRIPT language="JavaScript">
+<!--
+if (top.frames[0].assencsave==true && top.frames[0].wlanfkt == true){
+    document.write("Der Assistent hat Sie durch die wichtigsten Einstellungen geführt.<br><br>" +
+                  "<b>Weitere Vorgehensweise</b><br>" +
+                  "Verwenden Sie nun den Datenträger, auf den Sie die Sicherheits-<br>" +
+                  "einstellungen kopiert haben, damit Sie die Einstellungen bei den<br>" +
+                  "WLAN Clients vornehmen können.<br>" +
+                  "<br>" +
+                  "Somit ist gewährleistet, dass die Sicherheitseinstellungen im<br>" +
+                  "Router exakt mit den Einstellungen beim WLAN Client übereinstimmen.<br>" +
+                  "<br>" +
+                  "Beachten Sie bitte, dass der WLAN Manager auf dem Client PC<br>" +
+                  "installiert sein muss.<br>" +
+                  "<br>" +
+                  "Wenn Sie den WLAN Manager öffnen, können Sie unter 'Import'<br>" +
+                  "die Daten von Ihrem Datenträger importieren.<br>" +
+                  "<br>" +
+                  "<br>" +
+                  "<b>Assistent Beenden</b><br>" +
+                  "Klicken Sie auf 'Beenden', um auf die Startseite zu gelangen.");
+
+  }
+  else{
+ 	document.write("Der Assistent hat Sie durch die wichtigsten Einstellungen geführt.<br><br>" +
+                  "Klicken Sie auf 'Beenden', um auf die Startseite zu gelangen.");
+  }
+//-->
+</SCRIPT>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=start() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Beenden &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+</DIV>
+
+</BODY>
+
+</HTML>

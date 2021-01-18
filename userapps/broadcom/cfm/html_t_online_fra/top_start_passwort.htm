@@ -1,0 +1,87 @@
+<html>
+
+<head>
+
+<title>Konfigurationsprogramm</title>
+
+<script language="JavaScript">
+<!--                    
+var sechinw = true;
+
+// Prüfung ob Fenster geschlossen werden kann
+function sicherheitseinstellung(){
+
+  //delete cookie here
+  top.frames[3].location.href="deletecookie.cmd";
+  sleep(0.1);
+
+  if(sechinw == true && top.frames[0].enblWl == '1' && top.frames[0].encrypt == '0' && top.frames[0].needAlert == '1'){ //Wenn Wireless eingeschaltet ist
+
+//        window.event.returnValue = 
+//          "________________________________________________________________________________________" +
+//          "\n|\t\t\t\t\t\t\t\t\t\t\t|" +
+//          "\n|     Sie haben die Einstellung im Bereich:\t\t\t\t\t\t\t|" +
+//          "\n|       > Sicherheit / Verschlüsselung\t\t\t\t\t\t\t\t|" +
+//          "\n|     nicht aktiviert. Wir empfehlen Ihnen zu Ihrer eigenen Sicherheit, diese Funktionalität einzuschalten.\t|" +
+//          "\n|\t\t\t\t\t\t\t\t\t\t\t|" +
+//          "\n|     Möchten Sie die Konfiguration wirklich Beenden, ohne die Verschlüsselung einzuschalten?\t\t|" +
+//          "\n|" +
+//          "_______________________________________________________________________________________\t|\n"; 
+	alert("Sie haben die Einstellung im Bereich:" +
+  	      "\n" +
+              "\n  > Sicherheit / Verschlüsselung" +
+	      "\n" +
+              "\nnicht aktiviert. Wir empfehlen Ihnen zu Ihrer" +
+	      "\neigenen Sicherheit, diese Funktionalität ein-" +
+              "\nzuschalten." +
+	      "\n" +
+	      "\n" +
+              "\nMöchten Sie wirklich Beenden, ohne die Ver-" +
+	      "\nschlüsselung einzuschalten?" +
+              "\n" +
+	      "\n");
+  }
+
+}
+
+
+function sleep(seconds)
+{
+  var d1 = new Date();
+  var t1 = d1.getTime();
+  for (;;)
+  {
+     var d2 = new Date();
+     var t2 = d2.getTime();
+     if (t2-t1 > seconds*1000)
+     {
+        break;
+     }
+  }
+}
+
+//-->
+</script>
+
+</head>
+
+<frameset rows="44,*" border=0 frameborder=0 framespacing=0 onbeforeunload="sicherheitseinstellung()">
+    <frame src="b_banner.htm" name="banner" scrolling=no noresize>
+    
+    <frameset cols="170,*" border=0 frameborder=0 framespacing=0>
+        <frame src="m_start_passwort.htm" name="menu" scrolling=no>
+        <frameset rows="508,*" border=0 frameborder=0 framespacing=0>
+        <frame src="hcti_start_passwort.htm" name="hcti" scrolling=no>  
+        <frame>
+        </framset>
+    </frameset>
+    
+    <noframes>
+      <body >
+        <p>Für diese Seite muss ihr Browser Frames darstellen können!</p>
+      </body>
+    </noframes>
+
+</frameset>
+
+</html>

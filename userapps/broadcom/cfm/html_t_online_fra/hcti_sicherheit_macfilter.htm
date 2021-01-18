@@ -1,0 +1,314 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitMACFiltertabelle</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var mac_address = new Array(33);
+var mac_address_org;
+var icount = 0;
+var IsEnable = 0;
+function isBlank(s)
+{
+	for (i=0;i<s.length;i++) {
+		c=s.charAt(i);
+		if ((c!=' ')&&(c!='\n')&&(c!='\t'))return false;
+	}
+	return true;
+}
+function is2Hex(s) {
+	var j,x = 0;
+	for (var i = 0; i < s.length; i++) {
+		var c = s.charAt(i);
+		j = parseInt(c,16);
+		if ((j == 0) || (j == 1)|| (j == 2)|| (j == 3)|| (j == 4)|| (j == 5)|| 
+			(j == 6)|| (j == 7)|| (j == 8)|| (j == 9)|| (j == 10)|| (j == 11)|| 
+			(j == 12)|| (j == 13)|| (j == 14)|| (j == 15)) {
+				if (x==1) return false;
+				x=1;
+		}
+	}
+	return true;
+}
+
+function chk()
+{ 
+    IsEnable = '<%ejGetWl(wlFltMacMode)%>';
+    switch(IsEnable){ 
+    case "0":
+      document.F1.R1[0].checked = true;
+      stDis(true);
+      break;
+    case "1":
+      document.F1.R1[1].checked = true;
+      stDis(false);
+      break;
+   }
+   init_mac_address();
+}
+
+function init_mac_address()  
+{
+    var mac_address_org = '<%ej_get_wl_mac_filter(wl_mac_filter)%>'; 
+    if (mac_address_org.indexOf(':') == -1 )
+	return;
+    var mac_splited = mac_address_org.split(':');
+    //Anti-array override
+    var maxLength = parseInt((mac_splited.length > 192)?"192":mac_splited.length);
+	for (var i=0; i< maxLength/6-1;i++){ 
+		for(var j = 0; j < 6; j++) 
+	    document.F1.elements[2 + i*7 + j].value = mac_splited[i*6+j];
+	}
+}  
+function txtHinw(feldname){
+  return "In Zeile '" + feldname + "' wurde eine falsche Eingabe vorgenommen. " + 
+         "\nDie korrekte Eingabe ist notwendig, um die MAC Filtertabelle verwenden zu können.";
+}
+
+function i_prfElem(nr){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+function stDis(state){
+  var col = "#FFFFFF";
+  if (state == true) col="#D4D0C8";
+
+  for(i=2;i<document.F1.elements.length;i++){
+    document.F1.elements[i].disabled = state;
+    if (document.F1.elements[i].value != "PC-Liste") document.F1.elements[i].style.backgroundColor = col;
+  }
+}
+
+function stPCList(){
+var Breite = screen.width;
+var Hoehe = screen.height;
+var Oben = (Hoehe-300) /2;
+var Links = (Breite-560) /2;
+
+var Optionen = "toolbar=no,location=no,Directory=no,Status=no,menubar=no,scrollbars=yes,resizable=no";
+    Optionen += ",width=560,height=300";
+    Optionen += ",top="+Oben;
+    Optionen += ",left="+Links;
+
+    window.open("pc_liste.htm","PCListe", Optionen);
+}
+//check the validate of Mac address;
+function check_Mac_Address()
+{
+	var count = 0;
+	var str_mac_address;
+	var newAddressLink="";
+	with (document.F1) {
+		for (var i=0;i<32;i++) {
+			var mac1 = parseInt(elements[2+i*7].value,16);
+			var mac2 = parseInt(elements[2+i*7+1].value,16);
+			var mac3 = parseInt(elements[2+i*7+2].value,16);
+			var mac4 = parseInt(elements[2+i*7+3].value,16);
+			var mac5 = parseInt(elements[2+i*7+4].value,16);
+			var mac6 = parseInt(elements[2+i*7+5].value,16);
+			//alert(mac1);
+			if ((mac1==0)&&(mac2==0)&&(mac3==0)&&(mac4==0)&&(mac5==0)&&(mac6==0)) {
+				alert(imperr); return -1;
+			}
+			if ((mac1==255)&&(mac2==255)&&(mac3==255)&&(mac4==255)&&(mac5==255)&&(mac6==255)) {
+				alert(imperr); return -1;
+			}
+
+			if (isBlank(elements[2+i*7].value) && isBlank(elements[2+i*7+1].value) &&
+				isBlank(elements[2+i*7+2].value) &&isBlank(elements[2+i*7+3].value)&& 
+				isBlank(elements[2+i*7+4].value) && isBlank(elements[2+i*7+5].value))
+				continue;
+
+			str_mac_address =  	elements[2+i*7].value   + ':' +
+								elements[2+i*7+1].value + ':' + 
+								elements[2+i*7+2].value + ':' +
+								elements[2+i*7+3].value + ':' + 
+								elements[2+i*7+4].value + ':' + 
+								elements[2+i*7+5].value;
+			if (isValidMacAddress(str_mac_address) == false ) {
+				alert("invalid mac address");
+				return -1;
+			}
+			mac_address[count] = str_mac_address;
+			newAddressLink = newAddressLink + str_mac_address +":";
+			count++;
+		}
+	}
+	var iChecked=0;
+	if (document.F1.R1[0].checked == true)
+		iChecked='0';
+	else
+		iChecked='1';
+	if (newAddressLink==mac_address_org && iChecked==IsEnable) {
+		count = 0;
+	}
+	return count;
+}
+
+function stOk(){
+
+	icount = check_Mac_Address(); 
+	if (document.F1.R1[0].checked == true) {
+	top.frames[0].mac = "0";
+	} else {
+		top.frames[0].mac = "1";
+	}
+
+	document.getElementById("c_verzoeg1").style.visibility='visible';
+	document.getElementById("c_verzoeg2").style.visibility='visible';
+  	document.getElementById("t_but1").style.visibility='hidden';
+  	document.getElementById("t_but3").style.visibility='hidden';
+  	document.getElementById("t_but4").style.visibility='hidden';
+	set_2_server();
+}
+
+function set_2_server()
+{
+    var loc = 'wlmacflt.cmd?action=update';
+    loc += ('&wlFltMacMode='+((document.F1.R1[0].checked == true)? "0":"1"));
+
+	for(var i = 0; i < icount; i++)
+		loc += '&wlFltMacAddr=' + mac_address[i];
+	var code = 'top.frames[2].location.assign("'+ loc +'")';
+    eval(code);
+}
+function stZrk(){
+  top.frames[2].location.href = "hcti_sicherheit.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 291px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / MAC Filtertabelle</DIV>
+<DIV id=c_titel>MAC Filtertabelle</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>&nbsp;&nbsp;&nbsp;Nr.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MAC-Adresse des Client PC</DIV>
+
+<DIV id=scroll>
+<SCRIPT language="JavaScript">
+<!--
+
+for (i=1;i<33;i++){
+  var divart = "c_std";
+  var endf = "";
+  if (i==32){
+    divart = "c_last";
+    endf = "</form>";
+  }
+  document.write(
+    '<DIV id=' + divart + '>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>' +
+            '<td width="30" align="center">' + i + '</td>' +
+            '<td width="12"></td>' +
+            '<td width="35"><input type="text" name="T' + i + '_1" size="2" maxlength="2">&nbsp;&nbsp;-</td>' +
+            '<td width="35"><input type="text" name="T' + i + '_2" size="2" maxlength="2">&nbsp;&nbsp;-</td>' +
+            '<td width="35"><input type="text" name="T' + i + '_3" size="2" maxlength="2">&nbsp;&nbsp;-</td>' +
+            '<td width="35"><input type="text" name="T' + i + '_4" size="2" maxlength="2">&nbsp;&nbsp;-</td>' +
+            '<td width="35"><input type="text" name="T' + i + '_5" size="2" maxlength="2">&nbsp;&nbsp;-</td>' +
+            '<td width="35"><input type="text" name="T' + i + '_6" size="2" maxlength="2"></td>' +
+            '<td><input type="button" name="B' + i + '" value="PC-Liste" onclick="stPCList()"></td>' +
+          endf +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+
+//-->
+</SCRIPT>
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>MAC Filtertabelle</h2>
+    <p>Legen Sie auf dieser Seite fest, welche Rechner (max. 32) einen kabellosen Zugang zu Ihrem lokalen
+       Netzwerk (LAN) erhalten sollen. Allen anderen wird der Zugang verwehrt. Die Zugangskontrolle erfolgt
+       über die MAC-Adresse der Rechner. Beispiel MAC:<br>
+       00-02-C3-88-33-AC</p>
+    <p><img border="0" src="pic_i_hinweis.gif" width="63" height="11"><br>
+       Die MAC-Adresse eines Rechners ermitteln Sie im Windows Betriebssystem durch folgende Prozedur:<br>
+       Start, Ausführen: cmd, OK</p>
+    <p>Es erscheint das DOS Eingabefenster, hier geben Sie ein:&nbsp; IPconfig /all<br>
+       Bestätigen mit der 'Eingabe Taste'.</p>
+    <p>Es erscheint u.a. der Eintrag 'Physikalische Adresse'. Diese Adresse ist die MAC-Adresse.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>MAC Filtertabelle</h2>
+    <p><b>Aus - Ein</b><br>
+       Damit die MAC-Adressen zugreifender Rechner überprüft werden, aktivieren Sie die Option 'Ein'.</p>
+    <p>Mit der Option 'Aus' werden die MAC-Adressen zugreifender Rechner nicht überprüft.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>MAC Filtertabelle</h2>
+    <p><b>Client PC: MAC-Adresse</b><br>
+       Geben Sie die MAC-Adressen der Rechner ein, denen Sie den Zugang gewähren wollen.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss die MAC Filtertabelle eingeschaltet sein.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

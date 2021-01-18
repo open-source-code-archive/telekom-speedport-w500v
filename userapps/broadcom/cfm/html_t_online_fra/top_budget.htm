@@ -1,0 +1,94 @@
+<html>
+
+<head>
+<title>Budget</title>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function rahmen(but,high){
+  var col;
+  if (high==1) col = '#E20074';
+  else col = '#666666';
+
+  document.getElementById(but).style.color = col;
+  document.getElementById(but).style.borderColor = col;
+}
+
+function fav_hinzu() {
+  window.external.AddFavorite('http://192.168.2.1/top_budget.htm', 'Router-Budget');
+}
+
+//-->
+</SCRIPT>
+
+<STYLE type="text/css">
+<!--
+
+td {
+  font-family: Arial, sans-serif; font-size: 12px; color: #666666;
+}
+
+#Aktualisieren {
+  height: 21px; line-height: 21px; width: 140px; background-color:#EEEEEE; text-align: center; cursor: hand;
+  font-size:14px; font-weight: bold;
+  border-color: #666666; border-width: 2px; border-style: solid;
+}
+
+#Favorit {
+  height: 21px; line-height: 21px; width: 220px; background-color:#EEEEEE; text-align: center; cursor: hand;
+  font-size:14px; font-weight: bold;
+  border-color: #666666; border-width: 2px; border-style: solid;
+}
+
+//-->
+</STYLE>
+
+</head>
+
+<body>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" height="100%">
+  <tr>
+    <td valign="middle" align="center">
+      <table border="1" cellpadding="0" cellspacing="0" height="480" width="640" background="pic_welcome.jpg">
+        <tr>
+          <td valign="top">
+
+            <img border="0" src="pic_welcome_b.gif">
+            <DIV id=c_txt>
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="150"></td>
+                <td>
+
+                    <p style="font-size: 18px;"><br>
+                    <b>Informationen zum konfigurierten Budget</b></p>
+
+                    <p><img border="0" src="pic_budget.gif"></p>
+
+                    <table>
+                      <tr>
+                        <td width="172"><DIV id=Aktualisieren onclick="JavaScript:location.reload()" onmouseover=rahmen("Aktualisieren",1) onmouseout=rahmen("Aktualisieren",0)>&gt;&nbsp;Aktualisieren&nbsp;&lt;</DIV></td>
+                        <td><DIV id=Favorit onclick="fav_hinzu()" onmouseover=rahmen("Favorit",1) onmouseout=rahmen("Favorit",0)>&gt;&nbsp;Zu Favoriten hinzufügen&nbsp;&lt;</DIV></td>
+                      </tr>
+                    </table>
+
+
+
+
+                </td>
+              </tr>
+            </table>
+            </DIV>
+
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+</body>
+
+</html>

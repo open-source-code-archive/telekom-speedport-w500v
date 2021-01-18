@@ -1,0 +1,155 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitSystempasswort</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+var loc = 'hcti_sicherheit_pwd.cgi?';
+
+function stApply(){
+	var code = 'location.assign("' + loc + '")';
+	eval(code);
+}
+
+function stOk(){
+    if(document.F1.P1.value == "" && document.F1.P2.value == "" && document.F1.P3.value == ""){
+      alert("Bitte geben Sie Ihr altes und neues Passwort ein.");
+      document.F1.P1.focus();
+      return false;
+    } else {
+        if (document.F1.P2.value=="" || document.F1.P3.value=="" || document.F1.P2.value!=document.F1.P3.value){
+          alert("Ungültiges neues Passwort! Bitte versuchen Sie es erneut.");
+          document.F1.P2.value = "";
+          document.F1.P3.value = "";
+	  document.F1.P2.focus();
+	  return false;
+        } else {
+		if(isValidPwd(document.F1.P2.value) == false){
+		    alert(alertpwd);
+		    document.F1.P2.value = "";
+		    document.F1.P3.value = "";
+		    document.F1.P2.focus();
+		    return false;
+		}
+		loc += 'sysAuthPassword=' + encodeUrl(document.F1.P1.value);
+		loc += '&sysNewPassword=' + encodeUrl(document.F1.P2.value);
+		document.getElementById("c_verzoeg1").style.visibility='visible';
+		document.getElementById("c_verzoeg2").style.visibility='visible';
+	 	document.getElementById("t_but1").style.visibility='hidden';
+                document.getElementById("t_but3").style.visibility='hidden';
+                document.getElementById("t_but4").style.visibility='hidden';
+		setTimeout("stApply()", 1000);
+	}
+    }    
+}
+ 
+function stZrk(){
+  top.frames[2].location.href = "hcti_sicherheit.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / System-Passwort</DIV>
+<DIV id=c_titel>Passwort Änderung</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="180">Altes Passwort:</td>
+            <td><input type="password" class="stylepwd" name="P1" size="12" maxlength="12"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="180">Neues Passwort:</td>
+            <td><input type="password" class="stylepwd" name="P2" size="12" maxlength="12"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="180">Neues Passwort wiederholen:</td>
+            <td><input type="password" class="stylepwd" name="P3" size="12" maxlength="12"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Passwort Änderung</h2>
+    <p>Damit die Router-Konfiguration vor unberechtigtem Zugriff geschützt ist,
+    muss das im Auslieferungszustand eingetragene Passwort 0000 geändert werden.</p>
+    <p>Bewahren Sie das neue Passwort an einer sicheren Stelle vor Zugriff von Unbefugten auf.</p>
+
+    <p><img border="0" src="pic_i_hinweis.gif"><br>    
+    Zu Ihrer Sicherheit wird das Konfigurationsprogramm automatisch beendet,
+    nachdem es mehr als 10 Minuten nicht verwendet wurde.</p>
+
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Passwort Änderung</h2>
+    <p><b>Altes Passwort</b><br>
+    Tragen Sie hier Ihr bisheriges Passwort ein. Im Auslieferungszustand ist das Passwort <b>0000</b> eingetragen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Passwort Änderung</h2>
+    <p><b>Neues Passwort</b><br>
+    Tragen Sie hier Ihr neues Passwort ein und wiederholen Sie die Eingabe im Feld darunter.</p>
+    <p>Das Passwort kann aus<br>
+    4 bis 12 alphanumerischen Zeichen (A-Z, a-z, 0-9) bestehen, Groß-/Kleinschreibung wird berücksichtigt.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Passwort Änderung</h2>
+    <p><b>Neues Passwort wiederholen</b><br>
+    Wiederholen Sie die Eingabe des neuen Passwortes.</p>
+    <p>Das Passwort kann aus<br>
+    4 bis 12 alphanumerischen Zeichen (A-Z, a-z, 0-9) bestehen, Groß-/Kleinschreibung wird berücksichtigt.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

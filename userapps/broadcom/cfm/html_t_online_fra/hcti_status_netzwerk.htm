@@ -1,0 +1,210 @@
+<HTML>
+<HEAD>
+	<TITLE>StatusNetzwerk</TITLE>
+	<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+	<SCRIPT language="JavaScript">
+	<!--
+	var internet_status = '<%ejGetOther(sysInfo, status)%>';
+	var dhcpEnbl = '<%ejGet(enblDhcpSrv)%>';
+	function chk(){
+		if (internet_status == 'Verbunden' ) {
+			document.getElementById("c_um1").style.visibility='hidden';
+			document.getElementById("c_um2").style.visibility='visible';
+		 } else {
+			document.getElementById("c_um1").style.visibility='visible';
+			document.getElementById("c_um2").style.visibility='hidden';
+		 
+		 }
+	}
+	//-->
+</SCRIPT>
+	<LINK rel="stylesheet" href="style.css" type="text/css">
+	<STYLE type="text/css">
+	<!--
+	#c_um1 {
+	
+	  POSITION: absolute; left: 15px; top: 237px; width: 402px; background-color: #F0F0F0;
+	
+	  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+	
+	}
+	#c_um2 {
+	  POSITION: absolute; left: 15px; top: 237px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+	  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+	}
+	//-->
+	</STYLE>
+</HEAD>
+	<BODY onload=chk()>
+	<DIV id=c_Frame>
+		<DIV id=c_border>
+			<DIV id=c_pfad>
+				Status / Netzwerk
+			</DIV>
+			<DIV id=c_titel>
+				LAN
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Routername:</td>
+						<td>
+							<%ejGet(routerName)%>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">IP-Adresse Router:</td>
+						<td>
+							<%ejGet(ethIpAddress)%>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Subnetzmaske:</td>
+						<td>
+							<%ejGet(ethSubnetMask)%>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">MAC-Adresse LAN:</td>
+						<td>
+							<%ejGet(ethHwAddr)%>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_statlast>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">DHCP-Server:</td>
+						<td>
+							<SCRIPT language="JavaScript">
+								document.write((dhcpEnbl=='1')?"Ein":"Aus")
+							</SCRIPT>
+						</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_leer>
+			</DIV>
+			<DIV id=c_titel>
+				Internetverbindung
+			</DIV>
+		</DIV>
+
+		<DIV id=c_um1>
+			<DIV id=c_statlast>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Internet</td>
+						<td>
+							Verbindung getrennt
+						</td>
+					</tr>
+				</table>
+			</DIV>
+
+			<DIV id=c_leer>
+			</DIV>
+			<DIV id=c_foot>
+			</DIV>
+		</DIV>
+		<DIV id=c_um2>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Internet</td>
+						<td>Verbindung aktiv</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Zugeteilte IP-Adresse</td>
+						<td><%ejGet(wanIpAddress)%></td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Subnetzmaske</td>
+						<td>255.255.255.255</td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Gateway-Adresse</td>
+						<td><%ejGetOther(sysInfo, dfltGw)%></td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Primärer DNS-Server</td>
+						<td><%ejGetOther(sysInfo, dns)%></td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_stat>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">Sekundärer DNS-Server</td>
+						<td><%ejGetOther(sysInfo, dns2)%></td>
+					</tr>
+				</table>
+			</DIV>
+			<DIV id=c_statlast>
+				<table border="0" cellpadding="4" cellspacing="0">
+					<tr>
+						<td width="200">MAC-Adresse WAN:</td>
+						<td><%ejGet(wanHwAddr)%></td>
+					</tr>
+				</table>
+			</DIV>
+
+			<DIV id=c_leer>
+			</DIV>
+			<DIV id=c_foot>
+			</DIV>
+		</DIV>
+	</DIV>
+
+	<DIV id=t_Frame>
+		<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>
+			&lt;&lt;&nbsp;&nbsp;&lt;&lt;
+		</DIV>
+		<DIV id=t_but2 onclick='JavaScript:location.reload()' onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>Aktualisieren</DIV>
+		<DIV id=t_but3 onclick=status() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>
+			Zur&uuml;ck &lt;&lt;
+		</DIV>
+	</DIV>
+
+	<DIV id=i_Frame>
+		<DIV id=i_content>
+			<h2>Netzwerk</h2>
+			<p>
+			Hier sehen Sie Informationen über Ihr LAN.
+			</p>
+			<p>
+			Außerdem wird Ihnen auf dieser Seite der Status der Internetverbindung angezeigt.
+			</p>
+		</DIV>
+	</DIV>
+	</BODY>
+</HTML>

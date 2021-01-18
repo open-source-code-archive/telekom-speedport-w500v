@@ -1,0 +1,741 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent6</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var ksize;
+
+function chk(){
+  if (top.frames[0].assencrypt == '1') {
+  	document.UM1.R11[top.frames[0].tmpasswepkeylength].checked = true;
+  	stKeyLen(top.frames[0].tmpasswepkeylength);
+  	document.UM1.R12[top.frames[0].tmpasswepkeytyp].checked = true;
+  	stKeyTyp(top.frames[0].tmpasswepkeytyp);
+  	document.UM1.T11.value = top.frames[0].tmpasswepkey1;
+  	document.UM1.T12.value = top.frames[0].tmpasswepkey2;
+  	document.UM1.T13.value = top.frames[0].tmpasswepkey3;
+  	document.UM1.T14.value = top.frames[0].tmpasswepkey4;
+  	document.UM1.D11.selectedIndex = top.frames[0].tmpasswepkeyindex;
+  }
+  if(top.frames[0].assencrypt == '2')
+      document.UM2.T21.value = top.frames[0].tmpasswpapsk;
+  else
+      document.UM2.T21.value = top.frames[0].tmpmix_asswpapsk;
+  stAkt();
+  if (top.frames[0].fromAhead == true ){
+	top.frames[0].fromAhead = false ;
+	this.location.href = "importieren.bin" ;
+  }
+}
+
+
+function stAkt(){
+  document.getElementById("c_um0").style.visibility='hidden';
+  document.getElementById("c_um1").style.visibility='hidden';
+  document.getElementById("c_um2").style.visibility='hidden';
+  document.getElementById("c_um3").style.visibility='hidden';
+
+  var index=top.frames[0].assencrypt;
+  if(index < 2)
+  	document.getElementById("c_um" + index).style.visibility='visible';
+  else if(index < 4)
+  	document.getElementById("c_um2").style.visibility='visible';
+  else
+  	document.getElementById("c_um3").style.visibility='visible';
+
+}
+
+function txtHinw(feldname){
+  return "Im Feld '" + feldname + "' wurde eine falsche Eingabe bzw. keine Eingabe vorgenommen. " + 
+         "\nDie korrekte Eingabe ist notwendig, um die Verschlüsselung aktivieren zu können.";
+}
+
+function txtHex(feldname){
+  return "Im Feld '" + feldname + "' sind momentan nur hexadezimale Zeichen (0-9, A-F) erlaubt," + 
+         "\nes wurden aber andere Zeichen eingegeben.";
+}
+
+function stKeyLen(klen){
+  if(document.UM1.R12[0].checked==true){ //Wenn ASCII
+    if(klen==0) ksize = 5;
+    else ksize = 13;
+  }
+  else{                                  //Wenn HEX
+    if(klen==0) ksize = 10;
+    else ksize = 26;
+  }
+  stKeyUm();
+}
+
+function stKeyTyp(ktyp){
+  if(document.UM1.R11[0].checked==true){ //Wenn 64Bit
+    if(ktyp==0) ksize = 5;
+    else ksize = 10;
+  }
+  else{
+    if(ktyp==0) ksize = 13;              //Wenn 128Bit
+    else ksize = 26;
+  }
+  stKeyUm();
+}
+
+function stKeyUm(){
+  document.UM1.T11.value="";
+  document.UM1.T12.value="";
+  document.UM1.T13.value="";
+  document.UM1.T14.value="";
+
+  document.UM1.T11.size=ksize;
+  document.UM1.T12.size=ksize;
+  document.UM1.T13.size=ksize;
+  document.UM1.T14.size=ksize;
+  document.UM1.T11.maxLength=ksize;
+  document.UM1.T12.maxLength=ksize;
+  document.UM1.T13.maxLength=ksize;
+  document.UM1.T14.maxLength=ksize;
+}
+
+function i_prfElem(){
+  switch(ksize){
+    case 5:
+      i_showElem(13);
+      break;
+    case 13:
+      i_showElem(14);
+      break;
+    case 10:
+      i_showElem(15);
+      break;
+    case 26:
+      i_showElem(16);
+      break;
+  }
+}
+
+function stWS(){
+	var authMode = new Array("open", "open", "psk2", "psk2mix", "wpa2", "wpa2mix") ;
+	var loc = "asswlsecurity.asswl?" ;
+	
+	loc += 'assWlSsid=' + top.frames[0].assssid ;
+	loc += '&assWlHide=' + top.frames[0].assssidhide ;
+	loc += '&assWlAuthMode=' + authMode[top.frames[0].assencrypt] ;
+
+  	switch(top.frames[0].assencrypt){
+    	case 0:
+		loc += '&assWlWep=disabled' ;
+		loc += '&assWlKeyMode=' + top.frames[0].asswepkeytyp ;	//ASCII or HEX
+		loc += '&assWlKey0=' + top.frames[0].asswepkey1 ;
+		loc += '&assWlKey1=' + top.frames[0].asswepkey2 ;
+		loc += '&assWlKey2=' + top.frames[0].asswepkey3 ;
+		loc += '&assWlKey3=' + top.frames[0].asswepkey4 ;
+        	loc += '&assWlKeyBit=' + top.frames[0].asswepkeylength ;	//64Bit or 128Bit
+		loc += '&assWlKeyIndex=' + top.frames[0].asswepkeyindex ;	// key index
+		loc += '&assWlWpaPsk=' + top.frames[0].asswpapsk ;
+		loc += '&assMix_wlWpaPsk=' + top.frames[0].mix_asswpapsk ;
+      		break;
+
+    	case 1:
+		if (ksize == 5 || ksize == 13)
+			loc += '&assWlKeyMode=0' ;
+		else
+			loc += '&assWlKeyMode=1' ;
+      		if (document.UM1.T11.value.length == ksize){
+        		if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T11.value)){
+          			alert(txtHex("Schlüssel 1"));
+	  			return false;
+        		}
+		}
+      		else if (document.UM1.T11.value.length > 0 || (document.UM1.T11.value.length == 0 && document.UM1.D11.selectedIndex == 0)){
+        		alert(txtHinw("Schlüssel 1"));
+			return false;
+      		}
+
+      		if (document.UM1.T12.value.length == ksize){
+        		if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T12.value)){
+          			alert(txtHex("Schlüssel 2"));
+	  			return false;
+        		}
+		}
+      		else if (document.UM1.T12.value.length > 0 || (document.UM1.T12.value.length == 0 && document.UM1.D11.selectedIndex == 1)){
+        		alert(txtHinw("Schlüssel 2"));
+			return false;
+      		}
+
+      		if (document.UM1.T13.value.length == ksize){
+        		if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T13.value)){
+          			alert(txtHex("Schlüssel 3"));
+	  			return false;
+        		}
+		}
+      		else if (document.UM1.T13.value.length > 0 || (document.UM1.T13.value.length == 0 && document.UM1.D11.selectedIndex == 2)){
+        		alert(txtHinw("Schlüssel 3"));
+			return false;
+      		}
+
+      		if (document.UM1.T14.value.length == ksize){
+        		if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T14.value)){
+          			alert(txtHex("Schlüssel 4"));
+	  			return false;
+        		}
+        		}
+      		else if (document.UM1.T14.value.length > 0 || (document.UM1.T14.value.length == 0 && document.UM1.D11.selectedIndex == 3)){
+        		alert(txtHinw("Schlüssel 4"));
+			return false;
+      		}
+		top.frames[0].tmpasswepkey1 = document.UM1.T11.value;
+		top.frames[0].tmpasswepkey2 = document.UM1.T12.value; 
+		top.frames[0].tmpasswepkey3 = document.UM1.T13.value;
+       		top.frames[0].tmpasswepkey4 = document.UM1.T14.value;
+
+		loc += '&assWlKey0=' + document.UM1.T11.value ;
+		loc += '&assWlKey1=' + document.UM1.T12.value ;
+		loc += '&assWlKey2=' + document.UM1.T13.value ;
+		loc += '&assWlKey3=' + document.UM1.T14.value ;
+
+      		//clear the asswepkeys if not set them in this page
+      		if(document.UM1.T11.value == "")
+      			top.frames[0].tmpasswepkey1="";
+      		if(document.UM1.T12.value == "")
+			top.frames[0].tmpasswepkey2="";
+      		if(document.UM1.T13.value == "")
+			top.frames[0].tmpasswepkey3="";
+      		if(document.UM1.T14.value == "")
+			top.frames[0].tmpasswepkey4="";
+
+      		if (document.UM1.R11[0].checked==true){
+        		top.frames[0].tmpasswepkeylength = 0;
+      		} else {
+        		top.frames[0].tmpasswepkeylength = 1;
+      		}
+      		if (document.UM1.R12[0].checked==true){
+        		top.frames[0].tmpasswepkeytyp = 0;
+      		} else {
+        		top.frames[0].tmpasswepkeytyp = 1;
+		}
+		top.frames[0].tmpasswepkeyindex = document.UM1.D11.selectedIndex;
+
+
+      		if (document.UM1.R11[0].checked==true){
+			loc += '&assWlKeyBit=0' ;
+      		} else {
+			loc += '&assWlKeyBit=1' ;
+      		}
+      		loc += '&assWlKeyIndex=' + document.UM1.D11.selectedIndex; 
+		loc += '&assWlWep=enabled' ;
+		loc += '&assWlWpaPsk=' + top.frames[0].asswpapsk ;
+		loc += '&assMix_wlWpaPsk=' + top.frames[0].mix_asswpapsk ;
+      
+      		break;
+
+    	case 2:
+		loc += '&assWlWep=' + top.frames[0].asswep ;	//wep Enable or Disable
+		loc += '&assWlKeyMode=' + top.frames[0].asswepkeytyp ;	//ASCII or HEX
+		loc += '&assWlKey0=' + top.frames[0].asswepkey1 ;
+		loc += '&assWlKey1=' + top.frames[0].asswepkey2 ;
+		loc += '&assWlKey2=' + top.frames[0].asswepkey3 ;
+		loc += '&assWlKey3=' + top.frames[0].asswepkey4 ;
+        	loc += '&assWlKeyBit=' + top.frames[0].asswepkeylength ;	//64Bit or 128Bit
+		loc += '&assWlKeyIndex=' + top.frames[0].asswepkeyindex ;	// key index
+		if (document.UM2.T21.value.length < 8 || isInvalidString(document.UM2.T21.value)){
+        		alert(txtHinw("Pre-shared key (PSK)"));
+			return false;
+      		}
+		
+		top.frames[0].tmpasswpapsk = document.UM2.T21.value;
+		loc += '&assWlWpaPsk=' + document.UM2.T21.value ;
+		loc += '&assMix_wlWpaPsk=' + top.frames[0].mix_asswpapsk ;
+      		break;
+
+    	case 3:
+		loc += '&assWlWep=' + top.frames[0].asswep ;	//wep Enable or Disable
+		loc += '&assWlKeyMode=' + top.frames[0].asswepkeytyp ;	//ASCII or HEX
+		loc += '&assWlKey0=' + top.frames[0].asswepkey1 ;
+		loc += '&assWlKey1=' + top.frames[0].asswepkey2 ;
+		loc += '&assWlKey2=' + top.frames[0].asswepkey3 ;
+		loc += '&assWlKey3=' + top.frames[0].asswepkey4 ;
+        	loc += '&assWlKeyBit=' + top.frames[0].asswepkeylength ;	//64Bit or 128Bit
+		loc += '&assWlKeyIndex=' + top.frames[0].asswepkeyindex ;	// key index
+		loc += '&assWlWpaPsk=' + top.frames[0].asswpapsk ;
+		if (document.UM2.T21.value.length < 8 || isInvalidString(document.UM2.T21.value)){
+        		alert(txtHinw("Pre-shared key (PSK)"));
+			return false;
+      		}
+      		top.frames[0].tmpmix_asswpapsk = document.UM2.T21.value;
+		loc += '&assMix_wlWpaPsk=' + document.UM2.T21.value ;
+      		break;
+
+    	case 4:
+      		break;
+
+    	case 5:
+      		break;
+	}
+	loc += '&fromAss=1' ; 
+	top.frames[0].assencsave = true;
+	top.frames[0].fromAhead = true ;
+	this.location.href = loc ;
+}
+
+
+function stOk(){
+  switch(top.frames[0].assencrypt){
+    case 0:
+      break;
+
+    case 1:
+      if (document.UM1.T11.value.length == ksize){
+        if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T11.value)){
+          alert(txtHex("Schlüssel 1"));
+	  return false;
+        }
+      }
+      else if (document.UM1.T11.value.length > 0 || (document.UM1.T11.value.length == 0 && document.UM1.D11.selectedIndex == 0)){
+        alert(txtHinw("Schlüssel 1"));
+	return false;
+      }
+
+      if (document.UM1.T12.value.length == ksize){
+        if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T12.value)){
+          alert(txtHex("Schlüssel 2"));
+	  return false;
+        }
+      }
+      else if (document.UM1.T12.value.length > 0 || (document.UM1.T12.value.length == 0 && document.UM1.D11.selectedIndex == 1)){
+        alert(txtHinw("Schlüssel 2"));
+	return false;
+      }
+
+      if (document.UM1.T13.value.length == ksize){
+        if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T13.value)){
+          alert(txtHex("Schlüssel 3"));
+	  return false;
+        }
+      }
+      else if (document.UM1.T13.value.length > 0 || (document.UM1.T13.value.length == 0 && document.UM1.D11.selectedIndex == 2)){
+        alert(txtHinw("Schlüssel 3"));
+	return false;
+      }
+
+      if (document.UM1.T14.value.length == ksize){
+        if (document.UM1.R12[0].checked==false && isNHex(document.UM1.T14.value)){
+          alert(txtHex("Schlüssel 4"));
+	  return false;
+        }
+      }
+      else if (document.UM1.T14.value.length > 0 || (document.UM1.T14.value.length == 0 && document.UM1.D11.selectedIndex == 3)){
+        alert(txtHinw("Schlüssel 4"));
+	return false;
+      }
+
+      top.frames[0].asswepkey1 = document.UM1.T11.value;
+      top.frames[0].asswepkey2 = document.UM1.T12.value;
+      top.frames[0].asswepkey3 = document.UM1.T13.value;
+      top.frames[0].asswepkey4 = document.UM1.T14.value;
+
+      if (document.UM1.R11[0].checked==true){
+        top.frames[0].asswepkeylength = 0;
+      }
+      else{
+        top.frames[0].asswepkeylength = 1;
+      }
+      if (document.UM1.R12[0].checked==true){
+        top.frames[0].asswepkeytyp = 0;
+      }
+      else{
+        top.frames[0].asswepkeytyp = 1;
+      }
+      top.frames[0].asswepkeyindex = document.UM1.D11.selectedIndex; 
+      
+      //clear the asswepkeys if not set them in this page
+      if(document.UM1.T11.value == "")
+      	top.frames[0].asswepkey1="";
+      if(document.UM1.T12.value == "")
+	top.frames[0].asswepkey2="";
+      if(document.UM1.T13.value == "")
+	top.frames[0].asswepkey3="";
+      if(document.UM1.T14.value == "")
+	top.frames[0].asswepkey4="";
+   
+      break;
+
+    case 2:
+      if (document.UM2.T21.value.length < 8){
+        alert(txtHinw("Pre-shared key (PSK)"));
+	return false;
+      }
+      if (document.UM2.T21.value.indexOf(' ') != -1) {
+       		alert(txtHinw("Pre-shared key (PSK)"));
+       		return ;
+      }
+
+      top.frames[0].asswpapsk = document.UM2.T21.value;
+      break;
+
+    case 3:
+      if (document.UM2.T21.value.length < 8){
+        alert(txtHinw("Pre-shared key (PSK)"));
+	return false;
+      }
+      if (document.UM2.T21.value.indexOf(' ') != -1) {
+       		alert(txtHinw("Pre-shared key (PSK)"));
+       		return ;
+      }
+
+      top.frames[0].mix_asswpapsk = document.UM2.T21.value;
+      break;
+
+    case 4:
+      break;
+
+    case 5:
+      break;
+
+  }
+  top.frames[2].location.href = "hcti_assistent_7.htm";
+}
+
+function stZrk(){
+  top.frames[0].assFromBack = 1;
+  top.frames[2].location.href = "hcti_assistent_5.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" type="text/css" href="style.css">
+
+<STYLE type="text/css">
+<!--
+
+#c_um0 {
+  POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um1 {
+  POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um2 {
+  POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um3 {
+  POSITION: absolute; left: 15px; top: 37px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+
+#i_content11 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content12 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content13 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content14 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content15 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content16 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content17 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+#i_content22 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content23 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+#i_content31 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 6 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+      
+</DIV>
+
+<DIV id=c_um0>
+<DIV id=c_titel>Verschlüsselung
+                <SCRIPT language="JavaScript">
+                <!--                    
+                  document.write(top.frames[0].encryptname[top.frames[0].assencrypt]);
+                //-->
+                </SCRIPT>
+</DIV>
+<DIV id=c_text>
+  <p>Die Verschlüsselung wurde von Ihnen nicht aktiviert. Dies kann ein erhebliches Sicherheitsrisiko bedeuten.</p>
+  <p>Um die Verschlüsselung jetzt zu aktivieren, klicken Sie auf 'Zurück'.</p>
+  <p>Um Ihre Wireless LAN-Verbindung ohne Verschlüsselung zu verwenden, klicken Sie auf 'OK & Weiter'.</p>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um1>
+<DIV id=c_titel>Verschlüsselung
+                <SCRIPT language="JavaScript">
+                <!--                    
+                  document.write(top.frames[0].encryptname[top.frames[0].assencrypt]);
+                //-->
+                </SCRIPT>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(11) onmouseout=i_showElem(0)>
+          <form name="UM1">
+            <td width="136">Schlüssellänge:</td>
+            <td width="20"><input type="radio" name="R11" value="V1" onclick="stKeyLen(0)"></td>
+            <td width="60">64-bit</td>
+            <td width="20"><input type="radio" name="R11" value="V2" onclick="stKeyLen(1)"></td>
+            <td width="60">128-bit</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(12) onmouseout=i_showElem(0)>
+            <td width="136">Schlüsseltyp:</td>
+            <td width="20"><input type="radio" name="R12" value="V1" onclick="stKeyTyp(0)"></td>
+            <td width="60">ASCII</td>
+            <td width="20"><input type="radio" name="R12" value="V2" onclick="stKeyTyp(1)"></td>
+            <td width="60">HEX</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 1:</td>
+            <td width="232"><input type="text" name="T11" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 2:</td>
+            <td width="232"><input type="text" name="T12" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 3:</td>
+            <td width="232"><input type="text" name="T13" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 4:</td>
+            <td width="232"><input type="text" name="T14" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(17) onmouseout=i_showElem(0)>
+            <td width="140">Standard Schlüssel:</td>
+            <td width="230">
+              <select size="1" name="D11">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_last></DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(31) onmouseout=i_showElem(0)>
+			<td><input type="button" name="B11" class="stylebut" style="width:290px" onclick="stWS()" value="Wireless LAN Sicherheitseinstellungen speichern"></td>
+          </form>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um2>
+<DIV id=c_titel>Verschlüsselung
+                <SCRIPT language="JavaScript">
+                <!--                    
+                  document.write(top.frames[0].encryptname[top.frames[0].assencrypt]);
+                //-->
+                </SCRIPT>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+		<SCRIPT language="JavaScript">
+		<!--                    
+        document.write('<tr onmouseover=i_showElem(2' + top.frames[0].assencrypt + ') onmouseout=i_showElem(0)>');
+		//-->
+		</SCRIPT>
+          <form name="UM2">
+            <td width="140">Pre-shared key (PSK):</td>
+            <td><input type="text" name="T21" size="26" maxlength="63"></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_last></DIV>
+<DIV id=c_last>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(31) onmouseout=i_showElem(0)>
+			<td><input type="button" name="B21" class="stylebut" style="width:290px" onclick="stWS()" value="Wireless LAN Sicherheitseinstellungen speichern"></td>
+          </form>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um3>
+<DIV id=c_titel>Verschlüsselung
+                <SCRIPT language="JavaScript">
+                <!--                    
+                  document.write(top.frames[0].encryptname[top.frames[0].assencrypt]);
+                //-->
+                </SCRIPT>
+</DIV>
+<DIV id=c_text>
+  <p>Die Verschlüsselung mit RADIUS Server ist bereits aktiviert.<br>
+     Diese Art der Verschlüsselung kann nicht mit dem Assistent ver-<br>
+     ändert werden.</p>
+  <p>Wenn Sie für diese Verschlüsselungsart Änderungen vornehmen möchten, müssen Sie dies nach Abschluss des Assistenten unter<br>
+     dem Menüpunkt 'Konfiguration - Sicherheit - Verschlüsselung' tun.</p>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+</DIV>
+
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Verschlüsselung</h2>
+    <p>Verwenden Sie bei allen PCs, die über die Funkverbindung (WLAN) angeschaltet werden, exakt die gleichen Sicherheitseinstellungen.</p>
+    <p>Verwenden Sie zum Einschalten der Verschlüsselung möglichst einen PC, der per Kabel am Router angeschaltet ist.
+    Nur so ist gewährleistet, dass die Konfiguration funktionssicher durchgeführt werden kann.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+
+
+  <DIV id=i_content11>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssellänge</b><br>
+    Entscheidend f&uuml;r die Sicherheit ist die L&auml;nge des eingesetzten Schl&uuml;ssels.
+    Sie sollten daher die WEP-Schl&uuml;ssell&auml;nge auf 128-bit setzen. Eine Schl&uuml;ssel- l&auml;nge
+    von 64-bit sollten Sie nur in Ausnahmef&auml;llen verwenden, beispielsweise aus Gr&uuml;nden der
+    Kompatibilit&auml;t zu &auml;lteren Ger&auml;ten.</p>
+  </DIV>
+
+  <DIV id=i_content12>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;sseltyp</b><br>
+    Sie können den WEP Schlüssel entweder in beliebigen Zeichen (ASCII) oder hexadezimalen Zeichen (0-9, A-F) eingeben.</p>
+    <p>Bei der Verwendung von ASCII-Zeichen haben Sie den Vorteil, dass Sie weniger Zeichen eintragen müssen.</p>
+  </DIV>
+  
+  <DIV id=i_content13>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+    Um den Schl&uuml;ssel festzulegen, ist die Eingabe von 5 beliebigen Zeichen (ASCII) erforderlich. 
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+    Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll.</p>
+  </DIV>
+  
+  <DIV id=i_content14>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+    Um den Schl&uuml;ssel festzulegen, ist die Eingabe von 13 beliebi- gen Zeichen (ASCII) erforderlich. 
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+    Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll.</p>
+  </DIV>
+  
+  <DIV id=i_content15>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+    Um den Schl&uuml;ssel festzulegen, ist die Eingabe von 10 hexa- dezimalen Zeichen (0-9, A-F) erforderlich.</p>
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+    Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll.</p>
+  </DIV>
+  
+  <DIV id=i_content16>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+    Um den Schl&uuml;ssel festzulegen, ist die Eingabe von 26 hexa- dezimalen Zeichen (0-9, A-F) erforderlich.</p>
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+    Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll.</p>
+  </DIV>
+  
+  <DIV id=i_content17>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Standard Schl&uuml;ssel</b><br>
+    Wählen Sie durch Auswahl des Standard Schl&uuml;ssels den Schl&uuml;ssel, den Sie aktuell verwenden wollen.
+    Beachten Sie, dass auch diese Einstellung an allen PCs, die über eine Funkverbindung am Router angeschaltet werden,
+	gleich sein muss!</p>
+  </DIV>
+
+  <DIV id=i_content22>
+    <h2>Verschlüsselung WPA2 mit Pre-shared key</h2>
+    <p><b>Pre-shared key (PSK)</b><br>    
+    Geben Sie einen Pre-shared key ein. Dieser muss zwischen 8 und 63 Zeichen lang sein und darf keine Leerzeichen enthalten.</p>
+  </DIV>
+  
+  <DIV id=i_content23>
+    <h2>Verschlüsselung WPA / WPA2 mit Pre-shared key</h2>
+    <p><b>Pre-shared key (PSK)</b><br>    
+    Geben Sie einen Pre-shared key ein. Dieser muss zwischen 8 und 63 Zeichen lang sein und darf keine Leerzeichen enthalten.</p>
+  </DIV>
+  
+  <DIV id=i_content31>
+    <h2>Wireless LAN Sicherheits- einstellungen speichern</h2>
+	<p>Wir empfehlen Ihnen, die Daten für die Sicherheitseinstellungen jetzt auf einem Datenträger<br>(USB Stick oder Diskette)
+	zu speichern.</p>
+	<p>Somit können Sie die Sicher- heitseinstellungen für die Konfiguration von anderen WLAN Clients verwenden.</p>
+	<p>Informationen über die weitere Vorgehensweise erhalten Sie dann nach Abschluss des Assistenten.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

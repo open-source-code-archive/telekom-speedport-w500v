@@ -1,0 +1,190 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Status</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onselectstart="return false">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Status</DIV>
+<DIV id=c_titel>Status</DIV>
+
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_status_sicherheit.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Sicherheit</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_status_netzwerk.htm" onmouseover=i_showElem(2) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Netzwerk</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="budget.cmd?action=status" onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Budget</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<SCRIPT language="JavaScript">
+<!--
+if (top.frames[0].wlanfkt == true){
+	document.write(
+	'<DIV id=c_link>' +
+      '<table border="0" cellpadding="4" cellspacing="0">' +
+        '<tr>' +
+          '<td width="200"><a href="hcti_status_wireless.htm" onmouseover=i_showElem(4) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Wireless LAN (WLAN)</a></td>' +
+          '<td></td>' +
+        '</tr>' +
+      '</table>' +
+	'</DIV>');
+}
+//-->
+</SCRIPT>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_status_information.htm" onmouseover=i_showElem(5) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Weitere Informationen</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Log-Dateien</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_status_logsich.htm" onmouseover=i_showElem(6) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Logbuch Sicherheit</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_status_logdhcp.htm" onmouseover=i_showElem(7) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Logbuch DHCP-Server</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Telefonie-Listen</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="voipcfg.cmd?action=inlog" onmouseover=i_showElem(8) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Anruferliste</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="voipcfg.cmd?action=outlog" onmouseover=i_showElem(9) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Gesprächsdaten</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=startseite() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Status</h2>
+    <p>Sie können das Statusfenster verwenden, um den Status der Verbindung der WAN/LAN Schnittstellen des
+    Gateways zu überwachen, die Firmware und Hardware Versionsnummer zu prüfen, eventuelle unbefugte Versuche
+    des Zugangs zu Ihrem Netzwerk zu erkennen und ebenso, um Informationen über alle Rechner (Clients) zu
+    erhalten, die mit Ihrem Netzwerk verbunden sind.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+   <h2>Status</h2>
+    <p><b>Sicherheit</b><br>
+    Es werden alle aktuell eingestellten Sicherheitsmaßnahmen für Ihr Netzwerk angezeigt.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Status</h2>
+    <p><b>Netzwerk</b><br>
+    Infos über die Internetverbindung, das LAN und den DHCP-Server.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Status</h2>
+    <p><b>Budget</b><br>
+    Infos über das Budget.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+     <h2>Status</h2>
+    <p><b>Wireless LAN (WLAN)</b><br>
+    Es werden alle aktuellen Einstellungen des Wireless LAN angezeigt.</p>
+  </DIV>
+  
+  <DIV id=i_content5>
+    <h2>Status</h2>
+    <p><b>Weitere Informationen</b><br>
+    Infos über Datum/Uhrzeit und Versionsnummern.</p>
+  </DIV>
+  
+  <DIV id=i_content6>
+    <h2>Status</h2>
+    <p><b>Logbuch Sicherheit</b><br>
+    Es werden alle sicherheitsrelevanten Vorgänge in Ihrem Netzwerk protokolliert. Über diesen Menüpunkt
+    können sie diese Vorgänge einsehen.</p>
+  </DIV>
+  
+  <DIV id=i_content7>
+    <h2>Status</h2>
+    <p><b>Logbuch DHCP-Server</b><br>
+    Informationen über die aktuell durch DHCP mit dem Gateway verbundenen PCs (Clients).</p>
+  </DIV>
+
+  <DIV id=i_content8>
+    <h2>Telefonie-Listen</h2>
+    <p><b>Anruferliste</b><br>
+    Es werden Ihnen die eingegangenen Anrufe angezeigt.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2>Telefonie-Listen</h2>
+    <p><b>Gesprächsdaten</b><br>
+    Es werden Ihnen die Gesprächsdaten angezeigt.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

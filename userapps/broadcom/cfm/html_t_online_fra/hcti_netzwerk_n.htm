@@ -1,0 +1,218 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkNAT</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function zs(){
+  top.frames[0].zs_akt = 1;
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 253px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onselectstart="return false">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / NAT &amp; Portregeln</DIV>
+<DIV id=c_titel>NAT</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_netzwerk_n_ausein.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>NAT Einstellungen</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--
+              if('<%ejGet(enblNat)%>'=='0'){
+                document.write('NAT ausgeschaltet');
+              }
+              else{                  
+                document.write('NAT eingeschaltet');
+              }
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>PC Liste für Portregeln</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <SCRIPT language="JavaScript">
+          <!--
+	if('<%ejGet(enblNat)%>'=='0'){
+		document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(9) onmouseout=i_showElem(0)><b>&gt;&gt; </b>PCs Übernehmen &amp; Freigeben</DIV></td>');
+       } else{                  
+		document.write('<td width="200"><a href="secclient.cmd?action=view" onclick=zs() onmouseover=i_showElem(2) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>PCs Übernehmen &amp; Freigeben</a></td>');
+	}	
+
+          //-->
+          </SCRIPT>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Portregeln</DIV>
+<DIV id=c_link>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+	<SCRIPT language="JavaScript">
+	<!--
+        	if('<%ejGet(enblNat)%>'=='0'){
+                document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(9) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Port-Weiterleitung</DIV></td>');
+        	}
+        	else{                  
+                document.write('<td width="200"><a href="vrtSrv.cmd?action=view&type=0" onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Port-Weiterleitung</a></td>');
+        	}
+          	document.write('<td><%ejGet(vrtSrvOneNum)%> Regel(n)' + '</td>');
+	//-->
+	</SCRIPT>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_link>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+            <SCRIPT language="JavaScript">
+            <!--
+            if('<%ejGet(enblNat)%>'=='0'){
+              document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(9) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Port-Umleitung</DIV></td>');
+            }
+            else{                  
+              document.write('<td width="200"><a href="vrtSrv.cmd?action=view&type=1" onmouseover=i_showElem(4) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Port-Umleitung</a></td>');
+            }
+            document.write('<td><%ejGet(vrtSrvTwoNum)%> Regel(n)' + '</td>');
+            //-->
+            </SCRIPT>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_linklast>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+            <SCRIPT language="JavaScript">
+            <!--
+            if('<%ejGet(enblNat)%>'=='0'){
+              document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(9) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Port-Öffnung (dynamisch)</DIV></td>');
+            }
+            else{                  
+              document.write('<td width="200"><a href="prtTrg.cmd?action=view" onmouseover=i_showElem(5) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Port-Öffnung (dynamisch)</a></td>');
+            }
+            document.write('<td><%ejGet(prtTrgNum)%> Regel(n)' + '</td>');
+            //-->
+            </SCRIPT>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>NAT</h2>
+    <p>Alle lokalen IP-Adressen der Rechner im lokalen Netzwerk werden auf die öffentliche IP-Adresse des
+      Routers umgesetzt. Das heißt, dass die Kommunikation jedes Rechners des lokalen Netzwerkes im
+      Internet unter der IP-Adresse des Routers stattfindet. Ein Vorteil ist, dass für mehrere Rechner nur ein
+      Internet-Zugang beim Internet-Anbieter bezahlt werden muss. Ein weiterer Vorteil ist, dass so die
+      lokalen IP-Adressen der Rechner nach außen unbekannt bleiben und damit kein direkter Zugriff auf die
+      Rechner des lokalen Netzwerks möglich ist. Der Router weiß, welcher Rechner welche Internet-
+      Anwendung gestartet hat, und sorgt dafür, dass jeder lokale Benutzer mit den richtigen Daten versorgt
+      wird.</p>
+      <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>NAT</h2>
+    <p><b>NAT Einstellungen</b><br>
+    Hier können Sie NAT aus- oder einschalten und einen Standardserver definieren.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>PC-Liste für Portregeln</h2>
+    <p><b>PCs Übernehmen &amp; Freigeben</b><br>
+    Legen Sie hier fest für welchen PC Sie eine Portregel erstellen möchten.
+	Diese Einstellung ist erforderlich, damit Sie die Port-Weiterleitung und die Port-Umleitung eingerichten können. </p>
+	
+	<p>Beachten Sie bitte, dass die PC's die Sie übernehmen möchten im Netzwerk angeschaltet und betriebsbereit sind.
+    Bereits übernommene PCs können hier auch wieder freigegeben werden.</p>
+  </DIV>
+  
+   <DIV id=i_content3>
+    <h2>Portregeln</h2>
+    <p><b>Port-Weiterleitung</b><br>
+    (Übersetzt: Port Forwarding)<br>
+	Wenn Sie in Ihrem Netzwerk beispielsweise einen WEB-Server, FTP-Server oder E-Mail Server betreiben möchten,
+	dann müssen Sie hierfür eine Port-Weiterleitung einrichten.</p>
+  </DIV>
+
+ <DIV id=i_content4>
+    <h2>Portregeln</h2>
+    <p><b>Port-Umleitung</b><br>
+     (Übersetzt: Port Redirect)<br>
+	Wenn Sie in Ihrem Netzwerk beispielsweise einen zweiten WEB-Server betreiben möchten,
+	dann müssen Sie hierfür eine Port-Weiterleitung einrichten. 
+	Es handelt sich hierbei um Serverapplikationen bei denen der Öffentliche und Private Port unterschiedlich sind.</p>
+    <p>Diese Portregeln können Sie dann einem entsprechenden PC zuweisen.</p>
+  </DIV>
+
+  <DIV id=i_content5>
+    <h2>Portregeln</h2>
+    <p><b>Port-Öffnung (dynamisch)</b><br>
+	(Übersetzt: Port Triggering)<br>
+     Anwendungen, wie beispielsweise ICU II	oder Dialpad benötigen eine Port-Öffnung damit Sie am Router betrieben werden können.</p>
+	 <p>Bei der Portöffnung werden die Ports definiert, die das Programms benutzt um seine Daten nach außen zu senden. 
+	Außerdem werden die Ports festgelegt über welche die Antworten wieder eingehen. Wenn ein Rechner über eine
+	Anwendung, deren Ports in dieser Portregel festgelegt wurden, Daten ins Internet sendet merkt sich der 
+	Router die IP-Adresse des Rechners und leitet die eingehenden Antworten wieder dynamisch an diese IP-Adresse weiter. </p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht verfügbar</b></h2>
+    <p>Um diese Einstellung verändern zu können, müssen Sie unter 'NAT Einstellungen' den Betriebszustand einschalten.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

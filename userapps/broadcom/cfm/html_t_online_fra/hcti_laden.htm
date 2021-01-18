@@ -1,0 +1,178 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>LadenSichern</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<script language="JavaScript">
+<!--
+
+function stSave(){
+  this.location.href="config.bin";
+}
+
+//function stsecSave(){
+//  this.location.href="secconfig.bin";
+//}
+
+function stwlSave(){
+  this.location.href="importieren.bin";
+}
+
+function stVerz(){
+  alert("Konfiguration wurde erfolgreich in Datei 'config.bin' gesichert");
+  top.frames[2].location.href = "hcti_laden.htm";
+}
+
+function stfwVerz(){
+  alert("Konfiguration wurde erfolgreich in Datei 'secconfig.bin' gesichert");
+  top.frames[2].location.href = "hcti_laden.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onselectstart="return false">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Laden &amp; Sichern</DIV>
+<DIV id=c_titel>Konfigurationsdaten</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_laden_l.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Konfiguration laden</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_laden_s.htm" onmouseover=i_showElem(2) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Konfiguration sichern</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_laden_w.htm" onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Werkseinstellung</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Sicherheitseinstellungen für WLAN</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_laden_i.htm" onmouseover=i_showElem(4) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Importieren</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="JavaScript:stwlSave()" onmouseover=i_showElem(5) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Speichern</a></td>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Firmware</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_laden_firm.htm" onmouseover=i_showElem(6) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Firmwareupdate</a></td>
+          <td>Version <%ejGet(firmwareVersion)%></td>
+        </tr>
+      </table>
+</DIV>
+
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=startseite() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Konfigurationsdaten</h2>
+    <p>Hier können Sie die Konfiguration Ihres Routers laden, sichern oder zurücksetzen.</p>
+    <p>Außerdem können Sie ein Firmwareupdate des Routers durchführen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Konfigurationsdaten</h2>
+    <p><b>Konfiguration laden</b><br>
+    Eine bereits gesicherte Konfiguration können Sie wieder in Ihren Router zurück laden.</p>
+  </DIV>
+  <DIV id=i_content2>
+    <h2>Konfigurationsdaten</h2>
+    <p><b>Konfiguration sichern</b><br>
+    Verwenden Sie 'Sichern', um die aktuelle Konfiguration in der 'config.bin' benannten Datei auf
+    Ihrem Rechner zu sichern.</p>
+  </DIV>
+  <DIV id=i_content3>
+    <h2>Konfigurationsdaten</h2>
+    <p><b>Werkseinstellung</b><br>
+    Hier können Sie Ihren Router wieder auf die Werkseinstellung zurücksetzen.</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Sicherheitseinstellungen</h2>
+    <p><b>Importieren</b><br>
+    Bereits gespeicherte Sicherheitseinstellungen können Sie wieder in Ihren Router zurück laden.</p>
+  </DIV>
+
+  <DIV id=i_content5>
+    <h2>Sicherheitseinstellungen</h2>
+    <p><b>Speichern</b><br>
+    Verwenden Sie 'Speichern', um die aktuellen Sicherheitsein- stellungen auf einem Daten- träger
+    (USB-Stick oder Diskette) zu speichern. Somit können Sie die Sicherheitseinstellungen für
+    die Konfiguration von anderen WLAN Clients verwenden.<p>
+    <p>Verwenden Sie nun den Daten- träger, auf den Sie die Sicher- heitseinstellungen
+    kopiert haben, um die Einstellungen bei den
+    WLAN Clients vornehmen zu können. Somit ist sicher gestellt,
+    dass die Sicherheitseinstellun- gen im Router exakt mit den
+    Einstellungen beim WLAN Client übereinstimmen.</p>
+    <p>Stellen Sie vorher sicher, dass der WLAN Manager für den Client PC
+    installiert ist. Wenn Sie den WLAN Manager öffnen, können Sie unter
+    'Sicherheits- einstellungen' die Daten von Ihrem Datenträger
+    importieren.</p>
+  </DIV>
+  
+  <DIV id=i_content6>
+    <h2>Firmware</h2>
+    <p><b>Firmwareupdate</b><br>
+    Hier können Sie die Firmware ihres Routers aktualisieren.</p>
+    <p>Die aktuelle Firmware wird Ihnen auf den Internetseiten der Deutschen Telekom AG zum Download zur Verfügung gestellt.</p>
+    <p>Bevor Sie die Firmware aktualisieren, laden Sie diese bitte zuerst auf Ihre Festplatte herunter.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

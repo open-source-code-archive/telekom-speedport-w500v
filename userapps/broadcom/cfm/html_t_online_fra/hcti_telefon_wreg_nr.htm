@@ -1,0 +1,146 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonieWahlregelX</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+  
+function txtHinw(feldname){
+  return "Im Feld '" + feldname + "' wurde eine falsche Eingabe bzw. keine Eingabe vorgenommen." + 
+         "\nDie korrekte Eingabe ist notwendig, um die Telefonie über das Internet verwenden zu können.";
+}
+
+function stOk(){
+  if (document.F1.T1.value=="" || isNaN(document.F1.T1.value)){
+    alert(txtHinw("Rufnummernbereich"));
+    document.F1.T1.focus();
+    return;
+  }
+
+  stCheck();
+}
+
+function stCheck(){
+  var loc = 'voipcfg.cmd?action=addpartmatch&';
+	
+  loc += 'partial=' + document.F1.T1.value;		// partial match must be numberic.
+  loc += 'net_select=' + document.F1.D1.selectedIndex;
+  var code = 'this.location.assign("' + loc + '")';
+  eval(code);  
+
+  stSave();
+}
+
+function stSave(){
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+
+  //Select-Options müssen extra ausgeblendet werden!
+  document.F1.D1.style.visibility='hidden';
+}
+
+function stZrk(){
+  top.frames[2].location.href = "voipcfg.cmd?action=viewWreg";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<SCRIPT language="JavaScript">
+<!--
+  document.write('<DIV id=c_pfad>Telefonie / Wahlregel ' + %s + '</DIV>');
+  document.write('<DIV id=c_titel>Wahlregel ' + %s + '</DIV>');
+//-->
+</SCRIPT>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="160">Rufnummernbereich:</td>
+            <td><input type="text" name="T1" size="24" maxlength='23'></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="160">Verbindung:</td>
+            <td>
+              <select name="D1" size="1">
+                <SCRIPT language="JavaScript">
+                <!--
+					document.write('<option>' + 'Festnetz' + '</option>');
+                    document.write('<option>' + %s + '</option>');
+
+                //-->
+                </SCRIPT>
+              </select>
+            </td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<SCRIPT language="JavaScript">
+<!--
+ 	//document.write('<DIV id=t_but2 onclick=stDel() onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>L&ouml;schen &lt;&lt;</DIV>');
+//-->
+</SCRIPT>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Wahlregel</h2>
+    <p>Hier können Sie eine Rufnummern eintragen und festlegen, 
+      ob diese über eine Internettelefonie-Verbindung oder das Festnetz angewählt werden soll. </p>
+ 
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Wahlregel</h2>
+    <p><b>Rufnummernbereich</b><br>
+    Geben Sie die Rufnummer ein, für die Sie eine Wahlregel festlegen möchten. </p>
+  </DIV>  
+  
+  <DIV id=i_content2>
+    <h2>Wahlregel</h2>
+    <p><b>Verbindung</b><br>
+    Wählen Sie aus, ob diese Rufnummer über eine Internettelefonie-Verbindung oder das Festnetz angewählt werden soll.</p>
+  </DIV>  
+  
+</DIV>
+
+</BODY>
+
+</HTML>

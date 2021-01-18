@@ -1,0 +1,132 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonieWahlregeln</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_telefon.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 355px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onselectstart="return false">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Telefonie / Wahlregeln</DIV>
+<DIV id=c_titel>Wahlregeln</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <SCRIPT language="JavaScript">
+          <!--
+              if(numwreg == 101)
+                document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(9) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Neue Wahlregel</DIV></td>');
+              }
+              else{                  
+                document.write('<td width="200"><a href="hcti_telefon_wreg_nr.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Neue Wahlregel</a></td>');
+              }
+          //-->
+          </SCRIPT>
+          <td></td>
+        </tr>
+      </table>
+</DIV>
+
+<SCRIPT language="JavaScript">
+<!--
+var divart = "c_link";
+
+if (numwreg > 14)
+	document.write('<DIV id=scroll>');
+  
+  for (i=0;i<numwreg;i++){
+      
+      if (i==numwreg-2) 
+	   strcpy(divart, "c_linklast");
+        <DIV id=%s>
+          <table border="0" cellpadding="4" cellspacing="0">
+            <tr>
+            <td width="200"><a href="hcti_telefon_wreg_nr.htm"onmouseover=i_showElem(2) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt;</b>%s</a></td>
+            <td>%s</td>
+            </tr>
+          </table>
+        </DIV>
+  }
+
+if (numwreg <= 14)
+document.write('<DIV id=c_leer>');
+document.write('</DIV>');
+
+//-->
+</SCRIPT>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Wahlregeln</h2>
+    <p>Hier können Sie für beliebige Rufnummern festlegen, 
+    ob diese über eine Internettelefonie-Verbindung oder das Festnetz angewählt werden sollen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    Notrufe über die Nummern 110 und 112 werden aus Gründen der Sicherheit grundsätzlich über das Festnetz abgesetzt. 
+    Nur in Fällen, in denen das nicht möglich ist, wird eine andere Verbindungsmöglichkeit gesucht.
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Wahlregeln</h2>
+    <p><b>Neue Wahlregel</b><br>
+    Hier können Sie eine neue Wahlregel festlegen.  
+</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Wahlregeln</h2>
+    <p><b>Wahlregel</b><br>
+    Hier können Sie die Wahlregel ändern oder löschen.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2><b>Neue Wahlregel nicht verfügbar</b></h2>
+    <p>Es ist bereits die maximale Anzahl von Wahlregeln definiert. Ändern Sie eine bestehende
+       Wahlregel. Alternativ können Sie auch eine bestehende Wahlregel löschen und
+       dann diesen Menüpunkt aufrufen.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

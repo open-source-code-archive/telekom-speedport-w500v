@@ -1,0 +1,147 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>HilfsmittelFernverwaltung</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var providerName = '<%ejGetVoip(providerName)%>';
+var accessMode='<%ej_get_remote_access("remote_access_mode")%>';
+var num = "" ;
+
+if (providerName == 'TONLINE')
+	num = '<%ejGetVoip(telenumber_TONLINE)%>';
+else 
+	num = '<%ejGetVoip(telenumber_Another)%>';
+
+function form_load()
+{
+    with (document.forms[0]){                
+        if (accessMode == 1)
+            R1[1].checked = true;
+        else
+            R1[0].checked = true;
+    }
+}
+                                                                                
+function stOk()
+{
+    //var loc = "scacccntr.cmd?action=save";
+    var loc = "scacccntr.cmd?"
+    with (document.forms[0]) {
+        loc += ("access_mode=" + ((R1[0].checked)?"0":"1"));
+	if (accessMode == '0' && R1[1].checked == true) {
+		loc += '&action=1' ;
+		loc += '&reset=1' ;
+		loc += '&fromAccess=1' ;
+		if (confirm("\n" +
+              		    "Fernverwaltung aktivieren\n\n" +
+              		    "1. Schritt\n" +
+              		    "Rufen Sie den T-Service unter folgender Rufnummer an:\n" +
+              		    "\t" + "0180 51990" + "\n\n" +
+              		    "2. Schritt\n" +
+              		    "Teilen Sie dem T-Service für die Fernverwaltung folgende Daten mit:\n\n" +
+              		    "\tWAN IP-Adresse:\t" + '<%ejGet(wanIpAddress)%>' + "\n\n" + 
+              		    "\tPasswort Ihres Konfigurationsprogramms\n\n" + 
+              		    "3. Schritt\n" +
+              		    "Klicken Sie auf 'OK' um die Fernverwaltung jetzt zu aktivieren.\n\n" +
+              		    "Das Konfigurationsprogramm wird anschließend automatisch beendet.\n" +
+              		    "Achten Sie bitte darauf, dass die Internetverbindung  bis zum Ende \n" +
+              		    "der Fernverwaltung aufgebaut bleibt!\n\n")==false) {
+				R1[0].checked = true ;
+              		    	return ;
+              		    }
+	}else 
+		loc += "&reset=0" ;
+		
+	document.getElementById("c_verzoeg1").style.visibility='visible';
+        document.getElementById("c_verzoeg2").style.visibility='visible';
+        document.getElementById("t_but1").style.visibility='hidden';
+        document.getElementById("t_but3").style.visibility='hidden';
+        document.getElementById("t_but4").style.visibility='hidden';
+                                                                               
+        var code = 'top.frames[2].location.assign("' + loc + '")';
+        eval(code);
+    }
+}
+                                                                              
+function stZrk(){
+    top.frames[2].location.href = "hcti_hilfsmittel.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onLoad=form_load();>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Hilfsmittel / Fernverwaltung</DIV>
+<DIV id=c_titel>Fernverwaltung</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="20"><input type="radio" name="R1" value="V1" checked></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2"></td>
+            <td>Ein</td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Fernverwaltung</h2>
+    <p>Mit Hilfe der Fernverwaltung können Sie die Konfiguration Ihres Routers von qualifizierten Fachkräften vornehmen lassen.</p> 
+    <p>Die T-Com bietet ihnen einen solchen Service unter folgender Rufnummer an: </p>
+    <p><b>0180 51990</b></p>
+    <p>Beachten Sie bitte, dass Sie während der Fernverwaltung keinen Zugriff auf das Konfigurationsprogramm haben.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Fernverwaltung</h2>
+    <p><b>Betriebszustand</b><br>
+    Um die Fernverwaltung zu aktivieren, markieren Sie die Option 'Ein' und klicken Sie dann auf 'Speichern'.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    Zur Sicherheit vor unberechtigtem Zugriff bleibt die Fernverwaltung nur während<br>
+    e i n e r&nbsp; Internetverbindung aktiv!
+    Sobald die Internetverbindung unterbrochen wird, schaltet sich die Fernverwaltung im Router aus.<br>
+    Außerdem wird nach Aktivieren der Fernverwaltung im Router ein Timer gestartet, der ein Anmelden für die Fernverwaltung 
+    über das Internet innerhalb von 5 Minuten erfordert. Sonst wird die Fernverwaltung ebenfalls wieder selbsttätig ausgeschaltet.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

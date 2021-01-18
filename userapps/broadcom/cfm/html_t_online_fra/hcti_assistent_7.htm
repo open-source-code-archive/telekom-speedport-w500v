@@ -1,0 +1,195 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent7</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var enbl = '<%ejGetWl(wlEnbl)%>';
+var provNam = '<%ejGetVoip(providerName)%>';
+var teleNum_T = '<%ejGetVoip(telenumber_TONLINE)%>' ;
+var teleNum_A = '<%ejGetVoip(telenumber_Another)%>' ;
+
+function chk(){
+   	if(teleNum_A == "" && teleNum_T == "")
+	{
+		document.F1.R1[0].checked = true;
+	}
+    	else if (teleNum_T != "" && teleNum_A == "")
+	{
+		document.F1.R1[1].checked = true ;
+		document.F1.R1[2].disabled = true ;
+	}
+	else if (teleNum_T == "" && teleNum_A != "")
+	{
+		document.F1.R1[1].disabled = true ;
+		document.F1.R1[2].checked = true ;
+	}
+	else if (teleNum_T != "" && teleNum_A != "")
+	{
+		if (provNam == "TONLINE")
+		{
+			document.F1.R1[1].checked = true ;
+			document.F1.R1[2].disabled = true ;
+		}
+		else if (provNam == "Another")
+		{
+			document.F1.R1[1].disabled = true ;
+			document.F1.R1[2].checked = true ;
+		}
+    		else
+		{
+			document.F1.R1[0].checked = true ;
+		}
+	}
+	else
+		document.F1.R1[0].checked = true ;
+}
+
+
+function stOk(){
+  var select;
+  for (i=0;i<top.frames[0].voipprovname.length+1;i++){
+  	if (document.F1.R1[i].checked == true)
+		select = i-1;
+  }
+
+  if (top.frames[0].assvoipprov != select) {
+	top.frames[0].assvoipprov = select;
+	top.frames[0].assvoipprov_changed = 1;
+  }else {
+	top.frames[0].assvoipprov_changed = 0;
+  }
+
+  if (document.F1.R1[0].checked == true)
+	top.frames[2].location.href = "hcti_assistent_9.htm";
+  else
+  	top.frames[2].location.href = "hcti_assistent_8.htm";
+}
+
+function stZrk(){
+	if(enbl == '0')
+		top.frames[2].location.href = "hcti_assistent_4.htm";
+	else
+		top.frames[2].location.href = "hcti_assistent_6.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 7 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Mit welchem Anbieter möchten Sie über das Internet telefonieren?</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+			<form name="F1">
+                <td width="25"><input type="radio" name="R1" value="V0"></td>
+                <td>Zu späterem Zeitpunkt einrichten</td>
+        </tr>
+    </table>
+</DIV>
+
+<SCRIPT language="JavaScript">
+<!--                    
+  for (i=0;i<top.frames[0].voipprovname.length;i++){
+    var divart = "c_std";
+    var endf = "";
+    if (i==top.frames[0].voipprovname.length-1){
+      divart = "c_last";
+      endf = "</form>";
+    }
+    document.write(
+      '<DIV id=' + divart + '>' +
+        '<table border="0" cellpadding="0" cellspacing="2">' +
+	  '<tr onmouseover=i_showElem(' + (i+2) + ') onmouseout=i_showElem(0)>' +
+              '<td width="25"><input type="radio" name="R1" value="V' + (i+1) + '"></td>' +
+              '<td>' + top.frames[0].voipprovname[i] + '</td>' +
+            endf +
+          '</tr>' +
+        '</table>' +
+    '</DIV>');
+  }
+//-->
+</SCRIPT>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Mit welchem Anbieter möchten Sie über das Internet telefonieren?</h2>
+    <p>Mit diesem Router können Sie von einem angeschlossenen Telefon aus über das Internet telefonieren. Wählen Sie aus,
+	ob Sie die Zugangsdaten für die DSL Telefonie von T-Online oder einem anderen Anbieter eintragen möchten.</p>
+	<p>Falls Sie die Zugangsdaten noch nicht haben, können Sie diese auch zu einem späteren Zeitpunkt eingeben. In diesem
+	Fall werden eine oder mehrere Seiten des Assistenten übersprungen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Zu späterem Zeitpunkt einrichten</h2>
+    <p>Für die Einrichtung der Internet- telefonie benötigen Sie die Zugangsdaten für die Internet- rufnummer und einen
+	funktionierenden Internetzugang.</p>
+    <p>Falls diese Voraussetzungen nicht erfüllt sind, können Sie die Internettelefonie erst zu einem späteren Zeitpunkt
+	einrichten. In diesem Fall werden eine oder mehrere Seiten des Assistenten übersprungen.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2><b>Anbieter nicht verfügbar</b></h2>
+    <p>Um T-Online auswählen zu können, muss ein funktionierender Internetzugang
+      eingerichtet sein. Durchlaufen Sie hierzu den Assistenten und speichern Sie am Ende die 
+      Einstellungen. Nachdem Sie dann eine Internetverbindung erfolgreich aufgebaut haben 
+      können Sie den Assistenten noch mal durchlaufen und die Internettelefonie einrichten.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2><b>Anbieter nicht verfügbar</b></h2>
+    <p>Um diesen Anbieter auswählen zu können, muss ein funktionierender Internetzugang
+      eingerichtet sein. Durchlaufen Sie hierzu den Assistenten und speichern Sie am Ende die 
+      Einstellungen. Nachdem Sie dann eine Internetverbindung erfolgreich aufgebaut haben 
+      können Sie den Assistenten noch mal durchlaufen und die Internettelefonie einrichten.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2><b>Anbieter nicht verfügbar</b></h2>
+    <p>Um diesen Anbieter auswählen zu können, muss ein funktionierender Internetzugang
+      eingerichtet sein. Durchlaufen Sie hierzu den Assistenten und speichern Sie am Ende die 
+      Einstellungen. Nachdem Sie dann eine Internetverbindung erfolgreich aufgebaut haben 
+      können Sie den Assistenten noch mal durchlaufen und die Internettelefonie einrichten.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

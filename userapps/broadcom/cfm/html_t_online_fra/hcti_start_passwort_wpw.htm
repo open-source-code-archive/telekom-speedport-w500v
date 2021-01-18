@@ -1,0 +1,117 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Startseite</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var verz = '<%ejGet(pwd_err_wait_time)%>';
+
+var isTimeout = true ;
+
+function chk_pwd() {
+	if (isTimeout == false) return ;
+	document.PWD.submit();
+}
+
+function stEnter(){
+  //if (window.event.keyCode==13){
+    //chk_pwd();
+  //}
+}
+
+function stBak(){
+  document.PWD.P1.disabled = false;
+  document.PWD.P1.style.backgroundColor="#FFFFFF";
+  document.PWD.P1.value = "";
+  document.PWD.P1.focus();
+  isTimeout = true ;
+  //verz *= 2;
+}
+
+function stEnd(){
+  top.window.close();
+}
+
+function frmLoad()
+{
+        alert("Falsches Passwort! Bitte versuchen Sie es erneut");
+        document.PWD.P1.style.backgroundColor="#D4D0C8";
+        document.PWD.P1.disabled=true;
+                                                                                                   
+        //document.F1.P1.focus();
+	isTimeout = false ;
+        setTimeout("stBak()",verz);
+}
+
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#t_but1 {
+  visibility: hidden;
+}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onLoad='frmLoad()'>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Router - Einstieg in die Konfiguration</DIV>
+<DIV id=c_titel>Passwort Eingabe</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+          <form name="PWD" action="start.login" method="post">
+            <td width="120"><input type="password" class="stylepwd" name="P1" size="12" maxlength="12" onkeypress=stEnter()></td>
+            <td>(0000 bei Auslieferung)</td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=stEnd() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but4 onclick=chk_pwd() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>&gt;&gt; OK</DIV>
+
+</DIV>
+
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+        
+    <h2>Passwort Eingabe</h2>
+    <p>Der Zugang zu den Router - Konfigurationsdaten&nbsp; wird durch ein Passwort geschützt.</p>
+    <p><b>Geben Sie das Passwort ein und bestätigen Sie mit OK.</b></p>
+    <p>Im Auslieferungszustand lautet das <b>Passwort 0000</b>.</p>
+    <p>Die aktuelle Konfiguration wird dann aus dem Router in das Konfigurationsprogramm geladen und angezeigt.</p>
+    <p>Wir empfehlen Ihnen das Passwort im Konfigurationsprogramm zu ändern.</p>
+
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

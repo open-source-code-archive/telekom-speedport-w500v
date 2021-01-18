@@ -1,0 +1,146 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent2</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){
+    if (top.frames[0].assprovider == 0) {
+	document.F1.R1[top.frames[0].assprovider].checked = true;    
+    }else {
+	document.F1.R1[top.frames[0].assprovider-1].checked = true;
+    }
+}
+
+function stOk(){
+  var select;
+  if(document.F1.R1[0].checked == true){
+    select = 1;
+  }
+  else if(document.F1.R1[1].checked == true){
+    select = 2;
+  }
+  else if(document.F1.R1[2].checked == true){
+    select = 3;
+  }
+  else{
+    select = 4;
+  }
+  if ( select != top.frames[0].assprovider) {
+    top.frames[0].assprovider = select;
+    top.frames[0].assPppOptionsChanged = 1;
+  }else{
+    top.frames[0].assPppOptionsChanged = 0;
+  }
+  top.frames[2].location.href = "hcti_assistent_3.htm";
+}
+
+function stZrk(){ 
+  top.frames[2].location.href = "hcti_assistent_1.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 2 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Mit welchem Provider möchten Sie den Internetzugang herstellen?</DIV>
+
+<SCRIPT language="JavaScript">
+<!--                    
+  for (i=0;i<top.frames[0].provname.length;i++){
+    var divart = "c_std";
+    var startf = '<form name="F1">';
+    var endf = "";
+    if (i>0) startf = "";
+    if (i==top.frames[0].provname.length-1){
+      divart = "c_last";
+      endf = "</form>";
+    }
+    document.write(
+      '<DIV id=' + divart + '>' +
+        '<table border="0" cellpadding="0" cellspacing="2">' +
+          '<tr onmouseover=i_showElem(' + (i+1) + ') onmouseout=i_showElem(0)>' +
+            startf +
+              '<td width="25"><input type="radio" name="R1" value="V' + i + '"></td>' +
+              '<td>' + top.frames[0].provname[i] + '</td>' +
+            endf +
+          '</tr>' +
+        '</table>' +
+      '</DIV>');
+  }
+//-->
+</SCRIPT>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Mit welchem Provider möchten Sie den Internetzugang herstellen?</h2>
+    <p>Mit diesem Router können Sie sich von Ihrem PC aus ins Internet einwählen. Dazu müssen Sie sich bereits bei einem
+	Provider angemeldet haben und die Zugangsdaten, die sie bei der Anmeldung erhalten haben, hier eintragen.</p>
+    <p>Wählen Sie Ihren Provider aus und klicken Sie dann auf<br>
+    <b>'OK &amp; Weiter'</b>.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>T-Online als Provider</h2>
+    <p>Wenn Sie Zugangsdaten vom Provider T-Online eintragen möchten, dann markieren Sie diese Option.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>T-DSL Business mit dyn. IP</h2>
+    <p>Wenn Sie Zugangsdaten vom Provider T-DSL Business mit dynamischer IP-Adresse eintragen möchten,
+    dann markieren Sie diese Option.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>T-DSL Business mit fester IP</h2>
+    <p>Wenn Sie Zugangsdaten vom Provider T-DSL Business mit fester IP-Adresse eintragen möchten,
+    dann markieren Sie diese Option.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+    <h2>Anderer Provider</h2>
+    <p>Möchten Sie Zugangsdaten von einem anderen Provider eintragen, dann markieren Sie diese Option.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

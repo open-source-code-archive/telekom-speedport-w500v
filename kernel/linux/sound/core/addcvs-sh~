@@ -1,0 +1,14 @@
+addall() {
+cvs -d :ext:leander@172.24.16.190:/home/cvs_root/BCM3.00.01 add *
+for i in *
+do
+	if [ -d $i ]; then
+		if [ "$i" != "CVS" ];then
+			cd $i	
+			addall
+			cd ..
+		fi
+	fi
+done
+}
+addall

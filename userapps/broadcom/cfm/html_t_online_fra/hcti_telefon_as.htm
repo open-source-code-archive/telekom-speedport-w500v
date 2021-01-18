@@ -1,0 +1,194 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonAnschlussX</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+// get voipNumber
+var voipprovname = new Array("T-Online","Anderer Anbieter");  
+var providerName = '<%ejGetVoip(providerName)%>';
+var tonlineNumber = '<%ejGetVoip(telenumber_TONLINE)%>';
+var anotherNumber = '<%ejGetVoip(telenumber_Another)%>';
+var enable_Analog = '<%ejGetVoip(enable_Analog)%>';
+var priLine = '<%ejGetVoip(primary_select)%>';
+var secLine = '<%ejGetVoip(secondary_select)%>';
+var voipNumber;
+var voipprov;
+
+	if (providerName == 'TONLINE' && tonlineNumber != '') {
+		voipNumber = tonlineNumber;
+		voipprov = voipprovname[0] + ':' + voipNumber;
+		}
+	else if (providerName == 'Another' && anotherNumber != '') {
+		voipNumber = anotherNumber;
+		voipprov = voipprovname[1] + ':' + voipNumber;
+	}
+	else
+		voipNumber = null;
+	
+var enable_CLIP = '<%ejGetVoip(enable_CLIP)%>';
+var enable_Anklopfen = '<%ejGetVoip(enable_Anklopfen)%>';
+
+function i_prfElem(){ 
+  if (top.frames[0].anz_msn>0){
+    i_showElem(9);
+  }
+  else{
+	 i_showElem(8);
+  }
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_telefon.htm";
+}
+
+function chk()
+{
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk() onselectstart="return false">
+
+<DIV id=c_Frame>
+
+<DIV id=c_bild><img border="0" src="pic_c_analog1.jpg"></DIV>
+<DIV id=c_border_as1>
+
+<DIV id=c_pfad>Telefonie / Anschluss-Einstellungen</DIV>
+<DIV id=c_titel>Anschluss-Einstellungen</DIV>
+<DIV id=c_link>
+    <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <SCRIPT language="JavaScript">
+          <!--
+            if (enable_Analog == 0 && voipNumber == null) {
+                document.write('<td width="200"><DIV id=c_dis onmouseover=i_showElem(9) onmouseout=i_showElem(0)><b>&gt;&gt; </b>Rufnummern gehend</DIV></td>');
+            }
+            else {
+               document.write('<td width="200"><a href="hcti_telefon_as_rgeh.htm" onmouseover=i_showElem(1) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Rufnummern gehend</a></td>');
+					if(priLine == '0')
+						document.write('<td>' + 'Festnetz analog' + '</td>');
+					else
+					{
+						document.write('<td>' + voipprov + '</td>');
+					}
+				}
+          //-->
+          </SCRIPT>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_link>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+          <td width="200"><a href="hcti_telefon_as_clip.htm" onmouseover=i_showElem(2) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Anzeige der Rufnummer (CLIP)</a></td>
+          <td>
+            <SCRIPT language="JavaScript">
+            <!--                    
+              if(enable_CLIP == '0'){  
+                document.write("Aus");
+              }
+              else{
+                document.write("Ein");
+              }
+            //-->
+            </SCRIPT>
+          </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_linklast>
+      <table border="0" cellpadding="4" cellspacing="0">
+        <tr>
+		  <td width="200"><a href="hcti_telefon_as_ankl.htm" onmouseover=i_showElem(3) onmouseout=i_showElem(0) target="hcti"><b>&gt;&gt; </b>Anklopfen</a></td>
+          <td>
+		    <SCRIPT language="JavaScript">
+            <!--
+              if( enable_Anklopfen == '0'){  
+                document.write("Nicht zulassen");
+              }
+              else{
+                document.write("Zulassen");
+              }
+            //-->
+            </SCRIPT>
+		  </td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Anschluss-Einstellungen</h2>
+    <p>Passen Sie den Anschluss Ihren persönlichen Erfordernissen an. 
+    Die Einstellung können Sie ändern, klicken Sie auf den gewünschten Menüpunkt.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Anschluss-Einstellungen</h2>
+    <p><b>Rufnummern gehend</b><br>
+    Sie können bestimmen mit welcher Rufnummer abgehende Verbindungen aufgebaut werden.
+    Außerdem können Sie festlegen, ob die Rufnummer zur Gegenstelle übermittelt oder unterdrückt werden soll. </p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Anschluss-Einstellungen</h2>
+    <p><b>Anzeige der Rufnummer (CLIP)</b><br>
+            CLIP ist die Abkürzung für: <br>
+            Calling<br>   
+            Line<br>
+            Identification<br>
+            Presentation. </p>
+    <p>Anzeige der Rufnummer des Anrufenden. Die Unterstützung durch das Endgerät ist notwendig.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Anschluss</h2>
+    <p><b>Anklopfen</b><br>
+    Bestimmen Sie, ob Sie während eines Gesprächs per Aufmerk- samkeitston mitgeteilt bekommen möchten, dass noch jemand anruft. </p>
+  </DIV>
+
+  <DIV id=i_content8>
+    <h2><b>Rufnummern gehend nicht verfügbar</b></h2>
+    <p>Es ist keine Internetrufnummer eingerichtet oder der analoger Telefonanschluss ausgeschaltet. Richten Sie
+       eine Internetrufnummer ein und schalten Sie den analoger Telefonanschluss ein. Rufen Sie dann diesen Menüpunkt auf.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2><b>Rufnummern gehend nicht verfügbar</b></h2>
+    <p>Es ist keine Internetrufnummer aktiviert oder keine T-ISDN Rufnummer eingetragen. Aktivieren Sie
+       eine oder mehrere Internetrufnummern und/oder tragen Sie eine oder mehrere T-ISDN Rufnummern ein und
+       rufen Sie dann diesen Menüpunkt auf.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

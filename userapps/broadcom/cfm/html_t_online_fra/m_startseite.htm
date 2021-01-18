@@ -1,0 +1,173 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Menu</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var mpkt = new Array(1,2,31,32,33,34,41,42,51,52,6);
+
+  function m_high(high,nr){
+    if (nr!=top.frames[0].m_akt){
+      if (high==1){
+        document.getElementById("m_but" + nr).style.color='#E20074';
+      }
+      else{
+        document.getElementById("m_but" + nr).style.color='#000000';
+      }
+    }
+  }
+  
+//-->
+</SCRIPT>
+
+<STYLE type="text/css">
+<!--
+body {font-family:Arial, sans-serif; font-size:12px;}
+
+#m_Frame {
+	POSITION: absolute; LEFT: 0px; WIDTH: 170px; TOP: 0px; HEIGHT: 508px; OVERFLOW: hidden; background-image:url(pic_m_back.jpg); background-repeat: no-repeat;
+}
+#m_bild {
+	height: 49px; padding-left: 10px;
+}
+#m_otitel {
+	height: 21px; line-height: 21px; padding-left: 10px; color: #999999; 
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_leer {
+	height: 21px; line-height: 21px;
+}
+
+#m_but1 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand; color: #FFFFFF; background-image: url(pic_m_marker.gif); background-repeat: no-repeat;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but2 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but31 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but32 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but33 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but34 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but41 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but42 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but51 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but52 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+#m_but6 {
+	height: 21px; line-height: 21px; padding-left: 10px; cursor: pointer; cursor: hand;
+	font-family: Arial, sans-serif; font-size:12px; font-weight: bold;
+}
+
+#m_linie2 {
+	POSITION: absolute; LEFT: 2px; TOP: 100px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie31 {
+	POSITION: absolute; LEFT: 2px; TOP: 163px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie32 {
+	POSITION: absolute; LEFT: 2px; TOP: 184px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie33 {
+	POSITION: absolute; LEFT: 2px; TOP: 205px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie34 {
+	POSITION: absolute; LEFT: 2px; TOP: 226px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie41 {
+	POSITION: absolute; LEFT: 2px; TOP: 289px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie42 {
+	POSITION: absolute; LEFT: 2px; TOP: 310px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie51 {
+	POSITION: absolute; LEFT: 2px; TOP: 373px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+#m_linie52 {
+	POSITION: absolute; LEFT: 2px; TOP: 394px; WIDTH: 4px; HEIGHT: 23px;
+	background-image: url(pic_m_linie.gif); background-repeat: no-repeat;
+}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onselectstart="return false">
+
+<DIV id=m_frame>
+
+<DIV id=m_bild><img border="0" src="pic_m_head.gif"></DIV>
+
+<DIV id=m_linie2></DIV>
+<DIV id=m_linie31></DIV>
+<DIV id=m_linie32></DIV>
+<DIV id=m_linie33></DIV>
+<DIV id=m_linie34></DIV>
+<DIV id=m_linie41></DIV>
+<DIV id=m_linie42></DIV>
+<DIV id=m_linie51></DIV>
+<DIV id=m_linie52></DIV>
+
+<DIV id=m_but1 onclick=menupkt(1,"hcti_startseite.htm") onmouseover=m_high(1,1) onmouseout=m_high(0,1)>&gt; Startseite</DIV>
+<DIV id=m_leer></DIV>
+<DIV id=m_otitel>ASSISTENT</DIV>
+<DIV id=m_but2 onclick=assistent() onmouseover=m_high(1,2) onmouseout=m_high(0,2)>&gt; Schritt f&uuml;r Schritt</DIV>
+<DIV id=m_leer></DIV>
+<DIV id=m_otitel>KONFIGURATION</DIV>
+<DIV id=m_but31 onclick=menupkt(31,"hcti_sicherheit.htm") onmouseover=m_high(1,31) onmouseout=m_high(0,31)>&gt; Sicherheit</DIV>
+<DIV id=m_but32 onclick=menupkt(32,"hcti_netzwerk.htm") onmouseover=m_high(1,32) onmouseout=m_high(0,32)>&gt; Netzwerk</DIV>
+<DIV id=m_but33 onclick=menupkt(33,"budget.cmd?action=view") onmouseover=m_high(1,33) onmouseout=m_high(0,33)>&gt; Budget</DIV>
+<DIV id=m_but34 onclick=menupkt(34,"hcti_telefon.htm") onmouseover=m_high(1,34) onmouseout=m_high(0,34)>&gt; Telefonie</DIV>
+<DIV id=m_leer></DIV>
+<DIV id=m_otitel>STATUS</DIV>
+<DIV id=m_but41 onclick=menupkt(41,"hcti_statoview.htm") onmouseover=m_high(1,41) onmouseout=m_high(0,41)>&gt; &Uuml;bersicht</DIV>
+<DIV id=m_but42 onclick=menupkt(42,"hcti_status.htm") onmouseover=m_high(1,42) onmouseout=m_high(0,42)>&gt; Details</DIV>
+<DIV id=m_leer></DIV>
+<DIV id=m_otitel>VERWALTUNG</DIV>
+<DIV id=m_but51 onclick=menupkt(51,"hcti_hilfsmittel.htm") onmouseover=m_high(1,51) onmouseout=m_high(0,51)>&gt; Hilfsmittel</DIV>
+<DIV id=m_but52 onclick=menupkt(52,"hcti_laden.htm") onmouseover=m_high(1,52) onmouseout=m_high(0,52)>&gt; Laden &amp; Sichern</DIV>
+<DIV id=m_leer></DIV>
+<DIV id=m_but6 onclick=beenden() onmouseover=m_high(1,6) onmouseout=m_high(0,6)>&gt; Beenden</DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

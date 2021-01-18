@@ -1,0 +1,328 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Assistent9</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var rgehtmp;
+var voipprovname = new Array("T-Online","Anderer Anbieter");  
+var providerName = '<%ejGetVoip(providerName)%>';
+var tonlineNumber = '<%ejGetVoip(telenumber_TONLINE)%>';
+var anotherNumber = '<%ejGetVoip(telenumber_Another)%>';
+var enable_Analog = '<%ejGetVoip(enable_Analog)%>';
+var priLine = '<%ejGetVoip(primary_select)%>';
+var secLine = '<%ejGetVoip(secondary_select)%>';
+var voipNumber;
+var voipprov;
+var cur_priLine;
+var cur_secLine;
+
+	if (providerName == 'TONLINE' && tonlineNumber != '') {
+		voipNumber = tonlineNumber;
+		voipprov = voipprovname[0] + ':' + voipNumber;
+		}
+	else if (providerName == 'Another' && anotherNumber != '') {
+		voipNumber = anotherNumber;
+		voipprov = voipprovname[1] + ':' + voipNumber;
+	}
+	else
+		voipNumber = "";
+
+function chk(){
+	if((providerName=='TONLINE' && tonlineNumber == "") || (providerName=="Another" && anotherNumber==""))
+		top.frames[0].assnovoip = true;
+	else
+		top.frames[0].assnovoip = false;
+  if (top.frames[0].assnovoip == false){
+    document.getElementById("c_um1").style.visibility='visible';
+	if (priLine == '1'){ //priLine==1, use voip as first route
+	  document.F2.R2[0].checked = true;
+      rgehtmp = true;
+    }
+    else{
+      document.F2.R2[1].checked = true;
+      rgehtmp = false;
+    }
+  }
+  else{
+    document.getElementById("c_um0").style.visibility='visible';
+  }
+  if(enable_Analog == '0'){
+		  document.F1.R1[0].checked = true;
+		  top.frames[0].asstelas = false;
+  }
+  else{
+		  document.F1.R1[1].checked = true;
+		  top.frames[0].asstelas = true;
+  }
+  stDis(!top.frames[0].asstelas);
+  if (top.frames[0].assvoipprov == -1){
+  	document.getElementById("c_um1").style.visibility='hidden';
+  }
+}
+
+function stDis(state){
+  if (top.frames[0].assnovoip == false){
+    document.F2.R2[0].disabled = state;
+    document.F2.R2[1].disabled = state;
+    if (state == true){
+      rgehtmp = document.F2.R2[0].checked;
+      document.F2.R2[0].checked = true;
+    }
+    else{
+      document.F2.R2[0].checked = rgehtmp;
+      document.F2.R2[1].checked = !rgehtmp;
+    }
+  }
+}
+
+function i_prfElem(nr){
+  if (document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+var loc='voipcfg.cmd?action=assportset';
+function stOk(){
+	if (document.F1.R1[0].checked == true){
+    if (top.frames[0].assnovoip == true){
+  		if (confirm("Wenn Sie keinen T-Net Anschluss betreiben und keine\n" +
+                  "funktionsfähige DSL Telefonie eingerichtet haben,\n" +
+                  "können Sie mit der Anlage nicht telefonieren.\n" +
+                  "\n" +
+                  "Klicken Sie auf 'Abbrechen', um Ihre Auswahl zu ändern, oder\n" +
+                  "klicken Sie auf 'OK', um ohne funktionierende Telefonie fortzufahren.")==false){
+					return false;
+  		}
+  	}
+  	else{
+  		if (confirm("Wenn Sie an der Anlage keinen T-Net Anschluss betreiben,\n" +
+                  "können Sie keine Notrufe über '110' und '112' absetzen.\n" +
+                  "\n" +
+                  "Klicken Sie auf 'Abbrechen', um Ihre Auswahl zu ändern, oder\n" +
+                  "klicken Sie auf 'OK', um ohne die Möglichkeit von Notrufen fortzufahren.")==false){
+					return false;
+  		}
+  	}
+	}
+	
+	top.frames[0].asstelas = document.F1.R1[1].checked;  // PSTN phone status
+	if(top.frames[0].asstelas == true){  //PSTN is enabled
+		loc +='&enable_Analog=1';
+		if(voipNumber != null){	// voip exists
+			if(document.F2.R2[1].checked == true){
+				loc +='&primary_select=0';  //primary line PSTN	
+				loc +='&secondary_select=1';
+				cur_priLine='0';
+				cur_secline='1';
+			}else{
+				loc +='&primary_select=1';  //primary line VoIP
+				loc +='&secondary_select=0';
+				cur_priLine='1';
+				cur_secLine='0';
+			}
+		}else{              // no voip
+			loc += '&primary_select=0'; //primary line PSTN
+			loc += '&secondary_select=2'; //secondary line NULL
+			cur_priLine='0';
+			cur_secLine='2';
+		}
+	}else{   //PSTN is disabled
+		loc +='&enable_Analog=0';
+		if(voipNumber != ""){
+			loc	+= '&primary_select=1';
+			loc += '&secondary_select=2';
+			cur_priLine='1';
+			cur_secLine='2';
+		}else{   // no PSTN, no VoIP, both line is NULL
+			loc += '&primary_select=2';
+			loc += '&secondary_select=2';
+			cur_priLine='2';
+			cur_secLine='2';
+		}
+	}
+
+	if (
+		(top.frames[0].asstelas==true && top.frames[0].assvoip_analog =='0') ||
+		(top.frames[0].asstelas==false && top.frames[0].assvoip_analog == '1') ||
+		(top.frames[0].voippriLine != cur_priLine) ||
+		(top.frames[0].voipsecLine != cur_secLine)
+	){
+	document.getElementById("c_um0").style.visibility='hidden';
+    document.getElementById("c_um1").style.visibility='hidden';
+    document.getElementById("c_verzoeg1").style.visibility='visible';
+    document.getElementById("c_verzoeg2").style.visibility='visible';
+	setTimeout("apply()", 600);
+  }
+  else{
+	stWeiter();
+  }
+}
+
+function apply(){
+	var code = 'location.assign("' + loc + '")';
+	eval(code);
+}
+
+function stWeiter(){ 
+  top.frames[2].location.href = "hcti_assistent_ende.htm";
+}
+
+function stZrk(){
+  if (top.frames[0].assvoipprov > -1){
+    top.frames[2].location.href = "hcti_assistent_8.htm";
+  }
+  else{
+    top.frames[2].location.href = "hcti_assistent_7.htm";
+  }
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#c_um0 {
+  POSITION: absolute; left: 15px; top: 112px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um1 {
+  POSITION: absolute; left: 15px; top: 112px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+//-->
+</STYLE>
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Assistent / Schritt 9 von
+      <SCRIPT language="JavaScript">
+      <!--                    
+        document.write(top.frames[0].ass_steps);
+      //-->
+      </SCRIPT>
+</DIV>
+<DIV id=c_titel>Haben Sie einen T-Net Anschluss angeschaltet?</DIV>
+<DIV id=c_last>
+  <table border="0" cellpadding="0" cellspacing="2">
+    <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+      <form name="F1">
+        <td width="25"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+        <td width="53">Nein</td>
+        <td width="25"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+        <td>Ja</td>
+      </form>
+    </tr>
+  </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=c_um0>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um1>
+<DIV id=c_titel>Mit welcher Telefonnummer möchten Sie telefonieren?</DIV>
+<DIV id=c_std>
+  <table border="0" cellpadding="0" cellspacing="2">
+		<form name="F2">
+      <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+        <td width="25"><input type="radio" name="R2" value="V0"></td>
+        <SCRIPT language="JavaScript">
+        <!--
+		document.write('<td>' + voipprov + '</td>');
+        //-->
+        </SCRIPT>
+      </tr>
+  </table>
+</DIV>
+<DIV id=c_last>
+  <table border="0" cellpadding="0" cellspacing="2">
+      <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+        <td width="25"><input type="radio" name="R2" value="V1"></td>
+        <td>Telefonnummer des T-Net Anschlusses</td>
+      </tr>
+  	</form>
+  </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=start() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>Beenden&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>OK &amp; Weiter</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Haben Sie einen T-Net Anschluss angeschaltet?</h2>
+    <p>Diese Einstellung ist notwendig für die Verwendung des T-Net Anschlusses (Festnetzan- schluss).</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über eine Einstellung bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Haben Sie einen T-Net Anschluss angeschaltet?</h2>
+    <p><b>Nein</b><br>
+    Wenn Sie die Option 'Nein' wäh- len, wird der T-Net Anschluss (Festnetzanschluss) für gehen- de Telefonate nicht benutzt.
+    Notrufe über 110 und 112 sind dann nicht gewährleistet.</p>
+    <p><b>Ja</b><br>
+    Wenn Sie die Option 'Ja' wählen, kann der T-Net Anschluss für gehende Telefonate verwendet werden.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+  	Achtung! Wählen Sie diese Option nur aus, wenn Sie definitiv einen T-Net Anschluss angeschaltet haben. Nur so
+  	ist gewährleistet, dass abgehende Telefonate, unter Umständen Notrufe, über diesen Anschluss geführt werden können.</p> 
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Mit welcher Telefonnummer möchten Sie telefonieren?</h2>
+    <p><b>DSL Telefonnummer</b><br>
+    Abgehende Telefonate werden über die DSL Telefonie geführt.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Mit welcher Telefonnummer möchten Sie telefonieren?</h2>
+    <p><b>Telefonnummer des T-Net Anschlusses</b><br>
+    Abgehende Telefonate werden über den T-Net Anschluss geführt.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2>Einstellung nicht verfügbar</h2>
+    <p>Die Voraussetzungen für diese Einstellung werden nicht erfüllt.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

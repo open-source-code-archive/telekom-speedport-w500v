@@ -1,0 +1,52 @@
+<psitree>
+<ADSL/>
+<AtmCfg>
+<initCfg structureId="2" threadPriority="25" freeCellQSize="10" freePktQSize="200" freePktQBufSize="1600" freePktQBufOffset="32" rxCellQSize="10" rxPktQSize="200" txFifoPriority="64" aal5MaxSduLen="64" aal2MaxSduLen="65535"/>
+</AtmCfg>
+<AtmCfgTd>
+<td1 cat="UBR" PCR="0" SCR="0" MBS="0"/>
+</AtmCfgTd>
+<AtmCfgVcc>
+<vccId1 vpi="0" vci="32" tdId="1" aalType="AAL5" adminStatus="up" encap="llc" qos="enable"/>
+</AtmCfgVcc>
+<Lan/>
+<SecCfg>
+<srvCtrlList ftp="disable" http="enable" icmp="lan" ssh="disable" telnet="disable" tftp="disable"/>
+</SecCfg>
+<BudgetCfg/>
+<URLFilterCfg/>
+<FWScheduleCfg/>
+<TCM_SYSINFO_CFG/>
+<SpiCfg/>
+<WirelessCfg>
+<wlVars state="enabled" hide="1" ssId="WLAN" country="DE" authMode="open" IdleTimeout="180" authRenewIntvl="3600" authBlockoutIntvl="60" NASId="" mix_NASId=""  radiusServerIP="0.0.0.0" radiusServerPort="1812" radiusServerKey="" mix_radiusServerIP="0.0.0.0" mix_radiusPort="1812" mix_radiusKey="" enblRadius="0" enblInternal="1"  wep="disabled" keyBit="64-bit" keyMode="ASCII" key64_1="" key64_2="" key64_3="" key64_4="" key64Index="0" key128_1=""  key128_2=""  key128_3=""  key128_4=""  key128Index="0" wpaRekey="0" wpakey=""  mix_wpakey= ""  wpa="tkip" fltMacMode="disabled"  apMode="ap"  bridgeRestrict="enabled_scan"  wdsMAC_0=""  wdsMAC_1=""  wdsMAC_2=""  wdsMAC_3=""  apIsolation="off" band="b" channel="11" transPowerPercent="100" basicSpeed="0" wlRepeaterEnbl="disabled" rate="auto" multicastRate="auto" basicRate="all" fragThreshold="2346" RTSThreshold="2347" DTIM="1" beacon="100" XPress="off" gMode="auto" gProtection="auto" preamble="long" AfterBurner="off" WME="off" WMENoAck="off" Preauthentication="off" ReauthTimeout="36000"/>
+</WirelessCfg>
+<SystemInfo>
+<sysUserName value="admin"/>
+<protocol autoScan="disable" upnp="disable" pppThrough="disable" macFilterPolicy="forward" encodePassword="enable" enetwan="disable"/>
+</SystemInfo>
+<RouteCfg>
+<ripGlobal state="disable" ripIfcTableSize="1"/>
+<ripIfc tableSize="1">
+<ripIfcEntry id="1" name="br0" state="disable" version="2" operation="active"/>
+</ripIfc>
+</RouteCfg>
+<DDNSCfg/>
+<SNTPCfg/>
+<ToDCfg/>
+<DatetimeCfg/>
+<TecomVoipCfg>
+<emergency emg_number0="110" emg_desc0="Polizei" emg_number1="112" emg_desc1="Feuerwehr" emg_number2="19222" emg_desc2="Rettungsdienst" emg_number3="" emg_desc3="" emg_number4="" emg_desc4="" emg_number5="" emg_desc5="" emg_number6="" emg_desc6="" emg_number7="" emg_desc7="" emg_number8="" emg_desc8="" emg_number9="" emg_desc9=""/>
+<portInfo pri_select="0" sec_select="0" enbl_2line_dial="enable" numberHide="disable" enable_CLIP="disable" enable_Anklopfen="disable" enable_Analog="enable" enable_Fallback="disable" />
+<provName providerName="TONLINE"/>
+<Tonline telenumber_TONLINE="" email_TONLINE="" password_TONLINE="" registrar="" domainName="" enable_checkVAD_T="disable" enable_compres_T="disable"/>
+<partialTbl tableSize="5">
+<partialEntry id="1" partial="0137" nselect="pstn" />
+<partialEntry id="2" partial="0180" nselect="pstn" />
+<partialEntry id="3" partial="0190" nselect="pstn" />
+<partialEntry id="4" partial="0800" nselect="pstn" />
+<partialEntry id="5" partial="0900" nselect="pstn" />
+</partialTbl>
+</TecomVoipCfg>
+<wan_0_32/>
+</psitree>

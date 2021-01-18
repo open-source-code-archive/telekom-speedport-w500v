@@ -1,0 +1,231 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitFilterfunktionURLSperren</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+function form_load()
+{
+    var m_form = document.forms[0];
+    m_form.URL_1.value = '<%ej_get_urlfilter(URL_1)%>';
+    m_form.URL_2.value = '<%ej_get_urlfilter(URL_2)%>';
+    m_form.URL_3.value = '<%ej_get_urlfilter(URL_3)%>';
+    m_form.URL_4.value = '<%ej_get_urlfilter(URL_4)%>';
+    m_form.URL_5.value = '<%ej_get_urlfilter(URL_5)%>';
+    m_form.URL_6.value = '<%ej_get_urlfilter(URL_6)%>';
+    m_form.URL_7.value = '<%ej_get_urlfilter(URL_7)%>';
+    m_form.URL_8.value = '<%ej_get_urlfilter(URL_8)%>';
+    m_form.URL_9.value = '<%ej_get_urlfilter(URL_9)%>';
+    m_form.URL_10.value = '<%ej_get_urlfilter(URL_10)%>';
+    m_form.URL_11.value = '<%ej_get_urlfilter(URL_11)%>';
+    m_form.URL_12.value = '<%ej_get_urlfilter(URL_12)%>';
+    m_form.URL_13.value = '<%ej_get_urlfilter(URL_13)%>';
+    m_form.URL_14.value = '<%ej_get_urlfilter(URL_14)%>';
+    m_form.URL_15.value = '<%ej_get_urlfilter(URL_15)%>';
+    m_form.URL_16.value = '<%ej_get_urlfilter(URL_16)%>';
+    m_form.URL_17.value = '<%ej_get_urlfilter(URL_17)%>';
+    m_form.URL_18.value = '<%ej_get_urlfilter(URL_18)%>';
+    m_form.URL_19.value = '<%ej_get_urlfilter(URL_19)%>';
+    m_form.URL_20.value = '<%ej_get_urlfilter(URL_20)%>';
+    m_form.URL_21.value = '<%ej_get_urlfilter(URL_21)%>';
+    m_form.URL_22.value = '<%ej_get_urlfilter(URL_22)%>';
+    m_form.URL_23.value = '<%ej_get_urlfilter(URL_23)%>';
+    m_form.URL_24.value = '<%ej_get_urlfilter(URL_24)%>';
+    m_form.URL_25.value = '<%ej_get_urlfilter(URL_25)%>';
+    m_form.URL_26.value = '<%ej_get_urlfilter(URL_26)%>';
+    m_form.URL_27.value = '<%ej_get_urlfilter(URL_27)%>';
+    m_form.URL_28.value = '<%ej_get_urlfilter(URL_28)%>';
+    m_form.URL_29.value = '<%ej_get_urlfilter(URL_29)%>';
+    m_form.URL_30.value = '<%ej_get_urlfilter(URL_30)%>';
+}
+
+function stOk(check){
+    var prf = true;
+    var i;
+    var m_form = document.forms[0];
+    
+    if (check == 0)
+	prf = true;
+    else{
+	for(i=0;i<30;i++){
+	    if(m_form.elements[i].value != "" && isInvalidString(m_form.elements[i].value) ){
+		prf = false;
+		break;
+	    }
+	}
+    }
+
+  if (prf == false){
+    alert("Bitte tragen Sie mindestens eine zu sperrende URL oder ein Schlüsselwort ein");
+    return;
+  }
+	                                                                 
+        document.getElementById("c_verzoeg1").style.visibility='visible';
+        document.getElementById("c_verzoeg2").style.visibility='visible';
+  	document.getElementById("t_but1").style.visibility='hidden';
+	document.getElementById("t_but2").style.visibility='hidden';
+  	document.getElementById("t_but3").style.visibility='hidden';
+  	document.getElementById("t_but4").style.visibility='hidden';
+  	m_form.submit();
+
+    /*                                                                            
+        var loc = 'hcti_sicherheit_f_urls.urlfilter?';
+        var code;
+        for (i = 1; i < 30; i++) {
+                loc = loc + "URL_" + i + "=" + encodeUrl(document.forms[0].elements[i].value) + "&";
+        }
+        loc = loc + "URL_30=" + encodeUrl(document.forms[0].elements[30].value);
+        code = 'location.assign("' + loc + '")';
+        eval(code);
+*/
+}
+
+/*
+function stOk(){
+  var loc = 'hcti_sicherheit_f_urls.urlfilter?';
+  var code;
+
+  var prf = false;
+  for(i=0;i<30;i++){
+    if(document.F1.elements[i].value != ""){
+      prf = true;
+      break;
+    }
+  }
+  if (prf == false){
+    alert("Bitte tragen Sie mindestens eine zu sperrende URL oder ein Schlüsselwort ein");
+    return;
+  }
+
+  for (i=1;i<31;i++){
+    loc = loc + "URL_" + i + "=" + encodeUrl(document.F1.elements[i-1].value) + "&";
+//    top.frames[0].urlsperre[i-1] = document.F1.elements[i-1].value;
+  }
+
+  code = 'location.assign("' + loc + '")';
+  eval(code);
+  
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+}
+*/ 
+
+function btn_delall()
+{ 
+  if (confirm("Wenn Sie alle Einträge in der Liste löschen möchten, dann klicken Sie auf 'OK'." + "\nKlicken Sie auf 'Abbrechen', um das Löschen zu verhindern.")==true) {
+        document.forms[0].reset();
+        stOk(0);
+  }
+}
+
+function stZrk(){
+  top.frames[2].location.href = "scoutflt.cmd?action=view";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#scroll{WIDTH: 400px; HEIGHT: 341px; OVERFLOW: scroll;}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload="form_load();">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / Filterfunktion / URL Sperren</DIV>
+<DIV id=c_titel>URL (Internetseiten) sperren</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr>
+            <td width="50">Webseite</td>
+            <td width="30"></td>
+            <td>URL oder Schlüsselwort</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=scroll>
+                <form action="urlfilter.post" method='post'>
+                    <script language="JavaScript" type=
+                    "text/javascript">
+                    <!--
+                    for (i=1;i<31;i++){
+                    var divart = "c_std";
+                    if (i==30) divart = "c_last";
+                    document.write(
+                    '<DIV id=' + divart + '>' +
+                    '<table border="0" cellpadding="0" cellspacing="2">' +
+                    '<tr>' +
+                    '<td width="50" align="center">' + i + '<\/td>' +
+          '<td width="30"></td>' +
+                    '<td onmouseover=i_showElem(1) onmouseout=i_showElem(0)><input type="text" name="URL_' + i + '" size="34" maxlength=127><\/td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+
+//-->
+</SCRIPT> 
+</form>
+</DIV>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but2 onclick=btn_delall() onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>Alles l&ouml;schen</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk(1) onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>URL (Internetseiten) sperren</h2>
+    <p>Sie können hier vollständige URL (Internetadressen) oder Schlüsselworte eingeben, 
+       die für definierte PCs gesperrt werden.  
+       Das Gateway prüft dann alle http-Pakete, um den Zugang zu diesen URL zu sperren. 
+       Diese Funktion kann dazu verwendet werden, um Kindern den Zugang
+       zu Gewalt- oder Sex-orientierten Webseiten zu verwehren.</p>
+    <p>Damit die Sperre wirksam wird muss beim entsprechenden PC die URL-Sperre aktiviert werden. 
+       Diesen Menüpunkt finden Sie unter:<br>
+       Sicherheit / Filterfunktion</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>URL (Internetseiten) sperren</h2>
+    <p><b>URL oder Schlüsselwort</b><br>
+    Geben Sie hier die vollständige URL (Internetadressen) oder Schlüsselworte ein, 
+    die für entsprechende PCs gesperrt werden sollen.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

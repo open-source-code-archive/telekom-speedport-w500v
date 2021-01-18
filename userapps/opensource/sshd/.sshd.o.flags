@@ -1,0 +1,3 @@
+ifeq (main.o chansession.o util.o session.o packet.o algo.o buffer.o kex.o dss.o bignum.o signkey.o rsa.o random.o service.o auth.o authpasswd.o channel.o queue.o sshpty.o termcodes.o authpubkey.o runopts.o loginrec.o atomicio.o x11fwd.o agentfwd.o localtcpfwd.o libtomcrypt/libtomcrypt.o libtommath/libtommath.o,$(strip $(subst $(comma),:,$(EXTRA_LDFLAGS) $(obj-y))))
+FILES_FLAGS_UP_TO_DATE += sshd.o
+endif

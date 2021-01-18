@@ -1,0 +1,222 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>TelefonieISDNRufnummern</TITLE>
+
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){
+  switch(top.frames[0].ov_ea){// frames[0] entspricht banner
+    case "0":
+      document.F1.R1[0].checked = true;
+      break;
+    case "1":
+      document.F1.R1[1].checked = true;
+      break;
+  }
+  document.F1.T11.value = top.frames[0].ovnr;
+  stDis();
+}
+  
+function i_prfElem(){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(3);
+  }
+}
+
+function stDis(){
+    if(document.F1.R1[0].checked == false){
+      document.F1.T11.style.backgroundColor="#FFFFFF";
+      document.F1.T11.disabled = false;
+    }
+    else{
+      document.F1.T11.disabled = true;
+      document.F1.T11.style.backgroundColor="#D4D0C8";
+    }
+}
+
+function stOk(){
+  var prf = false;
+  for(i=0;i<top.frames[0].msn.length;i++){
+    if(document.F1.elements[i].value != ""){
+      prf = true;
+      break;
+    }
+  }
+  if (prf == false){
+    alert("Bitte tragen Sie mindestens eine ISDN Rufnummer ein");
+    return;
+  }
+  if(document.F1.R1[0].checked == false){
+    if (document.F1.T11.value=="" || isNaN(document.F1.T11.value)){
+      alert(txtHinw("Ortsvorwahl"));
+      document.F1.T11.focus();
+      return;
+    }
+  }
+
+  for (i=0;i<top.frames[0].msn.length;i++){
+    top.frames[0].msn[i] = document.F1.elements[i].value;
+  }
+
+  if (document.F1.R1[0].checked == true){
+    top.frames[0].ov_ea = "0";
+  }
+  else{
+    top.frames[0].ov_ea = "1";
+  }
+  top.frames[0].ovnr = document.F1.T11.value;
+
+  stSave();
+}
+
+function stDel(){
+  if (confirm("Wenn Sie alle ISDN Rufnummern löschen möchten, dann klicken Sie auf 'OK'." +
+              "\nKlicken Sie auf 'Abbrechen', um das Löschen zu verhindern.")==true){
+    for (i=0;i<top.frames[0].msn.length;i++){
+      top.frames[0].msn[i] = "";
+    }
+    top.frames[0].ov_ea = "0";
+    top.frames[0].ovnr = "";
+    stSave();
+  }
+}
+  
+function stSave(){
+  
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_telefon.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Telefonie / T-ISDN Rufnummern</DIV>
+<DIV id=c_titel>T-ISDN Rufnummern</DIV>
+<SCRIPT language="JavaScript">
+<!--                    
+var divart;
+var startf;
+var endf;
+
+for (i=0;i<top.frames[0].msn.length;i++){
+  divart = "c_std";
+  startf = "";
+  if (i==top.frames[0].msn.length-1) divart = "c_last";
+  if (i==0) startf = '<form name="F1">';
+  document.write(
+    '<DIV id=' + divart + '>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr>' +
+          startf +
+            '<td width="160">Rufnummer (MSN) ' + (i+1) + ':</td>' +
+            '<td onmouseover=i_showElem(1) onmouseout=i_showElem(0)><input type="text" name="T' + i + '" size="12" maxlength="12" value="' + top.frames[0].msn[i] + '"></td>' +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+
+//-->
+</SCRIPT> 
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Ortsvorwahl</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="156">Ortsvorwahl ergänzen:</td>
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis()"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis()"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="160">Ortsvorwahl:</td>
+            <td><input type="text" name="T11" size="5" maxlength="5"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but2 onclick=stDel() onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>L&ouml;schen &lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>T-ISDN Rufnummern</h2>
+    <p>Tragen Sie Ihre ISDN Rufnummer ohne Vorwahl in das Eingabefeld ein.</p>
+    <p>Ihre ISDN Rufnummern entnehmen Sie der Auftragsbestätigung Ihres jeweiligen ISDN Anschlusses.</p>
+    
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>T-ISDN Rufnummer</h2>
+    <p>Geben Sie hier eine der ISDN Rufnummern (MSN) ein, die sie mit Ihrer Auftragsbestätigung erhalten haben.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Ortsvorwahl</h2>
+    <p><b>Ortsvorwahl ergänzen</b><br>
+    Wenn Sie diese Option aktivieren und in das unten aufgeführte Feld Ihre Ortsvorwahl eintragen, 
+    dann wird diese Vorwahl automatisch ergänzt, wenn die eingegebene Telefonnummer nicht mit einer '0' beginnt.
+    Sie sparen sich dadurch das Eingeben der Ortsvorwahl bei Ortsgesprächen über Ihren Internet-Telefoniezugang.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Ortsvorwahl</h2>
+    <p><b>Ortsvorwahl</b><br>
+    Geben Sie hier die Vorwahl ihres Ortes an.</p>
+  </DIV>
+  
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss 'Ortsvorwahl ergänzen' eingeschaltet sein.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

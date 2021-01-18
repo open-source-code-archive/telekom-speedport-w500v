@@ -1,0 +1,345 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkDDNS</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var ddns_enabled = '<%ej_get_ddns(ddns_enabled)%>';
+var ddns_provider = '<%ej_get_ddns(ddns_provider)%>';
+var ddns_domain1= '<%ej_get_ddns(ddns_domain1)%>';
+var ddns_mail1 =  '<%ej_get_ddns(ddns_mail1)%>';
+var ddns_username1 =  '<%ej_get_ddns(ddns_username1)%>';
+var ddns_passwd1 =  '<%ej_get_ddns(ddns_passwd1)%>';
+var ddns_domain2= '<%ej_get_ddns(ddns_domain2)%>';
+var ddns_mail2 =  '<%ej_get_ddns(ddns_mail2)%>';
+var ddns_username2 =  '<%ej_get_ddns(ddns_username2)%>';
+var ddns_passwd2 =  '<%ej_get_ddns(ddns_passwd2)%>';
+
+function stOk(){
+  //Select-Options müssen extra ausgeblendet werden!
+  document.forms[0].D1.style.visibility='hidden';
+                                                                                
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  document.getElementById('t_but1').style.visibility='hidden';
+  document.getElementById('t_but3').style.visibility='hidden';
+  document.getElementById('t_but4').style.visibility='hidden';
+}
+
+function stProvider() {
+	if (document.forms[0].D1.selectedIndex == 0) {
+		document.forms[0].T2.disabled = true ;
+		document.forms[0].T3.disabled = false ;
+                document.forms[0].T2.style.backgroundColor="#D4D0C8";
+                document.forms[0].T3.style.backgroundColor="#FFFFFF";
+                document.forms[0].T1.value=ddns_domain1;
+                document.forms[0].T2.value=ddns_mail1;
+                document.forms[0].T3.value=ddns_username1;
+                document.forms[0].T4.value=ddns_passwd1;
+
+	} else {
+		document.forms[0].T2.disabled = false ;
+		document.forms[0].T3.disabled = true ;
+                document.forms[0].T2.style.backgroundColor="#FFFFFF";
+                document.forms[0].T3.style.backgroundColor="#D4D0C8";
+                document.forms[0].T1.value=ddns_domain2;
+                document.forms[0].T2.value=ddns_mail2;
+                document.forms[0].T3.value=ddns_username2;
+                document.forms[0].T4.value=ddns_passwd2;
+
+	}
+}
+
+function form_load() {
+                                                                           
+        with (document.forms[0]) {
+                if (ddns_enabled == 1){
+                        R10[1].checked = true;
+                }
+                else{
+                        R10[0].checked = true;
+                }
+
+                if((ddns_provider != '0')&&(ddns_provider !='1' ))
+                    ddns_provider=0;
+                if((ddns_provider == '0'))
+                    ddns_provider = 0;
+                else
+                    ddns_provider = 1;
+
+				if (ddns_provider == 0)   {                                                                             
+                T1.value=ddns_domain1;
+                T2.value=ddns_mail1;
+                T3.value=ddns_username1;
+                T4.value=ddns_passwd1;
+				}
+				else{
+                T1.value=ddns_domain2;
+                T2.value=ddns_mail2;
+                T3.value=ddns_username2;
+                T4.value=ddns_passwd2;
+
+				}
+                D1.selectedIndex=ddns_provider;
+        }
+        ch_mod();
+}
+
+function ch_mod() {
+        with (document.forms[0]) {
+        	if ( R10[1].checked == true ) {
+                        D1.disabled = false;
+                        T1.disabled = false;
+                        T2.disabled = false;
+                        T3.disabled = false;
+                        T4.disabled = false;
+                        T1.style.backgroundColor="#FFFFFF";
+                        T2.style.backgroundColor="#FFFFFF";
+                        T3.style.backgroundColor="#FFFFFF";
+                        T4.style.backgroundColor="#FFFFFF";
+			stProvider() ;
+        	} else {
+                        D1.disabled = true;
+                        T1.disabled = true;
+                        T2.disabled = true;
+                        T3.disabled = true;
+                        T4.disabled = true;
+                        T1.style.backgroundColor="#D4D0C8";
+                        T2.style.backgroundColor="#D4D0C8";
+                        T3.style.backgroundColor="#D4D0C8";
+                        T4.style.backgroundColor="#D4D0C8";
+        	}
+	}
+}
+
+function btn_apply() {
+        var email=/[a-zA-Z0-9\.]*@[a-zA-Z0-9\.]/;
+        var loc = 'c_netzwerk_ddns.ddns?';
+        with (document.forms[0]) {
+                if (R10[1].checked == true)
+                        loc +="ddns_enabled=1";
+                else
+                        loc +="ddns_enabled=0";
+
+		if (R10[1].checked == true){
+                
+                if(D1.selectedIndex==0)
+                        loc +="&ddns_provider=0";
+                else
+                        loc +="&ddns_provider=1";
+                                                                                
+                if((T1.value==""||T1.value.length==0 || isInvalidString(T1.value))&&R10[1].checked==true){
+                        alert("DDNS Domämennamen:Bitte eine Datei eingeben.");
+                        return;
+                }
+		if (T1.value.length > 32) {
+			alert("DDNS Domämennamen:") ;
+			return ;
+		}
+		if(D1.selectedIndex==0)
+                	loc +="&ddns_domain1="+encodeUrl(T1.value);
+		else
+                	loc +="&ddns_domain2="+encodeUrl(T1.value);					
+					
+		if (D1.selectedIndex == 1) {
+			if (T2.value.length > 36) {
+				alert("Konto/eMail:") ;
+				return ;
+			}
+                	if((T2.value==""||T2.value.length==0 ||isInvalidString(T2.value)||!email.test(T2.value))&&R10[1].checked==true){
+                        	alert("Konto/eMail:Bitte eine Datei eingeben.");
+                        	return;
+                	}
+		} else {
+			if (isInvalidString(T3.value)||T3.value.length > 32) {
+				alert("User Name:") ;
+				return ;
+			}
+			if (T3.value == "" || T3.value.length == 0) {
+				alert("User Name:Bitte eine Datei eingeben.") ;
+				return ;
+			}
+		}
+		if(D1.selectedIndex==0){
+            	 	loc +="&ddns_mail1="+encodeUrl(T2.value);
+			loc +="&ddns_username1=" + encodeUrl(T3.value) ;
+		}                                                                
+		else{
+            	    loc +="&ddns_mail2="+encodeUrl(T2.value);
+		    loc +="&ddns_username2=" + encodeUrl(T3.value) ;
+		}
+		if (T4.value.length > 32) {
+			alert('Passwort/Schlüssel:') ;
+			return ;
+		}
+                if((T4.value==""||T4.value.length==0||isInvalidString(T4.value))&&R10[1].checked==true){
+                                                                                
+                        alert("Passwort/Schlüssel:Bitte eine Datei eingeben.");
+                        return;
+                }
+			if(D1.selectedIndex==0)                                                                                
+                loc +="&ddns_passwd1="+encodeUrl(T4.value);
+			else
+                loc +="&ddns_passwd2="+encodeUrl(T4.value);
+		}
+                stOk();
+                var code = 'location.assign("' + loc + '")';
+                eval(code);
+        }
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY OnLoad='form_load();'>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / Dynamisches DNS</DIV>
+<DIV id=c_titel>Dynamisches DNS</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="DDNS">
+            <td width="20"><input type="radio" name="R10" value="V1" checked onclick=ch_mod();></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="R10" value="V2" onclick=ch_mod();></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Anbieter für Dynamisches DNS</DIV>
+<DIV id=c_sel>
+      <table border="0" cellpadding="2" cellspacing="1" bgcolor="#8FAFCC">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="114" align="right"><font color="#FFFFFF"><b>Anbieter-Auswahl:</b></font></td>
+            <td width="5"></td>
+            <td width="245"><select name="D1" onchange="stProvider()">
+                              <option>DynDNS.org</option>
+                              <option>TZO.com</option>
+                            </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_titel>Zugangsdaten für Dynamisches DNS</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="128">Domänennamen:</td>
+            <td><input type="text" name="T1" size="30" maxlength="32"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+            <td width="128">Konto / Email:</td>
+            <td><input type="text" name="T2" size="30" maxlength="36"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+          <td width="128">User Name:</td>
+          <td><input type="text" name="T3" size="30" maxlength="32"></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(5) onmouseout=i_showElem(0)>
+            <td width="128">Passwort / Schlüssel:</td>
+            <td><input type="text" name="T4" size="30" maxlength="32"></td>
+          </tr>
+        </form>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=btn_apply() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Dynamisches DNS</h2>
+    <p>Über den DynDNS-Service können Sie Ihrem Router einen individuellen, festen Domänennamen
+    im Internet zuweisen, auch wenn er keine feste IP-Adresse hat.
+    Mittels Dynamischen DNS können Anwender den festen (statischen) Namen der Domäne an eine dynamische IP
+    Adresse binden. Sie benötigen dafür vom Anbieter des Dynamischen DNS Dienstes ein eingerichtetes Konto, ein
+    Passwort und Ihren statischen Domänennamen. Die Produkte der Deutschen Telekom unterstützen Dynamisches DNS
+    für www.dyndns.org und www.tzo.com.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Dynamisches DNS</h2>
+    <p><b>Aus - Ein</b><br>
+    Wenn Sie Dynamisches DNS wünschen dann markieren Sie die Option: 'Ein'.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Anbieter für Dynamisches DNS</h2>
+    <p><b>Anbieterauswahl</b><br>
+    Wählen Sie den Anbieter aus, bei dem Sie sich angemeldet haben.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Zugangsdaten für Dynamisches DNS</h2>
+    <p><b>Domänennamen</b><br>
+    Geben Sie die geforderten Benutzerdaten ein. Die Werte dazu haben Sie von Ihrem Anbieter
+   bei Ihrer Anmeldung erhalten.</p>
+  </DIV>
+  
+  <DIV id=i_content4>
+    <h2>Zugangsdaten für Dynamisches DNS</h2>
+    <p><b>Konto / Email</b><br>
+    Geben Sie die geforderten Benutzerdaten ein. Die Werte dazu haben Sie von Ihrem Anbieter
+   bei Ihrer Anmeldung erhalten.</p>
+  </DIV>
+  
+  <DIV id=i_content5>
+    <h2>Zugangsdaten für Dynamisches DNS</h2>
+    <p><b>Passwort / Schlüssel</b><br>
+    Geben Sie die geforderten Benutzerdaten ein. Die Werte dazu haben Sie von Ihrem Anbieter
+   bei Ihrer Anmeldung erhalten.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

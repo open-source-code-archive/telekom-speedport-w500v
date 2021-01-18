@@ -1,0 +1,1204 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitVerschlüsselung</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var pclanhinw = true;
+var ksize;
+var format ;
+
+
+var keys = new Array("<%ejGetWl(wlKey0)%>", "<%ejGetWl(wlKey1)%>",
+		             "<%ejGetWl(wlKey2)%>", "<%ejGetWl(wlKey3)%>");
+var wep =      '<%ejGetWl(wlWep)%>';
+
+var idletimeout =     '<%ejGetWl(wlIdleTimeout)%>';
+var renew =           '<%ejGetWl(wlAuthRenewIntvl)%>';
+var retry =           '<%ejGetWl(wlAuthBlockoutIntvl)%>';
+
+var authMode = '<%ejGetWl(wlAuthMode)%>';
+var keybit =   '<%ejGetWl(wlKeyBit)%>';
+var keyindex = '<%ejGetWl(wlKeyIndex)%>';
+var keymode =  '<%ejGetWl(wlKeyMode)%>' ;
+
+var radiusip =   '<%ejGetWl(wlRadiusServerIP)%>';
+var radiusport = '<%ejGetWl(wlRadiusPort)%>';
+var radiuskey =  '<%ejGetWl(wlRadiusKey)%>';
+var NASId =      '<%ejGetWl(wlNASId)%>';
+
+var mix_radiusip =    '<%ejGetWl(mix_wlRadiusServerIP)%>';
+var mix_radiusport =  '<%ejGetWl(mix_wlRadiusPort)%>';
+var mix_radiuskey =   '<%ejGetWl(mix_wlRadiusKey)%>';
+var mix_NASId =       '<%ejGetWl(mix_wlNASId)%>';
+
+var wpa2psk =     '<%ejGetWl(wlWpaPsk)%>';
+var mix_psk = '<%ejGetWl(mix_wlWpaPsk)%>';
+var encwarnhinw = true;
+//if return true, then the input is invalid
+function checkNumber(input) {
+	var ret = false ;
+	var i = 0;
+	for (i=0; i < input.length; i++) {
+		if (input.charAt(i) < '0' || input.charAt(i) > '9') {
+			ret = true ;
+			break ;
+		}
+	}
+	return ret ;
+}
+
+function isValidPorts(port) {
+    var i = 0;
+	  if (checkNumber(port) == true)
+		return false;
+    for(i = 0; i < port.length; i++) 
+          if (isNaN(parseInt(port.charAt(i))))
+                  return false;
+    if (parseInt(port) < 1 || parseInt(port) > 65535)
+    	return false;
+    return true;
+}
+
+
+function get_encrypt()
+{
+	var encrypt;
+	if ( authMode == "open") {
+		if (wep == "disabled")
+			encrypt = 0 ;
+		else if (wep == "enabled")
+			encrypt = 1 ;
+	} else if (authMode == "psk2") 
+		encrypt = 2;
+	else if (authMode == "psk2mix") 
+		encrypt = 3;
+	else if (authMode == "wpa2") 
+		encrypt = 4;		
+	else if (authMode == "wpa2mix") 
+		encrypt = 5;
+
+	return encrypt;
+}
+function chk(){
+
+  document.F1.D1.selectedIndex = get_encrypt();
+  document.UM1.R11[keybit].checked = true;
+  //stKeyLen(keybit);
+
+  document.UM1.R12[0].checked = true;
+  if (document.F1.D1.selectedIndex == 1)
+	show_wep_data() ;
+  //document.UM1.R12[0].checked = true;
+  //stKeyTyp(top.frames[0].wepkeytyp);
+  
+  //document.UM1.T11.value = keys[0];
+  //document.UM1.T12.value = keys[1];
+  //document.UM1.T13.value = keys[2];
+  //document.UM1.T14.value = keys[3];
+  //document.UM1.D11.selectedIndex = keyindex;
+
+  if(document.F1.D1.selectedIndex == 2)
+	  show_psk_data();
+  else if (document.F1.D1.selectedIndex == 3)
+	  show_mix_psk_data();
+  
+  if(document.F1.D1.selectedIndex == 4)
+	  show_radius_data();
+  else if(document.F1.D1.selectedIndex == 5)
+	  show_mix_radius_data();
+
+  stAkt();
+}
+
+function show_wep_data() {
+	with (document.UM1) {
+		if (keybit == '0'){	//64-Bits
+			R11[0].checked = true ;
+			R11[1].checked = false;
+		} else if (keybit == '1') {	//128-Bits
+			R11[0].checked = false ;
+			R11[1].checked = true;
+		}
+		if (keymode == '0') {
+			R12[0].checked = true ;
+			R12[1].checked = false ;
+		} else if (keymode == '1') {
+			R12[0].checked = false ;
+			R12[1].checked = true;
+		} else {
+			;
+		}
+
+		//set form length and clear the blank
+		stKeyTyp(keymode) ;
+		
+		T11.value = keys[0] ;
+		T12.value = keys[1] ;
+		T13.value = keys[2] ;
+		T14.value = keys[3] ;
+	
+		D11.selectedIndex = keyindex ;	
+	}
+}
+
+function show_psk_data()
+{
+	document.UM2.T21.value = wpa2psk;
+}
+function show_mix_psk_data()
+{
+	document.UM2.T21.value = mix_psk;
+}
+function show_radius_data()
+{
+	with(document.UM3){
+		T31.value = idletimeout;
+		T32.value = renew;
+		T33.value = retry;
+
+		var ip = radiusip.split('.');
+		T34_1.value = ip[0];
+		T34_2.value = ip[1];
+		T34_3.value = ip[2];
+		T34_4.value = ip[3];
+
+		T35.value = radiusport;
+		P31.value = radiuskey;
+		T36.value = NASId;
+	}
+}
+function show_mix_radius_data()
+{
+	with(document.UM3){
+		T31.value = idletimeout;
+		T32.value = renew;
+		T33.value = retry;
+
+		var ip = mix_radiusip.split('.');
+		T34_1.value = ip[0];
+		T34_2.value = ip[1];
+		T34_3.value = ip[2];
+		T34_4.value = ip[3];
+
+		T35.value = mix_radiusport;
+		P31.value = mix_radiuskey;
+		T36.value = mix_NASId;
+	}
+
+}
+function pclan(){
+  if(wep == 'disabled' && authMode=='open'){ //Wenn WEP ausgeschaltet ist
+    var pclanok;
+
+    pclanok=confirm("Achtung, bitte beachten Sie, dass nach Einschalten der Verschlüsselung und Bestätigen mit"+
+                    "\n'Speichern' die Verbindung zu Ihrem Router unterbrochen wird."+
+                    "\n"+
+                    "\nEine drahtgebundene (Ethernet-) Verbindung wird automatisch wiederhergestellt"+
+                    "\n"+
+                    "\nUm eine drahtlose (WLAN-) Verbindung wiederherzustellen, muss der WLAN-Adapter in Ihrem"+
+                    "\nPC / Laptop mit der gleichen Verschlüsselung konfiguriert werden, die Sie jetzt in Ihrem "+
+                    "\nRouter eintragen.");
+
+    if(pclanok==false){
+      document.F1.D1.selectedIndex = 0; //Wenn abbrechen geklickt wird, dann wird wieder 'Aus' eingestellt
+      stAkt();
+    } else{
+      //pclanhinw = false;
+      show_wep_data() ;
+    }
+  } else {
+      show_wep_data() ;
+  }
+}
+
+function stAkt(){
+  document.getElementById("c_um0").style.visibility='hidden';
+  document.getElementById("c_um1").style.visibility='hidden';
+  document.getElementById("c_um2").style.visibility='hidden';
+  document.getElementById("c_um3").style.visibility='hidden';
+
+  if (document.F1.D1.selectedIndex < 2){
+    document.getElementById("c_um" + document.F1.D1.selectedIndex).style.visibility='visible';
+  }
+  else if (document.F1.D1.selectedIndex < 4){
+    document.getElementById("c_um2").style.visibility='visible';
+  }
+  else {
+    document.getElementById("c_um3").style.visibility='visible';
+  }
+
+  if(document.F1.D1.selectedIndex == 2)
+	  show_psk_data();
+  else if (document.F1.D1.selectedIndex == 3)
+	  show_mix_psk_data();
+  
+  if(document.F1.D1.selectedIndex == 4)
+	  show_radius_data();
+  else if(document.F1.D1.selectedIndex == 5)
+	  show_mix_radius_data();
+
+  if (document.F1.D1.selectedIndex != 0 )//&& pclanhinw == true) 
+	pclan();
+  if (document.F1.D1.selectedIndex == 0)
+  	if (encwarnhinw == true) encwarn();
+
+}
+
+function encwarn(){
+  //if(top.frames[0].encrypt != 0){ //Wenn die Verschlüsselung eingeschaltet ist
+    if(get_encrypt() != 0) {
+    alert("Achtung, wenn Sie die Verschlüsselung ausschalten, kann ein erhebliches\n" +
+          "Sicherheitsrisiko entstehen.\n" +
+          "\n" +
+          "Um die Verschlüsselung eingeschaltet zu lassen, klicken Sie auf 'Abbrechen'.\n" +
+          "\n" +
+          "Um Ihre Wireless LAN-Verbindung ohne Verschlüsselung zu verwenden,\n" +
+          "klicken Sie auf 'OK'.");
+    encwarnhinw = false;
+  }
+}
+
+function txtHinw(feldname){
+  return "Im Feld '" + feldname + "' wurde eine falsche Eingabe bzw. keine Eingabe vorgenommen. " +
+         "\nDie korrekte Eingabe ist notwendig, um die Verschlüsselung aktivieren zu können.";
+}
+
+function txtHex(feldname){
+  return "Im Feld '" + feldname + "' sind momentan nur hexadezimale Zeichen (0-9, A-F) erlaubt," +
+         "\nes wurden aber andere Zeichen eingegeben.";
+}
+
+
+
+
+function i_selElem(){
+  i_showElem(document.F1.D1.selectedIndex+1);
+}
+
+//klen	: 0 -- 64-Bit
+//	: 1 -- 128Bit
+function stKeyLen(klen){
+  if(document.UM1.R12[0].checked==true){ //ASCII
+    	if(klen==0) ksize = 5;
+    	else ksize = 13;
+  } else{                                  //HEX
+    	if(klen==0) ksize = 10;
+    	else ksize = 26;
+  }
+  stKeyUm();
+}
+
+//ktyp	: 0 -- ASCII
+//	: 1 -- HEX
+function stKeyTyp(ktyp){ 
+  if(document.UM1.R11[0].checked==true){ //Wenn 64Bit
+    if(ktyp==0) ksize = 5;
+    else ksize = 10;
+  }
+  else{
+    if(ktyp==0) ksize = 13;              //Wenn 128Bit
+    else ksize = 26;
+  }
+  stKeyUm();
+}
+
+function stKeyUm(){
+  document.UM1.T11.value="";
+  document.UM1.T12.value="";
+  document.UM1.T13.value="";
+  document.UM1.T14.value="";
+
+  document.UM1.T11.size=ksize;
+  document.UM1.T12.size=ksize;
+  document.UM1.T13.size=ksize;
+  document.UM1.T14.size=ksize;
+  document.UM1.T11.maxLength=ksize;
+  document.UM1.T12.maxLength=ksize;
+  document.UM1.T13.maxLength=ksize;
+  document.UM1.T14.maxLength=ksize;
+}
+
+function i_prfElem(){
+  switch(ksize){
+    case 5:
+      i_showElem(13);
+      break;
+    case 13:
+      i_showElem(14);
+      break;
+    case 10:
+      i_showElem(15);
+      break;
+    case 26:
+      i_showElem(16);
+      break;
+  }
+}
+function setDisable()
+{
+    var loc = 'wlsecurity.wl?';
+    loc += 'wlWep=disabled';
+    loc += '&wlAuthMode=open';
+
+    var code = 'this.location.assign("'+ loc + '")';
+    eval(code);
+
+}
+function setWep()
+{
+	var loc = 'wlsecurity.wl?';
+	with (document.UM1) {
+		loc += 'wlWep=enabled';
+		loc += '&wlAuthMode=open';
+
+		if (R11[0].checked == true)
+			loc += '&wlKeyBit=0';
+		else
+			loc += '&wlKeyBit=1';
+		if (R12[0].checked == true)
+			loc += '&wlKeyMode=0' ;	//ASCII
+		else
+			loc += '&wlKeyMode=1' ; //HEX
+		loc += '&wlKeyIndex=' + D11.selectedIndex;
+		loc += '&wlKey0=' + T11.value;
+		loc += '&wlKey1=' + T12.value;
+		loc += '&wlKey2=' + T13.value;
+		loc += '&wlKey3=' + T14.value;
+
+	}
+	var code = 'this.location.assign("'+ loc + '")';
+	eval(code);
+
+}
+function set_psk()
+{
+	var loc = 'wlsecurity.wl?';
+	with (document.UM2) {
+		loc += 'wlAuthMode=psk2';
+		loc += '&wlWep=disabled';
+		loc += '&wlWpa=' + encodeUrl('tkip+aes');
+		loc += '&wlWpaPsk=' + T21.value; 
+	}
+
+	var code = 'this.location.assign("' + loc + '")';
+	eval(code);
+
+}
+function set_mix_psk()
+{
+	var loc = 'wlsecurity.wl?';
+	with (document.UM2) {
+		loc += 'wlAuthMode=psk2mix';
+		loc += '&wlWep=disabled';
+		loc += '&wlWpa=' + encodeUrl('tkip+aes');
+		loc += '&mix_wlWpaPsk=' + T21.value;   
+	}
+
+	var code = 'this.location.assign("'+ loc +'")';
+	eval(code);
+}
+function set_radius()
+{
+	var loc = 'wlsecurity.wl?';
+	with (document.UM3) {
+		loc += 'wlAuthMode=wpa2';
+		loc += '&wlWep=disabled';
+		loc += '&wlWpa=' + encodeUrl('tkip+aes');
+		loc += '&wlIdleTimeout=' + T31.value;
+		loc += '&wlAuthRenewIntvl=' + T32.value;
+		loc += '&wlAuthBlockoutIntvl=' + T33.value;
+
+		loc += '&wlRadiusServerIP=' +    
+			   T34_1.value + '.' +
+			   T34_2.value + '.' +
+			   T34_3.value + '.' +
+			   T34_4.value;
+
+		loc += '&wlRadiusPort=' + T35.value;
+		loc += '&wlRadiusKey=' + P31.value;
+		loc += '&wlNASId=' + T36.value;
+	}
+	var code = 'this.location.assign("' + loc +'")';
+	eval(code);
+	
+}
+function set_mix_radius()
+{
+	var loc = 'wlsecurity.wl?';
+	with (document.UM3) {
+		loc += 'wlAuthMode=wpa2mix';
+		loc += '&wlWep=disabled';
+		loc += '&wlWpa=' + encodeUrl('tkip+aes');
+		loc += '&wlIdleTimeout=' + T31.value;
+		loc += '&wlAuthRenewIntvl=' + T32.value;
+		loc += '&wlAuthBlockoutIntvl=' + T33.value;
+
+		loc += '&mix_wlRadiusServerIP=' +    
+			   T34_1.value + '.' +
+			   T34_2.value + '.' +
+			   T34_3.value + '.' +
+			   T34_4.value;
+
+		loc += '&mix_wlRadiusPort=' + T35.value;
+		loc += '&mix_wlRadiusKey=' + P31.value;
+		loc += '&mix_wlNASId=' + T36.value;
+	}
+	var code = 'this.location.assign("' + loc +'")';
+	eval(code);
+}
+
+function showWaitingPics()
+{
+  	document.getElementById("c_verzoeg1").style.visibility='visible';
+  	document.getElementById("c_verzoeg2").style.visibility='visible';
+  	document.getElementById("t_but1").style.visibility='hidden';
+  	document.getElementById("t_but3").style.visibility='hidden';
+  	document.getElementById("t_but4").style.visibility='hidden';
+
+  	//Select-Options müssen extra ausgeblendet werden!
+  	document.F1.D1.style.visibility='hidden';
+  	document.UM1.D11.style.visibility='hidden';
+  	document.UM3.T31.style.visibility='hidden';
+  	document.UM3.T32.style.visibility='hidden';
+}
+
+function stOk(){
+	if (document.F1.D1.selectedIndex == 0)
+		top.frames[0].encrypt = '0';
+	else
+		top.frames[0].encrypt = '1';
+	
+  	switch(document.F1.D1.selectedIndex){
+  	case 0:
+		showWaitingPics();
+	  	setDisable() ;
+      		break;
+  	case 1:
+      		if (document.UM1.T11.value.length == ksize){
+        		if ((document.UM1.R12[0].checked==false && isNHex(document.UM1.T11.value)) || isInvalidString(document.UM1.T11.value)){
+          			alert(txtHex("Schlüssel 1"));
+          			return;
+        		}
+      		} else if (document.UM1.T11.value.length > 0 || (document.UM1.T11.value.length == 0 && document.UM1.D11.selectedIndex == 0)){
+        		alert(txtHinw("Schlüssel 1"));
+        		return;
+      		}
+
+      		if (document.UM1.T12.value.length == ksize){
+        		if ((document.UM1.R12[0].checked==false && isNHex(document.UM1.T12.value)) || isInvalidString(document.UM1.T12.value)){
+          			alert(txtHex("Schlüssel 2"));
+          			return;
+        		}
+      		} else if (document.UM1.T12.value.length > 0 || (document.UM1.T12.value.length == 0 && document.UM1.D11.selectedIndex == 1)){
+        		alert(txtHinw("Schlüssel 2"));
+        		return;
+      		}
+
+      		if (document.UM1.T13.value.length == ksize){
+        		if ((document.UM1.R12[0].checked==false && isNHex(document.UM1.T13.value)) || isInvalidString(document.UM1.T13.value)){
+          			alert(txtHex("Schlüssel 3"));
+          			return;
+        		}
+      		} else if (document.UM1.T13.value.length > 0 || (document.UM1.T13.value.length == 0 && document.UM1.D11.selectedIndex == 2)){
+        		alert(txtHinw("Schlüssel 3"));
+        		return;
+      		}
+
+      		if (document.UM1.T14.value.length == ksize){
+        		if ((document.UM1.R12[0].checked==false && isNHex(document.UM1.T14.value)) || isInvalidString(document.UM1.T14.value)){
+          			alert(txtHex("Schlüssel 4"));
+          			return;
+        		}
+      		} else if (document.UM1.T14.value.length > 0 || (document.UM1.T14.value.length == 0 && document.UM1.D11.selectedIndex == 3)){
+        		alert(txtHinw("Schlüssel 4"));
+        		return;
+      		}
+		showWaitingPics();
+	  	setWep();
+      		break;
+
+  	case 2:
+		if (document.UM2.T21.value.length < 8 || isInvalidString(document.UM2.T21.value)){
+        		alert(txtHinw("Pre-shared key (PSK)"));
+        		return;
+		}
+		showWaitingPics();
+		set_psk();
+      		break;
+
+  	case 3:
+      		if (document.UM2.T21.value.length < 8 || isInvalidString(document.UM2.T21.value)){
+        		alert(txtHinw("Pre-shared key (PSK)"));
+        		return ;
+      		}
+		showWaitingPics();
+	  	set_mix_psk();
+	  	break;
+  	case 4:
+		if (checkNumber(document.UM3.T31.value) == true) {
+			alert(txtHinw("Bei Leerlauf Verbindung abbrechen nach")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T32.value) == true){
+			alert(txtHinw("Erneutes Authentifizieren nach")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T33.value) == true) {
+			alert(txtHinw("Sperrzeit nach fehlerhaftem Authentifizieren")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_1.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_2.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_3.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_4.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+
+		var ipPart = parseInt(document.UM3.T34_1.value) ;
+		if ( ipPart == 0 ||ipPart == 255 || ipPart == 10 || ipPart > 223) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		ipPart = parseInt(document.UM3.T34_4.value) ;
+		if (ipPart == 0 || ipPart > 223) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		var ip = document.UM3.T34_1.value + '.' +  document.UM3.T34_2.value + '.' +
+			   	document.UM3.T34_3.value + '.' + document.UM3.T34_4.value;
+
+		if (isValidIpAddress(ip) == false) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+
+		if (ip == '127.0.0.1') {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+
+		if (isValidPorts(document.UM3.T35.value) == false) {
+			alert(txtHinw("Server Port")) ;
+			return ;
+		}
+		
+		var value = document.UM3.P31.value ;
+		if (value == "" || isInvalidString(value)) {
+			alert(txtHinw("Schlüssel:")) ;
+			return;
+		}
+		value = document.UM3.T36.value ;
+		if (value == "" || isInvalidString(value)) {
+			alert(txtHinw("NAS-ID:")) ;
+			return;
+		}
+		showWaitingPics();
+      		set_radius(); 
+      		break;
+  	case 5:
+		if (checkNumber(document.UM3.T31.value) == true) {
+			alert(txtHinw("Bei Leerlauf Verbindung abbrechen nach")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T32.value) == true){
+			alert(txtHinw("Erneutes Authentifizieren nach")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T33.value) == true) {
+			alert(txtHinw("Sperrzeit nach fehlerhaftem Authentifizieren")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_1.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_2.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_3.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		if (checkNumber(document.UM3.T34_4.value) == true) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+
+		var ipPart = parseInt(document.UM3.T34_1.value) ;
+		if ( ipPart == 0 ||ipPart == 255 || ipPart == 10 || ipPart > 223) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		ipPart = parseInt(document.UM3.T34_4.value) ;
+		if (ipPart == 0 || ipPart > 223) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+		var ip = document.UM3.T34_1.value + '.' +  document.UM3.T34_2.value + '.' +
+			   	document.UM3.T34_3.value + '.' + document.UM3.T34_4.value;
+
+		if (isValidIpAddress(ip) == false) {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+
+		if (ip == '127.0.0.1') {
+			alert(txtHinw("RADIUS Server IP")) ;
+			return ;
+		}
+
+		if (isValidPorts(document.UM3.T35.value) == false) {
+			alert(txtHinw("Server Port")) ;
+			return ;
+		}
+		
+		var value = document.UM3.P31.value ;
+		if (value == "" || isInvalidString(value)) {
+			alert(txtHinw("Schlüssel:")) ;
+			return;
+		}
+		value = document.UM3.T36.value ;
+		if (value == "" || isInvalidString(value)) {
+			alert(txtHinw("NAS-ID:")) ;
+			return;
+		}
+		showWaitingPics();
+      		set_mix_radius(); 
+      		break;
+
+  	}
+
+
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_sicherheit.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" type="text/css" href="style.css">
+
+<STYLE type="text/css">
+<!--
+
+#c_um0 {
+  POSITION: absolute; left: 15px; top: 102px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um1 {
+  POSITION: absolute; left: 15px; top: 102px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um2 {
+  POSITION: absolute; left: 15px; top: 102px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_um3 {
+  POSITION: absolute; left: 15px; top: 102px; width: 402px; background-color: #F0F0F0; VISIBILITY: hidden;
+  border-color: #E20074; border-width: 1px; border-style: solid; border-top-style: none;
+}
+
+#c_fest {
+  height: 65px; line-height: 15px; padding-left: 10px; font-family: Arial, sans-serif; font-size: 12px;
+}
+
+#scroll{
+  width: 400px; height: 345px; overflow: scroll;
+}
+
+#i_content11 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content12 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content13 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content14 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content15 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content16 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content17 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+#i_content21 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+#i_content31 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content32 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content33 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content34 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content35 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content36 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content37 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+//-->
+</STYLE>
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / Verschlüsselung</DIV>
+<DIV id=c_titel>Verschlüsselung</DIV>
+
+<DIV id=c_sel>
+      <table border="0" cellpadding="2" cellspacing="1" bgcolor="#E20074">
+        <tr onmouseover=i_selElem() onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="126" align="right"><font color="#FFFFFF"><b>Betriebsart:</b></font></td>
+            <td width="5"></td>
+            <td width="233"><select size="1" name="D1" onchange="stAkt()">
+                <SCRIPT language="JavaScript">
+                <!--
+                  for (i=0;i<top.frames[0].encryptname.length;i++){
+                    document.write('<option>' + top.frames[0].encryptname[i] + '</option>');
+                  }
+                //-->
+                </SCRIPT>
+              </select>
+            </td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+</DIV>
+
+<DIV id=c_um0>
+
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um1>
+<DIV id=c_titel>Verschlüsselung WEP</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(11) onmouseout=i_showElem(0)>
+          <form name="UM1">
+            <td width="136">Schlüssellänge:</td>
+            <td width="20"><input type="radio" name="R11" value="V1" onclick="stKeyLen(0)"></td>
+            <td width="60">64-bit</td>
+            <td width="20"><input type="radio" name="R11" value="V2" onclick="stKeyLen(1)"></td>
+            <td width="60">128-bit</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(12) onmouseout=i_showElem(0)>
+            <td width="136">Schlüsseltyp:</td>
+            <td width="20"><input type="radio" name="R12" value="V1" onclick="stKeyTyp(0)"></td>
+            <td width="60">ASCII</td>
+            <td width="20"><input type="radio" name="R12" value="V2" onclick="stKeyTyp(1)"></td>
+            <td width="60">HEX</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 1:</td>
+            <td width="232"><input type="text" name="T11" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 2:</td>
+            <td width="232"><input type="text" name="T12" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 3:</td>
+            <td width="232"><input type="text" name="T13" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem() onmouseout=i_showElem(0)>
+            <td width="140">Schlüssel 4:</td>
+            <td width="232"><input type="text" name="T14" size="5" maxlength="5"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(17) onmouseout=i_showElem(0)>
+            <td width="140">Standard Schlüssel:</td>
+            <td width="230">
+              <select size="1" name="D11">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um2>
+<DIV id=c_titel>Einstellungen zum Pre-shared key</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(21) onmouseout=i_showElem(0)>
+          <form name="UM2">
+            <td width="140">Pre-shared key (PSK):</td>
+            <td><input type="text" name="T21" size="26" maxlength="63"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+
+<DIV id=c_um3>
+<DIV id=c_titel>Einstellungen zur Authentifizierung</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(31) onmouseout=i_showElem(0)>
+          <form name="UM3">
+            <td width="260">Bei Leerlauf Verbindung abbrechen nach:</td>
+            <td width="60"><input type="text" name="T31" size="6" value="180"></td>
+            <td>Sek</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(32) onmouseout=i_showElem(0)>
+            <td width="260">Erneutes Authentifizieren nach:</td>
+            <td width="60"><input type="text" name="T32" size="6" value="3600"></td>
+            <td>Sek</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(33) onmouseout=i_showElem(0)>
+            <td width="260">Sperrzeit nach fehlerhaftem Authentifizieren:</td>
+            <td width="60"><input type="text" name="T33" size="6" value="60"></td>
+            <td>Sek</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Parameter für den RADIUS Server</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(34) onmouseout=i_showElem(0)>
+            <td width="148">Server IP:</td>
+            <td width="38"><input type="text" name="T34_1" size="3" maxlength="3" value="192"> .</td>
+            <td width="38"><input type="text" name="T34_2" size="3" maxlength="3" value="168"> .</td>
+            <td width="38"><input type="text" name="T34_3" size="3" maxlength="3" value="1"> .</td>
+            <td><input type="text" name="T34_4" size="3" maxlength="3" value="1"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(35) onmouseout=i_showElem(0)>
+            <td width="148">Server Port:</td>
+            <td><input type="text" name="T35" size="4" maxlength="4" value="1812"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(36) onmouseout=i_showElem(0)>
+            <td width="148">Schlüssel:</td>
+            <td><input type="password" class="stylepwd" name="P31" size="26" maxlength="80"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(37) onmouseout=i_showElem(0)>
+            <td width="148">NAS-ID:</td>
+            <td><input type="text" name="T36" size="20" maxlength="31"></td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Verschlüsselung</h2>
+    <p>Durch Verschlüsselung wird die Übertragung der Daten in Ihrem drahtlosen Netzwerk vor unbe- fugtem Abhören geschützt.</p>
+    <p>Ein Verschlüsselungsalgorith- mus chiffriert Ihre Daten und macht sie somit unleserlich. Bei Kenntnis des
+    dabei verwendeten Schlüssels können die Daten auf der Empfangsseite wieder dechiffriert werden.</p>
+    <p>Zur Erhöhung der Sicherheit kann zusätzlich die Authentifi- zierung mittels eines RADIUS Servers eingeschaltet werden.
+    Dadurch erhalten nur festgelegte Benutzer mit definierten Rechten Zugang zu Ihrem Netz.</p>  
+  </DIV>
+
+
+  <DIV id=i_content1>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart Aus</b><br>
+       Zu Ihrer eigenen Sicherheit empfehlen wir Ihnen dringend die Verschlüsselung einzuschalten.
+       Wählen Sie die Art der Verschlüsselung und konfigurieren Sie die nachfolgenden Punkte.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+       Verwenden Sie zum Einschalten der Verschlüsselung möglichst einen PC der per Kabel am Router angeschaltet ist.
+       Nur so ist gewährleistet, das die Konfiguration funktionssicher durchgeführt werden kann.</p>
+  </DIV>
+
+  <DIV id=i_content2>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WEP</b><br>
+       WEP steht für Wired Equivalent Privacy. Im Modus WEP k&ouml;nnen Sie den ben&ouml;tigten Schl&uuml;ssel
+       in ASCII oder HEX Schreibweise eintragen. Es wird dann immer der gleiche Verschlüsselungsalgorithmus verwendet.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+       Verwenden Sie zum Einschalten der Verschlüsselung möglichst einen PC der per Kabel am Router angeschaltet ist.
+       Nur so ist gewährleistet, das die Konfiguration funktionssicher durchgeführt werden kann.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WPA2 mit Pre-shared key</b><br>
+       In diesem Modus können sich nur WLAN Clients anmelden, welche die Verschlüsselung WPA2 (AES) unterstützen.
+       Bei WPA2 wird der Verschlüsselungsalgorithmus fortlaufend verändert.
+       Dadurch wird eine höhere Sicherheit erreicht.
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+       WPA2 funktioniert zur Zeit nur mit Windows® XP.</p>
+    <p>Verwenden Sie bei allen PC's, die &uuml;ber die Funkverbindung (WLAN) angeschaltet werden, exakt den gleichen Pre-shared key.</p>
+    <p>Verwenden Sie zum Einschalten der Verschlüsselung möglichst einen PC der per Kabel am Router angeschaltet ist.
+       Nur so ist gewährleistet, das die Konfiguration funktionssicher durchgeführt werden kann.</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WPA / WPA2 mit Pre-shared key</b><br>
+       In diesem Modus können sich WLAN Clients anmelden, die entweder die Verschlüsselung WPA (TKIP) oder WPA2 (AES) unterstützen.
+       Bei WPA / WPA2 wird der Verschlüsselungs- algorithmus fortlaufend verändert.
+       Dadurch wird eine höhere Sicherheit erreicht.
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+       WPA / WPA2 funktioniert zur Zeit nur mit Windows® XP.</p>
+    <p>Verwenden Sie bei allen PC's, die &uuml;ber die Funkverbindung (WLAN) angeschaltet werden, exakt den gleichen Pre-shared key.</p>
+    <p>Verwenden Sie zum Einschalten der Verschlüsselung möglichst einen PC der per Kabel am Router angeschaltet ist.
+       Nur so ist gewährleistet, das die Konfiguration funktionssicher durchgeführt werden kann.</p>
+  </DIV>
+
+  <DIV id=i_content5>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WPA2 mit Tiny Server</b><br>
+       Der Tiny Server ist ein kleiner, im Router integrierter HTTP-Server.
+       Dieser Server dient zur Authentifizierung und Autorisierung von Benutzern.
+       Wenn Sie diese Funktionalität nutzen wollen, muss auf den angeschlossenen Rechner jeweils
+       ein Tiny-Client installiert sein.</p>
+    <p>Um einen Authentifizierungs-Server nutzen zu können, ist auf diesen Rechnern <b>zusätzliche Software</b> notwendig.
+       Das System muss dazu mit dem Betriebssystem Windows® XP ausgestattet sein. Sie finden auf der Web-Seite von
+       Microsoft® ein Update, mit dem Sie die Einstellungen für WPA2 auf Ihrem Rechner nachrüsten können. Die Konfiguration
+       erfolgt dann mit dem Standard-Konfigurationstool für „Wireless Network Connections“ Ihres Windows-Systems.</p>
+  </DIV>
+
+  <DIV id=i_content6>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WPA / WPA2 mit Tiny Server</b><br>
+       Der Tiny Server ist ein kleiner, im Router integrierter HTTP-Server.
+       Dieser Server dient zur Authentifizierung und Autorisierung von Benutzern.
+       Wenn Sie diese Funktionalität nutzen wollen, muss auf den angeschlossenen Rechner jeweils
+       ein Tiny-Client installiert sein.</p>
+    <p>Um einen Authentifizierungs-Server nutzen zu können, ist auf diesen Rechnern <b>zusätzliche Software</b> notwendig.
+       Das System muss dazu mit dem Betriebssystem Windows® XP ausgestattet sein. Sie finden auf der Web-Seite von
+       Microsoft® ein Update, mit dem Sie die Einstellungen für WPA2 auf Ihrem Rechner nachrüsten können. Die Konfiguration
+       erfolgt dann mit dem Standard-Konfigurationstool für „Wireless Network Connections“ Ihres Windows-Systems.</p>
+  </DIV>
+
+  <DIV id=i_content7>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WPA2 mit RADIUS Server</b><br>
+       RADIUS ist eine Abkürzung für: Remote Authentication Dial-in User Service.
+       Der Router leitet die Daten zur Authentifizierung und Autorisierung von Benutzern an einen externen Server weiter.</p>
+    <p>Um einen Authentifizierungs-Server nutzen zu können, ist auf diesen Rechnern <b>zusätzliche Software</b> notwendig.
+       Das System muss dazu mit dem Betriebssystem Windows® XP ausgestattet sein. Sie finden auf der Web-Seite von
+       Microsoft® ein Update, mit dem Sie die Einstellungen für WPA2 auf Ihrem Rechner nachrüsten können. Die Konfiguration
+       erfolgt dann mit dem Standard-Konfigurationstool für „Wireless Network Connections“ Ihres Windows-Systems.</p>
+  </DIV>
+
+  <DIV id=i_content8>
+    <h2>Verschlüsselung</h2>
+    <p><b>Betriebsart WPA / WPA2 mit RADIUS Server</b><br>
+       RADIUS ist eine Abkürzung für: Remote Authentication Dial-in User Service.
+       Der Router leitet die Daten zur Authentifizierung und Autorisierung von Benutzern an einen externen Server weiter.</p>
+    <p>Um einen Authentifizierungs-Server nutzen zu können, ist auf diesen Rechnern <b>zusätzliche Software</b> notwendig.
+       Das System muss dazu mit dem Betriebssystem Windows® XP ausgestattet sein. Sie finden auf der Web-Seite von
+       Microsoft® ein Update, mit dem Sie die Einstellungen für WPA2 auf Ihrem Rechner nachrüsten können. Die Konfiguration
+       erfolgt dann mit dem Standard-Konfigurationstool für „Wireless Network Connections“ Ihres Windows-Systems.</p>
+  </DIV>
+
+
+  <DIV id=i_content11>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssellänge</b><br>
+       Entscheidend f&uuml;r die Sicherheit ist die L&auml;nge des eingesetzten Schl&uuml;ssels.
+       Sie sollten daher die WEP-Schl&uuml;ssell&auml;nge auf 128-bit setzen. Eine Schl&uuml;ssell&auml;nge
+       von 64-bit sollten Sie nur in Ausnahmef&auml;llen beispielsweise aus Gr&uuml;nden der
+       Kompatibilit&auml;t zu &auml;lteren Ger&auml;ten verwenden.</p>
+  </DIV>
+
+  <DIV id=i_content12>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;sseltyp</b><br>
+       Sie können den WEP Schlüssel entweder in beliebigen Zeichen (ASCII) oder hexadezimalen Zeichen (0-9, A-F) eingeben.</p>
+    <p>Bei Verwendung von ASCII Zeichen haben Sie den Vorteil, dass Sie weniger Zeichen eintragen müssen. </p>
+  </DIV>
+
+  <DIV id=i_content13>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+       Um den Schl&uuml;ssel festzulegen, ist die Eingabe von <br>
+       5 beliebigen Zeichen (ASCII) erforderlich.
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+       Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll. </p>
+  </DIV>
+
+  <DIV id=i_content14>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+       Um den Schl&uuml;ssel festzulegen, ist die Eingabe von <br>
+       13 beliebigen Zeichen (ASCII) erforderlich.
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+       Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll. </p>
+  </DIV>
+
+  <DIV id=i_content15>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+       Um den Schl&uuml;ssel festzulegen, ist die Eingabe von<br>
+       10 hexadezimale Zeichen <br>
+      (0-9, A-F) erforderlich. </p>
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+       Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll. </p>
+  </DIV>
+
+  <DIV id=i_content16>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Schl&uuml;ssel 1-4</b><br>
+       Um den Schl&uuml;ssel festzulegen, ist die Eingabe von<br>
+       26 hexadezimale Zeichen <br>
+       (0-9, A-F) erforderlich. </p>
+    <p>Sie k&ouml;nnen einen Vorrat von bis zu vier Schl&uuml;sseln eintragen.
+       Durch Auswahl des Standard Schl&uuml;ssels legen Sie fest, welcher Schl&uuml;ssel verwendet werden soll. </p>
+  </DIV>
+
+  <DIV id=i_content17>
+    <h2>Verschlüsselung WEP</h2>
+    <p><b>Standard Schl&uuml;ssel</b><br>
+       Wählen Sie durch Auswahl des Standard Schl&uuml;ssels den Schl&uuml;ssel, den Sie aktuell verwenden wollen.
+       Beachten Sie, dass auch diese Einstellung an allen PC's, die über
+       eine Funkverbindung am Router angeschaltet werden, gleich sein muss!</p>
+  </DIV>
+
+
+  <DIV id=i_content21>
+    <h2>Einstellungen zum Pre-shared key</h2>
+    <p><b>Pre-shared key (PSK)</b><br>
+       Geben Sie einen Pre-shared key ein. Dieser muss zwischen 8 und 63 Zeichen lang sein und darf keine Leerzeichen enthalten.</p>
+  </DIV>
+
+
+  <DIV id=i_content31>
+    <h2>Einstellungen zur Authentifizierung</h2>
+    <p><b>Bei Leerlauf Verbindung abbrechen nach:</b><br>
+       Geben Sie die Zeit in Sekunden an, nach der eine Sitzung beendet wird, wenn keine Eingaben mehr vorgenommen wurden.</p>
+    <p>Es erfolgt keine Unterbrechung, wenn Sie 0 Sekunden eingeben</p>
+  </DIV>
+
+  <DIV id=i_content32>
+    <h2>Einstellungen zur Authentifizierung</h2>
+    <p><b>Erneutes Authentifizieren nach:</b><br>
+       Geben Sie die Zeit in Sekunden an, nach der sich der angeschlossenen Client erneut authentifizieren muss.</p>
+    <p>Es ist kein erneutes Authentifizieren erforderlich wenn Sie 0 Sekunden eingeben.</p>
+  </DIV>
+
+  <DIV id=i_content33>
+    <h2>Einstellungen zur Authentifizierung</h2>
+    <p><b>Sperrzeit nach fehlerhaftem Authentifizieren</b><br>
+       Geben Sie die Zeit in Sekunden an, wann nach einer erfolglosen Authentifizierung eine Sperre erfolgt.
+       Dadurch wird kein neuer Anmeldeversuch mehr zugelassen.</p>
+  </DIV>
+
+  <DIV id=i_content34>
+    <h2>Parameter für den RADIUS Server</h2>
+    <p><b>Server-IP</b><br>
+       Geben Sie die IP-Adresse des Servers ein über den der RADIUS Server kommuniziert (standardmäßig 192.168.1.1).</p>
+  </DIV>
+
+  <DIV id=i_content35>
+    <h2>Parameter für den RADIUS Server</h2>
+    <p><b>Server-Port</b><br>
+       Geben Sie den Port ein, über den der RADIUS Server kommuniziert (standardmäßig 1812).</p>
+  </DIV>
+
+  <DIV id=i_content36>
+    <h2>Parameter für den RADIUS Server</h2>
+    <p><b>Schlüssel</b><br>
+       Geben Sie einen Schlüssel entsprechend der Konventionen des RADIUS Servers ein, den der Server zur
+       Authentifizierung verwenden soll.</p>
+  </DIV>
+
+  <DIV id=i_content37>
+    <h2>Parameter für den RADIUS Server</h2>
+    <p><b>NAS-ID</b><br>
+       Geben Sie eine NAS-ID ein. Dies ist die Identifikation des NAS-Servers (Network Access Server).</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

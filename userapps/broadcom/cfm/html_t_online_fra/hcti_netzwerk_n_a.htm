@@ -1,0 +1,273 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkNATAnwendungsregelRegelx</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function frmLoad(){
+  document.F1.D1.selectedIndex = top.frames[0].aregel.length - 1;
+  stAkt();
+}
+  
+function stAkt(){
+  if ((document.F1.D1.selectedIndex == top.frames[0].aregel.length - 1)
+   && (top.frames[0].aregel.length < 9)){
+    document.getElementById("t_but2").style.visibility='hidden';
+  }
+  else{
+    document.getElementById("t_but2").style.visibility='visible';
+  }
+
+  if (top.frames[0].aregel[document.F1.D1.selectedIndex].length > 0){
+    document.F1.T1.value = top.frames[0].aregel[document.F1.D1.selectedIndex];
+  }
+  else{
+    document.F1.T1.value = "";
+  
+  
+  document.F1.R1[1].checked = true;
+  document.F1.D2.selectedIndex = 0;
+  document.F1.T2.value = "";
+  document.F1.T3.value = "";
+  stDis();
+}
+
+function stDis(){
+    if(document.F1.R1[0].checked == true){
+        document.F1.D2.style.backgroundColor="#D4D0C8";
+        document.F1.T2.style.backgroundColor="#D4D0C8";
+        document.F1.T3.style.backgroundColor="#D4D0C8";
+        document.F1.D2.disabled = true;
+        document.F1.T2.disabled = true;
+        document.F1.T3.disabled = true;
+    }
+    else{
+        document.F1.D2.style.backgroundColor="#FFFFFF";
+        document.F1.T2.style.backgroundColor="#FFFFFF";
+        document.F1.T3.style.backgroundColor="#FFFFFF";
+        document.F1.D2.disabled = false;
+        document.F1.T2.disabled = false;
+        document.F1.T3.disabled = false;
+    }
+}
+
+
+function stOk(){
+  if (document.F1.T1.value==""){
+    alert("Bitte tragen Sie eine Bezeichnung für diese Anwendungsregel ein");
+    document.F2.T1.focus();
+    return;
+  }
+  if (document.F1.T2.value.length == 0){
+    alert("Bitte tragen Sie einen Private Client Port ein");
+    document.F1.T2.focus();
+    return;
+  }
+  if (document.F1.T3.value.length == 0){
+    alert("Bitte tragen Sie einen Öffentlichen Port ein");
+    document.F1.T3.focus();
+    return;
+  }
+  top.frames[0].aregel[document.F1.D1.selectedIndex] = document.F1.T1.value;
+
+  if ((document.F1.D1.selectedIndex == top.frames[0].aregel.length - 1)
+   && (top.frames[0].aregel.length < 9)){
+    top.frames[0].addNewAR();
+  }
+  stSave();
+}
+  
+function stDel(){
+  if (confirm("Wenn Sie diese Anwendungsregel wirklich löschen möchten, dann klicken Sie auf 'OK'." +
+              "\nKlicken Sie auf 'Abbrechen', um das Löschen zu verhindern.")==true){
+    top.frames[0].delAR(document.F1.D1.selectedIndex);
+    stSave();
+  }
+}
+
+function stSave(){
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+
+  //Select-Options müssen extra ausgeblendet werden!
+  document.F1.D1.style.visibility='hidden';
+  document.F1.D2.style.visibility='hidden';
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk_n.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=frmLoad()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / NAT / Anwendungsregeln</DIV>
+<DIV id=c_titel>Anwendungsregeln verwalten &amp; hinzufügen</DIV>
+<DIV id=c_sel>
+    <table border="0" cellpadding="2" cellspacing="1" bgcolor="#E20074">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="128" align="right"><font color="#FFFFFF"><b>Regel-Auswahl:</b></font></td>
+            <td width="5"></td>
+            <td width="245"><select size="1" name="D1" onchange="stAkt()">
+                <SCRIPT language="JavaScript">
+                <!--
+                  for (i=1;i<top.frames[0].aregel.length+1;i++){
+                    if (top.frames[0].aregel[i-1].length > 0){
+                      document.write('<option>Regel ' + i + ': ' + top.frames[0].aregel[i-1] + '</option>');
+                    } else{
+                        document.write('<option>Regel ' + i + ': Neu hinzufügen</option>');
+                    }
+    	}
+                //-->
+                </SCRIPT>
+              </select>
+            </td>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="140"><b>Bezeichnung:</b></td>
+            <td><input type="text" name="T1" size="20" maxlength="20"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Aktivierte Protokolle und Ports</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+	<td width="136">Aktiviert:</td>
+	 <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis()"></td>
+                <td width="40">Nein</td>
+                <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis()" checked></td>
+            <td>Ja</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr  onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+                <td width="140">Protokoll:</td>
+                <td>
+                    <select size="1" name="D2">
+                        <option>TCP</option>
+                        <option>UDP</option>
+                        <option>ESP</option>
+                        <option>GRE</option>
+                    </select>
+                </td>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+        <tr  onmouseover=i_showElem(5) onmouseout=i_showElem(0)>
+                <td width="140">Private Client Port:</td>
+                <td><input type="text" name="T2" size="5" maxlength="5"></td>
+        </tr>
+    </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+            <td width="140">Öffentlicher Port:</td>
+            <td><input type="text" name="T3" size="5" maxlength="5"></td>
+          </form>
+        </tr>
+    </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but2 onclick=stDel() onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>L&ouml;schen &lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Anwendungsregel</h2>
+       <p>Manche Anwendungen, wie etwa Spiele im Internet oder Internet-Konferenzen, benötigen mehrere Verbindungen,
+     das heißt mehrere Ports, über die die Teilnehmer miteinander kommunizieren können. Außerdem
+     muss für diese Anwendungen auch die Möglichkeit zugelassen sein, dass Anforderungen von Teilnehmern
+     aus dem Internet an Teilnehmer im lokalen Netzwerk gerichtet werden. Diese Anwendungen können also
+     zunächst nicht funktionieren, wenn Network Address Translation (NAT) aktiviert ist. Wenn Sie solche
+     Anwendungen trotzdem ausführen wollen, müssen Sie Anwendungsregeln konfigurieren. 
+     Diese Regeln können Sie dann unter Serverzuordnung dem entsprechenden PC zuweisen.
+   </p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Anwendungsregeln verwalten &amp; hinzufügen</h2>
+    <p><b>Regel-Auswahl</b><br>
+    Sie können eine Anwendungsregel neu hinzufügen oder eine bereits eingetragene Regel verändern oder ganz löschen.</p>
+     <p>Klicken Sie hier und wählen Sie die Anwendungsregel aus, die Sie verwalten möchten.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Anwendungsregel</h2>
+    <p><b>Bezeichnung</b><br>
+    Geben Sie der Regel eine Bezeichnung, die für Sie aussagekräftig ist.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Aktivierte Ports und Protokolle</h2>
+    <p><b>Aktiviert</b><br>
+    Hier erscheint der Mouseover Infotext.
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Aktivierte Ports und Protokolle</h2>
+    <p><b>Protokoll</b><br>
+    Hier erscheint der Mouseover Infotext.
+  </DIV>
+
+  <DIV id=i_content5>
+    <h2>Aktivierte Ports und Protokolle</h2>
+    <p><b>Private Client Port</b><br>
+    Hier erscheint der Mouseover Infotext.
+  </DIV>
+
+  <DIV id=i_content6>
+    <h2>Aktivierte Ports und Protokolle</h2>
+    <p><b>Öffentlicher Port</b><br>
+    Hier erscheint der Mouseover Infotext.
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

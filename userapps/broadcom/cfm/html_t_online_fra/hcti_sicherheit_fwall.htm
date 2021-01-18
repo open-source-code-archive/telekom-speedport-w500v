@@ -1,0 +1,125 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitFirewallAusEin</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function frmLoad() {
+   var firewall = '<%ejGet(enblFirewall)%>';
+
+   with ( document.forms[0] ) {
+   if(firewall=='1')
+        enblFirewall[1].checked=true;  //enable
+   else
+        enblFirewall[0].checked=true;  //disable
+   }
+}
+
+function DT_firewall_alert(){
+	   with ( document.forms[0] ){
+	        if(enblFirewall[0].checked==true){
+         		alert("Die Firewall-Funktion schützt gegen einen unberechtigten Zugriff von außen (z.B. Hacker).\n "+
+         		"Es wird dringend empfohlen, diese Funktion nicht zu deaktivieren.\n");
+			return true;	
+	        }
+	}
+}			
+
+function btnApply(){
+        DT_firewall_alert();
+        document.getElementById("c_verzoeg1").style.visibility='visible';
+        document.getElementById("c_verzoeg2").style.visibility='visible';
+        document.getElementById("t_but1").style.visibility='hidden';
+        document.getElementById("t_but3").style.visibility='hidden';
+        document.getElementById("t_but4").style.visibility='hidden';
+        var loc = 'hcti_sicherheit_f_ausein.cgi?'
+        with ( document.forms[0] )
+        {
+                if(enblFirewall[0].checked==true)	
+                        loc+='enblFirewall=0';
+                if(enblFirewall[1].checked==true)
+                        loc+='enblFirewall=1';
+        }
+        var code = 'location.assign("' + loc + '")';
+        eval(code);
+        return true;
+}
+
+
+  
+function stZrk(){
+  top.frames[2].location.href = "hcti_sicherheit.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=frmLoad()>
+<form>
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / Firewall</DIV>
+<DIV id=c_titel>Firewall Betriebszustand</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+            <td width="20"><input type="radio" name="enblFirewall" value="V1"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="enblFirewall" value="V2"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=btnApply() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Firewall Betriebszustand</h2>
+    <p>Durch den Anschluss Ihres lokalen Netzwerks an das öffentliche Netzwerk entstehen
+       Gefahren für die Sicherheit Ihrer Daten und Anwendungen. Grundsätzlich sollten Sie, wie beim Einzelanschluss,
+       Ihre Rechner durch Virenscanner gegen heimtückische, versteckte Angriffe von außen, beispielsweise über eMail, schützen.</p>
+    <p>Virenscanner schützen jedoch nicht gegen unberechtigten Zugriff von außen (Hacker). Um dieser Gefahr
+       entgegenzutreten, bietet Ihr Router folgenden Schutz: Die Firewall-Funktion</p>
+    <p>Es wird dringend empfohlen, diese Funktion einzuschalten.</p>
+    
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Firewall Betriebszustand</h2>
+    <p><b>Aus - Ein</b><br>
+    Es wird dringend empfohlen, die Firewall zum Schutz gegen Angriffe einzuschalten.</p>
+  </DIV>
+  
+</DIV>
+</form>
+</BODY>
+
+</HTML>

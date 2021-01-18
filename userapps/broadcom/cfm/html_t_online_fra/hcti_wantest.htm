@@ -1,0 +1,52 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Netzwerk / Internetzugang</TITLE>
+
+<SCRIPT language="JavaScript">
+<!--
+var wanStatus='<%ejGetOther(sysInfo, status)%>';
+
+function frmload(){
+
+	switch (wanStatus){
+		case 'Verbunden':
+			alert("Der Internetzugang wurde erfolgreich eingerichtet.\n\n");
+			break;
+			
+	    	case 'ADSL_DOWN':
+			alert("Die Prüfung der Internetverbindung ist fehlgeschlagen. Die DSL-\n" +
+						"Verbindung ist gestört. Prüfen Sie, ob das DSL-Kabel richtig ange-\n" +
+						"schlossen ist.\n\n" +
+						"Klicken Sie auf 'Abbrechen' und anschließend auf 'OK & Weiter',\n" +
+						"um die Prüfung des Internetzugangs zu wiederholen.\n\n" +
+						"Wenn Sie ohne funktionsfähigen Internetzugang fortfahren\n" +
+						"möchten, dann klicken Sie auf 'OK'.\n\n");
+			break;
+						
+		default:
+			alert("Die Prüfung der Internetverbindung ist fehlgeschlagen. Die An-\n" +
+						"meldung beim Internetanbieter ist gescheitert.\n\n" +
+						"Klicken Sie auf 'Abbrechen', um die Zugangsdaten zu überprüfen\n" +
+						"und zu korrigieren.\n\n" +
+						"Wenn Sie ohne funktionsfähigen Internetzugang fortfahren\n" +
+						"möchten, dann klicken Sie auf 'OK'.\n\n");
+			break;
+    }
+	
+    stZrk();
+}
+    
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+//-->
+</SCRIPT>
+</HEAD>
+
+<BODY onload="frmload()">
+</BODY>
+
+</HTML>

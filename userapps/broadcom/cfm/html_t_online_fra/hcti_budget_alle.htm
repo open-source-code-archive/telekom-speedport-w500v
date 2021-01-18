@@ -1,0 +1,211 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>BudgetPCBudgetierungAndere</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+function chk(){ 
+  bud_all_mb = "<%ejGetotherBudget(Max)%>";
+  bud_all = "<%ejGetotherBudget(enable)%>";
+  autoBlock = "<%ejGetotherBudget(autoBlock)%>";
+  document.F1.T1.value = bud_all_mb;
+  if(bud_all == "0"){// frames[0] entspricht banner
+    document.F1.R1[0].checked = true;
+    stDis(true);
+  }
+  else{
+    document.F1.R1[1].checked = true;
+    stDis(false);
+  }
+  if (autoBlock == '0')
+    document.F1.R2[1].checked = true;
+  else
+    document.F1.R2[0].checked = true;
+}
+
+function i_prfElem(nr){ 
+  if(document.F1.R1[0].checked == true){
+    i_showElem(9);
+  }
+  else{
+    i_showElem(nr);
+  }
+}
+
+function stDis(state){
+    var col = "#FFFFFF";
+    if(state == true) col = "#D4D0C8";
+    document.F1.T1.style.backgroundColor = col;
+    document.F1.T1.disabled = state;
+    document.F1.R2[0].disabled = state;
+    document.F1.R2[1].disabled = state;
+}
+
+function stOk(){
+  var loc = 'budget.cmd?action=setotherBudget';
+  if (document.F1.R1[0].checked == true){
+     if (isNaN(document.F1.T1.value)){
+	alert("Bitte tragen Sie einen Wert für die Größe der Datenmenge ein");
+        return;
+     }
+     loc += '&enable=0'; 
+  }
+  else{
+    if (document.F1.T1.value=="" || document.F1.T1.value.substr(0,1)=="0" || isNaN(document.F1.T1.value) || parseInt(document.F1.T1.value) <= 0 || isAllBlank(document.F1.T1.value) == true){
+      alert("Bitte tragen Sie einen Wert für die Größe der Datenmenge ein");
+      document.F1.T1.focus();
+      return;
+    }
+
+     loc += '&enable=1';
+//    top.frames[0].bud_all = "1";
+//    top.frames[0].bud_all_mb = document.F1.T1.value;
+  }
+     loc += '&Max=';
+     if (document.F1.T1.value=="")
+     {
+      loc += '0';
+     }
+     else
+     {
+      loc += document.F1.T1.value;
+     }
+     loc += '&autoBlock=';
+     if (document.F1.R2[0].checked == true)
+       loc += '1';
+     else
+       loc += '0';
+
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  document.getElementById("t_but1").style.visibility='hidden';
+  document.getElementById("t_but3").style.visibility='hidden';
+  document.getElementById("t_but4").style.visibility='hidden';
+   var code = 'top.frames[2].location.assign("' + loc + '")';
+   eval(code);
+
+//  setTimeout("stZrk()",top.frames[0].verzoeg);
+}
+  
+function stZrk(){
+  top.frames[2].location.href = "budget.cmd?action=view";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload=chk()>
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Budget / Alle anderen PCs</DIV>
+<DIV id=c_titel>Budget für alle anderen PCs</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="166">Budgetierung:</td>
+            <td width="20"><input type="radio" name="R1" value="V1" onclick="stDis(true)"></td>
+            <td width="75">Aus</td>
+            <td width="20"><input type="radio" name="R1" value="V2" onclick="stDis(false)"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Budgetierung</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(2) onmouseout=i_showElem(0)>
+            <td width="170">Vorgabe der Datenmenge:</td>
+            <td width="51"><input type="text" name="T1" size="5" maxlength="5"></td>
+            <td>MB Maximum</td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Bei Erreichen des Grenzwerts</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_prfElem(3) onmouseout=i_showElem(0)>
+            <td width="166">Internetverbindung:</td>
+            <td width="20"><input type="radio" name="R2" value="V1"></td>
+            <td width="75">Trennen</td>
+            <td width="20"><input type="radio" name="R2" value="V2" checked></td>
+            <td>Nicht trennen</td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Budget für alle anderen PCs</h2>
+    <p>Hier können Sie die Parameter für die Budgetierung festlegen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Budget für alle anderen PCs</h2>
+    <p><b>Budgetierung</b><br>
+    Hier schalten Sie die Budgetierung 'Ein' oder 'Aus'</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Budgetierung</h2>
+    <p><b>Vorgabe der Datenmenge</b><br>
+    Wenn Sie die Vorgabe der Datenmenge aktivieren, muss der Haken im Kontrollkästchen erscheinen. 
+    Tragen Sie dann die Datenmenge in MB ein, die Sie für alle anderen PCs Online zulassen möchten. 
+    Sobald diese Zeit überschritten wird, erhalten alle anderen PCs keinen Zugang mehr ins Internet.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Bei Erreichen des Grenzwerts</h2>
+    <p><b>Internetverbindung</b><br>
+    Wenn Sie die Option <b>'Trennen'</b> auswählen, wird eine bestehende Internetverbindung sofort getrennt
+    wenn der Grenzwert der Zeit oder der Datenmenge erreicht ist.</p>
+    <p>Wenn Sie die Option <b>'Nicht Trennen'</b> auswählen, wird eine bestehende Internetverbindung nicht sofort getrennt
+    wenn der Grenzwert der Zeit oder der Datenmenge erreicht ist. Erst der nächste Versuch eine Internetverbindung aufzubauen wird verhindert.</p>
+  </DIV>
+
+  <DIV id=i_content9>
+    <h2><b>Einstellung nicht änderbar</b></h2>
+    <p>Um diese Einstellung ändern zu können, muss die Budgetierung eingeschaltet sein.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

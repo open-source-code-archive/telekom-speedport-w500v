@@ -1,0 +1,330 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>Startseite</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+var wanStatus='<%ejGetOther(sysInfo, status)%>';
+
+  function chk(){
+      status();
+  }
+  
+  function as(){
+      top.frames[2].location.href = "hcti_telefon_as.htm";
+
+      top.frames[1].document.getElementById("m_but1").style.color='#000000';
+      top.frames[1].document.getElementById("m_but1").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but2").style.color='#000000';
+      top.frames[1].document.getElementById("m_but2").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but31").style.color='#000000';
+      top.frames[1].document.getElementById("m_but31").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but32").style.color='#000000';
+      top.frames[1].document.getElementById("m_but32").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but33").style.color='#000000';
+      top.frames[1].document.getElementById("m_but33").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but33").style.color='#000000';
+      top.frames[1].document.getElementById("m_but34").style.backgroundImage='none';
+		top.frames[1].document.getElementById("m_but41").style.color='#000000';
+      top.frames[1].document.getElementById("m_but41").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but42").style.color='#000000';
+      top.frames[1].document.getElementById("m_but42").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but51").style.color='#000000';
+      top.frames[1].document.getElementById("m_but51").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but52").style.color='#000000';
+      top.frames[1].document.getElementById("m_but52").style.backgroundImage='none';
+      top.frames[1].document.getElementById("m_but6").style.color='#000000';
+      top.frames[1].document.getElementById("m_but6").style.backgroundImage='none';
+		
+      top.frames[1].document.getElementById("m_but34").style.color='#FFFFFF';
+      top.frames[1].document.getElementById("m_but34").style.backgroundImage='url(pic_m_marker.gif)';
+  }
+
+  function stInet(um){
+      if (um == '1') { //connect
+	  if (wanStatus=='Verbunden') {
+		  return;
+	  }
+	  document.getElementById("t_butre").style.visibility = 'hidden';
+	  var loc = 'pppctl.cmd?action=1';
+	      var code = 'location.assign("' + loc + '")';
+	      eval(code);
+	  
+      }else{ //disconnect
+	  if (wanStatus!='Verbunden') {
+		  return;
+	  }  
+	  var loc = 'pppctl.cmd?action=0';
+	  var code = 'location.assign("' + loc + '")';
+	  eval(code);
+      }
+
+  }
+
+  function status(){
+      if (wanStatus=='Verbunden'){
+	    document.getElementById("c_status").innerHTML='<img border="0" src="pic_c_inet_aktiv.gif" onmouseover=i_showElem(9) onmouseout=i_showElem(0)>';
+	    document.getElementById("t_butre2").style.backgroundColor="D4D0D0";
+      }
+      else{
+	    document.getElementById("c_status").innerHTML='<img border="0" src="pic_c_inet_getrennt.gif" onmouseover=i_showElem(9) onmouseout=i_showElem(0)>';
+	    document.getElementById("t_butli2").style.backgroundColor="D4D0D0";
+      }
+  }
+
+  function rahmen(high, typ){
+      if (high==0){
+        document.getElementById("t_but" + typ).style.color='#000000';
+        document.getElementById("t_but" + typ).style.borderColor='#666666';
+      }
+      else{
+	if((wanStatus == 'Verbunden') && (typ == "re2"))
+	    return;
+	if((wanStatus != 'Verbunden') && (typ == "li2"))
+	    return;
+        document.getElementById("t_but" + typ).style.color='#E20074';
+        document.getElementById("t_but" + typ).style.borderColor='#E20074';
+      }
+  }
+  function bildrahmen(high){
+      if (high==1){
+        document.getElementById("c_as0").style.borderColor='#E20074';
+      }
+      else{
+        document.getElementById("c_as0").style.borderColor='#666666';
+      }
+	  i_showElem(high);
+  }
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+<STYLE type="text/css">
+<!--
+
+#c_as0 {
+	POSITION: absolute; LEFT: 296px; TOP: 169px; cursor: pointer; cursor: hand;
+        border-color: #666666; border-width: 1px; border-style: solid;
+}
+
+#c_status {
+	POSITION: absolute; LEFT: 8px; TOP: 284px;
+}
+
+#i_content11 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content12 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content13 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content14 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content15 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content16 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+#i_content17 {Z-INDEX: 2; POSITION: absolute; LEFT: 10px; WIDTH: 180px; TOP: 10px; VISIBILITY: hidden}
+
+//-->
+</STYLE>
+
+
+</HEAD>
+
+<BODY onload="chk()">
+
+<map name="M1">
+  <area shape="rect" coords="66,390,88,422" title="Ein- / Ausschalter" nohref onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="89,390,116,422" title="Steckernetzgerät Buchse" nohref onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="117,390,150,422" title="T-NET Telefonanschluss" nohref onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="221,390,266,422" title="Ethernet LAN Buchse" nohref onmouseover=i_showElem(5) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="267,390,291,422" title="Reset-Taste" nohref onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="292,390,333,422" title="T-DSL Anschluss" nohref onmouseover=i_showElem(7) onmouseout=i_showElem(0)>
+  
+  <area shape="rect" coords="97,247,124,282" title="LED Power" nohref onmouseover=i_showElem(11) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="125,247,155,282" title="LED T-DSL" nohref onmouseover=i_showElem(12) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="156,247,188,282" title="LED Online" nohref onmouseover=i_showElem(13) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="189,247,219,282" title="LED WLAN" nohref onmouseover=i_showElem(14) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="220,247,247,282" title="LED LAN" nohref onmouseover=i_showElem(15) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="248,247,278,282" title="LED Festnetz" nohref onmouseover=i_showElem(16) onmouseout=i_showElem(0)>
+  <area shape="rect" coords="279,247,310,282" title="LED Internet" nohref onmouseover=i_showElem(17) onmouseout=i_showElem(0)>
+
+
+</map>
+
+<DIV id=c_Frame>
+
+<DIV id=c_bild><img border="0" src="pic_c_startbild.jpg" usemap="#M1"></DIV>
+<DIV id=c_as0 onclick=as() onmouseover=bildrahmen(1) onmouseout=bildrahmen(0)><img src="pic_c_as1.gif"></DIV>
+
+<DIV id=c_status></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<script language="javascript">
+<!--
+if(wanStatus == 'Verbunden')
+    document.write('<DIV id=t_butli onclick=stInet("0") onmouseover=rahmen(1,"li") onmouseout=rahmen(0,"li")>Internet trennen</DIV>' + '<DIV id=t_butre2>Internet verbinden</DIV>');
+else
+    document.write('<DIV id=t_butli2>Internet trennen</DIV>' + '<DIV id=t_butre onclick=stInet("1") onmouseover=rahmen(1,"re") onmouseout=rahmen(0,"re")>Internet verbinden</DIV>');
+//-->
+</script>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+<DIV id=i_content>
+    <h2>Konfigurationsprogramm</h2>
+    <p>Dieses Programm ermöglicht es Ihnen, Einstellungen in Ihrem Router vorzunehmen.</p>
+    <p><b><font color="#999999">ASSISTENT</font></b><br>
+    <b>&gt; Schritt für Schritt</b><br>
+    Für den Einstieg empfehlen wir Ihnen den Assistenten. Er führt Sie Schritt für
+    Schritt durch die notwendigen Einstellungen.</p>
+    <p><b><font color="#999999">KONFIGURATION</font></b><br>
+    Erfahrene Benutzer können in diesem Bereich detaillierte Einstellungen vornehmen.</p>
+    <p><b><font color="#999999">STATUS</font></b><br>
+    In der Übersicht sehen Sie die wichtigsten Infos zum Status.</p>
+    <p><b><font color="#999999">VERWALTUNG</font></b><br>
+    Hier können Sie die Uhrzeit einstellen, Daten laden und sichern.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über die Grafik bewegen.</p>
+</DIV>
+
+<DIV id=i_content1>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>Interne Anschlüsse</b><br>
+    Klicken Sie hier um Ihren internen Anschluss für die Telefonie einzustellen.
+	Die Buchse zum Einstecken des Telefons finden Sie auf der Unterseite dieses Gerätes.</p>
+</DIV>
+
+<DIV id=i_content2>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>Power</b><br>
+    Schalter zum Ein- und Ausschalten des Gerätes.</p>
+  </DIV>
+  
+<DIV id=i_content3>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>16V DC / 0,9A</b><br>
+    Buchse zum Anschluss des Netzgerätes.</p>
+  </DIV>
+ 
+<DIV id=i_content4>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>T-Net</b><br>
+    Anschlussbuchse für den analogen Telefonanschluss (Festnetz).</p>
+ </DIV>  
+  
+<DIV id=i_content5>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>LAN</b><br>
+    Ethernet-Buchse für den Anschluss eines PCs oder eines weiteren Hub/Switch.</p>
+</DIV>  
+  
+<DIV id=i_content6>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>Reset</b><br>
+    Reset-Taste zum Zurücksetzen des Gerätes.
+    Wenn Sie die Reset-Taste 2 Sekunden lang drücken, wird der Router neu gestartet (Reboot).</p>
+    <p>Wenn Sie die Reset-Taste 5 Sekunden lang drücken, wird die Konfiguration des Routers auf die
+    Werkeinstellungen zurückgesetzt.</p>
+</DIV>  
+  
+<DIV id=i_content7>
+    <h2><b>Anschlüsse</b></h2>
+    <p><b>T-DSL</b><br>
+    Über diesen Anschluss stellen Sie die Verbindung zum Splitter her. Über den Splitter erfolgt die
+    Verbindung in das öffentlichen Netz.</p>
+</DIV>
+
+<DIV id=i_content9>
+    <h2><b>Status Internetverbindung</b></h2>
+    <p>Hier sehen Sie den Status der Internetverbindung.</p>
+    <p> Zum Verbinden klicken Sie bitte auf die Schaltfläche: 'Internet verbinden'.</p>
+    <p> Zum Trennen klicken Sie bitte auf die Schaltfläche: 'Internet trennen'.</p>
+    <p><img border="0" src="pic_i_hinweis.gif"><br>
+    Mit der Zusatzsoftware 'OnlineControl' wird der Status der Internetverbindung in der Taskleiste mit einem Icon angezeigt.</p>
+    <p>Per Mausklick auf das Icon können Sie unter anderem die Verbindung ins Internet aufbauen.</p>
+    <p>OnlineControl finden Sie auf Ihrer Installations CD und im Internet auf den T-Com Seiten.</p>
+</DIV>
+
+
+<DIV id=i_content11>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>Power</b></p>
+    <p>Aus:<br>
+	Router ist ausgeschaltet.</p>
+	<p>Grün:<br>
+	Router betriebsbereit, Selbsttest O.K.</p>
+   	<p>Rot:<br>
+	Fehler beim Selbsttest.</p> 
+</DIV>
+ 
+<DIV id=i_content12>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>T-DSL</b></p>
+    <p>Aus:<br>
+	Der Router ist ausgeschaltet.</p>
+	<p>Grün:<br>
+	Modem hat mit DSLAM synchronisiert.</p>
+	<p>Grün blinkend:<br>
+	Training des Modems zum DSLAM.
+   	<p>Rot:<br>
+	Fehlerhafte DSL-Verbindung, keine Synchronisation möglich.</p> 
+</DIV>
+ 
+<DIV id=i_content13>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>Online</b></p>
+    <p>Aus:<br>
+	Keine Verbindung zum Internet Service Provider (ISP).</p>
+	<p>Orange:<br>
+	PPPoE-Verbindung zum ISP besteht.</p>
+</DIV>
+
+<DIV id=i_content14>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>WLAN</b></p>
+    <p>Aus:<br>
+	WLAN ist ausgeschaltet.</p>
+	<p>Grün:<br>
+	WLAN ist aktiv.</p>
+   	<p>Grün blinkend:<br>
+	WLAN-Verbindung ist aktiv, Daten werden übertragen.</p> 
+</DIV>
+
+<DIV id=i_content15>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>LAN</b></p>
+    <p>Aus:<br>
+	Es ist kein aktives Netzwerkgerät angeschlossen.</p>
+	<p>Grün:<br>
+	LAN ist aktiv.</p>
+   	<p>Grün blinkend:<br>
+	LAN-Verbindung aktiv, Daten werden übertragen.</p> 
+ </DIV>
+
+<DIV id=i_content16>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>Festnetz</b></p>
+    <p>Aus:<br>
+	Keine aktive Telefonverbindung über Festnetz.</p>
+	<p>Orange:<br>
+	Aktive Telefonverbindung über Festnetz.</p>
+</DIV>
+
+<DIV id=i_content17>
+    <h2><b>Leuchtdioden (LED)</b></h2>
+    <p><b>Internet</b></p>
+    <p>Aus:<br>
+	Keine aktive VoIP-Telefonverbindung über das Internet.</p>
+	<p>Grün:<br>
+	Aktive VoIP-Telefonverbindung über das Internet.</p> 
+</DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

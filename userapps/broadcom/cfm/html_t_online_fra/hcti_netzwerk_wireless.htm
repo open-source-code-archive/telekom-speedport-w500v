@@ -1,0 +1,369 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>NetzwerkWireless</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+var ssid = '<%ejGetWl(wlSsidRetrieve)%>';
+var enbl = '<%ejGetWl(wlEnbl)%>';
+var hide = '<%ejGetWl(wlHide)%>';
+var power = '<%ejGetWl(wlTxPwr)%>';
+var phy = '<%ejGetWl(wlPhyType)%>';
+var brate = '<%ejGetWl(wlBasicRate)%>';
+var country = '<%ejGetWl(wlCountry)%>';    //note: in DT,country is Europe
+var channel = '<%ejGetWl(wlChannel)%>';
+var basicspeed ='<%ejGetWl(wlBasicSpeed)%>';   //wlBasicSpeed added by eric
+var pre = '', gmode = '', pro = '';
+var ifc = '<%ejGetWl(wlInterface)%>';
+
+// physical type is 802.11g
+if ( phy == 'g' ) {
+   gmode = '<%ejGetWl(wlgMode)%>';
+   pro = '<%ejGetWl(wlProtection)%>';
+} else
+   pre = '<%ejGetWl(wlPreambleType)%>';
+
+
+function wlEnblSecondSsidClick(cb) {
+  with ( document.forms[0] ) {
+        if ( cb == 1 )  {
+                wlSecondSsidenbl[0].checked = true;
+                wlSecondSsidenbl[1].checked = false;
+        }
+        else {
+                wlSecondSsidenbl[0].checked = false;
+                wlSecondSsidenbl[1].checked = true;
+        }
+  }
+}
+
+function frmLoad() {
+        if ( enbl == '1' ) {
+                document.WIRELESS.wirelessEnbl[1].checked = true;
+                document.WIRELESS.wirelessEnbl[0].checked = false;
+        } else {
+                document.WIRELESS.wirelessEnbl[1].checked = false;
+                document.WIRELESS.wirelessEnbl[0].checked = true;
+                document.WIRELESS.wlSsid.disabled = 1;
+                document.WIRELESS.wlHide.disabled = 1;
+                document.WIRELESS.wlBasicSpeed.disabled = 1;
+                document.WIRELESS.wlTxPwr.disabled = 1;
+                document.WIRELESS.wlChannel.disabled = 1;
+        }
+
+        if ( hide == '1' ) {
+                document.WIRELESS.wlSsid.value = ssid;
+                document.WIRELESS.wlHide.checked=true;
+        } else {
+                document.WIRELESS.wlSsid.value = ssid;
+                document.WIRELESS.wlHide.checked = false;
+        }
+
+        document.WIRELESS.wlChannel.selectedIndex = parseInt(channel) - 1;
+        document.WIRELESS.wlTxPwr.selectedIndex = (10 - (power/10)) ;
+        document.WIRELESS.wlBasicSpeed.selectedIndex = parseInt(basicspeed);
+}
+
+function btnApply() {
+      var loc = 'wlcfgadv.wl?';
+
+      if ( document.WIRELESS.wirelessEnbl[0].checked == true ) {
+                loc = 'wlcfg.wl?';
+                loc += 'wlEnbl=0' ;
+                loc += '&wlHide=' + hide;
+				var str = document.WIRELESS.wlSsid.value;
+                if( str == "" || isValidSSID(str) == false) {
+                        alert("Bitte überprüfen Sie die Eingabe Ihrer SSID. Beachten Sie bitte, dass hier keine Sonderzeichen verwenden werden dürfen!");
+                        return;
+                } else {
+                        loc += '&wlSsid=' + encodeUrl(str);
+                }
+                loc += '&wlCountry=ALL';
+                top.frames[0].enblWl = '0';
+      } else {
+                loc += 'wlEnbl=1' ;
+
+                var str = new String();
+                str = document.WIRELESS.wlSsid.value;
+                if( str == "" || isValidSSID(str)==false) {
+                        alert("Bitte überprüfen Sie die Eingabe Ihrer SSID. Beachten Sie bitte, dass hier keine Sonderzeichen verwenden werden dürfen!.");
+                        return;
+                } else {
+                        loc += '&wlSsid=' + encodeUrl(str);
+                }
+                loc += '&wlCountry=DE';
+
+                if(document.WIRELESS.wlHide.checked == true)
+                        loc += '&wlHide=1';
+                else
+                        loc += '&wlHide=0';
+
+                var idx, gmode, phy;
+                idx = document.WIRELESS.wlChannel.selectedIndex;
+                loc += '&wlChannel=' + document.WIRELESS.wlChannel.options[idx].value;
+                idx = document.WIRELESS.wlTxPwr.selectedIndex;
+                loc += '&wlTxPwr=' + document.WIRELESS.wlTxPwr.options[idx].value ;
+
+                idx = document.WIRELESS.wlBasicSpeed.selectedIndex;
+                switch (idx) {
+                        case 0 :
+                                gmode = 0,phy = 'g',brate = 'all' ;
+                                break;
+                        case 1 :
+                                gmode = 1 ,phy = 'g',brate = 'default' ;
+                                break;
+                        case 2 :
+                                gmode = 3,phy = 'g' ,brate = '12' ;
+                                break;
+                }
+                loc += '&wlBasicSpeed=' + document.WIRELESS.wlBasicSpeed.selectedIndex;
+                loc += '&wlgMode=' + gmode;
+                //loc += '&wlPhyType=' + phy;
+                loc += '&wlBasicRate=' + brate;
+                top.frames[0].enblWl = '1';
+        }
+        //hidden
+        document.WIRELESS.wlTxPwr.style.visibility='hidden';
+        document.WIRELESS.wlBasicSpeed.style.visibility='hidden';
+        document.WIRELESS.wlChannel.style.visibility='hidden';
+        document.getElementById('c_verzoeg1').style.visibility='visible';
+        document.getElementById('c_verzoeg2').style.visibility='visible';
+        document.getElementById('t_but1').style.visibility='hidden';
+        document.getElementById('t_but3').style.visibility='hidden';
+        document.getElementById('t_but4').style.visibility='hidden';
+        //alert(loc) ;
+
+        var code = 'this.location.assign("' + loc + '")';
+        eval(code);
+}
+
+function wlEnable() {
+
+        document.WIRELESS.wirelessEnbl[1].checked = true;
+        document.WIRELESS.wirelessEnbl[0].checked = false;
+        document.WIRELESS.wlSsid.disabled = 0;
+        document.WIRELESS.wlHide.disabled = 0;
+        document.WIRELESS.wlBasicSpeed.disabled = 0;
+        document.WIRELESS.wlTxPwr.disabled = 0;
+        document.WIRELESS.wlChannel.disabled = 0;
+        enbl = '1';
+        document.WIRELESS.wlSsid.style.backgroundColor="#FFFFFF";
+}
+
+function wlDisable() {
+        document.WIRELESS.wirelessEnbl[0].checked = true;
+        document.WIRELESS.wirelessEnbl[1].checked = false;
+        document.WIRELESS.wlSsid.disabled = 1;
+        document.WIRELESS.wlHide.disabled = 1;
+        document.WIRELESS.wlBasicSpeed.disabled = 1;
+        document.WIRELESS.wlTxPwr.disabled = 1;
+        document.WIRELESS.wlChannel.disabled = 1;
+        enbl = '0';
+        document.WIRELESS.wlSsid.style.backgroundColor="#D4D0C8";
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_netzwerk.htm";
+}
+
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onLoad="frmLoad()">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Netzwerk / Wireless LAN (WLAN)</DIV>
+<DIV id=c_titel>Wireless LAN</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="WIRELESS">
+            <td width="116">Betriebszustand:</td>
+            <td width="20"><input type="radio" name="wirelessEnbl" value="V1" onclick="wlDisable()"></td>
+            <td width="40">Aus</td>
+            <td width="20"><input type="radio" name="wirelessEnbl" value="V2" onclick="wlEnable()"></td>
+            <td>Ein</td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="120">SSID:</td>
+            <td><input type="text" name="wlSsid" size="32" maxlength="32"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>
+            <td width="116">SSID unsichtbar:</td>
+            <td width="20"><input type="checkbox" name="wlHide" value="ON"></td>
+            <td width="40"></td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(4) onmouseout=i_showElem(0)>
+          <td width="120">Übertragungsmodus:</td>
+            <td><select name="wlBasicSpeed">
+                  <option selected>802.11g + 802.11b (Mixed)</option>
+                  <option>802.11g</option>
+                  <option>802.11b</option>
+              </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_std>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(6) onmouseout=i_showElem(0)>
+            <td width="120">Sendeleistung:</td>
+            <td><select name="wlTxPwr">
+                  <option selected value="100">&nbsp;100 %</option>
+                  <option value="90">&nbsp;&nbsp;90 %</option>
+                  <option value="80">&nbsp;&nbsp;80 %</option>
+                  <option value="70">&nbsp;&nbsp;70 %</option>
+                  <option value="60">&nbsp;&nbsp;60 %</option>
+                  <option value="50">&nbsp;&nbsp;50 %</option>
+                  <option value="40">&nbsp;&nbsp;40 %</option>
+                  <option value="30">&nbsp;&nbsp;30 %</option>
+                  <option value="20">&nbsp;&nbsp;20 %</option>
+                  <option value="10">&nbsp;&nbsp;10 %</option>
+              </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(5) onmouseout=i_showElem(0)>
+            <td width="120">Kanal:</td>
+            <td><select name="wlChannel">
+                  <option value=1>1</option>
+                  <option value=2>2</option>
+                  <option value=3>3</option>
+                  <option value=4>4</option>
+                  <option value=5>5</option>
+                  <option value=6>6</option>
+                  <option value=7>7</option>
+                  <option value=8>8</option>
+                  <option value=9>9</option>
+                  <option value=10>10</option>
+                  <option value=11 selected>11</option>
+                  <option value=12>12</option>
+                  <option value=13>13</option>
+              </select>
+            </td>
+          </form>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick="btnApply()" onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Wireless LAN</h2>
+    <p>Damit die kabellos verbundenen Netzwerkkomponenten miteinander kommunizieren können, müssen Sie
+     einen gemeinsamen Funkkanal und die gleiche SSID (Service Set Identifier) verwenden.
+     Der Router wird mit der SSID 'WLAN' ausgeliefert.</p>
+    <p>Aus Sicherheitsgründen sollten Sie diese SSID ändern und die Übertragung der SSID unsichtbar machen.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+
+  <DIV id=i_content1>
+    <h2>Wireless LAN</h2>
+    <p><b>Betriebszustand</b><br>
+     Wenn Sie die Option 'Aus' markieren, ist das Funkmodul ausgeschaltet.
+     Der Router ist nicht mehr über einen kabellosen Zugang zu erreichen.</p>
+  </DIV>
+
+  <DIV id=i_content2>
+    <h2>Wireless LAN</h2>
+    <p><b>SSID</b><br>
+    Damit die drahtlos verbundenen Netzwerkkomponenten miteinander kommunizieren können, müssen sie
+    die gleiche SSID (Service Set Identifier) verwenden. Geben Sie eine Zeichenkette Ihrer Wahl ein.
+  	Die SSID kann bis zu 32 Zeichen aufnehmen und aus Ziffern, Zeichen und Sonderzeichen bestehen. 
+	Sie sollte möglichst nichts über die Identität des Wireless LAN aussagen, also keine Nach- oder Firmennamen in sich tragen.</p>
+  	<p>Die Verbindung zu drahtlosen Netzwerkadaptern, die keine gültige SSID verwenden,
+  	wird so lange unterbrochen, bis auch dort die SSID eingetragen ist.</p>
+  </DIV>
+
+  <DIV id=i_content3>
+    <h2>Wireless LAN</h2>
+    <p><b>SSID unsichtbar</b><br>
+     Ist das Kontrollkästchen deaktiviert, sendet der Router die SSID bei allen Datenübertragungen mit und
+     die SSID Ihres Routers wird an Rechnern, die über einen kabellosen Netzwerkadapter verfügen, angezeigt.
+     In diesem Fall können Unberechtigte, die den Funkverkehr abhören, über die SSID Zugang zu
+     Ihrem lokalen Netzwerk erhalten.</p>
+    <p>Wenn das Kontrollkästchen SSID unsichtbar aktivieren, wird die SSID Ihres Routers nicht angezeigt. Dies erhöht
+     die Sicherheit gegen unbefugtes Eindringen in das kabellose Netzwerk. Merken Sie sich dann jedoch
+     die SSID. Sie benötigen Sie zum Anmelden des Rechners an ihren Router.</p>
+  </DIV>
+
+  <DIV id=i_content4>
+    <h2>Wireless LAN</h2>
+    <p><b>Übertragungsmodus</b><br>
+    Der Übertragungsmodus gibt an, ob die drahtlose Übertra- gung nach dem Standard 802.11b
+    oder 802.11g erfolgt oder ob beide Übertragungsar- ten möglich sind (Mixed). Der wesentliche
+    Unterschied zwi- schen beiden Standards ist die Übertragungsgeschwindigkeit:<br>
+	<li>802.11b – max. 11 Mbps</li>
+	<li>802.11g – max. 54 Mbps</li></p>
+	<p>Nutzen die Geräte im drahtlosen Netzwerk unterschiedliche Standards, sollten Sie hier die
+	Voreinstellung 'Mixed' beibehalten.</p>
+  </DIV>
+
+  <DIV id=i_content5>
+    <h2>Wireless LAN</h2>
+    <p><b>Kanal</b><br>
+     Hier wird der Funkkanal eingestellt, über den der Router mit anderen kabellosen Netzwerkkomponenten kommuniziert.
+     Damit die kabellos verbundenen Netzwerkkomponenten miteinander kommunizieren können,
+     müssen Sie einen gemeinsamen Funkkanal verwenden.
+     Die verfügbaren Kanaleinstellungen können durch örtliche Regelungen eingeschränkt sein.
+     Die Anzahl der verfügbaren Kanäle wird dadurch festgelegt.</p>
+  </DIV>
+
+  <DIV id=i_content6>
+    <h2>Wireless LAN</h2>
+    <p><b>Sendeleistung</b><br>
+     Hier wird die Sendeleistung eingestellt, mit der der Router mit anderen kabellosen Netzwerkkomponenten kommuniziert.</p>
+    <p>Damit die kabellos verbundenen Netzwerkkomponenten miteinander kommunizieren können, muss die Sendeleistung ausreichend
+     hoch sein. Bei guten Sende- / Empfangsverhältnissen kann sie jedoch reduziert werden.</p>
+  </DIV>
+
+</DIV>
+
+</BODY>
+
+</HTML>

@@ -1,0 +1,311 @@
+<HTML>
+
+<HEAD>
+
+<TITLE>SicherheitFilterfunktionTerminregelnRegelx</TITLE>
+
+<SCRIPT language="JavaScript" src="js_fade.txt" type="text/JavaScript"></SCRIPT>
+<SCRIPT language="JavaScript" src="js_menu.txt" type="text/JavaScript"></SCRIPT>
+
+<SCRIPT language="JavaScript">
+<!--
+
+// Feld für Terminregeltage
+var tr_tag = new Array("Täglich","Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag");
+
+function chk(){
+  document.F1.D1.selectedIndex = top.frames[0].tregel.length - 1;
+  stAkt();
+}
+  
+function stAkt(){
+  document.F1.T1.disabled = false;
+  document.F1.T1.style.backgroundColor="#FFFFFF";
+  document.getElementById("t_but2").style.visibility='visible';
+  document.getElementById("t_but4").style.visibility='visible';
+
+  if (top.frames[0].tregel[document.F1.D1.selectedIndex].length > 0){
+    document.F1.T1.value = top.frames[0].tregel[document.F1.D1.selectedIndex];
+  }
+  else{
+    document.F1.T1.value = "";
+  }
+
+  //Normalerweise werden hier die gespeicherte Werte eintragen
+  document.F1.elements[2].checked = false;
+  document.F1.elements[2].disabled = false;
+  stDis(0);
+  for (i=0;i<8;i++){
+    document.F1.elements[(i*5)+2].checked = false;
+    document.F1.elements[(i*5)+3].value = "";
+    document.F1.elements[(i*5)+4].value = "";
+    document.F1.elements[(i*5)+5].value = "";
+    document.F1.elements[(i*5)+6].value = "";
+  }
+
+  if (document.F1.D1.selectedIndex == 0){
+    document.F1.T1.disabled = true;
+    document.F1.T1.style.backgroundColor="#D4D0C8";
+    document.getElementById("t_but2").style.visibility='hidden';
+    document.getElementById("t_but4").style.visibility='hidden';
+
+    document.F1.elements[2].checked = true;
+    document.F1.elements[2].disabled = true;
+    stDis(0);
+  }
+  else if ((document.F1.D1.selectedIndex == top.frames[0].tregel.length - 1) && (top.frames[0].tregel.length < 9)){
+    document.getElementById("t_but2").style.visibility='hidden';
+  }
+
+}
+  
+function stDis(nr){
+  stDisZeile(nr);
+  if (nr == 0){
+    if (document.F1.elements[2].checked == true){
+      for (i=1;i<8;i++){
+        document.F1.elements[(i*5)+2].checked = true;
+        document.F1.elements[(i*5)+2].disabled = true;
+        stDisZeile(i);
+      }
+    }
+    else{
+      for (i=1;i<8;i++){
+        document.F1.elements[(i*5)+2].checked = false;
+        document.F1.elements[(i*5)+2].disabled = false;
+        stDisZeile(i);
+      }
+    }
+  }
+}
+  
+function stDisZeile(nr){
+var dis;
+var col;
+
+  if (document.F1.elements[(nr*5)+2].checked == true){
+    dis = true;
+    col = '#D4D0C8';
+  }
+  else{
+    dis = false;
+    col = '#FFFFFF';
+  }
+  document.F1.elements[(nr*5)+3].style.backgroundColor = col;
+  document.F1.elements[(nr*5)+4].style.backgroundColor = col;
+  document.F1.elements[(nr*5)+5].style.backgroundColor = col;
+  document.F1.elements[(nr*5)+6].style.backgroundColor = col;
+  document.F1.elements[(nr*5)+3].disabled = dis;
+  document.F1.elements[(nr*5)+4].disabled = dis;
+  document.F1.elements[(nr*5)+5].disabled = dis;
+  document.F1.elements[(nr*5)+6].disabled = dis;
+}
+  
+function stOk(){
+  if (document.F1.T1.value==""){
+    alert("Bitte tragen Sie eine Bezeichnung für diese Terminregel ein");
+    document.F1.T1.focus();
+    return;
+  }
+  var ex = false;
+  var prf = false;
+  for (i=0;i<8;i++){
+    if (document.F1.elements[(i*5)+2].checked==true){
+      prf = true;
+      continue;
+    }
+    if (isNTime(document.F1.elements[(i*5)+3],document.F1.elements[(i*5)+4]) == -1 && isNTime(document.F1.elements[(i*5)+5],document.F1.elements[(i*5)+6]) == -1){
+      continue;
+    }
+    else{
+      if (isNTime(document.F1.elements[(i*5)+3],document.F1.elements[(i*5)+4]) != 0){
+        alert("Bitte tragen Sie eine korrekte Uhrzeit für den Startzeitpunkt ein");
+        ex = true;
+        break;
+      }
+      if (isNTime(document.F1.elements[(i*5)+5],document.F1.elements[(i*5)+6]) != 0){
+        alert("Bitte tragen Sie eine korrekte Uhrzeit für den Endzeitpunkt ein");
+        ex = true;
+        break;
+      }
+      prf = true;
+    }
+  }
+  if (ex==true) return;
+
+  if (prf==false){
+    alert("Bitte tragen Sie mindestens einen aktivierten Zeitabschnitt ein");
+    document.F1.D1.focus();
+    return;
+  }
+
+  top.frames[0].tregel[document.F1.D1.selectedIndex] = document.F1.T1.value;
+
+  if ((document.F1.D1.selectedIndex == top.frames[0].tregel.length - 1)
+   && (top.frames[0].tregel.length < 9)){
+    top.frames[0].addNewTR();
+  }
+  stSave();
+}
+  
+function stDel(){
+  if (confirm("Wenn Sie diese Terminregel wirklich löschen möchten, dann klicken Sie auf 'OK'." +
+              "\nKlicken Sie auf 'Abbrechen', um das Löschen zu verhindern.")==true){
+  top.frames[0].delTR(document.F1.D1.selectedIndex);
+  stSave();
+}
+}
+
+function stSave(){
+  document.getElementById("c_verzoeg1").style.visibility='visible';
+  document.getElementById("c_verzoeg2").style.visibility='visible';
+  setTimeout("stZrk()",top.frames[0].verzoeg);
+
+  //Select-Options müssen extra ausgeblendet werden!
+  document.F1.D1.style.visibility='hidden';
+}
+
+function stZrk(){
+  top.frames[2].location.href = "hcti_sicherheit_f.htm";
+}
+
+//-->
+</SCRIPT>
+
+<LINK rel="stylesheet" href="style.css" type="text/css">
+
+</HEAD>
+
+<BODY onload="chk()">
+
+<DIV id=c_Frame>
+
+<DIV id=c_border>
+<DIV id=c_pfad>Sicherheit / Filterfunktion / Terminregeln</DIV>
+<DIV id=c_titel>Terminregeln verwalten &amp; hinzufügen</DIV>
+<DIV id=c_sel>
+      <table border="0" cellpadding="2" cellspacing="1" bgcolor="#E20074">
+        <tr onmouseover=i_showElem(1) onmouseout=i_showElem(0)>
+          <form name="F1">
+            <td width="106" align="right"><font color="#FFFFFF"><b>Regel-Auswahl:</b></font></td>
+            <td width="5"></td>
+            <td width="253"><select size="1" name="D1" onchange="stAkt()">
+                <SCRIPT language="JavaScript">
+                <!--
+                  for (i=1;i<top.frames[0].tregel.length+1;i++){
+                    if (top.frames[0].tregel[i-1].length > 0){
+                      document.write('<option>Regel ' + i + ': ' + top.frames[0].tregel[i-1] + '</option>');
+                    }
+                    else{
+                        document.write('<option>Regel ' + i + ': Neu hinzufügen</option>');
+                    }
+                  }
+                //-->
+                </SCRIPT>
+              </select>
+            </td>
+        </tr>
+      </table>
+</DIV>
+<DIV id=c_last>
+      <table border="0" cellpadding="0" cellspacing="2">
+        <tr onmouseover=i_showElem(2) onmouseout=i_showElem(0)>
+            <td width="120"><b>Bezeichnung:</b></td>
+            <td><input type="text" name="T1" size="20" maxlength="20"></td>
+        </tr>
+      </table>
+</DIV>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_titel>Aktivierte Zeitabschnitte</DIV>
+<DIV id=c_std>
+    <table border="0" cellpadding="0" cellspacing="2">
+      <tr>
+        <td width="100">Wochentag</td>
+        <td width="85">Ganztägig</td>
+        <td width="103">Startzeitpunkt</td>
+        <td>Endzeitpunkt</td>
+      </tr>
+    </table>
+</DIV>
+
+<SCRIPT language="JavaScript">
+<!--
+
+for (i=0;i<8;i++){
+  var divart = "c_std";
+  var endf = "";
+  if (i==7){
+    divart = "c_last";
+    endf = "</form>";
+  }
+  document.write(
+    '<DIV id=' + divart + '>' +
+      '<table border="0" cellpadding="0" cellspacing="2">' +
+        '<tr onmouseover=i_showElem(3) onmouseout=i_showElem(0)>' +
+            '<td width="116">' + tr_tag[i] + '</td>' +
+            '<td width="70"><input type="checkbox" name="C' + i + '" onclick=stDis(' + i + ')></td>' +
+            '<td width="31"><input type="text" name="T' + i + '_1" size="2" maxlength="2"> :</td>' +
+            '<td width="70"><input type="text" name="T' + i + '_2" size="2" maxlength="2"> Uhr</td>' +
+            '<td width="31"><input type="text" name="T' + i + '_3" size="2" maxlength="2"> :</td>' +
+            '<td><input type="text" name="T' + i + '_4" size="2" maxlength="2"> Uhr</td>' +
+          endf +
+        '</tr>' +
+      '</table>' +
+    '</DIV>');
+}
+
+//-->
+</SCRIPT>
+
+<DIV id=c_leer></DIV>
+<DIV id=c_foot></DIV>
+</DIV>
+
+<DIV id=c_verzoeg1></DIV>
+<DIV id=c_verzoeg2></DIV>
+
+</DIV>
+
+<DIV id=t_Frame>
+
+<DIV id=t_but1 onclick=startseite() onmouseover=rahmen(1,1) onmouseout=rahmen(0,1)>&lt;&lt;&nbsp;&nbsp;&lt;&lt;</DIV>
+<DIV id=t_but2 onclick=stDel() onmouseover=rahmen(1,2) onmouseout=rahmen(0,2)>L&ouml;schen &lt;&lt;</DIV>
+<DIV id=t_but3 onclick=stZrk() onmouseover=rahmen(1,3) onmouseout=rahmen(0,3)>Zur&uuml;ck &lt;&lt;</DIV>
+<DIV id=t_but4 onclick=stOk() onmouseover=rahmen(1,4) onmouseout=rahmen(0,4)>Speichern &lt;&lt;</DIV>
+
+</DIV>
+
+<DIV id=i_Frame>
+
+  <DIV id=i_content>
+    <h2>Terminregel</h2>
+    <p>Legen Sie fest, zu welchen Uhrzeiten und an welchen Tagen diese Terminregel
+    wirksam sein soll. Sie können maximal 10 Regeln definieren.</p>
+    <p>Weitere Informationen erhalten Sie, wenn Sie den Mauszeiger über einen Menüpunkt bewegen.</p>
+  </DIV>
+  
+  <DIV id=i_content1>
+    <h2>Terminregeln verwalten &amp; hinzufügen</h2>
+    <p><b>Regel-Auswahl</b><br>
+    Sie können eine Terminregel neu hinzufügen oder eine bereits eingetragene Regel verändern oder ganz löschen.</p>
+     <p>Klicken Sie hier und wählen Sie die Terminregel aus, die Sie verwalten möchten.</p>
+  </DIV>
+  
+  <DIV id=i_content2>
+    <h2>Terminregel</h2>
+    <p><b>Bezeichnung</b><br>
+    Geben Sie der Regel eine Bezeichnung, die für Sie aussagekräftig ist.</p>
+  </DIV>
+  
+  <DIV id=i_content3>
+    <h2>Terminregel</h2>
+    <p><b>Aktivierte Zeitabschnitte</b><br>
+    Aktivieren Sie entweder das Kontrollkästchen 'Ganztägig' oder geben Sie für die unterschiedlichen Wochentage den gewünschte Start- und Endzeitpunkt ein.</p>
+  </DIV>
+  
+</DIV>
+
+</BODY>
+
+</HTML>

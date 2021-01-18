@@ -1,0 +1,3 @@
+ifeq (-s -Os -fomit-frame-pointer -W -I. -Ilibtomcrypt -I/project/BCMDT_3.0/userapps/broadcom/cfm.wh/inc -I/project/BCMDT_3.0/bcmdrivers/opensource/include/bcm963xx,$(strip $(subst $(comma),:,$(CFLAGS) $(EXTRA_CFLAGS) $(CFLAGS_bn_mp_dr_reduce.o))))
+FILES_FLAGS_UP_TO_DATE += bn_mp_dr_reduce.o
+endif
