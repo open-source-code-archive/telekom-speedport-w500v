@@ -1,0 +1,8 @@
+
+# Temporary folders created by svn2git.sh
+bitswitcher.svn
+bitswitcher.git-tmp
+bitswitcher.clone
+bitswitcher.git-bare
+*.log
+

@@ -1,0 +1,3 @@
+coolman1982 = Patrick Schmidt <coolman1982@users.sourceforge.net>
+fibu = Michael Finsterbusch <fibu@users.sourceforge.net>
+
